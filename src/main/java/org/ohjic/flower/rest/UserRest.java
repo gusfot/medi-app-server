@@ -40,6 +40,11 @@ public class UserRest {
 		
 		List<User> userList = userServcie.getUserList();
 		
+		RestResponse res = new RestResponse();
+		res.setSuccess(true);
+		res.setCode("SUCC00");
+		res.setData(userList);
+		
 		return userList;
 	}
 	
