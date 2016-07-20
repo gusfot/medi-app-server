@@ -29,22 +29,20 @@ public class UserMapperTest {
 		Assert.assertNull(user);
 	}
 	
-
-	
-	
 	@Test
 	public void failToInsertUser() {
 		User user = new User();
 		user.setUserId("admin");
 		int result = userMapper.insertSelective(user);
+		
+		Assert.assertNull(result > 0);
 	}
-	
 	
 	@Test
 	public void successToUpdateUser() {
 		User user = new User();
-				user.setUserId("김명훈");
-				user.setUserName("김명훈_Test");
+		user.setUserId("김명훈");
+		user.setUserName("김명훈_Test");
 				
 	  int reuslt = userMapper.updateByPrimaryKeySelective(user);
 	  Assert.assertTrue(reuslt>0);
