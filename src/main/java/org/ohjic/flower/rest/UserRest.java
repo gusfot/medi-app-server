@@ -45,7 +45,7 @@ public class UserRest {
 		res.setCode("SUCC00");
 		res.setData(userList);
 		
-		return userList;
+		return res;
 	}
 	
 	

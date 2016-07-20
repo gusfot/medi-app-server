@@ -4,7 +4,7 @@
 <html lang="ko">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=euc-kr" />
-		<title>목장관리시스템 - 목장원관리</title>
+		<title>플라시스템</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<link rel="stylesheet" type="text/css" href="/resources/css/common.css" />
