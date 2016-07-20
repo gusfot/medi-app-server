@@ -3,6 +3,7 @@ package org.ohjic.flower.rest;
 import java.util.List;
 
 import org.ohjic.flower.model.User;
+import org.ohjic.flower.rest.common.RestResponse;
 import org.ohjic.flower.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -20,12 +21,18 @@ public class UserRest {
 	private UserService userServcie;
 	
 	@RequestMapping(value = "/rest/user/{userId}", method=RequestMethod.GET, produces = "application/json")
-	public @ResponseBody User getUser(@PathVariable("userId") String userId){
+	public @ResponseBody RestResponse getUser(@PathVariable("userId") String userId){
 		
 		User user= new User();
 		user.setUserId(userId);
 		
-		return user;
+		RestResponse res = new RestResponse();
+		res.setSuccess(true);
+		res.setCode("SUCC00");
+		res.setData(user);
+		
+		
+		return res;
 	}
 	
 	@RequestMapping(value = {"/rest/user/list"}, method=RequestMethod.GET, produces = "application/json")
