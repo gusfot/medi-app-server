@@ -40,7 +40,7 @@ if (typeof window.swal === 'undefined') {
 			always: function (dataOrJqXHR, textStatus, jqXHROrErrorThrown) {
 
 			},
-			warningAlertCallback: function() {
+			warningAlertCallback: function(param) {
 
 			}
 		},
@@ -89,7 +89,7 @@ if (typeof window.swal === 'undefined') {
 				// response가 없거나 서버사이드에서 성공이 아니라 응답한 경우
 				if (show.failMessage) {
 					// 공통 실패 메세지를 출력하도록 인자를 전달했을 경우 서버 응답에 포함된 실패메세지 출력
-					var msg = (data && data.msg)|| textStatus;
+					var msg = (data && data.message)|| textStatus;
 
 					_showMessage(msg, func.warningAlertCallback);
 				}
