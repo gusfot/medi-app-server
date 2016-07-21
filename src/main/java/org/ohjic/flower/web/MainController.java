@@ -23,5 +23,9 @@ public class MainController {
 		return "main";
 	}
 	
-	
+	@RequestMapping("/front")
+	public String front() {
+
+		return "front";
+	}
 }
