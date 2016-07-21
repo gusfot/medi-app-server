@@ -3,6 +3,7 @@ package org.ohjic.flower.service;
 import java.util.List;
 
 import org.ohjic.flower.common.Paging;
+import org.ohjic.flower.exception.PermissionDeniedException;
 import org.ohjic.flower.model.User;
 
 public interface UserService {
@@ -46,7 +47,7 @@ public interface UserService {
 	 * 사용자 목록을 조회한다.
 	 * @return
 	 */
-	List<User> getUserList();
+	List<User> getUserList() throws PermissionDeniedException;
 
 }
 

@@ -1,14 +1,14 @@
 package org.ohjic.flower.exception.common;
 
-public class CommonException {
+public class CommonException extends Exception {
 
-	private ErrorCode errorCode;
+	private ResponseCode responseCode;
 
-	public CommonException(ErrorCode errorCode) {
-		this.errorCode = errorCode;
+	public CommonException(ResponseCode responseCode) {
+		this.responseCode = responseCode;
 	}
 
-	public ErrorCode getErrorCode() {
-		return errorCode;
+	public ResponseCode getResponseCode() {
+		return responseCode;
 	}
 }

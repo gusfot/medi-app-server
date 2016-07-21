@@ -2,6 +2,8 @@ package org.ohjic.flower.rest;
 
 import java.util.List;
 
+import org.ohjic.flower.exception.PermissionDeniedException;
+import org.ohjic.flower.exception.common.ResponseCode;
 import org.ohjic.flower.model.User;
 import org.ohjic.flower.rest.common.RestResponse;
 import org.ohjic.flower.service.UserService;
@@ -16,33 +18,41 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @Scope(value="request")
 public class UserRest {
-	
+
 	@Autowired
 	private UserService userServcie;
-	
+
 	@RequestMapping(value = "/rest/user/{userId}", method=RequestMethod.GET, produces = "application/json")
 	public @ResponseBody RestResponse getUser(@PathVariable("userId") String userId){
-		
+
 		User user= new User();
 		user.setUserId(userId);
-		
+
 		RestResponse res = new RestResponse();
 		res.setSuccess(true);
 		res.setCode("SUCC00");
 		res.setData(user);
-		
-		
+
+
 		return res;
 	}
-	
+
 	@RequestMapping(value = {"/rest/user/list"}, method=RequestMethod.GET, produces = "application/json")
 	public @ResponseBody Object getUserList(){
-		
-		List<User> userList = userServcie.getUserList();
-		
+
+		List<User> userList = null;
+		ResponseCode responseCode = ResponseCode.SUCCESS;
+
+		try {
+			userList = userServcie.getUserList();
+		} catch (PermissionDeniedException e) {
+			responseCode = e.getResponseCode();
+		}
+
 		RestResponse res = new RestResponse();
-		res.setSuccess(true);
-		res.setCode("SUCC00");
+		res.setSuccess(ResponseCode.SUCCESS.equals(responseCode));
+		res.setCode(responseCode.getCode());
+		res.setMessage(responseCode.getMessage());
 		res.setData(userList);
 		
 		return res;
