@@ -14,9 +14,11 @@ public class RestResponse {
 	private String message;
 	private String code;
 	
+	private ResponseCode resCode ;
+	
 	public RestResponse() {
 		success = true;
-		code = ResponseCode.SUCCESS.getCode();
+		this.setResCode(ResponseCode.SUCCESS);
 	}
 	public boolean isSuccess() {
 		return success;
@@ -39,8 +41,10 @@ public class RestResponse {
 	public String getCode() {
 		return code;
 	}
-	public void setCode(String code) {
-		this.code = code;
+	
+	public void setResCode(ResponseCode resCode) {
+		this.code = resCode.getCode();
+		this.message = ResponseCode.getMessage(resCode);
 	}
 	
 	

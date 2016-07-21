@@ -22,4 +22,16 @@ public enum ResponseCode {
 	public String getMessage() {
 		return message;
 	}
+
+	public static String getMessage(ResponseCode resCode) {
+		ResponseCode[] values = ResponseCode.values();
+		
+		for (ResponseCode responseCode : values) {
+			if(resCode == responseCode) {
+				return responseCode.getMessage();
+			}
+		}
+		
+		return null;
+	}
 }
