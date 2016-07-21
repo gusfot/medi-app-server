@@ -23,12 +23,12 @@ public enum ResponseCode {
 		return message;
 	}
 
-	public static String getMessage(ResponseCode resCode) {
+	public static ResponseCode getResponseCodeByCode(String code) {
 		ResponseCode[] values = ResponseCode.values();
 		
 		for (ResponseCode responseCode : values) {
-			if(resCode == responseCode) {
-				return responseCode.getMessage();
+			if(responseCode.getCode().equals(code)) {
+				return responseCode;
 			}
 		}
 		

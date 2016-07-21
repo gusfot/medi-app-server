@@ -44,7 +44,7 @@ public class RestResponse {
 	
 	public void setResCode(ResponseCode resCode) {
 		this.code = resCode.getCode();
-		this.message = ResponseCode.getMessage(resCode);
+		this.message = resCode.getMessage();
 	}
 	
 	

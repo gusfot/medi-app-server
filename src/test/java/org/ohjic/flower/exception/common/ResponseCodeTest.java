@@ -25,9 +25,9 @@ public class ResponseCodeTest {
 	}
 	
 	@Test
-	public void testMessageByEnum() {
+	public void testResponseCodeByCode() {
+		ResponseCode resCode = ResponseCode.getResponseCodeByCode("ERR0000");
 		
-		String message = ResponseCode.getMessage(ResponseCode.PERMISSION_DENIED);
-		logger.debug(message);
+		assertTrue(ResponseCode.UNKOWN.equals(resCode));
 	}
 }
