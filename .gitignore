@@ -5,3 +5,4 @@ flower.iml
 .classpath
 .project
 .springBeans
+bin/
