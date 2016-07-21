@@ -38,7 +38,7 @@ public class UserRest {
 	}
 
 	@RequestMapping(value = {"/rest/user/list"}, method=RequestMethod.GET, produces = "application/json")
-	public @ResponseBody Object getUserList(){
+	public @ResponseBody RestResponse getUserList(){
 
 		RestResponse res = new RestResponse();
 		ResponseCode responseCode = null ;
