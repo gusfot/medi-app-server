@@ -8,7 +8,12 @@
     <sqlMapGenerator targetPackage="org.ohjic.flower.dao.mapper" targetProject="flower-system" />
     <javaClientGenerator targetPackage="org.ohjic.flower.dao" targetProject="flower-system" type="XMLMAPPER" />
     
-    <table schema="mokjang" tableName="user" >
+    <table schema="flower" tableName="user" enableSelectByExample="false" 
+    										 enableDeleteByExample="false" 
+    										 enableCountByExample="false"
+    										 enableUpdateByExample="false" 
+    										 selectByExampleQueryId="false">
+    										 
       <columnOverride column="user_seq" property="userSeq" />
       <columnOverride column="user_name" property="userName" />
       <columnOverride column="user_id" property="userId" />
