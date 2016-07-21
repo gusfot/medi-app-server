@@ -45,8 +45,8 @@
 			options: {
 				url: 'test'
 			}, callbacks: {
-				warningAlertCallback: function() {
-					alert('after process');
+				warningAlertCallback: function(param) {
+					console.log(param)
 				}
 			}
 		})
