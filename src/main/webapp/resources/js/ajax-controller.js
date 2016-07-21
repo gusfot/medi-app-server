@@ -91,7 +91,7 @@ if (typeof window.swal === 'undefined') {
 					// 공통 실패 메세지를 출력하도록 인자를 전달했을 경우 서버 응답에 포함된 실패메세지 출력
 					var msg = (data && data.msg)|| textStatus;
 
-					_showMessage(msg, func.warningAlertCallback);
+					_showMessage(msg, func.warningAlertCallback, jqXHR, data);
 				}
 			}
 
@@ -112,7 +112,7 @@ if (typeof window.swal === 'undefined') {
 					},
 					msg = msgCode[status] || '서버와 통신이 원활하지 않습니다.';
 
-				_showMessage(msg, func.warningAlertCallback);
+				_showMessage(msg, func.warningAlertCallback, jqXHR);
 			}
 
 			func.fail(jqXHR, textStatus, errorThrown);
@@ -124,12 +124,17 @@ if (typeof window.swal === 'undefined') {
 		});
 	};
 
-	var _showMessage = function(msg, warningAlertCallback) {
+	var _showMessage = function(msg, warningAlertCallback, jqXHR, data) {
 		swal({
 			title: '경고',
 			text: msg,
 			showCancelButton: false
-		}, warningAlertCallback);
+		}, function() {
+			warningAlertCallback({
+				jqXHR: jqXHR,
+				data: data || {}
+			});
+		});
 	};
 
 	var _getValue = function (value, defaultValue) {
