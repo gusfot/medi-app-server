@@ -4,6 +4,7 @@ package org.ohjic.flower.service.impl;
 import java.util.List;
 
 import org.ohjic.flower.dao.UserMapper;
+import org.ohjic.flower.exception.PermissionDeniedException;
 import org.ohjic.flower.model.User;
 import org.ohjic.flower.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> getUserList() {
+	public List<User> getUserList() throws PermissionDeniedException {
 		return userMapper.selectList();
 	}
 

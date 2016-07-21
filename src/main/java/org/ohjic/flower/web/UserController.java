@@ -5,6 +5,7 @@ package org.ohjic.flower.web;
 
 import java.util.List;
 
+import org.ohjic.flower.exception.PermissionDeniedException;
 import org.ohjic.flower.model.User;
 import org.ohjic.flower.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,14 @@ public class UserController {
 	
 	@RequestMapping("/list")
 	public String list(Model model){
-		
-		List<User> userList = userServcie.getUserList();
+
+		List<User> userList = null;
+		try {
+			userList = userServcie.getUserList();
+		} catch (PermissionDeniedException e) {
+
+		}
+
 		model.addAttribute("userList", userList);
 		
 		return "user/list";
