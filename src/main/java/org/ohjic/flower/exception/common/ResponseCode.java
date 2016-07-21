@@ -2,8 +2,9 @@ package org.ohjic.flower.exception.common;
 
 public enum ResponseCode {
 	SUCCESS("SUCC00", ""),
+	UNKOWN("ERR0000", "알 수 없는 오류입니다."),
 	INVALID_PASSWORD("ERR0001", "잘못된 비밀번호입니다."),
-	PERMISSION_DENIED("ERR0002", "권한이 없습니다.")
+	PERMISSION_DENIED("ERR0002", "권한이 없습니다."), 
 	;
 
 	private String code;
