@@ -1,5 +1,7 @@
 package org.ohjic.flower.rest.common;
 
+import org.ohjic.flower.exception.common.ResponseCode;
+
 /**
  * 공통 Restful JsonResponse 객체
  * @author ohjic
@@ -12,6 +14,10 @@ public class RestResponse {
 	private String message;
 	private String code;
 	
+	public RestResponse() {
+		success = true;
+		code = ResponseCode.SUCCESS.getCode();
+	}
 	public boolean isSuccess() {
 		return success;
 	}
