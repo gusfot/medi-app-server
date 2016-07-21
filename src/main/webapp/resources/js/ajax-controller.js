@@ -2,14 +2,19 @@ if (typeof window.jQuery === 'undefined') {
 	throw new Error('AjaxController requires jQuery');
 }
 
+if (typeof window.swal === 'undefined') {
+	throw new Error('AjaxController requires SweetAlert');
+}
+
 +function (factory) {
 	'use strict';
 
-	window['AjaxController'] = factory(jQuery);
-}(function ($) {
+	window['AjaxController'] = factory(jQuery, swal);
+}(function ($, swal) {
 	function AjaxController() {
 
 	}
+
 	var contextPath = location.pathname.replace(/(\/[a-zA-Z0-9]+)\/*.*/, '$1'),
 		path = location.host + contextPath;
 
@@ -33,6 +38,9 @@ if (typeof window.jQuery === 'undefined') {
 
 			},
 			always: function (dataOrJqXHR, textStatus, jqXHROrErrorThrown) {
+
+			},
+			warningAlertCallback: function() {
 
 			}
 		},
@@ -83,7 +91,7 @@ if (typeof window.jQuery === 'undefined') {
 					// 공통 실패 메세지를 출력하도록 인자를 전달했을 경우 서버 응답에 포함된 실패메세지 출력
 					var msg = (data && data.msg)|| textStatus;
 
-					alert(msg);
+					_showMessage(msg, func.warningAlertCallback);
 				}
 			}
 
@@ -104,7 +112,7 @@ if (typeof window.jQuery === 'undefined') {
 					},
 					msg = msgCode[status] || '서버와 통신이 원활하지 않습니다.';
 
-				alert(msg);
+				_showMessage(msg, func.warningAlertCallback);
 			}
 
 			func.fail(jqXHR, textStatus, errorThrown);
@@ -114,6 +122,14 @@ if (typeof window.jQuery === 'undefined') {
 			$('.' + DEFAULTS.progressClassName).hide();
 			func.always(dataOrJqXHR, textStatus, jqXHROrErrorThrown);
 		});
+	};
+
+	var _showMessage = function(msg, warningAlertCallback) {
+		swal({
+			title: '경고',
+			text: msg,
+			showCancelButton: false
+		}, warningAlertCallback);
 	};
 
 	var _getValue = function (value, defaultValue) {
