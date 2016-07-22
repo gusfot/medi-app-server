@@ -5,4 +5,8 @@ flower.iml
 .classpath
 .project
 .springBeans
+<<<<<<< HEAD
 /.gitignore
+=======
+bin/
+>>>>>>> refs/remotes/origin/master
