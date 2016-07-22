@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+      "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="normal.definition" template="/WEB-INF/views/layouts/layout_normal.jsp">
+		<put-attribute name="header" value="/normal/header" />
+		<put-attribute name="side" value="/normal/side" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/layouts/normal_footer.jsp" />
+	</definition>
+
+	<definition name="normal/**" extends="normal.definition">
+		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
+	</definition>
+</tiles-definitions>
