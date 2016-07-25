@@ -31,7 +31,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		
 		try {
 			if(user == null){ // sessionUserVO 세션 값이 null인 경우
-				response.sendRedirect("/");
+				response.sendRedirect("/login");
 			} else if (!user.getUserId().equals("admin")) {
 				throw new PermissionDeniedException(); // 권한 익섹션 발생
 			}

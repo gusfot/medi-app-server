@@ -2,8 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <jsp:useBean id="now" class="java.util.Date" />
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	
@@ -77,7 +77,7 @@
                         <div class="form-group">
                             <input type="password" id="password" class="form-control" placeholder="Password">
                         </div>
-                        <button type="submit" id="loginBtn" class="btn btn-primary block full-width m-b">Login</button>
+                        <button id="loginBtn" class="btn btn-primary block full-width m-b">Login</button>
 
                         <a href="#">
                             <small>Forgot password?</small>
@@ -106,7 +106,7 @@
     </div>
     
     <script type="text/javascript">
-    $("#logBtn").click(function(e) {
+    $("#loginBtn").click(function(e) {
 		e.preventDefault();
 		AjaxController.request({
 			   options: {
@@ -119,6 +119,7 @@
 			   }, 
 			   callbacks: {
 			    	done: function (data, textStatus, jqXHR) {
+			    		alert("성공");
 			    		if(data.success === true) {
 			    			location.href = "/layout/test";
 			    		}
