@@ -26,6 +26,12 @@ public class MainController {
 		return "main";
 	}
 	
+	@RequestMapping("/login")
+	public String login(){
+		
+		return "user/login";
+	}
+	
 	@RequestMapping("/front")
 	public String front() {
 

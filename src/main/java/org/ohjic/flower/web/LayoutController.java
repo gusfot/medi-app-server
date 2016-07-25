@@ -22,4 +22,5 @@ public class LayoutController {
 		// TODO 삭제
 		return "normal/layouts/layout_body_test";
 	}
+
 }

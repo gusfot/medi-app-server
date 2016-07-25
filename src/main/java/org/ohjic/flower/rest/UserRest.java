@@ -72,7 +72,36 @@ public class UserRest {
 		return res;
 	}
 	
-	
+	@RequestMapping(value = {"/rest/user/list"}, method=RequestMethod.GET, produces = "application/json")
+	public @ResponseBody RestResponse getUserList() {
+
+		RestResponse res = new RestResponse();
+		ResponseCode resCode = ResponseCode.UNKOWN ;
+		List<User> userList = null;
+
+		try {
+			
+			// 사용자목록 조회
+			userList = userServcie.getUserList();
+			res.setData(userList);
+			res.setSuccess(true);
+			
+		}catch (PermissionDeniedException e) {
+			
+			resCode = e.getResponseCode();
+			res.setSuccess(false);
+			res.setResCode(resCode);
+			
+		}catch (Exception e) {
+			
+			logger.error(e.getMessage());
+			res.setSuccess(false);
+			res.setResCode(ResponseCode.UNKOWN);
+			
+		}
+		
+		return res;
+	}
 
 	
 
