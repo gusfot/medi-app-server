@@ -43,6 +43,15 @@
 	<script src="${resourcePath}/js/ajax-controller.js"></script>
 	
 	<title>플라시스템</title>
+	
+<!-- 	세션에 값이 있는 상태에서 url로 로그인 페이지 접근 시 첫 화면으로 가게 한다.  -->
+	<script type="text/javascript">
+    var isLogged = function() {
+    	if('${sessionScope.sessionUserVO}'!='' )
+    	location.href="/layout/test";
+    }();
+    
+    </script>
 </head>
 <body class="gray-bg">
     <div class="loginColumns animated fadeInDown">
@@ -105,36 +114,35 @@
         </div>
     </div>
     
-    <script type="text/javascript">
+<script type="text/javascript">
     $("#loginBtn").click(function(e) {
 		e.preventDefault();
 		AjaxController.request({
-			   options: {
-			      url: '/rest/user/login',
-			      data : {
-	 		      	id : $("#id").val(),
-	 			  	password : $("#password").val()
-		 		  },
-		 			type : 'post'
-			   }, 
-			   callbacks: {
-			    	done: function (data, textStatus, jqXHR) {
-			    		alert("성공");
-			    		if(data.success === true) {
-			    			location.href = "/layout/test";
-			    		}
-			    	}, 
-			    	warningAlertCallback: function(param) {
-// 				    	param.data;
-// 				    	param.jqXHR;
-			   		},
-			   },
-			   	  show: {
-			      progress: true,
-			      failMessage: true
-			   }
-			});
+			options : {
+				url : '/rest/user/login',
+				data : {
+					id : $("#id").val(),
+					password : $("#password").val()
+				},
+				type : 'post'
+			},
+			callbacks : {
+				done : function(data, textStatus, jqXHR) {
+					if (data.success === true) {
+						location.href = "/layout/test";
+					}
+				},
+				warningAlertCallback : function(param) {
+					// 				    	param.data;
+					// 				    	param.jqXHR;
+				},
+			},
+			show : {
+				progress : true,
+				failMessage : true
+			}
 		});
-    </script>
+	});
+</script>
 </body>
 </html>

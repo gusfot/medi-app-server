@@ -57,36 +57,23 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectList();
 	}
 
-	// 로그인 체크
-		@Override
-		public User checkUser(User user) throws InvalidPasswordException {
-			// TODO id와 password를 가지고 로그인 체크를 한다.
-			if (user.getUserId().equals("admin")) {
-				if (!user.getPassword().equals("123")) {
-					throw new InvalidPasswordException();
-				}
-			}
-			return user;
+	// 로그인 체크, 비밀번호만 체크하자.
+	@Override
+	public User checkUser(User user) throws InvalidPasswordException {
+		// TODO id와 password를 가지고 로그인 체크를 한다.
+		if (!user.getPassword().equals("123")) {
+			throw new InvalidPasswordException();
 		}
+		return user;
+	}
 
-		@Override
-		public User checkAuth(User user) throws PermissionDeniedException {
-			// TODO id로 권한체크를 한다.
-			
-			if (!user.getUserId().equals("admin")) {
-				throw new PermissionDeniedException();
-			} 
-			return null;
-		}
+	@Override
+	public User checkAuth(User user) throws PermissionDeniedException {
+		// TODO id로 권한체크를 한다.
 		
-		@Override
-		public User checkNull(User user) throws PermissionDeniedException {
-			// TODO id로 권한체크를 한다.
-			
-			if (user.getUserId() == null) {
-				throw new PermissionDeniedException();
-			}
-			return null;
-		}
-	
+		if (!user.getUserId().equals("admin")) {
+			throw new PermissionDeniedException();
+		} 
+		return null;
+	}
 }

@@ -15,7 +15,7 @@
 	</div>
 	<div class="sidebar-collapse">
 		<ul class="nav metismenu" id="side-menu">
-			<li>
+			<li id="test1">
 				<a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">본부발주</span></a>
 			</li>
 			<li>
@@ -96,5 +96,10 @@
 			</li>
 		</ul>
 	</div>
+	
+	<script type="text/javascript">
+		
+	</script>
+	
 </body>
 </html>

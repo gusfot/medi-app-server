@@ -57,9 +57,6 @@ public interface UserService {
 	User checkUser(User user) throws InvalidPasswordException;
 	
 	User checkAuth(User user) throws PermissionDeniedException;
-	
-	User checkNull(User user) throws PermissionDeniedException;
-	
 }
 
 
