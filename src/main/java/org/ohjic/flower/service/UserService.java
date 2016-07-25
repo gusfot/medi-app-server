@@ -49,6 +49,8 @@ public interface UserService {
 	 */
 	List<User> getUserList() throws PermissionDeniedException;
 
+	
+	
 }
 
 

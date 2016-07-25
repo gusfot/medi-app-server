@@ -106,28 +106,33 @@
     </div>
     
     <script type="text/javascript">
-    	$("#loginBtn").click(function(e) {
-			e.preventDefault();
-			AjaxController.request({
-				   options: {
-				      url: 'rest/user/login',
-				      data : {
-		 		      	id : $("#id").val(),
-		 			  	password : $("#password").val()
-			 		  },
-			 			type : 'post'
-				   }, 
-				   callbacks: {
-					   
-			         done: function (data, textStatus, jqXHR) {
-				            location.href = "/layout/test"; // 로그인 성공 시 일로
-				      }
-				   },
-				   	  show: {
-				      progress: true,
-				      failMessage: true
-				   }
-				});
+    $("#logBtn").click(function(e) {
+		e.preventDefault();
+		AjaxController.request({
+			   options: {
+			      url: '/rest/user/login',
+			      data : {
+	 		      	id : $("#id").val(),
+	 			  	password : $("#password").val()
+		 		  },
+		 			type : 'post'
+			   }, 
+			   callbacks: {
+			    	done: function (data, textStatus, jqXHR) {
+			    		if(data.success === true) {
+			    			location.href = "/layout/test";
+			    		}
+			    	}, 
+			    	warningAlertCallback: function(param) {
+// 				    	param.data;
+// 				    	param.jqXHR;
+			   		},
+			   },
+			   	  show: {
+			      progress: true,
+			      failMessage: true
+			   }
+			});
 		});
     </script>
 </body>
