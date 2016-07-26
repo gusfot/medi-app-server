@@ -19,10 +19,10 @@
 	
 	<context:component-scan base-package="org.ohjic.flower" />
 
-	 <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
- 			<beans:property name="prefix" value="/WEB-INF/views/" />
-			<beans:property name="suffix" value=".jsp" />
-	</beans:bean>                    
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
 
 
 <!-- 
