@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/util 
+	http://www.springframework.org/schema/util/spring-util.xsd">
+	<context:component-scan base-package="org.ohjic.libs.sender.sms" />
+	<context:property-placeholder location="classpath:properties/database-libs.properties" ignore-unresolvable="true" />
+
+	<bean id="dataSourceForSMS" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${libs.driver}"/>
+		<property name="url" value="${libs.urlforsms}"/>
+		<property name="username" value="${libs.user}"/>
+		<property name="password" value="${libs.password}"/>
+		<property name="validationQuery" value="SELECT 1" />
+		<property name="testOnBorrow" value="true" />
+	</bean>
+	
+	<!-- Tx Manager -->
+	<bean id="txManagerForSMS" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSourceForSMS" />
+	</bean>
+	
+	<!-- MyBatis SessionFactory/Session -->
+	<bean id="sqlSessionFactoryForSMS" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceForSMS" />
+		<property name="configLocation" value="classpath:mybatis-context-sms.xml" />
+	</bean>
+	
+	<bean id="sqlSessionForSMS" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg index="0" ref="sqlSessionFactoryForSMS" />
+	</bean>
+</beans>
