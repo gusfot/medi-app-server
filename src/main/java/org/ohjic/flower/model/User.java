@@ -2,6 +2,8 @@ package org.ohjic.flower.model;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  * 사용자
  * 
@@ -10,6 +12,9 @@ import java.util.Date;
  */
 public class User {
 
+	/*
+	 * 이라ㅓ이ㅏ러
+	 */
 	private Integer userSeq;
 	
 	private String userId;
@@ -34,6 +39,46 @@ public class User {
 	
 	private Date regTime;
 	
+	
+	/**
+	 * 프로필 사진 파일명
+	 */
+	private String profileImg;
+	
+	/**
+	 * 파일 저장객체
+	 */
+	private String imgName;
+	
+	private MultipartFile multipartFile;
+	
+	
+	public String getImgName() {
+		return imgName;
+	}
+
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
+
+	
+	public String getProfileImg() {
+		return profileImg;
+	}
+
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+
+
+	public MultipartFile getMultipartFile() {
+		return multipartFile;
+	}
+
+	public void setMultipartFile(MultipartFile multipartFile) {
+		this.multipartFile = multipartFile;
+	}
+
 	public String getUserId() {
 		return userId;
 	}
@@ -129,5 +174,6 @@ public class User {
 	public void setUserSeq(Integer userSeq) {
 		this.userSeq = userSeq;
 	}
+
 
 }

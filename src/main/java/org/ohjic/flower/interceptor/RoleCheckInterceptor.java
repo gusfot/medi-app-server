@@ -12,6 +12,8 @@ public class RoleCheckInterceptor implements HandlerInterceptor {
 	@Override
 	public  boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
+		System.out.println("권한체크 인터셉터");
+		
 		
 		return true;
 	}

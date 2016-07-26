@@ -16,7 +16,7 @@ if (typeof window.jQuery === 'undefined') {
 	// 기본 설정값
 	var DEFAULTS = {
 		progressClassName: 'progress-ajax-controller-overlay',
-		progressImgUrl: contextPath + '/resources/img/ajax-loader.gif',     // TODO 기본 프로그레스 이미지 url은 프로젝트 환경에 맞춰서 수정해야 함
+		progressImgUrl:'/resources/img/ajax-loader.gif',     // TODO 기본 프로그레스 이미지 url은 프로젝트 환경에 맞춰서 수정해야 함
 		options: {
 			url: '',
 			type: 'get',

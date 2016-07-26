@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User getUser(String userId) {
-		return userMapper.selectByUserId(userId);
+		return userMapper.selectByPrimaryKey(userId);
 	}
 	
 	/**
@@ -47,8 +47,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean regist(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		return userMapper.insert(user) == 1 ? true:false;
 	}
 
 	@Override

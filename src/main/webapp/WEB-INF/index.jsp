@@ -7,7 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>index</title>
 		<script type="text/javascript">
-			location.href = '/main';
+			location.href = '/index';
 		</script>
 	</head>
 	<body>

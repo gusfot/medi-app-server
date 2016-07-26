@@ -11,11 +11,10 @@
     <result column="cell_phone" jdbcType="VARCHAR" property="cellPhone" />
     <result column="home_phone" jdbcType="VARCHAR" property="homePhone" />
     <result column="job" jdbcType="VARCHAR" property="job" />
-    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
     <result column="birth" jdbcType="VARCHAR" property="birth" />
     <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="img_name" jdbcType="VARCHAR" property="imgName" />
-    <result column="reg_time" jdbcType="VARCHAR" property="regTime" />
+    <result column="reg_time" jdbcType="TIMESTAMP" property="regTime" />
   </resultMap>
   
   <sql id="Base_Column_List">
