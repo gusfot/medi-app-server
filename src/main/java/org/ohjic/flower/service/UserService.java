@@ -2,8 +2,8 @@ package org.ohjic.flower.service;
 
 import java.util.List;
 
-import org.ohjic.flower.exception.InvalidPasswordException;
 import org.ohjic.flower.exception.PermissionDeniedException;
+import org.ohjic.flower.exception.common.CommonException;
 import org.ohjic.flower.model.User;
 
 public interface UserService {
@@ -54,9 +54,9 @@ public interface UserService {
 	 * @param user
 	 * @return
 	 */
-	User checkUser(User user) throws InvalidPasswordException;
+	User checkUser(User user) throws CommonException;
 	
-	User checkAuth(User user) throws PermissionDeniedException;
+//	User checkAuth(User user) throws PermissionDeniedException;
 }
 
 

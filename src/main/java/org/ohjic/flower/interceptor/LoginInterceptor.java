@@ -1,12 +1,15 @@
 package org.ohjic.flower.interceptor;
 
+
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.ohjic.flower.common.UriRoleCheck;
 import org.ohjic.flower.exception.PermissionDeniedException;
 import org.ohjic.flower.exception.SessionNullException;
+import org.ohjic.flower.exception.common.CommonException;
 import org.ohjic.flower.exception.common.ResponseCode;
 import org.ohjic.flower.model.User;
 import org.ohjic.flower.rest.common.RestResponse;
@@ -22,26 +25,48 @@ public class LoginInterceptor implements HandlerInterceptor {
 	@Autowired
 	private UserService userServcie;
 	
+//	private static HashMap<String, List<Object>> urlMap;
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json; charset=UTF-8"); // response 객체를 이용하여 ajax에 보내는 값을 json 형식, UTF-8로 세팅!
+		
 		System.out.println("권한체크 인터셉터");
 		User user = (User)request.getSession().getAttribute("sessionUserVO"); // 세션에 저장된 user를 받아온다.
 		ResponseCode responseCode = ResponseCode.SUCCESS; // 디폴트로 성공 ResponseCode를 넣어놓는다.
 		RestResponse restResponse = new RestResponse();
+		
 		String requestUri = request.getRequestURI(); // request에 저장된 uri를 String으로 저장
+		System.out.println("requestUri =" + requestUri);
+		
+//		for (Object role : roleList) {
+//			// Object userRole = user.getRole();
+//			// if (role.equals(uesrRole)) {
+//			//		이때가 권한이 있는 사용자
+//			// }
+//		}
 		
 		try {
-			if(isSession(user)){ // sessionUserVO 세션 값 체크
+			if(isSession(user)){ // sessionUserVO 세션 값이 null일 때
 				if(requestUri.indexOf("rest") > -1 ) {
 					throw new SessionNullException();
 				}else {
-					response.sendRedirect("/login");
+					System.out.println("일로오나 테스트");
+					response.sendRedirect("/");
 				}
-			} /*else if (isAdmin(user)) {
-				throw new PermissionDeniedException(); // 권한 익섹션 발생
-			}*/
-		}catch(SessionNullException e) { // 권한 익셉션 발생 시 해당
+			} else { // sessionUserVO 세션 값이 null이 아닐 때 (즉 로그인 컨트롤러 메소드에 다녀온 후)
+				if (user.getUserId().equals("admin") && requestUri.indexOf("user/te") > -1) { // uriMap 에 있는 value 값이 "admin" , 관리자이면
+//					if(requestUri.indexOf("rest") > -1 ) {
+						throw new PermissionDeniedException(); // 권한 익섹션 발생
+//					}else {
+//						response.sendRedirect("/");
+//					}
+				}
+			}
+		}catch (CommonException e) {
 			e.printStackTrace();
 			responseCode = e.getResponseCode();
 			restResponse.setSuccess(ResponseCode.SUCCESS.equals(responseCode));
@@ -49,13 +74,20 @@ public class LoginInterceptor implements HandlerInterceptor {
 			
 			ObjectMapper mapper = new ObjectMapper();
 			String jsonString = mapper.writeValueAsString(restResponse);
-			
 			PrintWriter writer = response.getWriter();
 			writer.append(jsonString);
+			return false;
+		} catch (Exception e) { // InvalidPasswordException 등과 같이 직접 만든 예외를 제외하고 예측하지 못하는 예외는 알 수 없음 메시지를 보내는 것으로 처리한다.
+			restResponse.setSuccess(false);
+			restResponse.setResCode(ResponseCode.UNKOWN);
 			
-			response.setContentType("application/json");
+			ObjectMapper mapper = new ObjectMapper();
+			String jsonString = mapper.writeValueAsString(restResponse);
+			PrintWriter writer = response.getWriter();
+			writer.append(jsonString);
 			return false;
 		}
+	
 		//널이 아니면 정상적으로 컨트롤러 호출
 		return true;
 	}
@@ -67,31 +99,15 @@ public class LoginInterceptor implements HandlerInterceptor {
 		return false;
 	}
 
-//	private boolean isAdmin(User user) {
-//		
-//		return !user.getUserId().equals("admin");
+//	private boolean isAdmin(String requestUri) {
+//		String role = UriRoleCheck.getRole(requestUri); // URL에서 가져온 uri 값으로 Map에 세팅된 uri와 비교해서 Role(value)값을 가져온다.
+//		System.out.println(role);
+//		if (role.equals("admin")) {
+//			return true;
+//		}
+//		return false;
 //	}
 	
-//	@Override
-//	public boolean preHandle(HttpServletRequest request,
-//			HttpServletResponse response, Object handler) throws Exception {
-//		
-//		/*
-//		request.setCharacterEncoding("UTF-8");
-//		response.setCharacterEncoding("UTF-8");
-//		response.setContentType("text/html; charset=UTF-8");
-//		try {
-//			if (request.getSession().getAttribute("sessionUserVO") == null) {
-//				response.sendRedirect("/login");
-//				return false;
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		*/
-//		return true;
-//	}
-
 	@Override
 	public void postHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler,

@@ -131,11 +131,7 @@
 					if (data.success === true) {
 						location.href = "/layout/test";
 					}
-				},
-				warningAlertCallback : function(param) {
-					// 				    	param.data;
-					// 				    	param.jqXHR;
-				},
+				}
 			},
 			show : {
 				progress : true,

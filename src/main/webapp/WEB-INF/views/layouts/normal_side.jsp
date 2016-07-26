@@ -18,7 +18,7 @@
 			<li id="test1">
 				<a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">본부발주</span></a>
 			</li>
-			<li>
+			<li id="test2">
 				<a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">회원간직발주</span></a>
 			</li>
 			<li>
@@ -98,7 +98,45 @@
 	</div>
 	
 	<script type="text/javascript">
+		$("#test1").click(function(e) {
+			e.preventDefault();
+			AjaxController.request({
+				options : {
+					url : '/rest/user/test1',
+				},
+				callbacks : {
+					done : function(data, textStatus, jqXHR) {
+						if (data.success === true) {
+							location.href = "/layout/test";
+						}
+					}
+				},
+				show : {
+					progress : true,
+					failMessage : true
+				}
+			});
+		});
 		
+		$("#test2").click(function(e) {
+			e.preventDefault();
+			AjaxController.request({
+				options : {
+					url : '/rest/user/test2',
+				},
+				callbacks : {
+					done : function(data, textStatus, jqXHR) {
+						if (data.success === true) {
+							location.href = "/layout/test";
+						}
+					}
+				},
+				show : {
+					progress : true,
+					failMessage : true
+				}
+			});
+		});
 	</script>
 	
 </body>

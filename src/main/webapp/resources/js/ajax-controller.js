@@ -26,7 +26,7 @@ if (typeof window.swal === 'undefined') {
 			url: '',
 			type: 'get',
 			async: true,
-			cache: false,
+			cache: true,
 			data: null,
 			dataType: 'json'
 		},
@@ -129,12 +129,20 @@ if (typeof window.swal === 'undefined') {
 			title: '경고',
 			text: msg,
 			showCancelButton: false
-		}, function() {
-			warningAlertCallback({
-				jqXHR: jqXHR,
-				data: data || {}
-			});
+		}, 
+		function(isConfirm) { // 경고 모달 '확인버튼'을 눌렀을 시 실행되는 함수 
+			if (isConfirm) {
+				if (data.code === "ERR0004") { // (세션 NULL 예외 에러코드)
+					location.href = "/";
+				}
+			}
 		});
+//		function() {
+//			warningAlertCallback({
+//				jqXHR: jqXHR,
+//				data: data || {}
+//			});
+//		});
 	};
 
 	var _getValue = function (value, defaultValue) {

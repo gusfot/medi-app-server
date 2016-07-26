@@ -4,8 +4,9 @@ package org.ohjic.flower.service.impl;
 import java.util.List;
 
 import org.ohjic.flower.dao.UserMapper;
-import org.ohjic.flower.exception.InvalidPasswordException;
+import org.ohjic.flower.exception.InvalidUserException;
 import org.ohjic.flower.exception.PermissionDeniedException;
+import org.ohjic.flower.exception.common.CommonException;
 import org.ohjic.flower.model.User;
 import org.ohjic.flower.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,21 +60,24 @@ public class UserServiceImpl implements UserService {
 
 	// 로그인 체크, 비밀번호만 체크하자.
 	@Override
-	public User checkUser(User user) throws InvalidPasswordException {
+	public User checkUser(User user) throws CommonException {
 		// TODO id와 password를 가지고 로그인 체크를 한다.
+		if (!user.getUserId().equals("admin")) {
+			throw new InvalidUserException();
+		}
 		if (!user.getPassword().equals("123")) {
-			throw new InvalidPasswordException();
+			throw new InvalidUserException();
 		}
 		return user;
 	}
 
-	@Override
-	public User checkAuth(User user) throws PermissionDeniedException {
-		// TODO id로 권한체크를 한다.
-		
-		if (!user.getUserId().equals("admin")) {
-			throw new PermissionDeniedException();
-		} 
-		return null;
-	}
+//	@Override
+//	public User checkAuth(User user) throws PermissionDeniedException {
+//		// TODO id로 권한체크를 한다.
+//		
+//		if (!user.getUserId().equals("admin")) {
+//			throw new PermissionDeniedException();
+//		} 
+//		return null;
+//	}
 }

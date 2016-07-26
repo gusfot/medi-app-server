@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration >
-<classPathEntry location="C:\Users\gusfot\.m2\repository\mysql\mysql-connector-java\5.1.32\mysql-connector-java-5.1.32.jar" />
+<classPathEntry location="C:\Users\ohjic\.m2\repository\org\mariadb\jdbc\mariadb-java-client\1.4.6\mariadb-java-client-1.4.6.jar" />
   <context id="context1" >
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://120.100.80.208:3306/mokjang" userId="mokjang" password="!inpion00" />
+    <jdbcConnection driverClass="org.mariadb.jdbc.Driver" connectionURL="jdbc:mysql://192.168.0.41:3306/flower" userId="flosys" password="#2016fl0wer" />
     <javaModelGenerator targetPackage="org.ohjic.flower.model" targetProject="flower-system" />
     <sqlMapGenerator targetPackage="org.ohjic.flower.dao.mapper" targetProject="flower-system" />
     <javaClientGenerator targetPackage="org.ohjic.flower.dao" targetProject="flower-system" type="XMLMAPPER" />

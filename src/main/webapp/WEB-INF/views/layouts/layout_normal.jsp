@@ -45,7 +45,7 @@
 	<title>플라시스템</title>
 </head>
 
-<body>
+<body id="tilesBody">
 	<div id="wrapper">
 		<nav class="navbar navbar-static-top white-bg" role="navigation">
 			<tiles:insertAttribute name="header" />
