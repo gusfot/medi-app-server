@@ -36,10 +36,10 @@
   <select id="selectByAdmin" parameterType="org.ohjic.flower.model.Admin" resultType="org.ohjic.flower.model.Admin">
   	select 
   		admin_id as adminId,
-  		password as password
+  		password as password,
   		admin_role as adminRole
   	from admin
-  	where admin_id = #{adminID}, password = #{password} 
+  	where admin_id = #{adminId} and password = #{password} 
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

@@ -4,7 +4,9 @@ import org.ohjic.flower.dao.AdminMapper;
 import org.ohjic.flower.model.Admin;
 import org.ohjic.flower.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AdminServiceImpl implements AdminService {
 
 	@Autowired
