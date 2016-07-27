@@ -2,28 +2,38 @@ package org.ohjic.flower.interceptor;
 
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.ohjic.flower.common.UriRoleCheck;
 import org.ohjic.flower.exception.PermissionDeniedException;
 import org.ohjic.flower.exception.SessionNullException;
 import org.ohjic.flower.exception.common.CommonException;
 import org.ohjic.flower.exception.common.ResponseCode;
-import org.ohjic.flower.model.User;
+import org.ohjic.flower.model.Admin;
 import org.ohjic.flower.rest.common.RestResponse;
+import org.ohjic.flower.service.AdminService;
 import org.ohjic.flower.service.UserService;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import ch.qos.logback.classic.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(LoginInterceptor.class);
+	
 	@Autowired
-	private UserService userServcie;
+	private UserService userServce;
+	
+	@Autowired
+	private AdminService adminService;
+	
 	
 //	private static HashMap<String, List<Object>> urlMap;
 	
@@ -35,12 +45,14 @@ public class LoginInterceptor implements HandlerInterceptor {
 		response.setContentType("application/json; charset=UTF-8"); // response 객체를 이용하여 ajax에 보내는 값을 json 형식, UTF-8로 세팅!
 		
 		System.out.println("권한체크 인터셉터");
-		User user = (User)request.getSession().getAttribute("sessionUserVO"); // 세션에 저장된 user를 받아온다.
+//		User user = (User)request.getSession().getAttribute("sessionUserVO"); // 세션에 저장된 user를 받아온다.
+		Admin admin = (Admin)request.getSession().getAttribute("sessionUserVO");
 		ResponseCode responseCode = ResponseCode.SUCCESS; // 디폴트로 성공 ResponseCode를 넣어놓는다.
 		RestResponse restResponse = new RestResponse();
 		
 		String requestUri = request.getRequestURI(); // request에 저장된 uri를 String으로 저장
 		System.out.println("requestUri =" + requestUri);
+		
 		
 //		for (Object role : roleList) {
 //			// Object userRole = user.getRole();
@@ -50,7 +62,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 //		}
 		
 		try {
-			if(isSession(user)){ // sessionUserVO 세션 값이 null일 때
+			if(isSession(admin)){ // sessionUserVO 세션 값이 null일 때
 				if(requestUri.indexOf("rest") > -1 ) {
 					throw new SessionNullException();
 				}else {
@@ -58,12 +70,10 @@ public class LoginInterceptor implements HandlerInterceptor {
 					response.sendRedirect("/");
 				}
 			} else { // sessionUserVO 세션 값이 null이 아닐 때 (즉 로그인 컨트롤러 메소드에 다녀온 후)
-				if (user.getUserId().equals("admin") && requestUri.indexOf("user/te") > -1) { // uriMap 에 있는 value 값이 "admin" , 관리자이면
-//					if(requestUri.indexOf("rest") > -1 ) {
-						throw new PermissionDeniedException(); // 권한 익섹션 발생
-//					}else {
-//						response.sendRedirect("/");
-//					}
+				List<String> uriList = adminService.getUri(admin.getAdminRole());
+				
+				if (!uriList.contains(requestUri)) { //요청받은 uri(requestUri)가 디비에서 가져온 role에 따른 uriList에 포함되어 있지 않으면!
+					throw new PermissionDeniedException(); // 권한 익섹션 발생
 				}
 			}
 		}catch (CommonException e) {
@@ -92,8 +102,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 		return true;
 	}
 
-	private boolean isSession(User user) {
-		if (user == null) { // 세션 값이 NULL이면 
+	private boolean isSession(Admin admin) {
+		if (admin == null) { // 세션 값이 NULL이면 
 			return true;
 		}
 		return false;

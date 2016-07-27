@@ -119,7 +119,7 @@
 		e.preventDefault();
 		AjaxController.request({
 			options : {
-				url : '/rest/user/login',
+				url : '/rest/admin/login',
 				data : {
 					id : $("#id").val(),
 					password : $("#password").val()

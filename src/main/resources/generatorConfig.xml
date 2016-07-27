@@ -29,19 +29,19 @@
 <!--     </table> -->
     
     
-     <table schema="flower" tableName="board" enableSelectByExample="false" 
-    										 enableDeleteByExample="false" 
-    										 enableCountByExample="false"
-    										 enableUpdateByExample="false" 
-    										 selectByExampleQueryId="false">
+<!--      <table schema="flower" tableName="board" enableSelectByExample="false"  -->
+<!--     										 enableDeleteByExample="false"  -->
+<!--     										 enableCountByExample="false" -->
+<!--     										 enableUpdateByExample="false"  -->
+<!--     										 selectByExampleQueryId="false"> -->
 		  
     										 
-      <columnOverride column="board_seq" property="boardSeq" />
-      <columnOverride column="title" property="title" />
-      <columnOverride column="content" property="content" />
-      <columnOverride column="writer" property="writer" />
-      <columnOverride column="reg_time" property="regTime" />
-    </table>
+<!--       <columnOverride column="board_seq" property="boardSeq" /> -->
+<!--       <columnOverride column="title" property="title" /> -->
+<!--       <columnOverride column="content" property="content" /> -->
+<!--       <columnOverride column="writer" property="writer" /> -->
+<!--       <columnOverride column="reg_time" property="regTime" /> -->
+<!--     </table> -->
     
 <table schema="flower" tableName="admin" enableSelectByExample="false" 
     									 enableDeleteByExample="false" 
@@ -52,7 +52,7 @@
       <columnOverride column="admin_seq" property="adminSeq" />
       <columnOverride column="admin_id" property="adminId" />
       <columnOverride column="password" property="password" />
-      <columnOverride column="admin_role" property="userName" />
+      <columnOverride column="admin_role" property="adminRole" />
       <columnOverride column="reg_time" property="regTime" />
     </table> 
     
