@@ -7,7 +7,13 @@ public enum ResponseCode {
 	PERMISSION_DENIED("ERR0002", "권한이 없습니다."), 
 	INVALID_PHONE_NUMBER("ERR0003", "잘못된 전화번호입니다."),
 	UNSERVICEABLE_TEXT_MESSAGE("ERR0004", "문자 메세지 서비스를 사용할 수 없습니다."),
+<<<<<<< HEAD
 	SESSION_NULL("ERR0005", "세션이 없습니다. 로그인이 필요합니다")
+=======
+	RESOURCE_NOT_FOUND("ERR0005", "리소스를 찾을 수 없습니다."),
+	CANNOT_SEND_NOTE_MESSAGE("ERR0006", "쪽지를 전송할 수 없습니다."),
+	INVALID_PAGE_NUMBER("ERR0007", "잘못된 페이지입니다.")
+>>>>>>> hyeonil
 	;
 
 	private String code;
