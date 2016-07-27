@@ -42,6 +42,9 @@
 	<script src="${resourcePath}/lib/sweetalert/sweetalert.min.js"></script>
 	<script src="${resourcePath}/js/ajax-controller.js"></script>
 	
+	<!-- naver smarteditor -->
+	<script type="text/javascript" src="${resourcePath}/smarteditor/js/HuskyEZCreator.js" charset="UTF-8"></script>
+	
 	<title>플라시스템</title>
 </head>
 

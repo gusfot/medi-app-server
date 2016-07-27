@@ -15,18 +15,17 @@ import org.ohjic.flower.model.Admin;
 import org.ohjic.flower.rest.common.RestResponse;
 import org.ohjic.flower.service.AdminService;
 import org.ohjic.flower.service.UserService;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import ch.qos.logback.classic.Logger;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
-	private static final Logger logger = (Logger) LoggerFactory.getLogger(LoginInterceptor.class);
+	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 	
 	@Autowired
 	private UserService userServce;
@@ -66,7 +65,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 				if(requestUri.indexOf("rest") > -1 ) {
 					throw new SessionNullException();
 				}else {
-					System.out.println("일로오나 테스트");
 					response.sendRedirect("/");
 				}
 			} else { // sessionUserVO 세션 값이 null이 아닐 때 (즉 로그인 컨트롤러 메소드에 다녀온 후)

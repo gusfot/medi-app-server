@@ -62,7 +62,7 @@
 					<li><a href="#">sample2</a></li>
 				</ul>
 			</li>
-			<li>
+			<li id="board">
 				<a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">게시판</span></a>
 				<ul class="nav nav-second-level">
 					<li><a href="#">sample1</a></li>
@@ -136,6 +136,11 @@
 					failMessage : true
 				}
 			});
+		});
+		
+		$("#board").click(function(e) {
+			e.preventDefault();
+			location.href = "/layout/smarteditor";
 		});
 	</script>
 	
