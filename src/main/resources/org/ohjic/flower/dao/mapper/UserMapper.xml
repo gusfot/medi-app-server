@@ -15,11 +15,13 @@
     <result column="birth" jdbcType="VARCHAR" property="birth" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="reg_time" jdbcType="TIMESTAMP" property="regTime" />
+    <result column="garden_area" jdbcType="VARCHAR" property="gardenArea" />
+    <result column="garden_name" jdbcType="VARCHAR" property="gardenName" />
   </resultMap>
   
   <sql id="Base_Column_List">
     user_id, user_name,  password, addr, cell_phone, home_phone, job, 
-    gender, birth, email
+    gender, birth, email, garden_area, garden_name
   </sql>
   
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -193,5 +195,4 @@
       reg_time = #{regTime,jdbcType=TIMESTAMP}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
-  
 </mapper>
