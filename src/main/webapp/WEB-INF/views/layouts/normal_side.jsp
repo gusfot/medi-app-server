@@ -140,7 +140,23 @@
 		
 		$("#board").click(function(e) {
 			e.preventDefault();
-			location.href = "/layout/smarteditor";
+			location.href = "/article/board";
+// 			AjaxController.request({
+// 				options : {
+// 					url : '/rest/article/articleAll',
+// 				},
+// 				callbacks : {
+// 					done : function(data, textStatus, jqXHR) {
+// 						if (data.success === true) {
+// 							location.href = "/layout/board";
+// 						}
+// 					}
+// 				},
+// 				show : {
+// 					progress : true,
+// 					failMessage : true
+// 				}
+// 			});
 		});
 	</script>
 	

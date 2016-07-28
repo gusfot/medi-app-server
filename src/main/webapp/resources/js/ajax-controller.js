@@ -21,7 +21,7 @@ if (typeof window.swal === 'undefined') {
 	// 기본 설정값
 	var DEFAULTS = {
 		progressClassName: 'progress-ajax-controller-overlay',
-		progressImgUrl: contextPath + '/resources/img/ajax-loader.gif',     // TODO 기본 프로그레스 이미지 url은 프로젝트 환경에 맞춰서 수정해야 함
+		progressImgUrl: '/resources/img/ajax-loader.gif',     // TODO 기본 프로그레스 이미지 url은 프로젝트 환경에 맞춰서 수정해야 함
 		options: {
 			url: '',
 			type: 'get',
@@ -129,20 +129,21 @@ if (typeof window.swal === 'undefined') {
 			title: '경고',
 			text: msg,
 			showCancelButton: false
-		}, 
-		function(isConfirm) { // 경고 모달 '확인버튼'을 눌렀을 시 실행되는 함수 
-			if (isConfirm) {
-				if (data.code === "ERR0005") { // (세션 NULL 예외 에러코드)
-					location.href = "/";
-				}
-			}
-		});
-//		function() {
-//			warningAlertCallback({
-//				jqXHR: jqXHR,
-//				data: data || {}
-//			});
+		},
+//		function(isConfirm) { // 경고 모달 '확인버튼'을 눌렀을 시 실행되는 함수 
+//			if (isConfirm) {
+//				if (data.code === "ERR0005") { // (세션 NULL 예외 에러코드)
+//					location.href = "/";
+//				}
+//			}
 //		});
+		
+		function() {
+			warningAlertCallback({
+				jqXHR: jqXHR,
+				data: data || {}
+			});
+		});
 	};
 
 	var _getValue = function (value, defaultValue) {

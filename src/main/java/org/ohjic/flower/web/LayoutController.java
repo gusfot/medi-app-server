@@ -1,6 +1,5 @@
 package org.ohjic.flower.web;
 
-import org.ohjic.flower.interceptor.LoginInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -30,20 +29,25 @@ public class LayoutController {
 		return "normal/layouts/layout_body_test";
 	}
 	
-	@RequestMapping(value = "/layout/smarteditor", method = RequestMethod.GET)
-	public String smartEditor() {
-		return "normal/layouts/smartEditor";
+	@RequestMapping(value = "/layout/board", method = RequestMethod.GET)
+	public String board() {
+		return "normal/layouts/board";
 	}
 	
-	@RequestMapping(value = "/layout/send", method = RequestMethod.POST)
-	public String send(
-			@RequestParam("smarteditor")String content,
-			Model model) {
-		
-		logger.info("여기로 오나");
-		
-		model.addAttribute("content", content);
-		return "normal/layouts/send";
+	@RequestMapping(value = "/layout/smartEditor", method = RequestMethod.GET)
+	public String smartEditor() {
+		return "normal/layouts/smart_editor";
 	}
+	
+//	@RequestMapping(value = "/layout/send", method = RequestMethod.POST)
+//	public String send(
+//			@RequestParam("smarteditor")String content,
+//			Model model) {
+//		
+//		logger.info("여기로 오나 {}", content);
+//		
+//		model.addAttribute("content", content);
+//		return "normal/layouts/send";
+//	}
 
 }

@@ -7,7 +7,6 @@
 <head>
 <script type="text/javascript">
 function logoutAjax() {
-
 	AjaxController.request({
 		options : {
 			url : '/rest/user/logout'
@@ -26,7 +25,7 @@ function logoutAjax() {
 }
 
 	var logoutModule = (function() {
-		var logoutTerm = 5000;
+		var logoutTerm = 500000;
 		var log = '';
 
 		var logout = function() {
@@ -51,8 +50,6 @@ function logoutAjax() {
 			}
 		}
 	})();
-
-	// logoutModule.logout();
 </script>
 </head>
 <body>

@@ -49,8 +49,9 @@
 			<mvc:exclude-mapping path="/rest/admin/login" />
 			<mvc:exclude-mapping path="/rest/user/logout" />
 			<mvc:exclude-mapping path="/layout/test" />
-			<mvc:exclude-mapping path="/layout/smarteditor" />
-			<mvc:exclude-mapping path="/layout/send" />
+			<mvc:exclude-mapping path="/layout/smartEditor" />
+			<mvc:exclude-mapping path="/article/board" />
+			<mvc:exclude-mapping path="/rest/article/regist" />
 			<beans:bean class="org.ohjic.flower.interceptor.LoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>	
