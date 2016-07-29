@@ -104,7 +104,7 @@
 				callbacks : {
 					done : function(data, textStatus, jqXHR) {
 						if (data.success === true) {
-							location.href = "/layout/test";
+							location.href = "/layout/bonbu";
 						}
 					}
 				},

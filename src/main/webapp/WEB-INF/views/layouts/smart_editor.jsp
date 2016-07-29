@@ -56,7 +56,7 @@ $(function(){
 			callbacks : {
 				done : function(data, textStatus, jqXHR) {
 					if (data.success === true) {
-						location.href = "/layout/board";
+						location.href = "/article/board";
 					}
 				}
 			},

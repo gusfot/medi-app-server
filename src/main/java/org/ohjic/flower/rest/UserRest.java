@@ -125,8 +125,6 @@ public class UserRest {
 		
 		ResponseCode responseCode = ResponseCode.SUCCESS;
 		RestResponse res = new RestResponse();
-		res.setSuccess(false);
-		res.setResCode(responseCode);
 		
 		return res;
 	}

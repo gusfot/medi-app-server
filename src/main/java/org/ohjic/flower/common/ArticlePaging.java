@@ -2,8 +2,6 @@ package org.ohjic.flower.common;
 
 import java.util.List;
 
-import org.ohjic.flower.model.Article;
-
 public class ArticlePaging <T> {
 	
 	private int pageSize;

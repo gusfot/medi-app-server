@@ -51,7 +51,10 @@
 			<mvc:exclude-mapping path="/layout/test" />
 			<mvc:exclude-mapping path="/layout/smartEditor" />
 			<mvc:exclude-mapping path="/article/board" />
+			<mvc:exclude-mapping path="/layout/board" />
 			<mvc:exclude-mapping path="/rest/article/regist" />
+			<mvc:exclude-mapping path="/layout/bonbu" />
+			
 			<beans:bean class="org.ohjic.flower.interceptor.LoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>	

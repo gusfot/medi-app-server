@@ -39,6 +39,11 @@ public class LayoutController {
 		return "normal/layouts/smart_editor";
 	}
 	
+	@RequestMapping(value = "/layout/bonbu")
+	public String bonbu() {
+		return "normal/layouts/bonbu";
+	}
+	
 //	@RequestMapping(value = "/layout/send", method = RequestMethod.POST)
 //	public String send(
 //			@RequestParam("smarteditor")String content,

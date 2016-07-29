@@ -1,7 +1,7 @@
 package org.ohjic.flower.model;
 
 public class ArticleSearch {
-	public static final int PAGESIZE = 2; // 게시판 하단에 보이게 될 페이지 개수 ==> (1 2 3 다음) 이런식으로 
+	public static final int PAGESIZE = 3; // 게시판 하단에 보이게 될 페이지 개수 ==> (1 2 3 다음) 이런식으로 
 	public static final int ARTICLESIZE = 2; // 한 페이지 당 보이게 될 게시글의 수
 	
 	private int startRow; // 화면에 보이게 될 게시글이 디비에서 몇번째인지

@@ -22,7 +22,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="article" items="${page.articleList}">
+						<c:forEach var="article" items="${paging.articleList}">
 							<tr>
 								<td>${article.articleSeq}</td>
 								<td>${article.regTime}</td>
@@ -37,28 +37,34 @@
 						<td style="border: 1px solid white; text-align: center;"><button style="margin-top: 3px;">목록</button></td>
 						<td colspan="4" style="border: 1px solid white; text-align: center;">
 							<ul class="pagination" style="margin-top: 3px;">
-								<li class="paginate_button previous disabled" id="DataTables_Table_0_previous">
-									<a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a>
-								</li>
-								<li class="paginate_button ">
-									<a href="javascript:controller.goTo(12)" aria-controls="DataTables_Table_0" data-dt-idx="6" tabindex="0">6</a>
-								</li>
-								<li class="paginate_button next" id="DataTables_Table_0_next">
-									<a href="javascript:controller.goTo()" aria-controls="DataTables_Table_0" data-dt-idx="7" tabindex="0">Next</a>
-								</li>
+								<c:if test="${paging.startPage - paging.pageSize gt 0}">
+									<li class="paginate_button previous disabled" id="DataTables_Table_0_previous">
+										<a href="javascript:pageModule.movePage(${paging.startPage-1})" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a>
+									</li>
+								</c:if>
+								<c:forEach varStatus="i" begin="${paging.startPage}" end="${paging.endPage}" step="1">
+									<li class="paginate_button ">
+										<a href="javascript:pageModule.movePage(${i.index})" aria-controls="DataTables_Table_0" tabindex="0">${i.index}</a>
+									</li>
+								</c:forEach>
+								<c:if test="${paging.totalPage - paging.endPage gt 0}">
+									<li class="paginate_button next" id="DataTables_Table_0_next">
+										<a href="javascript:pageModule.movePage(${paging.startPage+paging.pageSize})" aria-controls="DataTables_Table_0" data-dt-idx="7" tabindex="0">Next</a>
+									</li>
+								</c:if>
 							</ul>
 						</td>
 						<td style="border: 1px solid white; text-align: center;"><button style="margin-top: 3px;" id="writeBtn">글쓰기</button></td>
 					</tr>
 					<tr>
 						<td colspan="6" style="border: 1px solid white; text-align: center;">
-							<form style="margin: 0; padding: 0;">
-								<select name="keyList" id="keyList">
+							<form style="margin: 0; padding: 0;" id="frm">
+								<select name="keyList" id="keyList" >
 									<!-- DB에 접근할 떄 value와 db컬럼명이 같아야한다. -->
-									<option value="title" selected="selected">제목</option>
+									<option value="title" >제목</option>
 									<option value="writer">작성자</option>
 								</select> 
-								<input type="text" id="keyword" name="keyword" value="" /> 
+								<input type="text" id="keyword" name="keyword" value="${keyword}" /> 
 								<input type="submit" id="searchBtn" name="searchBtn" value="검색" />
 							</form>
 						</td>
@@ -68,19 +74,29 @@
 		</div>
 	</div>
 </div>
-${paging}
+
 <script type="text/javascript">
 	$("#writeBtn").click(function() {
 		location.href = "/layout/smartEditor";
 	});
-</script>
-
-<script type="text/javascript">
 	
-	var pageModule = function() {
-		var befPage = function() {
-			
+	$("#searchBtn").click(function() {
+		var keyList = $('select[id=keyList] option:selected').val();
+		var param = {pageNo : 1, keyList : keyList, keyword : $('#keyword').val()}
+		pageModule.movePage(param);
+	});
+
+	var pageModule = (function() {
+		$('#keyList').val('${keyList}');
+		function movePage(param) {
+			location.href = location.pathname + "?pageNo=" + param.pageNo + "&keyList=" + param.keyList + "&keyword=" + param.keyword;
 		}
 		
-	}(); 
+		return {
+			movePage : function(pageNo) {
+				var param = {pageNo : pageNo, keyList : "${keyList}", keyword : "${keyword}"};
+				movePage(param);
+			}
+		}
+	})(); 
 </script>
