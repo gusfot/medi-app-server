@@ -37,7 +37,7 @@ public class Article {
      *
      * @mbggenerated Thu Jul 28 11:14:45 KST 2016
      */
-    private Date regTime;
+    private String regTime;
 
     /**
      *
@@ -146,7 +146,7 @@ public class Article {
      *
      * @mbggenerated Thu Jul 28 11:14:45 KST 2016
      */
-    public Date getRegTime() {
+    public String getRegTime() {
         return regTime;
     }
 
@@ -158,7 +158,7 @@ public class Article {
      *
      * @mbggenerated Thu Jul 28 11:14:45 KST 2016
      */
-    public void setRegTime(Date regTime) {
+    public void setRegTime(String regTime) {
         this.regTime = regTime;
     }
 

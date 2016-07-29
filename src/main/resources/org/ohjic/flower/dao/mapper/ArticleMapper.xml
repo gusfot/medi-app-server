@@ -57,7 +57,10 @@
   		article_seq AS articleSeq,
   		writer AS writer,
   		title AS title,
-  		content AS content
+  		content AS content,
+  		DATE_FORMAT(reg_time,'%Y-%m-%d') AS regTime,
+  		check_count AS checkCount,
+  		attached_file AS attchedFile
   	from article
  	where ${keyList} LIKE CONCAT('%',#{keyword},'%')
  	LIMIT #{startRow}, #{articleSize}

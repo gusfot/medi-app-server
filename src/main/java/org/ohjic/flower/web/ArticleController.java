@@ -22,7 +22,7 @@ public class ArticleController {
 	
 	@RequestMapping(value = "/article/board", method=RequestMethod.GET)
 	public String board(@RequestParam(value="pageNo",defaultValue="1")int pageNo,
-					   @RequestParam(value="keyList",defaultValue ="none")String keyList,
+					   @RequestParam(value="keyList",defaultValue ="title")String keyList,
 					   @RequestParam(value="keyword",defaultValue ="")String keyword,
 					   Model model){
 		logger.info("pageNo 체크 {}", pageNo);
@@ -31,9 +31,12 @@ public class ArticleController {
 
 		ArticlePaging<Article> articlePaging = articleService.getList(pageNo, keyList, keyword);
 		
+		//String jsonPaging = "{\"test\":\"value\"}";
+		
 		model.addAttribute("paging", articlePaging);
 		model.addAttribute("keyList", keyList);
 		model.addAttribute("keyword", keyword);
+//		model.addAttribute("jsonPaging", jsonPaging);
 		
 		return "normal/layouts/board";
 	}

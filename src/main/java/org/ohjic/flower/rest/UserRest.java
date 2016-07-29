@@ -45,7 +45,7 @@ public class UserRest {
 		return res;
 	}
 
-	@RequestMapping(value = {"/rest/user/list"}, method=RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = {"/rest/user/list"}, method=RequestMethod.GET)
 	public @ResponseBody RestResponse getUserList() {
 
 		RestResponse res = new RestResponse();

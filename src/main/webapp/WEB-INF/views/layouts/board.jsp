@@ -5,7 +5,7 @@
 			<div class="ibox-title">
 				<h5>업체홍보게시판</h5>
 				<div class="ibox-tools">
-					총 게시물 수 : 
+					총 게시물 수 : ${paging.totalArticle}
 				</div>
 			</div>
 			<div class="ibox-content">
@@ -22,14 +22,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td>@mdo</td>
-							<td>@mdo</td>
-						</tr>
+						<c:forEach var="article" items="${page.articleList}">
+							<tr>
+								<td>${article.articleSeq}</td>
+								<td>${article.regTime}</td>
+								<td>${article.title}</td>
+								<td>${article.writer}</td>
+								<td>${article.checkCount}</td>
+								<td>${article.attachedFile}</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 					<tr>
 						<td style="border: 1px solid white; text-align: center;"><button style="margin-top: 3px;">목록</button></td>
@@ -66,9 +68,19 @@
 		</div>
 	</div>
 </div>
-
+${paging}
 <script type="text/javascript">
 	$("#writeBtn").click(function() {
 		location.href = "/layout/smartEditor";
 	});
+</script>
+
+<script type="text/javascript">
+	
+	var pageModule = function() {
+		var befPage = function() {
+			
+		}
+		
+	}(); 
 </script>

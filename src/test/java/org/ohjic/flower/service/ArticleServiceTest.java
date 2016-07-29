@@ -39,7 +39,7 @@ public class ArticleServiceTest extends SpringTest {
 //		int count = articleService.countList(articleSearch);
 //		logger.info("count 확인 -> {}", count);
 		
-		ArticlePaging articlePaging = articleService.getList(1, "title", "");
+		ArticlePaging<Article> articlePaging = articleService.getList(1, "title", "");
 		
 		logger.info("pageSize = {}", articlePaging.getPageSize());
 		logger.info("articleSize = {}", articlePaging.getArticleSize());
