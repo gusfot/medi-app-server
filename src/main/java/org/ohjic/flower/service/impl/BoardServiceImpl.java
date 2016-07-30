@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
-	BoardMapper boardMapper;
+	private BoardMapper boardMapper;
 	
 	/* (non-Javadoc)
 	 * @see org.ohjic.flower.service.BoardService#regist(org.ohjic.flower.model.Board)
