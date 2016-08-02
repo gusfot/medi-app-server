@@ -163,13 +163,13 @@ public class TestController {
 	  /*
 	   * 사진 미리보기 팝업
 	   */
-	  @RequestMapping(value = "/preImg", method = RequestMethod.GET)
-	  public String preImg(@RequestParam(value="img") String img, HttpServletRequest request, Model model,
+	  @RequestMapping(value = "/preView", method = RequestMethod.GET)
+	  public String preView(@RequestParam(value="img") String img, HttpServletRequest request, Model model,
 	          HttpSession session) {
 		  
 	      model.addAttribute("img", img);
 	      
-	      return "preImg";
+	      return "preView";
 	  }
 	  
 	  /*

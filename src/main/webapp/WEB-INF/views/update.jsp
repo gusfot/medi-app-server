@@ -46,7 +46,7 @@
 		<td colspan="5">
 			<input type="file" id="profileFile" name="profileFile" value=""/>
 			<c:if test="${user2.profileImg != null}">
-				<button type="button" style="width:33px;height:33px; border:0px; background:URL('/resources/img/preImg.png');" onclick="imgPop('preImg?img=${user2.profileImg}','미리보기')"></button>미리보기
+				<button type="button" style="width:33px;height:33px; border:0px; background:URL('/resources/img/preImg.png');" onclick="imgPop('preView?img=${user2.profileImg}','미리보기')"></button>미리보기
 			</c:if>
 		</td>
 	</tr>
@@ -56,16 +56,16 @@
 			<div id="row">
 				<input type="file" id="storeFile" name="storeFile" value=""/>
 				<c:if test="${img2.storeImg != null}">
-					<button type="button" style="width:33px;height:33px; border:0px; background:URL('/resources/img/preImg.png');" onclick="imgPop('preImg?img=${img2.storeImg}','미리보기')"></button>미리보기
+					<button type="button" style="width:33px;height:33px; border:0px; background:URL('/resources/img/preImg.png');" onclick="imgPop('preView?img=${img2.storeImg}','미리보기')"></button>미리보기
 				</c:if>
 			</div>
 			<div id="row">
 				<input type="file" id="storeFile" name="storeFile" value=""/>
-				<!-- <button type="button" style="width:33px;height:33px; border:0px; background:URL('/resources/img/preImg.png');" onclick="imgPop('preImg','미리보기')"></button>미리보기 -->
+				<!-- <button type="button" style="width:33px;height:33px; border:0px; background:URL('/resources/img/preImg.png');" onclick="imgPop('preView','미리보기')"></button>미리보기 -->
 			</div>
 			<div id="row">
 				<input type="file" id="storeFile" name="storeFile" value=""/>
-				<!-- <button type="button" style="width:33px;height:33px; border:0px; background:URL('/resources/img/preImg.png');" onclick="imgPop('preImg','미리보기')"></button>미리보기 -->
+				<!-- <button type="button" style="width:33px;height:33px; border:0px; background:URL('/resources/img/preImg.png');" onclick="imgPop('preView','미리보기')"></button>미리보기 -->
 			</div>
 		</td>
 	</tr>
