@@ -10,14 +10,8 @@ function updatePop() {
 	
 }
 
-//function imgPop() {
-//	
-//	window.open('preImg', '미리보기', 'scrollbars=yes,toolbar=yes,resizable=yes,width=700,height=600,left=0,top=0');
-//	
-//}
-
 function imgPop(url, popName) {
 	
-	window.open(url, popName, 'scrollbars=yes,toolbar=yes,resizable=yes,width=700,height=600,left=0,top=0');
+	window.open(url, popName, 'scrollbars=yes,toolbar=yes,resizable=yes,width=500,height=700,left=0,top=0');
 	
 }

@@ -14,9 +14,11 @@ public class Image {
 
 	private String userId;
 	
-	private Integer imgId;
+	private int imgSeq;
 	
-	private String imgName;
+	private Integer imgId;
+
+	private String storeImg;
 
 	
 	public String getUserId() {
@@ -27,6 +29,14 @@ public class Image {
 		this.userId = userId;
 	}
 
+	public int getImgSeq() {
+		return imgSeq;
+	}
+
+	public void setImgSeq(int imgSeq) {
+		this.imgSeq = imgSeq;
+	}
+
 	public Integer getImgId() {
 		return imgId;
 	}
@@ -35,13 +45,16 @@ public class Image {
 		this.imgId = imgId;
 	}
 
-	public String getImgName() {
-		return imgName;
+	public String getStoreImg() {
+		return storeImg;
 	}
 
-	public void setImgName(String imgName) {
-		this.imgName = imgName;
+	public void setStoreImg(String storeImg) {
+		this.storeImg = storeImg;
 	}
+
+	
+	
 	
 
 }

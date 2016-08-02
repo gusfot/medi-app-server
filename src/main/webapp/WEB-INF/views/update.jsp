@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <head>
 <title>정보수정</title>
 <script	src="http://code.jquery.com/jquery-1.11.3.js"/></script>
@@ -6,14 +8,14 @@
 </head>
 
 <body>
-<form action="updateOk" method="post" enctype="multipart/form-data">
+<form action="updateOk" method="post" enctype="multipart/form-data" />
 <table border="1" align="center">
 	<thead>
 		<h1 style="text-align: center;">정보수정</h1>
 	</thead>
 	<tr>
 		<td>user_id</td>
-		<td colspan="5"><input type="text" id="id" name="userId" value="admin"/></td>
+		<td colspan="5"><input type="text" id="userId" name="userId" value="${user}"/></td>
 	</tr>
 	<tr>
 		<td>user_id</td>
@@ -40,12 +42,34 @@
 		<td>magor</td>
 	</tr>
 	<tr>
-		<td>profileImg</td>
+		<td>대표자사진 등록</td>
 		<td colspan="5">
-			<input type="file" id="pFile" name="multipartFile" value="사진등록"/>
-			<button type="button" style="width:33px;height:33px; border:0px; background:URL('/resources/img/preImg.png');" onclick="imgPop('preImg','미리보기')"></button>미리보기
+			<input type="file" id="profileFile" name="profileFile" value=""/>
+			<c:if test="${user2.profileImg != null}">
+				<button type="button" style="width:33px;height:33px; border:0px; background:URL('/resources/img/preImg.png');" onclick="imgPop('preImg?img=${user2.profileImg}','미리보기')"></button>미리보기
+			</c:if>
 		</td>
 	</tr>
+	<tr>
+		<td><label>매장사진 등록</label></td>
+		<td colspan="5">
+			<div id="row">
+				<input type="file" id="storeFile" name="storeFile" value=""/>
+				<c:if test="${img2.storeImg != null}">
+					<button type="button" style="width:33px;height:33px; border:0px; background:URL('/resources/img/preImg.png');" onclick="imgPop('preImg?img=${img2.storeImg}','미리보기')"></button>미리보기
+				</c:if>
+			</div>
+			<div id="row">
+				<input type="file" id="storeFile" name="storeFile" value=""/>
+				<!-- <button type="button" style="width:33px;height:33px; border:0px; background:URL('/resources/img/preImg.png');" onclick="imgPop('preImg','미리보기')"></button>미리보기 -->
+			</div>
+			<div id="row">
+				<input type="file" id="storeFile" name="storeFile" value=""/>
+				<!-- <button type="button" style="width:33px;height:33px; border:0px; background:URL('/resources/img/preImg.png');" onclick="imgPop('preImg','미리보기')"></button>미리보기 -->
+			</div>
+		</td>
+	</tr>
+	
 	<tr>
 		<td colspan="6" style="text-align: center;">
 			<input type="submit" id="submit" value="수정하기"/>

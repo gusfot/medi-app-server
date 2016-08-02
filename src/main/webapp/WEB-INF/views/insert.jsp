@@ -14,7 +14,7 @@
 	</thead>
 	<tr>
 		<td>user_id</td>
-		<td colspan="5"><input type="text" id="id" name="userId" value="admin"/></td>
+		<td colspan="5"><input type="text" id="userId" name="userId" value="admin"/></td>
 	</tr>
 	<tr>
 		<td>user_id</td>
@@ -41,23 +41,6 @@
 		<td>magor</td>
 	</tr>
 	<tr>
-		<td>profileImg</td>
-		<td colspan="5">
-			<input type="file" id="pFile" name="multipartFile"/>
-		</td>
-	</tr>
-	<!-- <tr>
-		<td><label>배경사진</label></td>
-		<td>
-			<div id="row">
-				<input type="file" id="bFile" name="multipartFile"/>
-			</div>
-		</td>
-
-		<td><input type="button" id="btn-add-row" value="행추가" /></td>
-		<td colspan="3"><input type="button" id="btn-delete-row" value="삭제" /></td>
-	</tr> -->
-	<tr>
 		<td colspan="6" style="text-align: center;">
 			<input type="submit" id="submit" value="가입하기"/>
 			<input type="button" id="cancle" value="닫기" onclick="window.close()"/>
@@ -65,21 +48,5 @@
 	</tr>
 </table>
 </form>
-
-	<!-- <script>
-		$(function() {
-			$('#btn-add-row')
-					.click(
-							function() {
-								$('#row')
-										.append(
-												'<div><input type="file" name="multipartFile" size="60" class="text"/></div>');
-							});
-			$('#btn-delete-row').click(function() {
-				$('#row > div:last').remove();//마지막 div 보다 row 가 크면 ??제거
-			});
-		});
-	</script> -->
-
 </body>
 </html>

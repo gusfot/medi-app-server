@@ -8,8 +8,8 @@
 <body>
 <h1 style="text-align: center;">사진 미리보기</h1>
 
-아이디 : ${user2.userId }<br/>
-사진이름 : ${user2.imgName }<br/><br/>
-<img src='resources/img/${user2.imgName }' style="height:300px; width:400px;"/>
+	아이디 : ${user }<br/>
+	사진이름 : ${img }<br/><br/>
+	<img src='resources/uploadImg/${img }' style="height:500px; width:400px;"/>
 
 </body>

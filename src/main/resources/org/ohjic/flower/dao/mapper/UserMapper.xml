@@ -14,13 +14,13 @@
     <result column="gender" jdbcType="VARCHAR" property="gender" />
     <result column="birth" jdbcType="VARCHAR" property="birth" />
     <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="img_name" jdbcType="VARCHAR" property="imgName" />
+    <result column="profile_img" jdbcType="VARCHAR" property="profileImg" />
     <result column="reg_time" jdbcType="VARCHAR" property="regTime" />
   </resultMap>
   
   <sql id="Base_Column_List">
     user_id, user_seq, user_name,  password, addr, cell_phone, home_phone, job, 
-    gender, birth, email, img_name, reg_time
+    gender, birth, email, profile_img, reg_time
   </sql>
   
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -46,13 +46,13 @@
     insert into user (user_id, user_seq, user_name, 
       password, addr, 
       cell_phone, home_phone, job, 
-      gender, birth, email, img_name,
+      gender, birth, email, profile_img,
       reg_time
       )
     values (#{userId,jdbcType=VARCHAR}, #{userSeq,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, 
       #{cellPhone,jdbcType=VARCHAR}, #{homePhone,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
-      #{gender,jdbcType=VARCHAR}, #{birth,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{imgName,jdbcType=VARCHAR},
+      #{gender,jdbcType=VARCHAR}, #{birth,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{profileImg,jdbcType=VARCHAR},
       #{regTime,jdbcType=VARCHAR}
       )
   </insert>
@@ -171,6 +171,9 @@
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
+      <if test="profileImg != null">
+        profile_img = #{profileImg,jdbcType=VARCHAR},
+      </if>
       <if test="regTime != null">
         reg_time = #{regTime,jdbcType=TIMESTAMP}
       </if>
@@ -190,6 +193,7 @@
       gender = #{gender,jdbcType=CHAR},
       birth = #{birth,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
+      profile_img = #{profileImg,jdbcType=VARCHAR},
       reg_time = #{regTime,jdbcType=TIMESTAMP}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>

@@ -48,19 +48,8 @@ public class User {
 	/**
 	 * 파일 저장객체
 	 */
-	private String imgName;
+	private MultipartFile profileFile;
 	
-	private MultipartFile multipartFile;
-	
-	
-	public String getImgName() {
-		return imgName;
-	}
-
-	public void setImgName(String imgName) {
-		this.imgName = imgName;
-	}
-
 	
 	public String getProfileImg() {
 		return profileImg;
@@ -70,13 +59,12 @@ public class User {
 		this.profileImg = profileImg;
 	}
 
-
-	public MultipartFile getMultipartFile() {
-		return multipartFile;
+	public MultipartFile getProfileFile() {
+		return profileFile;
 	}
 
-	public void setMultipartFile(MultipartFile multipartFile) {
-		this.multipartFile = multipartFile;
+	public void setProfileFile(MultipartFile profileFile) {
+		this.profileFile = profileFile;
 	}
 
 	public String getUserId() {
