@@ -43,72 +43,149 @@
 	
 	<title>플라시스템</title>
 	
+	<style>
+		.loginColumns {
+		  max-width: 1000px;
+		}
+		
+		.carousel-indicators {
+		    left: 90%;
+		    margin-bottom: 10%;
+		 }
+		 
+		 .carousel-indicators .active {
+		 	width: 12px;
+		 	height: 12px;
+		 	margin: 0;
+		 	background-color: #000000;
+		}
+	</style>
+	
 <!-- 	세션에 값이 있는 상태에서 url로 로그인 페이지 접근 시 첫 화면으로 가게 한다.  -->
 	<script type="text/javascript">
-    var isLogged = function() {
-    	if('${sessionScope.sessionUserVO}'!='' )
-    	location.href="/layout/test";
-    }();
-    
+    	var isLogged = function() {
+    		if('${sessionScope.sessionUserVO}' != '') {
+    			location.href="/layout/test";
+    		}
+    	}();
     </script>
 </head>
 <body class="gray-bg">
     <div class="loginColumns animated fadeInDown">
-        <div class="row">
-
-            <div class="col-md-6">
-                <h2 class="font-bold">Welcome to IN+</h2>
-
-                <p>
-                    Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
-                </p>
-
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                </p>
-
-                <p>
-                    When an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                </p>
-
-                <p>
-                    <small>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</small>
-                </p>
-
+    	<div class="row">
+            <div class="col-md-7">
+                <div style="width: 300px; height: 60px; margin-bottom: 10px;">
+					<img src="" alt="가로 300 세로 60 전국플라워센터" style="width: 300px; height: 60px;" />
+				</div>
             </div>
-            <div class="col-md-6">
+        </div>
+        <div class="row"> 
+            <div class="col-md-7">
+            	<img src="" alt="가로 566 세로 350" style="width:566px; height: 350px;" />
+            </div>
+            <div class="col-md-5" style="padding-left:14px; padding-right: 10px;">
                 <div class="ibox-content">
-                    <form class="m-t" role="form" action="index.html">
-                        <div class="form-group">
-                            <input type="text" id="id" class="form-control" placeholder="UserID">
+                	<img src="" alt="가로 340 세로 55 로그인 이미지" style="width: 340px; height: 55px;"/>
+                    <form class="m-t" role="form" action="index.html"> 
+                    	<div style="margin-bottom: 10px; font-size: 12px;">
+                    		<input type="radio" name="manager" value="화원사" checked="checked">화원사&nbsp;&nbsp;&nbsp; 
+                    		<input type="radio" name="manager" value="관리자">관리자
                         </div>
-                        <div class="form-group">
-                            <input type="password" id="password" class="form-control" placeholder="Password">
+                        <div style="width: 360px; height: 110px;">
+                        	<div style="width: 240px; height: 110px; float: left;">
+		                        <div class="input-group input-group-sm">
+		                        	<span class=" input-group-addon">ID</span>
+		                        	<input type="text" class="form-control" id="id" style="width: 206px;" placeholder="" >
+		                        </div>
+		                        <div class="input-group input-group-sm" style="margin-top: 5px;">
+		                        	<span class="input-group-addon">PW</span>
+		                        	<input type="text" class="form-control" id="password" style="width: 200px;" placeholder="" >
+		                        </div>
+		                        <div class="input-group input-group-sm" style="margin-top: 5px;">
+		                        	<span class="input-group-addon">KEY</span>
+		                        	<input type="text" class="form-control" id="key" style="width: 198px;" placeholder="" >
+		                        </div>
+	                        </div>
+	                        <div style="width: 100px; height: 110px; float: left; margin-left: 17px;">
+	                        	<button class="btn btn-primary m-b" id="loginBtn" style="float: left; width: 90px; height: 100px;">Login</button>
+                        	</div>
                         </div>
-                        <button id="loginBtn" class="btn btn-primary block full-width m-b">Login</button>
-
-                        <a href="#">
-                            <small>Forgot password?</small>
-                        </a>
-
-                        <p class="text-muted text-center">
-                            <small>Do not have an account?</small>
-                        </p>
-                        <a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a>
+                        <div style="margin-bottom: 10px; font-size: 12px;">
+                        	<input type="checkbox" name="idSave">ID저장&nbsp;
+                        	<input type="checkbox" name="pwdSave">PWD저장&nbsp;
+                        	<input type="checkbox" name="keySave">KEY저장&nbsp;
+                        </div>
+						<div style="margin-top: 20px; margin-bottom: -10px;">
+							<p style="font-size: 12px;">· 개인컴퓨터가 아닐 경우 저장 체크 시 개인 정보가 타인에게 노출 될 수 있습니다.</p>
+							<p style="font-size: 12px;">· 인트라넷 사용 시 에러나 기타문의 는 고객센터로 연락주세요.</p>
+						</div>
                     </form>
-                    <p class="m-t">
-                        <small>Inspinia we app framework base on Bootstrap 3 © 2014</small>
-                    </p>
                 </div>
             </div>
         </div>
-        <hr>
+        
         <div class="row">
-            <div class="col-md-6">
-                Copyright Example Company
+            <div class="col-md-12">
+                <div style="width: 970px; height: 155px; margin-top: 10px;">
+					<img src="" alt="가로 278 세로 145 고객센터" style="width: 278px; height: 145px; float: left;"/>
+					<img src="" alt="가로 278 세로 145 업무시간" style="width: 278px; height: 145px; margin-left: 10px; float: left;"/>
+					<img src="" alt="가로 190 세로 145 가맹점 가입신청" style="width: 250px; height: 145px; margin-left: 10px; float: left;"/>
+					<img src="" alt="가로 190 세로 145 가맹종료 화원사 계산서 확인" style="width: 130px; height: 145px; margin-left: 10px; float: left;"/>
+				</div>
             </div>
-            <div class="col-md-6 text-right">
-               <small>© 2014-2015</small>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div style="width: 970px; height: 80px; margin-top: 50px;">
+                	<img src="" alt="가로 660 세로 70" style="width: 660px; height: 70px; float: left;"/>
+					<div style="width: 295px; height: 70px; margin-left: 10px; float: left; border: 1px solid #000000;">
+						<div id="myCarousel" class="carousel slide" data-ride="carousel">
+							<ol class="carousel-indicators">
+								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+								<li data-target="#myCarousel" data-slide-to="1"></li>
+								<li data-target="#myCarousel" data-slide-to="2"></li>
+							</ol>
+							<div class="carousel-inner" role="listbox">
+								<div class="item active">
+									<div style="padding: 20px 0 10px 20px; float: left;">
+										<img src="" alt="협력사 배너1" width="115" height="40">
+									</div>
+									<div style="padding: 20px 0 10px 20px; float: left;">
+										<img src="" alt="협력사 배너2" width="115" height="40">
+									</div>
+								</div>
+
+								<div class="item">
+									<div style="padding: 20px 0 10px 20px; float: left;">
+										<img src="" alt="협력사 배너3" width="115" height="40">
+									</div>
+									<div style="padding: 20px 0 10px 20px; float: left;">
+										<img src="" alt="협력사 배너4" width="115" height="40">
+									</div>
+								</div>
+
+								<div class="item" style="float: left;">
+									<div style="padding: 20px 0 10px 20px; float: left;">
+										<img src="" alt="협력사 배너5" width="115" height="40">
+									</div>
+									<div style="padding: 20px 0 10px 20px; float: left;">
+										<img src="" alt="협력사 배너6" width="115" height="40">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+        	</div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div style="width: 965px; height: 70px;">
+					<img src="" alt="가로 560 세로 70" style="width: 560px; height: 70px; float: left;"/>
+					<img src="" alt="가로 150 세로 70" style="width: 150px; height: 70px; float: right;"/>
+				</div>
             </div>
         </div>
     </div>
