@@ -26,6 +26,8 @@
 	<link rel="stylesheet" href="${resourcePath}/lib/sweetalert/sweetalert.css" />
 	
 	<link rel="stylesheet" href="${resourcePath}/css/layouts/layout_normal.css" />
+
+	<link rel="stylesheet" href="${resourcePath}/css/user/login.css" />
 	
 	<!-- Script -->
 	<script src="${inspiniaPath}/js/jquery-2.1.1.js"></script>
@@ -42,25 +44,7 @@
 	<script src="${resourcePath}/js/ajax-controller.js"></script>
 	
 	<title>플라시스템</title>
-	
-	<style>
-		.loginColumns {
-		  max-width: 1000px;
-		}
-		
-		.carousel-indicators {
-		    left: 90%;
-		    margin-bottom: 10%;
-		 }
-		 
-		 .carousel-indicators .active {
-		 	width: 12px;
-		 	height: 12px;
-		 	margin: 0;
-		 	background-color: #000000;
-		}
-	</style>
-	
+
 <!-- 	세션에 값이 있는 상태에서 url로 로그인 페이지 접근 시 첫 화면으로 가게 한다.  -->
 	<script type="text/javascript">
     	var isLogged = function() {
@@ -74,50 +58,50 @@
     <div class="loginColumns animated fadeInDown">
     	<div class="row">
             <div class="col-md-7">
-                <div style="width: 300px; height: 60px; margin-bottom: 10px;">
-					<img src="" alt="가로 300 세로 60 전국플라워센터" style="width: 300px; height: 60px;" />
+                <div class="logoDiv">
+					<img src="" alt="가로 300 세로 60 전국플라워센터" class="logoImg" />
 				</div>
             </div>
         </div>
         <div class="row"> 
             <div class="col-md-7">
-            	<img src="" alt="가로 566 세로 350" style="width:566px; height: 350px;" />
+            	<img src="" alt="가로 566 세로 350 메인이미지" class="mainImg" />
             </div>
-            <div class="col-md-5" style="padding-left:14px; padding-right: 10px;">
+            <div class="col-md-5 loginFrmDiv">
                 <div class="ibox-content">
-                	<img src="" alt="가로 340 세로 55 로그인 이미지" style="width: 340px; height: 55px;"/>
+                	<img src="" alt="가로 340 세로 55 로그인 이미지" class="loginImg"/>
                     <form class="m-t" role="form" action="index.html"> 
-                    	<div style="margin-bottom: 10px; font-size: 12px;">
+                    	<div class="loginRadioDiv">
                     		<input type="radio" name="manager" value="화원사" checked="checked">화원사&nbsp;&nbsp;&nbsp; 
                     		<input type="radio" name="manager" value="관리자">관리자
                         </div>
-                        <div style="width: 360px; height: 110px;">
-                        	<div style="width: 240px; height: 110px; float: left;">
+                        <div class="loginInputDiv">
+                        	<div class="inputDiv">
 		                        <div class="input-group input-group-sm">
 		                        	<span class=" input-group-addon">ID</span>
-		                        	<input type="text" class="form-control" id="id" style="width: 206px;" placeholder="" >
+		                        	<input type="text" class="form-control inputId" id="id" placeholder="" >
 		                        </div>
 		                        <div class="input-group input-group-sm" style="margin-top: 5px;">
 		                        	<span class="input-group-addon">PW</span>
-		                        	<input type="text" class="form-control" id="password" style="width: 200px;" placeholder="" >
+		                        	<input type="text" class="form-control inputPwd" id="password" placeholder="" >
 		                        </div>
 		                        <div class="input-group input-group-sm" style="margin-top: 5px;">
 		                        	<span class="input-group-addon">KEY</span>
-		                        	<input type="text" class="form-control" id="key" style="width: 198px;" placeholder="" >
+		                        	<input type="text" class="form-control inputKey" id="key" placeholder="" >
 		                        </div>
 	                        </div>
-	                        <div style="width: 100px; height: 110px; float: left; margin-left: 17px;">
-	                        	<button class="btn btn-primary m-b" id="loginBtn" style="float: left; width: 90px; height: 100px;">Login</button>
+	                        <div class="loginBtnDiv">
+	                        	<button class="btn btn-primary m-b loginBtn" id="loginBtn">Login</button>
                         	</div>
                         </div>
-                        <div style="margin-bottom: 10px; font-size: 12px;">
+                        <div class="loginChkBoxDiv">
                         	<input type="checkbox" name="idSave">ID저장&nbsp;
                         	<input type="checkbox" name="pwdSave">PWD저장&nbsp;
                         	<input type="checkbox" name="keySave">KEY저장&nbsp;
                         </div>
-						<div style="margin-top: 20px; margin-bottom: -10px;">
-							<p style="font-size: 12px;">· 개인컴퓨터가 아닐 경우 저장 체크 시 개인 정보가 타인에게 노출 될 수 있습니다.</p>
-							<p style="font-size: 12px;">· 인트라넷 사용 시 에러나 기타문의 는 고객센터로 연락주세요.</p>
+						<div class="loginInfoDiv">
+							<p>· 개인컴퓨터가 아닐 경우 저장 체크 시 개인 정보가 타인에게 노출 될 수 있습니다.</p>
+							<p>· 인트라넷 사용 시 에러나 기타문의 는 고객센터로 연락주세요.</p>
 						</div>
                     </form>
                 </div>
@@ -126,20 +110,20 @@
         
         <div class="row">
             <div class="col-md-12">
-                <div style="width: 970px; height: 155px; margin-top: 10px;">
-					<img src="" alt="가로 278 세로 145 고객센터" style="width: 278px; height: 145px; float: left;"/>
-					<img src="" alt="가로 278 세로 145 업무시간" style="width: 278px; height: 145px; margin-left: 10px; float: left;"/>
-					<img src="" alt="가로 190 세로 145 가맹점 가입신청" style="width: 250px; height: 145px; margin-left: 10px; float: left;"/>
-					<img src="" alt="가로 190 세로 145 가맹종료 화원사 계산서 확인" style="width: 130px; height: 145px; margin-left: 10px; float: left;"/>
+                <div class="midImgDiv">
+					<img src="" alt="가로 278 세로 145 고객센터" class="midImg1"/>
+					<img src="" alt="가로 278 세로 145 업무시간" class="midImg2"/>
+					<img src="" alt="가로 190 세로 145 가맹점 가입신청" class="midImg3"/>
+					<img src="" alt="가로 190 세로 145 가맹종료 화원사 계산서 확인" class="midImg4"/>
 				</div>
             </div>
         </div>
         
         <div class="row">
             <div class="col-md-12">
-                <div style="width: 970px; height: 80px; margin-top: 50px;">
-                	<img src="" alt="가로 660 세로 70" style="width: 660px; height: 70px; float: left;"/>
-					<div style="width: 295px; height: 70px; margin-left: 10px; float: left; border: 1px solid #000000;">
+                <div class="certiCooperDiv">
+                	<img src="" alt="가로 660 세로 70" class="certiImg"/>
+					<div class="cooperDiv">
 						<div id="myCarousel" class="carousel slide" data-ride="carousel">
 							<ol class="carousel-indicators">
 								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -148,29 +132,29 @@
 							</ol>
 							<div class="carousel-inner" role="listbox">
 								<div class="item active">
-									<div style="padding: 20px 0 10px 20px; float: left;">
-										<img src="" alt="협력사 배너1" width="115" height="40">
+									<div class="bannerDiv">
+										<img src="" alt="협력사 배너1" class="bannerImg">
 									</div>
-									<div style="padding: 20px 0 10px 20px; float: left;">
-										<img src="" alt="협력사 배너2" width="115" height="40">
+									<div class="bannerDiv">
+										<img src="" alt="협력사 배너2" class="bannerImg">
 									</div>
 								</div>
 
 								<div class="item">
-									<div style="padding: 20px 0 10px 20px; float: left;">
-										<img src="" alt="협력사 배너3" width="115" height="40">
+									<div class="bannerDiv">
+										<img src="" alt="협력사 배너3" class="bannerImg">
 									</div>
-									<div style="padding: 20px 0 10px 20px; float: left;">
-										<img src="" alt="협력사 배너4" width="115" height="40">
+									<div class="bannerDiv">
+										<img src="" alt="협력사 배너4" class="bannerImg">
 									</div>
 								</div>
 
 								<div class="item" style="float: left;">
-									<div style="padding: 20px 0 10px 20px; float: left;">
-										<img src="" alt="협력사 배너5" width="115" height="40">
+									<div class="bannerDiv">
+										<img src="" alt="협력사 배너5" class="bannerImg">
 									</div>
-									<div style="padding: 20px 0 10px 20px; float: left;">
-										<img src="" alt="협력사 배너6" width="115" height="40">
+									<div class="bannerDiv">
+										<img src="" alt="협력사 배너6" class="bannerImg">
 									</div>
 								</div>
 							</div>
@@ -182,9 +166,9 @@
         
         <div class="row">
             <div class="col-md-12">
-                <div style="width: 965px; height: 70px;">
-					<img src="" alt="가로 560 세로 70" style="width: 560px; height: 70px; float: left;"/>
-					<img src="" alt="가로 150 세로 70" style="width: 150px; height: 70px; float: right;"/>
+                <div class="loginFooterDiv">
+					<img src="" alt="가로 560 세로 70" class="footerImg1" />
+					<img src="" alt="가로 150 세로 70" class="footerImg2" />
 				</div>
             </div>
         </div>
