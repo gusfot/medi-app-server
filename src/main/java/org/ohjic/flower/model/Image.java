@@ -1,9 +1,5 @@
 package org.ohjic.flower.model;
 
-import java.util.Date;
-
-import org.springframework.web.multipart.MultipartFile;
-
 /**
  * 사용자
  * 

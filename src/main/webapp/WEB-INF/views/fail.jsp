@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Error Page</title>
+<title>Info Page</title>
 </head>
 <body>
 <h1>실패입니다.</h1>

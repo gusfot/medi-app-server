@@ -3,7 +3,7 @@
  */
 package org.ohjic.flower.web;
 
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,13 +15,17 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.View;
 
+import org.apache.poi.hssf.model.InternalWorkbook;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.ohjic.flower.model.Board;
 import org.ohjic.flower.model.Image;
 import org.ohjic.flower.model.User;
+import org.ohjic.flower.service.ExcelService;
 import org.ohjic.flower.service.ImageService;
 import org.ohjic.flower.service.UserService;
 import org.slf4j.Logger;
@@ -58,7 +62,10 @@ public class TestController {
     @Autowired
 	private UserService userServcie;
     @Autowired
-	private ImageService imageServcie;
+	private ImageService imageService;
+    @Autowired
+   	private ExcelService excelService;
+    
 	
     
 	@RequestMapping(value = {"/","/index"}, method = RequestMethod.GET)
@@ -108,15 +115,13 @@ public class TestController {
 	  
 	  
 	  @RequestMapping(value = "/update", method = RequestMethod.GET)
-	  public String update(
-	          Model model,
-	          HttpSession session) {
+	  public String update(Model model, HttpSession session) {
 	      logger.info("id = {}", session.getAttribute("user"));
 	      
 	      String userId = (String)session.getAttribute("user");
 	      
 	      User user2 = userServcie.getUser(userId);
-	      Image img2 = imageServcie.getImage(userId);
+	      Image img2 = imageService.getImage(userId);
 	      
 	      model.addAttribute("user2", user2);
 	      model.addAttribute("img2", img2);
@@ -126,7 +131,7 @@ public class TestController {
 	  
 	  
 	  @RequestMapping(value = "/updateOk", method = RequestMethod.POST)
-	  public @ResponseBody ModelAndView test(@ModelAttribute("user") User user, MultipartHttpServletRequest multi) throws Exception  {
+	  public @ResponseBody ModelAndView updateOk(@ModelAttribute("user") User user, MultipartHttpServletRequest multi) throws Exception  {
 		  
 		  logger.info("[pilot] TestController.test >>>>>>>>>>> ");
 		  MultipartFile pFile = null;
@@ -147,14 +152,12 @@ public class TestController {
 		  logger.info("flag: "+ flag);
 		  
 		  ModelAndView mav = new ModelAndView();
-		  
 		  if(flag == true){
 			  mav.setViewName("/success");
 		  }
 		  else{
 			  mav.setViewName("/fail");
 		  }
-		  
 		  return mav;
 		  
 	  }
@@ -172,97 +175,85 @@ public class TestController {
 	      return "preView";
 	  }
 	  
-	  /*
-	   * 엑셀 다운로드
-	   */
-	  @RequestMapping(value = "/excelDownload", method = RequestMethod.GET)
-	  public String excelDownload(HttpServletRequest request, Model model, HttpSession session) throws Exception {
-		  
-		  int flag = 0;
-		  //임의의 VO가 되주는 MAP 객체
-		  Map<String, Object>map = null;
-		  //가상 DB조회후 목록을 담을 LIST 객체
-		  ArrayList<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-		  ArrayList<String> columnList = new ArrayList<String>();
-		  //DB조회후 데이터를 담았다는 가상의 데이터
-		  for(int i=0; i<10; i++){
-			  map = new HashMap<String,Object>();
-			  map.put("seq", i+1);
-			  map.put("title", "제목이다"+i);
-			  map.put("content", "내용입니다"+i);
-			  list.add(map);
-		  }
-		  //MAP의 KEY값을 담기위함
-		  if(list != null &&list.size() > 0){
-			  //LIST의 첫번째 데이터의 KEY값만 알면 되므로
-			  Map<String,Object> m=list.get(0);
-			  //MAP의 KEY값을 columnList객체에 ADD
-			  for(String k : m.keySet()){
-				  columnList.add(k);
-			  }
-		  }
-		  //1차로 workbook을 생성
-		  HSSFWorkbook workbook = new HSSFWorkbook();
-		  //2차는 sheet생성
-		  HSSFSheet sheet = workbook.createSheet("시트명");
-		  //엑셀의 행
-		  HSSFRow row = null;
-		  //엑셀의 셀
-		  HSSFCell cell = null;
-		  //임의의 DB데이터 조회
-		  if(list != null && list.size() > 0){
-			  int i=0;
-			  for(Map<String,Object> mapobject : list){
-				  //시트에 하나의 행을 생성한다(i 값이 0이면 첫번째 줄에 해당)
-				  row = sheet.createRow((short)i);
-				  i++;
-				  if(columnList != null && columnList.size() > 0){
-					  for(int j=0; j<columnList.size(); j++){
-						  //생성된 row에 컬럼을 생성한다
-						  cell=row.createCell(j);
-						  //map에 담긴 데이터를 가져와 cell에 add한다
-						  cell.setCellValue(String.valueOf(mapobject.get(columnList.get(j))));
-					  }
-				  }
-			  }
-		  }
-		  long x = System.currentTimeMillis();
-		  FileOutputStream fileoutputstream = new FileOutputStream("D:\\excelFile\\keon_"+x+".xls");
-		  //파일을 쓴다
-		  workbook.write(fileoutputstream);
-		  //필수로 닫아주어야함
-		  fileoutputstream.close();
-		  logger.info(">>>>>>>>>>>>>> 엑셀파일 생성 성공");
-		  flag = 1;
-		  
-		  if(flag == 1){
-			  return "success";  
-		  }else {
-			  return "fail";
-		  }
-	      
-	  }
-	  
 	  
 	  /*
 	   * 엑셀 업로드
 	   */
-	  @RequestMapping(value = "/excelUpload", method = RequestMethod.GET)
-	  public String excelUpload(HttpServletRequest request, Model model, HttpSession session) {
+	  @RequestMapping(value = "/excelUpload", method = RequestMethod.POST)
+	  public ModelAndView excelUpload(HttpServletRequest request, Model model, MultipartHttpServletRequest multi) throws IOException {
 		  
-		  int flag = 0;
+		  boolean flag = false;
 		  
-		  if(flag == 1){
-			  return "success";  
-		  }else {
-			  return "fail";
+		  MultipartFile file = null;
+		  ArrayList<Board> list = null;
+		  
+		  file = multi.getFile("excelUpload");
+		  flag = excelService.excelUpload(file, request);
+		  
+		  ModelAndView mav = new ModelAndView();
+		  if(flag == true){
+			  mav.setViewName("/success");
 		  }
+		  else{
+			  mav.setViewName("/fail");
+		  }
+		  return mav;
 	      
 	  }
 	  
 	  
+	  /*
+	   * 엑셀 서버에 저장
+	   */
+//	  @RequestMapping(value = "/excelDownload", method = RequestMethod.GET)
+//	  public String excelDownload() throws Exception {
+//		  
+//		  boolean flag = false;
+//		  
+//		  flag = excelService.excelDownload();
+//		  
+//		  if(flag == true){
+//			  return "success";  
+//		  }else {
+//			  return "fail";
+//		  }
+//	      
+//	  }
 	  
-  
+	  
+	  /*
+	   * 엑셀 다운로드
+	   */
+	  @RequestMapping(value = "/excelDownload", method = RequestMethod.GET)
+	  public GenericExcelView excelDownload(@RequestParam Map<String, String> params,
+				Map<String, Object> modelMap) throws Exception {
+		  
+		  List<String> colName = new ArrayList<String>();
+			colName.add("1번");
+			colName.add("2번");
+			colName.add("3번");
+			colName.add("4번");
+			colName.add("5번");
+
+			List<String[]> colValue = new ArrayList<String[]>();
+
+			String[] arr1 = { "11111", "22222", "33333", "44444", "55555" };
+			String[] arr2 = { "aaaaa", "bbbbb", "ccccc", "ddddd", "eeeee" };
+			String[] arr3 = { "가가가", "나나나", "다다다", "라라라", "마마마" };
+
+			colValue.add(arr1);
+			colValue.add(arr2);
+			colValue.add(arr3);
+			
+			modelMap.put("excelName", "test");
+			modelMap.put("colName", colName);
+			modelMap.put("colValue", colValue);
+		  
+		  return new GenericExcelView();
+	      
+	  }
+	  
+	  
     @ResponseBody
     @RequestMapping(value = "/jsonLogin", method = RequestMethod.POST)
     public String jsonLogin(

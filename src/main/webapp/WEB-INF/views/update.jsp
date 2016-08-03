@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<form action="updateOk" method="post" enctype="multipart/form-data" />
+<form action="updateOk" method="post" enctype="multipart/form-data" >
 <table border="1" align="center">
 	<thead>
 		<h1 style="text-align: center;">정보수정</h1>
