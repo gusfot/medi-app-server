@@ -144,7 +144,7 @@ public class TestController {
 		  
 		  String id = multi.getParameter("userId");
 		  logger.info(">>>>>>>>>>>>. user.getUserId:" + user.getUserId());
-
+		  
 		  user.setUserId(id);
 		  
 		  boolean flag = userServcie.modifyUser(user, pFile, sFile); // fileupload 함수는 파일저장만 하고 파일이름 리턴하는 함수
