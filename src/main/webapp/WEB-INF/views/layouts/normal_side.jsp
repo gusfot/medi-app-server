@@ -1,7 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<jsp:useBean id="now" class="java.util.Date" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +12,10 @@
 	</div>
 	<div class="sidebar-collapse">
 		<ul class="nav metismenu" id="side-menu">
-			<li>
+			<li id="test1">
 				<a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">본부발주</span></a>
 			</li>
-			<li>
+			<li id="test2">
 				<a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">회원간직발주</span></a>
 			</li>
 			<li>
@@ -62,7 +59,7 @@
 					<li><a href="#">sample2</a></li>
 				</ul>
 			</li>
-			<li>
+			<li id="board">
 				<a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">게시판</span></a>
 				<ul class="nav nav-second-level">
 					<li><a href="#">sample1</a></li>
@@ -96,5 +93,69 @@
 			</li>
 		</ul>
 	</div>
+	
+	<script type="text/javascript">
+		$("#test1").click(function(e) {
+			e.preventDefault();
+			AjaxController.request({
+				options : {
+					url : '/rest/user/test1',
+				},
+				callbacks : {
+					done : function(data, textStatus, jqXHR) {
+						if (data.success === true) {
+							location.href = "/layout/bonbu";
+						}
+					}
+				},
+				show : {
+					progress : true,
+					failMessage : true
+				}
+			});
+		});
+		
+		$("#test2").click(function(e) {
+			e.preventDefault();
+			AjaxController.request({
+				options : {
+					url : '/rest/user/test2',
+				},
+				callbacks : {
+					done : function(data, textStatus, jqXHR) {
+						if (data.success === true) {
+							location.href = "/layout/test";
+						}
+					}
+				},
+				show : {
+					progress : true,
+					failMessage : true
+				}
+			});
+		});
+		
+		$("#board").click(function(e) {
+			e.preventDefault();
+			location.href = "/article/board";
+// 			AjaxController.request({
+// 				options : {
+// 					url : '/rest/article/articleAll',
+// 				},
+// 				callbacks : {
+// 					done : function(data, textStatus, jqXHR) {
+// 						if (data.success === true) {
+// 							location.href = "/layout/board";
+// 						}
+// 					}
+// 				},
+// 				show : {
+// 					progress : true,
+// 					failMessage : true
+// 				}
+// 			});
+		});
+	</script>
+	
 </body>
 </html>

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<jsp:useBean id="now" class="java.util.Date" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,10 +40,13 @@
 	<script src="${resourcePath}/lib/sweetalert/sweetalert.min.js"></script>
 	<script src="${resourcePath}/js/ajax-controller.js"></script>
 	
+	<!-- naver smarteditor -->
+	<script type="text/javascript" src="${resourcePath}/smarteditor/js/HuskyEZCreator.js" charset="UTF-8"></script>
+	
 	<title>플라시스템</title>
 </head>
 
-<body>
+<body id="tilesBody">
 	<div id="wrapper">
 		<nav class="navbar navbar-static-top white-bg" role="navigation">
 			<tiles:insertAttribute name="header" />

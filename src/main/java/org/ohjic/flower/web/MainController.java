@@ -20,10 +20,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 
 	
+	@RequestMapping("/")
+	public String home() {
+		return "user/login";
+	}
+	
 	@RequestMapping("/main")
 	public String fileDownTest(){
 		
 		return "main";
+	}
+	
+	@RequestMapping("/login")
+	public String login(){
+		
+		return "user/login";
 	}
 	
 	@RequestMapping("/front")

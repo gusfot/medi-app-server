@@ -1,55 +1,98 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
-<generatorConfiguration>
-	<classPathEntry location="C:\Users\ohjic\.m2\repository\org\mariadb\jdbc\mariadb-java-client\1.4.6\mariadb-java-client-1.4.6.jar" />
-	<context id="context1">
-		<jdbcConnection driverClass="org.mariadb.jdbc.Driver" connectionURL="jdbc:mariadb://192.168.0.41:3306/flower" userId="flosys" password="#2016fl0wer" />
-		<javaModelGenerator targetPackage="org.ohjic.flower.model" targetProject="pilot" />
-		<sqlMapGenerator targetPackage="org.ohjic.flower.dao.mapper" targetProject="pilot" />
-		<javaClientGenerator targetPackage="org.ohjic.flower.dao" targetProject="pilot" type="XMLMAPPER" />
+<generatorConfiguration >
+<classPathEntry location="C:\Users\ohjic\.m2\repository\org\mariadb\jdbc\mariadb-java-client\1.4.6\mariadb-java-client-1.4.6.jar" />
+  <context id="context1" >
+    <jdbcConnection driverClass="org.mariadb.jdbc.Driver" connectionURL="jdbc:mariadb://192.168.0.41:3306/flower" userId="flosys" password="#2016fl0wer" />
+    <javaModelGenerator targetPackage="org.ohjic.flower.model" targetProject="pilot" />
+    <sqlMapGenerator targetPackage="org.ohjic.flower.dao.mapper" targetProject="pilot" />
+    <javaClientGenerator targetPackage="org.ohjic.flower.dao" targetProject="pilot" type="XMLMAPPER" />
+    
+<!--     <table schema="flower" tableName="user" enableSelectByExample="false"  -->
+<!--     										 enableDeleteByExample="false"  -->
+<!--     										 enableCountByExample="false" -->
+<!--     										 enableUpdateByExample="false"  -->
+<!--     										 selectByExampleQueryId="false"> -->
+    										 
+<!--       <columnOverride column="user_seq" property="userSeq" /> -->
+<!--       <columnOverride column="user_id" property="userId" /> -->
+<!--       <columnOverride column="password" property="password" /> -->
+<!--       <columnOverride column="user_name" property="userName" /> -->
+<!--       <columnOverride column="addr" property="addr" /> -->
+<!--       <columnOverride column="cell_phone" property="cellPhone" /> -->
+<!--       <columnOverride column="home_phone" property="homePhone" /> -->
+<!--       <columnOverride column="job" property="job" /> -->
+<!--       <columnOverride column="gender" property="gender" /> -->
+<!--       <columnOverride column="birth" property="birth" /> -->
+<!--       <columnOverride column="email" property="email" /> -->
+<!--       <columnOverride column="reg_time" property="regTime" /> -->
+<!--     </table> -->
+    
+    
+<!--      <table schema="flower" tableName="board" enableSelectByExample="false"  -->
+<!--     										 enableDeleteByExample="false"  -->
+<!--     										 enableCountByExample="false" -->
+<!--     										 enableUpdateByExample="false"  -->
+<!--     										 selectByExampleQueryId="false"> -->
+		  
+    										 
+<!--       <columnOverride column="board_seq" property="boardSeq" /> -->
+<!--       <columnOverride column="title" property="title" /> -->
+<!--       <columnOverride column="content" property="content" /> -->
+<!--       <columnOverride column="writer" property="writer" /> -->
+<!--       <columnOverride column="reg_time" property="regTime" /> -->
+<!--     </table> -->
+    
+<!-- <table schema="flower" tableName="admin" enableSelectByExample="false"  -->
+<!--     									 enableDeleteByExample="false"  -->
+<!--     									 enableCountByExample="false" -->
+<!--     									 enableUpdateByExample="false"  -->
+<!--     									 selectByExampleQueryId="false"> -->
+    										 
+<!--       <columnOverride column="admin_seq" property="adminSeq" /> -->
+<!--       <columnOverride column="admin_id" property="adminId" /> -->
+<!--       <columnOverride column="password" property="password" /> -->
+<!--       <columnOverride column="admin_role" property="adminRole" /> -->
+<!--       <columnOverride column="reg_time" property="regTime" /> -->
+<!--     </table>  -->
+    
+    <table schema="flower" tableName="article" enableSelectByExample="false" 
+    									 enableDeleteByExample="false" 
+    									 enableCountByExample="false"
+    									 enableUpdateByExample="false" 
+    									 selectByExampleQueryId="false">
+    										 
+      <columnOverride column="article_seq" property="articleSeq" />
+      <columnOverride column="writer" property="writer" />
+      <columnOverride column="title" property="title" />
+      <columnOverride column="content" property="content" />
+      <columnOverride column="reg_time" property="regTime" />
+      <columnOverride column="check_count" property="checkCount" />
+      <columnOverride column="attached_file" property="attachedFile" />
+    </table> 
+    
+  </context>
 
-		<table schema="flower" tableName="board" enableSelectByExample="false"
-			enableDeleteByExample="false" enableCountByExample="false"
-			enableUpdateByExample="false" selectByExampleQueryId="false">
+<!-- 		<table schema="flower" tableName="board" enableSelectByExample="false" -->
+<!-- 			enableDeleteByExample="false" enableCountByExample="false" -->
+<!-- 			enableUpdateByExample="false" selectByExampleQueryId="false"> -->
 			
-			<columnOverride column="board_seq" property="boardSeq" />
-			<columnOverride column="title" property="title" />
-			<columnOverride column="content" property="content" />
-			<columnOverride column="writer" property="writer" />
-			<columnOverride column="reg_time" property="regTime" />
-		</table>
+<!-- 			<columnOverride column="board_seq" property="boardSeq" /> -->
+<!-- 			<columnOverride column="title" property="title" /> -->
+<!-- 			<columnOverride column="content" property="content" /> -->
+<!-- 			<columnOverride column="writer" property="writer" /> -->
+<!-- 			<columnOverride column="reg_time" property="regTime" /> -->
+<!-- 		</table> -->
 
-		<table schema="flower" tableName="note_message" enableSelectByExample="false"
-			enableDeleteByExample="false" enableCountByExample="false"
-			enableUpdateByExample="false" selectByExampleQueryId="false">
+<!-- 		<table schema="flower" tableName="note_message" enableSelectByExample="false" -->
+<!-- 			enableDeleteByExample="false" enableCountByExample="false" -->
+<!-- 			enableUpdateByExample="false" selectByExampleQueryId="false"> -->
 			
-			<columnOverride column="message_seq" property="messageSeq" />
-			<columnOverride column="from_user_seq" property="fromUserSeq" />
-			<columnOverride column="to_user_seq" property="toUserSeq" />
-			<columnOverride column="content" property="content" />
-			<columnOverride column="send_time" property="sendTime" javaType="String" />
-			<columnOverride column="read_time" property="readTime" javaType="String" />
-		</table>
-
-		<!-- <table schema="flower" tableName="user" enableSelectByExample="false"
-			enableDeleteByExample="false" enableCountByExample="false"
-			enableUpdateByExample="false" selectByExampleQueryId="false">
-			
-			<columnOverride column="user_seq" property="userSeq" />
-			<columnOverride column="user_name" property="userName" />
-			<columnOverride column="user_id" property="userId" />
-			<columnOverride column="password" property="password" />
-			<columnOverride column="addr" property="addr" />
-			<columnOverride column="cell_phone" property="cellPhone" />
-			<columnOverride column="home_phone" property="homePhone" />
-			<columnOverride column="job" property="job" />
-			<columnOverride column="gender" property="gender" />
-			<columnOverride column="birth" property="birth" />
-			<columnOverride column="email" property="email" />
-			<columnOverride column="reg_time" property="regTime" />
-			<columnOverride column="garden_area" property="gardenArea" />
-			<columnOverride column="garden_name" property="gardenName" />
-		</table> -->
-
-	</context>
+<!-- 			<columnOverride column="message_seq" property="messageSeq" /> -->
+<!-- 			<columnOverride column="from_user_seq" property="fromUserSeq" /> -->
+<!-- 			<columnOverride column="to_user_seq" property="toUserSeq" /> -->
+<!-- 			<columnOverride column="content" property="content" /> -->
+<!-- 			<columnOverride column="send_time" property="sendTime" javaType="String" /> -->
+<!-- 			<columnOverride column="read_time" property="readTime" javaType="String" /> -->
+<!-- 		</table> -->
 </generatorConfiguration>
