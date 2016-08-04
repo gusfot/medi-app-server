@@ -2,8 +2,8 @@ package org.ohjic.flower.service;
 
 import java.util.List;
 
-import org.ohjic.flower.common.Paging;
 import org.ohjic.flower.exception.PermissionDeniedException;
+import org.ohjic.flower.exception.common.CommonException;
 import org.ohjic.flower.model.User;
 
 public interface UserService {
@@ -49,6 +49,14 @@ public interface UserService {
 	 */
 	List<User> getUserList() throws PermissionDeniedException;
 
+	/**
+	 * 로그인을 하기위해 user정보를 체크한다.
+	 * @param user
+	 * @return
+	 */
+	User checkUser(User user) throws CommonException;
+	
+//	User checkAuth(User user) throws PermissionDeniedException;
 }
 
 
