@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package org.ohjic.flower.model;
 
 import java.util.Date;

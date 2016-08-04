@@ -98,46 +98,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			writer.append(jsonString);
 			return false;
 		}
-	
-		//널이 아니면 정상적으로 컨트롤러 호출
-		*/
-		
-		String sPath = request.getServletPath();
-		System.out.println("sPath:"+sPath);
-		logger.info("sPath : "+sPath);
-		
-		HttpSession session = request.getSession();
-		String session_id = 
-				(String) session.getAttribute("user");
-		
-//		if(sPath.compareTo("/index.do")!=0){
-//			if(session_id.equals(null)){
-//			System.out.println("로그인이 필요합니다.");
-//			response.sendRedirect("/index.do");
-//			return false;
-//			}
-//		}
-		
-		if(sPath.compareTo("/loginOk.do")==0){
-			logger.info("session_id : "+session_id);
-			if(session_id.equals(null)){
-				System.out.println("로그인이 필요합니다.");
-				response.sendRedirect("/index.do");
-				return false;
-			}
-		}else if(sPath.compareTo("/sub.do")==0){
-			if(session_id.equals(null)){
-				
-				System.out.println("로그인이 필요합니다.");
-				response.sendRedirect("/index.do");
-				return false;
-			}else if(!session_id.equals("admin")){
-				System.out.println("접근 권한이 없습니다.");
-				response.sendRedirect("/index.do");
-				return false;
-			}
-			
-		}
+
 		return true;
 	}
 
