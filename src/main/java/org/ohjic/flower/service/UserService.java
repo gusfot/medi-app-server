@@ -2,9 +2,12 @@ package org.ohjic.flower.service;
 
 import java.util.List;
 
+import org.apache.commons.fileupload.FileUploadException;
+import org.ohjic.flower.exception.NotAcceptedContentTypeException;
 import org.ohjic.flower.exception.PermissionDeniedException;
 import org.ohjic.flower.exception.common.CommonException;
 import org.ohjic.flower.model.User;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface UserService {
 
@@ -32,9 +35,12 @@ public interface UserService {
 	/**
 	 * user 정보를 수정한다
 	 * @param user
+	 * @param sFile 
 	 * @return
+	 * @throws FileUploadException 
+	 * @throws NotAcceptedContentTypeException 
 	 */
-	boolean modifyUser(User user);
+	boolean modifyUser(User user, MultipartFile pFile, List<MultipartFile> sFile) throws FileUploadException, NotAcceptedContentTypeException;
 	
 	/**
 	 * user 정보를 삭제한다 

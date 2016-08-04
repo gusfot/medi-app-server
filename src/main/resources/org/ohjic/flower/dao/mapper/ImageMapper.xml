@@ -1,67 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.ohjic.flower.dao.UserMapper">
+<mapper namespace="org.ohjic.flower.dao.ImageMapper">
 
-  <resultMap id="BaseResultMap" type="org.ohjic.flower.model.User">
+  <resultMap id="BaseResultMap" type="org.ohjic.flower.model.Image">
     <id column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="user_seq" jdbcType="BIGINT" property="userSeq" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="addr" jdbcType="VARCHAR" property="addr" />
-    <result column="cell_phone" jdbcType="VARCHAR" property="cellPhone" />
-    <result column="home_phone" jdbcType="VARCHAR" property="homePhone" />
-    <result column="job" jdbcType="VARCHAR" property="job" />
-    <result column="gender" jdbcType="VARCHAR" property="gender" />
-    <result column="birth" jdbcType="VARCHAR" property="birth" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="reg_time" jdbcType="TIMESTAMP" property="regTime" />
-    <result column="garden_area" jdbcType="VARCHAR" property="gardenArea" />
-    <result column="garden_name" jdbcType="VARCHAR" property="gardenName" />
-    <result column="profile_img" jdbcType="VARCHAR" property="profileImg" />
-    <result column="reg_time" jdbcType="VARCHAR" property="regTime" />
+    <result column="img_seq" jdbcType="BIGINT" property="imgSeq" />
+    <result column="img_id" jdbcType="BIGINT" property="imgId" />
+    <result column="store_img" jdbcType="VARCHAR" property="storeImg" />
   </resultMap>
   
   <sql id="Base_Column_List">
-    user_id, user_name,  password, addr, cell_phone, home_phone, job, 
-    gender, birth, email, garden_area, garden_name, profile_img, reg_time
+    user_id, img_seq, img_id,  store_img
   </sql>
   
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from user
+    from img
     where user_id = #{userId,jdbcType=VARCHAR}
   </select>
   
     <select id="selectList" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from user
+    from img
     
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from user
+    delete from img
     where user_id = #{userId,jdbcType=VARCHAR}
   </delete>
   
-  <insert id="insert" parameterType="org.ohjic.flower.model.User">
-    insert into user (user_id, user_seq, user_name, 
-      password, addr, 
-      cell_phone, home_phone, job, 
-      gender, birth, email, profile_img,
-      reg_time
-      )
-    values (#{userId,jdbcType=VARCHAR}, #{userSeq,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, 
-      #{cellPhone,jdbcType=VARCHAR}, #{homePhone,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
-      #{gender,jdbcType=VARCHAR}, #{birth,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{profileImg,jdbcType=VARCHAR},
-      #{regTime,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="org.ohjic.flower.model.Image">
+    insert into img (user_id, img_seq, img_id, store_img)
+    values (#{userId,jdbcType=VARCHAR}, #{imgSeq,jdbcType=BIGINT}, 
+    #{imgId,jdbcType=VARCHAR}, #{storeImg,jdbcType=VARCHAR}
+    )
   </insert>
   
-  <insert id="insertSelective" parameterType="org.ohjic.flower.model.User">
-    insert into user
+  
+  
+<!--   <insert id="insertSelective" parameterType="org.ohjic.flower.model.Image">
+    insert into img
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
         user_id,
@@ -174,9 +155,6 @@
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="profileImg != null">
-        profile_img = #{profileImg,jdbcType=VARCHAR},
-      </if>
       <if test="regTime != null">
         reg_time = #{regTime,jdbcType=TIMESTAMP}
       </if>
@@ -196,8 +174,10 @@
       gender = #{gender,jdbcType=CHAR},
       birth = #{birth,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      profile_img = #{profileImg,jdbcType=VARCHAR},
       reg_time = #{regTime,jdbcType=TIMESTAMP}
     where user_id = #{userId,jdbcType=VARCHAR}
-  </update>
+  </update> -->
+  
+  
+  
 </mapper>

@@ -1,6 +1,9 @@
 package org.ohjic.flower.rest;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,7 +45,6 @@ public class UserRest {
 		res.setResCode(ResponseCode.SUCCESS);
 		res.setData(user);
 
-
 		return res;
 	}
 
@@ -53,24 +56,18 @@ public class UserRest {
 		List<User> userList = null;
 
 		try {
-			
 			// 사용자목록 조회
 			userList = userServcie.getUserList();
 			res.setData(userList);
 			res.setSuccess(true);
-			
 		}catch (PermissionDeniedException e) {
-			
 			resCode = e.getResponseCode();
 			res.setSuccess(false);
 			res.setResCode(resCode);
-			
 		}catch (Exception e) {
-			
 			logger.error(e.getMessage());
 			res.setSuccess(false);
 			res.setResCode(ResponseCode.UNKOWN);
-			
 		}
 		
 		return res;
@@ -139,7 +136,7 @@ public class UserRest {
 		
 		return res;
 	}
-
+	    
 }
 
 
