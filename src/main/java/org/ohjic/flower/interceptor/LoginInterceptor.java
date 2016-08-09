@@ -6,7 +6,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.ohjic.flower.exception.PermissionDeniedException;
 import org.ohjic.flower.exception.SessionNullException;
 import org.ohjic.flower.exception.common.CommonException;
@@ -24,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class LoginInterceptor implements HandlerInterceptor {
-
+	
 	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 	
 	@Autowired
@@ -95,8 +98,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			writer.append(jsonString);
 			return false;
 		}
-	
-		//널이 아니면 정상적으로 컨트롤러 호출
+
 		return true;
 	}
 

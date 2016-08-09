@@ -1,7 +1,10 @@
 package org.ohjic.flower.service;
 
+import org.apache.commons.fileupload.FileUploadException;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.ohjic.flower.exception.NotAcceptedContentTypeException;
 import org.ohjic.flower.model.User;
 import org.ohjic.flower.test.SpringTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,15 +77,17 @@ public class UserServiceTest extends SpringTest {
 	
 	/**
 	 * 목장원 등록 성공 테스트 
+	 * @throws FileUploadException 
+	 * @throws NotAcceptedContentTypeException 
 	 */
 	@Test
-	public void successToModifyUser() {
+	public void successToModifyUser() throws FileUploadException, NotAcceptedContentTypeException {
 		
 		User user =  userService.getUser("test84");
 		user.setJob("개발자");
 		user.setGender("2");
 		
-		boolean result = userService.modifyUser(user);
+		boolean result = userService.modifyUser(user, null, null);
 		
 		Assert.assertTrue(result);
 	}

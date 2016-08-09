@@ -26,7 +26,7 @@ if (typeof window.swal === 'undefined') {
 			url: '',
 			type: 'get',
 			async: true,
-			cache: true,
+			cache: false,
 			data: null,
 			dataType: 'json'
 		},
@@ -130,14 +130,6 @@ if (typeof window.swal === 'undefined') {
 			text: msg,
 			showCancelButton: false
 		},
-//		function(isConfirm) { // 경고 모달 '확인버튼'을 눌렀을 시 실행되는 함수 
-//			if (isConfirm) {
-//				if (data.code === "ERR0005") { // (세션 NULL 예외 에러코드)
-//					location.href = "/";
-//				}
-//			}
-//		});
-		
 		function() {
 			warningAlertCallback({
 				jqXHR: jqXHR,

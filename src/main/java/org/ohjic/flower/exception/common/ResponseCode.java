@@ -10,7 +10,10 @@ public enum ResponseCode {
 	SESSION_NULL("ERR0005", "세션이 없습니다. 로그인이 필요합니다"),
 	RESOURCE_NOT_FOUND("ERR0006", "리소스를 찾을 수 없습니다."),
 	CANNOT_SEND_NOTE_MESSAGE("ERR0007", "쪽지를 전송할 수 없습니다."),
-	INVALID_PAGE_NUMBER("ERR0008", "잘못된 페이지입니다.")
+	INVALID_PAGE_NUMBER("ERR0008", "잘못된 페이지입니다."),
+	INVALID_PASSWORD("ERR0009", "잘못된 비밀번호입니다."),
+	FILEUPLOAD_FAIL("ERR0010", "파일업로드에 실패했습니다."),
+	FILE_CONTENTTYPE("ERR0011", "파일 형식이 맞지 않습니다.")
 	;
 
 	private String code;

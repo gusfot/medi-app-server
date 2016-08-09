@@ -8,13 +8,15 @@
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
+		<lib-version>-SNAPSHOT</lib-version>
 		<java-version>1.8</java-version>
 		<org.springframework-version>3.2.17.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.8.9</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<mariadb.java.client-version>1.4.6</mariadb.java.client-version>
 		<apache.tiles-version>3.0.5</apache.tiles-version>
-		<ohjic.libs-version>1.0.0-SNAPSHOT</ohjic.libs-version>
+		<ohjic.libs-version>1.0.0${lib-version}</ohjic.libs-version>
+		<ohjic.fax-version>1.0.0${lib-version}</ohjic.fax-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.test.skip>true</maven.test.skip>
 		<ohjic.repo.public.url>http://repo.qfun.kr/repository/maven-public</ohjic.repo.public.url>
@@ -25,6 +27,11 @@
 			<groupId>org.ohjic.libs</groupId>
 			<artifactId>ohjic-libs</artifactId>
 			<version>${ohjic.libs-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ohjic.libs</groupId>
+			<artifactId>ohjic-fax</artifactId>
+			<version>${ohjic.fax-version}</version>
 		</dependency>
 		<!-- Spring -->
 		<dependency>
@@ -224,6 +231,20 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<version>1.0.0.RELEASE</version>
 		</dependency>
+		</dependency>
+		
+		<!-- POI -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.9</version>
+		</dependency>
+		
 		<!-- 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

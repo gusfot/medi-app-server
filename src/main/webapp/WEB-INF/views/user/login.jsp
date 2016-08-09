@@ -26,6 +26,8 @@
 	<link rel="stylesheet" href="${resourcePath}/lib/sweetalert/sweetalert.css" />
 	
 	<link rel="stylesheet" href="${resourcePath}/css/layouts/layout_normal.css" />
+
+	<link rel="stylesheet" href="${resourcePath}/css/user/login.css" />
 	
 	<!-- Script -->
 	<script src="${inspiniaPath}/js/jquery-2.1.1.js"></script>
@@ -42,73 +44,132 @@
 	<script src="${resourcePath}/js/ajax-controller.js"></script>
 	
 	<title>플라시스템</title>
-	
+
 <!-- 	세션에 값이 있는 상태에서 url로 로그인 페이지 접근 시 첫 화면으로 가게 한다.  -->
 	<script type="text/javascript">
-    var isLogged = function() {
-    	if('${sessionScope.sessionUserVO}'!='' )
-    	location.href="/layout/test";
-    }();
-    
+    	var isLogged = function() {
+    		if('${sessionScope.sessionUserVO}' != '') {
+    			location.href="/layout/test";
+    		}
+    	}();
     </script>
 </head>
 <body class="gray-bg">
     <div class="loginColumns animated fadeInDown">
-        <div class="row">
-
-            <div class="col-md-6">
-                <h2 class="font-bold">Welcome to IN+</h2>
-
-                <p>
-                    Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
-                </p>
-
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                </p>
-
-                <p>
-                    When an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                </p>
-
-                <p>
-                    <small>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</small>
-                </p>
-
+    	<div class="row">
+            <div class="col-md-7">
+                <div class="logoDiv">
+					<img src="" alt="가로 300 세로 60 전국플라워센터" class="logoImg" />
+				</div>
             </div>
-            <div class="col-md-6">
+        </div>
+        <div class="row"> 
+            <div class="col-md-7">
+            	<img src="" alt="가로 566 세로 350 메인이미지" class="mainImg" />
+            </div>
+            <div class="col-md-5 loginFrmDiv">
                 <div class="ibox-content">
-                    <form class="m-t" role="form" action="index.html">
-                        <div class="form-group">
-                            <input type="text" id="id" class="form-control" placeholder="UserID">
+                	<img src="" alt="가로 340 세로 55 로그인 이미지" class="loginImg"/>
+                    <form class="m-t" role="form" action="index.html"> 
+                    	<div class="loginRadioDiv">
+                    		<input type="radio" name="manager" value="화원사" checked="checked">화원사&nbsp;&nbsp;&nbsp; 
+                    		<input type="radio" name="manager" value="관리자">관리자
                         </div>
-                        <div class="form-group">
-                            <input type="password" id="password" class="form-control" placeholder="Password">
+                        <div class="loginInputDiv">
+                        	<div class="inputDiv">
+		                        <div class="input-group input-group-sm">
+		                        	<span class=" input-group-addon">ID</span>
+		                        	<input type="text" class="form-control inputId" id="id" placeholder="" >
+		                        </div>
+		                        <div class="input-group input-group-sm" style="margin-top: 5px;">
+		                        	<span class="input-group-addon">PW</span>
+		                        	<input type="text" class="form-control inputPwd" id="password" placeholder="" >
+		                        </div>
+		                        <div class="input-group input-group-sm" style="margin-top: 5px;">
+		                        	<span class="input-group-addon">KEY</span>
+		                        	<input type="text" class="form-control inputKey" id="key" placeholder="" >
+		                        </div>
+	                        </div>
+	                        <div class="loginBtnDiv">
+	                        	<button class="btn btn-primary m-b loginBtn" id="loginBtn">Login</button>
+                        	</div>
                         </div>
-                        <button id="loginBtn" class="btn btn-primary block full-width m-b">Login</button>
-
-                        <a href="#">
-                            <small>Forgot password?</small>
-                        </a>
-
-                        <p class="text-muted text-center">
-                            <small>Do not have an account?</small>
-                        </p>
-                        <a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a>
+                        <div class="loginChkBoxDiv">
+                        	<input type="checkbox" name="idSave">ID저장&nbsp;
+                        	<input type="checkbox" name="pwdSave">PWD저장&nbsp;
+                        	<input type="checkbox" name="keySave">KEY저장&nbsp;
+                        </div>
+						<div class="loginInfoDiv">
+							<p>· 개인컴퓨터가 아닐 경우 저장 체크 시 개인 정보가 타인에게 노출 될 수 있습니다.</p>
+							<p>· 인트라넷 사용 시 에러나 기타문의 는 고객센터로 연락주세요.</p>
+						</div>
                     </form>
-                    <p class="m-t">
-                        <small>Inspinia we app framework base on Bootstrap 3 © 2014</small>
-                    </p>
                 </div>
             </div>
         </div>
-        <hr>
+        
         <div class="row">
-            <div class="col-md-6">
-                Copyright Example Company
+            <div class="col-md-12">
+                <div class="midImgDiv">
+					<img src="" alt="가로 278 세로 145 고객센터" class="midImg1"/>
+					<img src="" alt="가로 278 세로 145 업무시간" class="midImg2"/>
+					<img src="" alt="가로 190 세로 145 가맹점 가입신청" class="midImg3"/>
+					<img src="" alt="가로 190 세로 145 가맹종료 화원사 계산서 확인" class="midImg4"/>
+				</div>
             </div>
-            <div class="col-md-6 text-right">
-               <small>© 2014-2015</small>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="certiCooperDiv">
+                	<img src="" alt="가로 660 세로 70" class="certiImg"/>
+					<div class="cooperDiv">
+						<div id="myCarousel" class="carousel slide" data-ride="carousel">
+							<ol class="carousel-indicators">
+								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+								<li data-target="#myCarousel" data-slide-to="1"></li>
+								<li data-target="#myCarousel" data-slide-to="2"></li>
+							</ol>
+							<div class="carousel-inner" role="listbox">
+								<div class="item active">
+									<div class="bannerDiv">
+										<img src="" alt="협력사 배너1" class="bannerImg">
+									</div>
+									<div class="bannerDiv">
+										<img src="" alt="협력사 배너2" class="bannerImg">
+									</div>
+								</div>
+
+								<div class="item">
+									<div class="bannerDiv">
+										<img src="" alt="협력사 배너3" class="bannerImg">
+									</div>
+									<div class="bannerDiv">
+										<img src="" alt="협력사 배너4" class="bannerImg">
+									</div>
+								</div>
+
+								<div class="item" style="float: left;">
+									<div class="bannerDiv">
+										<img src="" alt="협력사 배너5" class="bannerImg">
+									</div>
+									<div class="bannerDiv">
+										<img src="" alt="협력사 배너6" class="bannerImg">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+        	</div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="loginFooterDiv">
+					<img src="" alt="가로 560 세로 70" class="footerImg1" />
+					<img src="" alt="가로 150 세로 70" class="footerImg2" />
+				</div>
             </div>
         </div>
     </div>

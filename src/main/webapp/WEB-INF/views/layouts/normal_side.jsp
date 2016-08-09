@@ -59,11 +59,17 @@
 					<li><a href="#">sample2</a></li>
 				</ul>
 			</li>
-			<li id="board">
+			<li>
 				<a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">게시판</span></a>
 				<ul class="nav nav-second-level">
-					<li><a href="#">sample1</a></li>
-					<li><a href="#">sample2</a></li>
+					<li id="board"><a href="#">공지사항</a></li>
+					<li><a href="#">업체홍보게시판</a></li>
+					<li><a href="#">본부문의사항</a></li>
+					<li><a href="#">본부건의사항</a></li>
+					<li><a href="#">경조사게시판</a></li>
+					<li><a href="#">배송사진방</a></li>
+					<li><a href="#">작품사진방</a></li>
+					<li><a href="#">우수배송사진</a></li>
 				</ul>
 			</li>
 			<li>

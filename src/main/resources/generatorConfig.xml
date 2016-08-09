@@ -55,6 +55,28 @@
 <!--       <columnOverride column="admin_role" property="adminRole" /> -->
 <!--       <columnOverride column="reg_time" property="regTime" /> -->
 <!--     </table>  -->
+
+    <table schema="keon" tableName="user" enableSelectByExample="false"
+           enableDeleteByExample="false"
+           enableCountByExample="false"
+           enableUpdateByExample="false"
+           selectByExampleQueryId="false">
+
+
+      <columnOverride column="user_id" property="userId" />
+      <columnOverride column="user_seq" property="userSeq" />
+      <columnOverride column="user_name" property="userName" />
+      <columnOverride column="password" property="password" />
+      <columnOverride column="addr" property="addr" />
+      <columnOverride column="cell_phone" property="cellPhone" />
+      <columnOverride column="home_phone" property="homePhone" />
+      <columnOverride column="job" property="job" />
+      <columnOverride column="gender" property="gender" />
+      <columnOverride column="birth" property="birth" />
+      <columnOverride column="email" property="email" />
+      <columnOverride column="img_name" property="imgName" />
+      <columnOverride column="reg_time" property="regTime" />
+    </table>
     
     <table schema="flower" tableName="article" enableSelectByExample="false" 
     									 enableDeleteByExample="false" 
