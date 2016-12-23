@@ -6,16 +6,9 @@
 	
 	<!-- xmlns:p 추가할것 -->
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" id="viewResolver" p:order="0" />
-	<bean
-		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"
+	<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"
 		id="jsonView">
 		<property name="contentType" value="application/json;charset=UTF-8" />
-	</bean>
-	
-	<!-- 파일업로드 -->
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="-1" />  <!-- -1 이면 크기제한 없음 -->
 	</bean>
 	
 </beans>

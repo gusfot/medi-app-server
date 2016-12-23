@@ -26,7 +26,7 @@
  
 	
 	<typeAliases>
-	  <package name="org.ohjic.flower.model"/>
+	  <package name="org.ohjic.mem.model"/>
 	</typeAliases> 
 	
  

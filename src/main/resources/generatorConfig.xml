@@ -3,118 +3,277 @@
 <generatorConfiguration >
 <classPathEntry location="C:\Users\ohjic\.m2\repository\org\mariadb\jdbc\mariadb-java-client\1.4.6\mariadb-java-client-1.4.6.jar" />
   <context id="context1" >
-    <jdbcConnection driverClass="org.mariadb.jdbc.Driver" connectionURL="jdbc:mariadb://192.168.0.41:3306/flower" userId="flosys" password="#2016fl0wer" />
-    <javaModelGenerator targetPackage="org.ohjic.flower.model" targetProject="pilot" />
-    <sqlMapGenerator targetPackage="org.ohjic.flower.dao.mapper" targetProject="pilot" />
-    <javaClientGenerator targetPackage="org.ohjic.flower.dao" targetProject="pilot" type="XMLMAPPER" />
-    
-<!--     <table schema="flower" tableName="user" enableSelectByExample="false"  -->
-<!--     										 enableDeleteByExample="false"  -->
-<!--     										 enableCountByExample="false" -->
-<!--     										 enableUpdateByExample="false"  -->
-<!--     										 selectByExampleQueryId="false"> -->
-    										 
-<!--       <columnOverride column="user_seq" property="userSeq" /> -->
-<!--       <columnOverride column="user_id" property="userId" /> -->
-<!--       <columnOverride column="password" property="password" /> -->
-<!--       <columnOverride column="user_name" property="userName" /> -->
-<!--       <columnOverride column="addr" property="addr" /> -->
-<!--       <columnOverride column="cell_phone" property="cellPhone" /> -->
-<!--       <columnOverride column="home_phone" property="homePhone" /> -->
-<!--       <columnOverride column="job" property="job" /> -->
-<!--       <columnOverride column="gender" property="gender" /> -->
-<!--       <columnOverride column="birth" property="birth" /> -->
-<!--       <columnOverride column="email" property="email" /> -->
-<!--       <columnOverride column="reg_time" property="regTime" /> -->
-<!--     </table> -->
-    
-    
-<!--      <table schema="flower" tableName="board" enableSelectByExample="false"  -->
-<!--     										 enableDeleteByExample="false"  -->
-<!--     										 enableCountByExample="false" -->
-<!--     										 enableUpdateByExample="false"  -->
-<!--     										 selectByExampleQueryId="false"> -->
-		  
-    										 
-<!--       <columnOverride column="board_seq" property="boardSeq" /> -->
-<!--       <columnOverride column="title" property="title" /> -->
-<!--       <columnOverride column="content" property="content" /> -->
-<!--       <columnOverride column="writer" property="writer" /> -->
-<!--       <columnOverride column="reg_time" property="regTime" /> -->
-<!--     </table> -->
-    
-<!-- <table schema="flower" tableName="admin" enableSelectByExample="false"  -->
-<!--     									 enableDeleteByExample="false"  -->
-<!--     									 enableCountByExample="false" -->
-<!--     									 enableUpdateByExample="false"  -->
-<!--     									 selectByExampleQueryId="false"> -->
-    										 
-<!--       <columnOverride column="admin_seq" property="adminSeq" /> -->
-<!--       <columnOverride column="admin_id" property="adminId" /> -->
-<!--       <columnOverride column="password" property="password" /> -->
-<!--       <columnOverride column="admin_role" property="adminRole" /> -->
-<!--       <columnOverride column="reg_time" property="regTime" /> -->
-<!--     </table>  -->
+    <jdbcConnection driverClass="org.mariadb.jdbc.Driver" connectionURL="jdbc:mariadb://storage.ohjic.com:3306/kyo6" userId="root" password="rhkfh1" />
+    <javaModelGenerator targetPackage="org.ohjic.mem.model" targetProject="init-project" />
+    <sqlMapGenerator targetPackage="org.ohjic.mem.dao.mapper" targetProject="init-project" />
+    <javaClientGenerator targetPackage="org.ohjic.mem.dao" targetProject="init-project" type="XMLMAPPER" />
 
-    <table schema="keon" tableName="user" enableSelectByExample="false"
-           enableDeleteByExample="false"
-           enableCountByExample="false"
-           enableUpdateByExample="false"
-           selectByExampleQueryId="false">
+	
+	<table schema="ohjic" tableName="worshipGroup" enableSelectByExample="false" 
+    										 enableDeleteByExample="false" 
+    										 enableCountByExample="false"
+    										 enableUpdateByExample="false" 
+    										 selectByExampleQueryId="false">
+    										 
+		<columnOverride column="year" property="year" />
+		<columnOverride column="groupNo" property="groupNo" />
+		<columnOverride column="worshipCode" property="worshipCode" />
+		<columnOverride column="groupName" property="groupName" />
+		<columnOverride column="reg_date" property="regDate" />
 
 
-      <columnOverride column="user_id" property="userId" />
-      <columnOverride column="user_seq" property="userSeq" />
-      <columnOverride column="user_name" property="userName" />
-      <columnOverride column="password" property="password" />
-      <columnOverride column="addr" property="addr" />
-      <columnOverride column="cell_phone" property="cellPhone" />
-      <columnOverride column="home_phone" property="homePhone" />
-      <columnOverride column="job" property="job" />
-      <columnOverride column="gender" property="gender" />
-      <columnOverride column="birth" property="birth" />
-      <columnOverride column="email" property="email" />
-      <columnOverride column="img_name" property="imgName" />
-      <columnOverride column="reg_time" property="regTime" />
     </table>
     
-    <table schema="flower" tableName="article" enableSelectByExample="false" 
-    									 enableDeleteByExample="false" 
-    									 enableCountByExample="false"
-    									 enableUpdateByExample="false" 
-    									 selectByExampleQueryId="false">
-    										 
-      <columnOverride column="article_seq" property="articleSeq" />
-      <columnOverride column="writer" property="writer" />
-      <columnOverride column="title" property="title" />
-      <columnOverride column="content" property="content" />
-      <columnOverride column="reg_time" property="regTime" />
-      <columnOverride column="check_count" property="checkCount" />
-      <columnOverride column="attached_file" property="attachedFile" />
-    </table> 
+<!-- 	
     
+   	<table schema="ohjic" tableName="auth_group" enableSelectByExample="false" 
+    										 enableDeleteByExample="false" 
+    										 enableCountByExample="false"
+    										 enableUpdateByExample="false" 
+    										 selectByExampleQueryId="false">
+    										 
+		<columnOverride column="auth_set_idx" property="authSetIdx" />
+		<columnOverride column="sort_no" property="sort_no" />
+		<columnOverride column="auth_type_idx" property="auth_type_idx" />
+		<columnOverride column="value" property="value" />
+		<columnOverride column="reg_date" property="regDate" />
+
+    </table>
+    
+    <table schema="ohjic" tableName="auth_in_charge" enableSelectByExample="false" 
+    										 enableDeleteByExample="false" 
+    										 enableCountByExample="false"
+    										 enableUpdateByExample="false" 
+    										 selectByExampleQueryId="false">
+    										 
+		<columnOverride column="auth_set_idx" property="authSetIdx" />
+		<columnOverride column="manager_idx" property="managerIdx" />
+		<columnOverride column="group_no" property="groupNo" />
+		<columnOverride column="reg_date" property="regDate" />
+
+    </table>
+        
+	<table schema="ohjic" tableName="kGroup" enableSelectByExample="false" 
+    										 enableDeleteByExample="false" 
+    										 enableCountByExample="false"
+    										 enableUpdateByExample="false" 
+    										 selectByExampleQueryId="false">
+    										 
+		<columnOverride column="no" property="no" />
+		<columnOverride column="year" property="year" />
+		<columnOverride column="k_part_idx" property="kPartIdx" />
+		<columnOverride column="depth1" property="depth1" />
+		<columnOverride column="depth2" property="depth2" />
+		<columnOverride column="depth3" property="depth3" />
+		<columnOverride column="depth4" property="depth4" />
+		<columnOverride column="depth5" property="depth5" />
+		<columnOverride column="ord" property="ord" />
+		<columnOverride column="depth1_name" property="depth1Name" />
+		<columnOverride column="depth2_name" property="depth2Name" />
+		<columnOverride column="depth3_name" property="depth3Name" />
+		<columnOverride column="depth4_name" property="depth4Name" />
+		<columnOverride column="depth5_name" property="depth5Name" />
+		<columnOverride column="depth" property="depth" />
+		<columnOverride column="group_name" property="groupName" />
+		<columnOverride column="start_date" property="startDate" />
+		<columnOverride column="end_date" property="endDate" />
+		<columnOverride column="reportType" property="reportType" />
+		<columnOverride column="reportItem" property="reportItem" />
+		<columnOverride column="reg_date" property="regDate" />
+
+
+    </table>
+	<table schema="ohjic" tableName="church_use_number" enableSelectByExample="false" 
+    										 enableDeleteByExample="false" 
+    										 enableCountByExample="false"
+    										 enableUpdateByExample="false" 
+    										 selectByExampleQueryId="false">
+    										 
+		<columnOverride column="church_code" property="churchCode" />
+		<columnOverride column="church_name" property="churchName" />
+		<columnOverride column="limit" property="limit" />
+		<columnOverride column="kyo_number" property="kyoNumber" />
+		<columnOverride column="regi_date" property="regiDate" />
+
+
+    </table>
+    
+
+	<table schema="ohjic" tableName="kGroupLog" enableSelectByExample="false" 
+    										 enableDeleteByExample="false" 
+    										 enableCountByExample="false"
+    										 enableUpdateByExample="false" 
+    										 selectByExampleQueryId="false">
+    										 
+		<columnOverride column="no" property="no" />
+		<columnOverride column="start_date" property="startDate" />
+		<columnOverride column="end_date" property="endDate" />
+		<columnOverride column="sortNo" property="sortNo" />
+		<columnOverride column="attend_type" property="attendType" />
+		<columnOverride column="year" property="year" />
+		<columnOverride column="k_part_idx" property="kPartIdx" />
+		<columnOverride column="group_no" property="groupNo" />
+		<columnOverride column="group_name" property="groupName" />
+		<columnOverride column="depth1_name" property="depth1Name" />
+		<columnOverride column="depth2_name" property="depth2Name" />
+		<columnOverride column="depth3_name" property="depth3Name" />
+		<columnOverride column="depth4_name" property="depth4Name" />
+		<columnOverride column="depth5_name" property="depth5Name" />
+		<columnOverride column="depth1" property="depth1" />
+		<columnOverride column="depth2" property="depth2" />
+		<columnOverride column="depth3" property="depth3" />
+		<columnOverride column="depth4" property="depth4" />
+		<columnOverride column="depth5" property="depth5" />
+		<columnOverride column="tid" property="tid" />
+		<columnOverride column="position" property="position" />
+		<columnOverride column="position_name" property="positionName" />
+		<columnOverride column="position_ord" property="positionOrd" />
+		<columnOverride column="name" property="name" />
+		<columnOverride column="chief" property="chief" />
+
+
+    </table>
+     -->
+    <!-- <table schema="ohjic" tableName="churchInfo" enableSelectByExample="false" 
+    										 enableDeleteByExample="false" 
+    										 enableCountByExample="false"
+    										 enableUpdateByExample="false" 
+    										 selectByExampleQueryId="false">
+    										 
+		<columnOverride column="churchCode" property="churchCode" />
+		<columnOverride column="churchName" property="churchName" />
+		<columnOverride column="religiousBody" property="religiousBody" />
+		<columnOverride column="churchSize" property="churchSize" />
+		<columnOverride column="ministerName" property="ministerName" />
+		<columnOverride column="churchAddress1" property="churchAddress1" />
+		<columnOverride column="churchAddress2" property="churchAddress2" />
+		<columnOverride column="churchZipcode" property="churchZipcode" />
+		<columnOverride column="churchPhone" property="churchPhone" />
+		<columnOverride column="adminId" property="adminId" />
+		<columnOverride column="oldProgram" property="oldProgram" />
+		<columnOverride column="homepage" property="homepage" />
+		<columnOverride column="regiDate" property="regiDate" />
+		<columnOverride column="deleteFlag" property="deleteFlag" />
+		<columnOverride column="point" property="point" />
+		<columnOverride column="version" property="version" />
+
+
+    </table> -->
+    
+    
+    <!-- 
+    <table schema="member" tableName="member" enableSelectByExample="false" 
+    										 enableDeleteByExample="false" 
+    										 enableCountByExample="false"
+    										 enableUpdateByExample="false" 
+    										 selectByExampleQueryId="false">
+    										 
+		<columnOverride column="tid" property="tid" />
+		<columnOverride column="fid" property="fid" />
+		<columnOverride column="grade" property="grade" />
+		<columnOverride column="fam_leader" property="famLeader" />
+		<columnOverride column="relation" property="relation" />
+		<columnOverride column="member_name" property="memberName" />
+		<columnOverride column="member_name_distinct" property="memberNameDistinct" />
+		<columnOverride column="member_name_en" property="memberNameEn" />
+		<columnOverride column="member_name_han" property="memberNameHan" />
+		<columnOverride column="rrn_id1" property="rrnId1" />
+		<columnOverride column="rrn_id2" property="rrnId2" />
+		<columnOverride column="birth_year" property="birthYear" />
+		<columnOverride column="birth_date" property="birthDate" />
+		<columnOverride column="birth_solar" property="birthSolar" />
+		<columnOverride column="member_sex" property="memberSex" />
+		<columnOverride column="blood_type" property="blood_type" />
+		<columnOverride column="member_homepage" property="memberHomepage" />
+		<columnOverride column="member_phone" property="memberPhone" />
+		<columnOverride column="member_cellphone" property="memberCellphone" />
+		<columnOverride column="member_email" property="memberEmail" />
+		<columnOverride column="p_grade" property="pGrade" />
+		<columnOverride column="p_grade_name" property="pGradeName" />
+		<columnOverride column="p_grade_date" property="pGradeDate" />
+		<columnOverride column="p_grade_minister" property="pGradeMinister" />
+		<columnOverride column="p_grade_church" property="pGradeChurch" />
+		<columnOverride column="p_grade_ord" property="pGradeOrd" />
+		<columnOverride column="guide" property="guide" />
+		<columnOverride column="guide2" property="guide2" />
+		<columnOverride column="guide_phone" property="guidePhone" />
+		<columnOverride column="guide_relation" property="guideRelation" />
+		<columnOverride column="regi_date" property="regiDate" />
+		<columnOverride column="reception_date" property="receptionDate" />
+		<columnOverride column="wedding" property="wedding" />
+		<columnOverride column="wedding_anniversary" property="weddingAnniversary" />
+		<columnOverride column="christening" property="christening" />
+		<columnOverride column="christening_name" property="christeningName" />
+		<columnOverride column="christening_date" property="christeningDate" />
+		<columnOverride column="christening_church" property="christeningChurch" />
+		<columnOverride column="christening_minister" property="christeningMinister" />
+		<columnOverride column="christening_ord" property="christeningOrd" />
+		<columnOverride column="last_church" property="lastChurch" />
+		<columnOverride column="last_grade" property="lastGrade" />
+		<columnOverride column="last_act" property="lastAct" />
+		<columnOverride column="member_zipcode" property="memberZipcode" />
+		<columnOverride column="member_address1" property="memberAddress1" />
+		<columnOverride column="member_address2" property="memberAddress2" />
+		<columnOverride column="member_address_street" property="memberAddressStreet" />
+		<columnOverride column="member_address_street2" property="memberAddressStreet2" />
+		<columnOverride column="member_zipcode_street" property="member_zipcodeStreet" />
+		<columnOverride column="job" property="job" />
+		<columnOverride column="job_type_name" property="jobTypeName" />
+		<columnOverride column="job_type" property="jobType" />
+		<columnOverride column="career_name" property="careerName" />
+		<columnOverride column="career" property="career" />
+		<columnOverride column="company_name" property="companyName" />
+		<columnOverride column="company_position" property="companyPosition" />
+		<columnOverride column="company_phone" property="companyPhone" />
+		<columnOverride column="school_type" property="schoolType" />
+		<columnOverride column="school_name" property="schoolName" />
+		<columnOverride column="school_year" property="schoolYear" />
+		<columnOverride column="school_grade" property="schoolGrade" />
+		<columnOverride column="school_major" property="schoolMajor" />
+		<columnOverride column="school_class" property="schoolClass" />
+		<columnOverride column="car_number" property="carNumber" />
+		<columnOverride column="car_type" property="carType" />
+		<columnOverride column="parking_permit" property="parkingPermit" />
+		<columnOverride column="car_memo" property="carMemo" />
+		<columnOverride column="etc" property="etc" />
+		<columnOverride column="etc_secure" property="etcSecure" />
+		<columnOverride column="member_image" property="memberImage" />
+		<columnOverride column="inputDate" property="inputDate" />
+		<columnOverride column="register_id" property="registerId" />
+		<columnOverride column="register_name" property="registerName" />
+		<columnOverride column="last_view" property="lastView" />
+		<columnOverride column="modifier_id" property="modifierId" />
+		<columnOverride column="modifier_name" property="modifierName" />
+		<columnOverride column="etc1" property="etc1" />
+		<columnOverride column="etc2" property="etc2" />
+		<columnOverride column="etc3" property="etc3" />
+		<columnOverride column="etc4" property="etc4" />
+		<columnOverride column="etc5" property="etc5" />
+		<columnOverride column="etc6" property="etc6" />
+		<columnOverride column="etc7" property="etc7" />
+		<columnOverride column="etc8" property="etc8" />
+		<columnOverride column="etc9" property="etc9" />
+		<columnOverride column="removed" property="removed" />
+		<columnOverride column="cDepth1" property="cDepth1" />
+		<columnOverride column="cDepth2" property="cDepth2" />
+		<columnOverride column="cDepth1Name" property="cDepth1Name" />
+		<columnOverride column="cDepth2Name" property="cDepth2Name" />
+		<columnOverride column="cGroupUpdateDate" property="cGroupUpdateDate" />
+		<columnOverride column="partner_name" property="partnerName" />
+		<columnOverride column="partner_tid" property="partnerTid" />
+		<columnOverride column="parent_name1" property="parentName1" />
+		<columnOverride column="parent_phone1" property="parentPhone1" />
+		<columnOverride column="parent_name2" property="parentName2" />
+		<columnOverride column="parent_phone2" property="parentPhone2" />
+		<columnOverride column="fid_before" property="fidBefore" />
+		<columnOverride column="relation_before" property="relationBefore" />
+		<columnOverride column="last_visit" property="lastVisit" />
+		<columnOverride column="with_family" property="withFamily" />
+		<columnOverride column="interest" property="interest" />
+
+
+    </table>
+     -->
   </context>
 
-<!-- 		<table schema="flower" tableName="board" enableSelectByExample="false" -->
-<!-- 			enableDeleteByExample="false" enableCountByExample="false" -->
-<!-- 			enableUpdateByExample="false" selectByExampleQueryId="false"> -->
-			
-<!-- 			<columnOverride column="board_seq" property="boardSeq" /> -->
-<!-- 			<columnOverride column="title" property="title" /> -->
-<!-- 			<columnOverride column="content" property="content" /> -->
-<!-- 			<columnOverride column="writer" property="writer" /> -->
-<!-- 			<columnOverride column="reg_time" property="regTime" /> -->
-<!-- 		</table> -->
-
-<!-- 		<table schema="flower" tableName="note_message" enableSelectByExample="false" -->
-<!-- 			enableDeleteByExample="false" enableCountByExample="false" -->
-<!-- 			enableUpdateByExample="false" selectByExampleQueryId="false"> -->
-			
-<!-- 			<columnOverride column="message_seq" property="messageSeq" /> -->
-<!-- 			<columnOverride column="from_user_seq" property="fromUserSeq" /> -->
-<!-- 			<columnOverride column="to_user_seq" property="toUserSeq" /> -->
-<!-- 			<columnOverride column="content" property="content" /> -->
-<!-- 			<columnOverride column="send_time" property="sendTime" javaType="String" /> -->
-<!-- 			<columnOverride column="read_time" property="readTime" javaType="String" /> -->
-<!-- 		</table> -->
 </generatorConfiguration>
