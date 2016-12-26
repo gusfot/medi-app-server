@@ -591,4 +591,8 @@
   where a.year=#{nextYear} 
   </update>
   
+  <delete id="deleteNextYearKgroupLog" parameterType="org.ohjic.mem.vo.YearVo">
+  	delete from ${church}.kGroupLog where year=#{nextYear} and k_part_idx = #{kPartIdx}
+  </delete>
+  
 </mapper>

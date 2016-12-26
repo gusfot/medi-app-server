@@ -15,7 +15,7 @@ public class Kyo {
 	}
 
 	public String getChurch() {
-		this.church="kyo"+churchCode;
+		this.church= churchCode !=null ? "kyo"+churchCode:"";
 		return church;
 	}
 

@@ -1,7 +1,6 @@
 package org.ohjic.mem.dao;
 
 import org.ohjic.mem.model.AuthSet;
-import org.ohjic.mem.model.Kgroup;
 import org.ohjic.mem.vo.YearVo;
 
 public interface AuthSetMapper {
@@ -45,4 +44,6 @@ public interface AuthSetMapper {
 	int insertAuthSetForGroup(YearVo yearVo);
 	
 	int insertAuthSetForDefault(YearVo yearVo);
+
+	int deleteNextYearAuthSet(YearVo yearVo);
 }

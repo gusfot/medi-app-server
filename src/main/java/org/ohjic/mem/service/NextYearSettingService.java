@@ -1,5 +1,9 @@
 package org.ohjic.mem.service;
 
+import java.util.List;
+
+import org.ohjic.mem.vo.NextYearSettingStatusVo;
+
 public interface NextYearSettingService {
 
 	/**
@@ -29,7 +33,7 @@ public interface NextYearSettingService {
 	 * @param kPartIdxList
 	 * @return
 	 */
-	Object createNextYearKGroup(int churchCode, int standardYear, int[] kPartIdxList);
+	Object createNextYearKGroup(int churchCode, int standardYear, List<Integer> kPartIdxList);
 
 	/**
 	 * 다음 해의 kGroupLog kPartIdx를 기준연도 kGroupLog kPartIdx와 동일하게 생성한다.
@@ -59,7 +63,7 @@ public interface NextYearSettingService {
 	 * @param kPartIdxList
 	 * @return
 	 */
-	Object createNextYearKGroupLog(int churchCode, int standardYear, int[] kPartIdxList);
+	Object createNextYearKGroupLog(int churchCode, int standardYear, List<Integer> kPartIdxList);
 
 	/**
 	 * 다음 해의 권한를 기준연도 권한과 동일하게 생성한다.
@@ -83,11 +87,24 @@ public interface NextYearSettingService {
 	 * @param year
 	 * @return
 	 */
-	Object resetNextYearKGroup(int churchCode, int year);
 
-	Object createNextYearAuth(int churchCode, int standardYear, int[] kPartIdxList);
+	Object createNextYearAuth(int churchCode, int standardYear, List<Integer> kPartIdxList);
 
-	Object createNextYearWorship(int churchCode, int standardYear, int[] kPartIdxList);
+	Object createNextYearWorship(int churchCode, int standardYear, List<Integer> kPartIdxList);
 
-	Object createNextYear(int churchCode, int standardYear, int[] kPartIdxList);
+	Object createNextYear(int churchCode, int standardYear, List<Integer> kPartIdxList);
+
+	
+	
+	Object resetNextYearKGroup(int churchCode, int standardYear, List<Integer> kPartIdxList);
+
+	Object resetNextYearKGroupLog(int churchCode, int standardYear, List<Integer> kPartIdxList);
+	
+	Object resetNextYearWorship(int churchCode, int standardYear, List<Integer> kPartIdxList);
+
+	Object resetNextYearAuth(int churchCode, int standardYear, List<Integer> kPartIdxList);
+
+	Object resetNextYear(int churchCode, int standardYear, List<Integer> kPartIdxList);
+
+	List<NextYearSettingStatusVo> getNextYearSettingStatus(int churchCode, int year);
 }

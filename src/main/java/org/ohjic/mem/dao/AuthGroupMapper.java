@@ -43,4 +43,6 @@ public interface AuthGroupMapper {
 	int updateByPrimaryKey(AuthGroup record);
 
 	int insertAuthGroupForNextYear(YearVo yearVo);
+
+	int deleteNextYearAuthGroup(YearVo yearVo);
 }

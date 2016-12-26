@@ -75,4 +75,9 @@
 		</if>
 	</where>
   </insert>
+  
+  <delete id="deleteNextYearAuthInCharge" parameterType="org.ohjic.mem.vo.YearVo">
+  delete from ${church}.auth_in_charge 
+  where auth_set_idx in (select auth_set_idx from ${church}.auth_set where year=#{nextYear} and k_part=#{kPartIdx})
+  </delete>
 </mapper>

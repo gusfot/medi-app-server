@@ -1,14 +1,18 @@
 package org.ohjic.mem.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+
 @RunWith(SpringJUnit4ClassRunner.class) 
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
-								 "file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_live.xml"})
+								 "file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_dev.xml"})
 public class NextYearSettingServiceTest {
 
 	@Autowired
@@ -19,15 +23,24 @@ public class NextYearSettingServiceTest {
 
 		int churchCode = 6;
 		int standardYear = 2016;
-		int[] kPartIdxList = {1, 5};
 		
-		nextYearSettingService.createNextYearKGroup(churchCode, standardYear, kPartIdxList );
+		List<Integer> kPartIdxList = new ArrayList<>();
+		kPartIdxList.add(1);
+		kPartIdxList.add(5);
 		
-		nextYearSettingService.createNextYearKGroupLog(churchCode, standardYear, kPartIdxList );
+		nextYearSettingService.createNextYear(churchCode, standardYear, kPartIdxList);
 		
-		nextYearSettingService.createNextYearAuth(churchCode, standardYear, kPartIdxList);
+	}
+	
+	@Test
+	public void testResetNextYear() {
+
+		int churchCode = 6;
+		int standardYear = 2016;
+		List<Integer> kPartIdxList = new ArrayList<>();
+		kPartIdxList.add(5);
 		
-		nextYearSettingService.createNextYearWorship(churchCode, standardYear, kPartIdxList);
+		nextYearSettingService.resetNextYear(churchCode, standardYear, kPartIdxList );
 		
 	}
 }

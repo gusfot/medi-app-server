@@ -42,8 +42,6 @@ public class UserRest {
 //		int standardYear = 2016;
 		int[] kPartIdxList = {1, 5};
 		
-		nextYearSettingService.createNextYear(churchCode, standardYear, kPartIdxList );
-		
 		RestResponse res = new RestResponse();
 		res.setSuccess(true);
 		res.setResCode(ResponseCode.SUCCESS);

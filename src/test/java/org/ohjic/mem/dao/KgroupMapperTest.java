@@ -91,16 +91,18 @@ public class KgroupMapperTest {
 	}
 	
 	@Test
-	public void testKgroupMapper() {
+	public void testDeleteNextYearKgroup() {
 		
 		Integer churchCode = 6;
 		Integer year = 2016;
-		Integer kPartIdx = 1;
+		Integer kPartIdx = 5;
 		
 		YearVo yearVo = new YearVo();
 		yearVo.setChurchCode(churchCode);
 		yearVo.setYear(year);
 		yearVo.setkPartIdx(kPartIdx);
-		kgroupMapper.deleteNextYearKgroup(yearVo);
+		int result = kgroupMapper.deleteNextYearKgroup(yearVo);
+		
+		assertTrue(result>0);
 	}
 }

@@ -32,5 +32,22 @@ public class WorshipGroupMapperTest {
 
 	}
 	
+	@Test
+	public void testDeleteNextYearWorship() {
+		
+		Integer churchCode = 6;
+		Integer year =2016;
+		Integer kPartIdx=5;
+		
+		YearVo yearVo = new YearVo();
+		yearVo.setChurchCode(churchCode);
+		yearVo.setYear(year);
+		yearVo.setkPartIdx(kPartIdx);
+		int result = worshipGroupMapper.deleteNextYearWorship(yearVo);
+		
+		assertTrue(result==0);
+
+	}
+	
 	
 }

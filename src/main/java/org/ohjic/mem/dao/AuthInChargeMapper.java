@@ -18,4 +18,6 @@ public interface AuthInChargeMapper {
 	int insertSelective(AuthInCharge record);
 
 	int insertAuthInChargeForNextYear(YearVo yearVo);
+
+	int deleteNextYearAuthInCharge(YearVo yearVo);
 }

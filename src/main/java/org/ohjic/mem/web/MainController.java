@@ -4,11 +4,13 @@
 package org.ohjic.mem.web;
 
 import org.ohjic.mem.rest.common.RestResponse;
+import org.ohjic.mem.vo.ResponseCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -17,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author gusfot
  *
  */
-//@RequestMapping("")
 @Controller
 public class MainController {
 	
@@ -29,46 +30,26 @@ public class MainController {
 		return "user/login";
 	}
 	
-	@RequestMapping("/main")
-	public String fileDownTest(){
-		
-		return "main";
-	}
-	
-	@RequestMapping("/login")
-	public String login(){
-		
-		return "user/login";
-	}
-	
-	@RequestMapping("/front")
-	public String front() {
+	@RequestMapping(value = "/welcome", method=RequestMethod.GET, produces = "application/json")
+	public @ResponseBody RestResponse nextYear(){
 
-		return "front";
+		RestResponse res = new RestResponse();
+		res.setSuccess(true);
+		res.setResCode(ResponseCode.SUCCESS);
+		res.setData("welcome member_api of ohjic!");
+
+		return res;
 	}
 	
-	@RequestMapping("/runtime/view")
-	public String runtimeView() {
-		String a = "a";
-		
-		Integer.parseInt(a);
-		
-		return "runtime/view";
-	}
+	@RequestMapping(value = "/getNextYearSetting", method=RequestMethod.GET, produces = "application/json")
+	public @ResponseBody RestResponse getNextYearSetting(@RequestParam int churchCode){
+
+		RestResponse res = new RestResponse();
+		res.setSuccess(true);
+		res.setResCode(ResponseCode.SUCCESS);
+		res.setData("welcome member_api of ohjic!");
+
+		return res;
+	}	
 	
-	@RequestMapping("/runtime/rest")
-	public String runtimeRest() {
-		return "runtime/view";
-	}
-	
-	@RequestMapping(value = "/runtime/check", method = RequestMethod.GET)
-	public @ResponseBody RestResponse runtimeCheck() {
-		RestResponse response = new RestResponse();
-		
-		String a = "a";
-		
-		Integer.parseInt(a);
-		
-		return response;
-	}
 }

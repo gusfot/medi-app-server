@@ -18,4 +18,6 @@ public interface WorshipgroupMapper {
 	int insertSelective(Worshipgroup record);
 	
 	int insertWorshipGroupForNextYear(YearVo yearVo);
+
+	int deleteNextYearWorship(YearVo yearVo);
 }

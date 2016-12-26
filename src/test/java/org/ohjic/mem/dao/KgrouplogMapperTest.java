@@ -76,4 +76,22 @@ public class KgrouplogMapperTest {
 		assertTrue(result>0);
 
 	}
+	
+	@Test
+	public void testDeleteNextYearKgroupLog() {
+		
+		Integer churchCode = 6;
+		Integer year = 2016;
+		Integer kPartIdx=1;
+		
+		YearVo yearVo = new YearVo();
+		yearVo.setChurchCode(churchCode);
+		yearVo.setYear(year);
+		yearVo.setkPartIdx(kPartIdx);
+		
+		int result = kgrouplogMapper.deleteNextYearKgroupLog(yearVo);
+		
+		assertTrue(result>0);
+
+	}
 }

@@ -187,4 +187,8 @@
 	from ${church}.auth_set
 	where year=#{year} and k_part = 0 and group_no is null
   </insert>  
+  
+  <delete id="deleteNextYearAuthSet" parameterType="org.ohjic.mem.vo.YearVo">
+    delete from ${church}.auth_set where year=#{nextYear} and k_part=#{kPartIdx}
+  </delete>
 </mapper>

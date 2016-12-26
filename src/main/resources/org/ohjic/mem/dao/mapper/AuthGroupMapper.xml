@@ -142,4 +142,9 @@
 	</if>
 	group by a2.auth_set_idx,g.sort_no,g.auth_type_idx
   </insert>
+  
+  <delete id="deleteNextYearAuthGroup" parameterType="org.ohjic.mem.vo.YearVo">
+  delete from ${church}.auth_group 
+  where auth_set_idx in (select auth_set_idx from ${church}.auth_set where year=#{nextYear} and k_part=#{kPartIdx})
+  </delete>
 </mapper>

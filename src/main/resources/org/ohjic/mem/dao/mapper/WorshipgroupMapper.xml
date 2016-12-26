@@ -82,4 +82,9 @@
 		</if>
 	</where>
   </insert>
+  
+  <delete id="deleteNextYearWorship" parameterType="org.ohjic.mem.vo.YearVo">
+  delete a from ${church}.worshipGroup a
+  inner join ${church}.kGroup b on a.groupNo=b.`no` and b.year=#{nextYear} and b.k_part_idx=#{kPartIdx}
+  </delete>
 </mapper>

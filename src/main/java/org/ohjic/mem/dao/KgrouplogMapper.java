@@ -66,4 +66,6 @@ public interface KgrouplogMapper {
 	int insertNextYearKgrouplogByYear(YearVo yearVo);
 
 	int updateNextYearKgrouplogDepthByYear(DepthVo depthVo);
+
+	int deleteNextYearKgroupLog(YearVo yearVo);
 }

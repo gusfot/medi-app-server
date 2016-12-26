@@ -3,12 +3,31 @@
 <generatorConfiguration >
 <classPathEntry location="C:\Users\ohjic\.m2\repository\org\mariadb\jdbc\mariadb-java-client\1.4.6\mariadb-java-client-1.4.6.jar" />
   <context id="context1" >
-    <jdbcConnection driverClass="org.mariadb.jdbc.Driver" connectionURL="jdbc:mariadb://storage.ohjic.com:3306/kyo6" userId="root" password="rhkfh1" />
+    <jdbcConnection driverClass="org.mariadb.jdbc.Driver" connectionURL="jdbc:mariadb://storage.ohjic.com:3306/ohjic" userId="root" password="rhkfh1" />
     <javaModelGenerator targetPackage="org.ohjic.mem.model" targetProject="init-project" />
     <sqlMapGenerator targetPackage="org.ohjic.mem.dao.mapper" targetProject="init-project" />
     <javaClientGenerator targetPackage="org.ohjic.mem.dao" targetProject="init-project" type="XMLMAPPER" />
 
 	
+	<table schema="ohjic" tableName="next_year_setting_status" enableSelectByExample="false" 
+    										 enableDeleteByExample="false" 
+    										 enableCountByExample="false"
+    										 enableUpdateByExample="false" 
+    										 selectByExampleQueryId="false">
+    										 
+		<columnOverride column="next_year_setting_idx" property="nextYearSettingIdx" />
+		<columnOverride column="church_code" property="churchCode" />
+		<columnOverride column="year" property="year" />
+		<columnOverride column="k_part_idx" property="kPartIdx" />
+		<columnOverride column="status" property="status" />
+		<columnOverride column="manager_idx" property="managerIdx" />
+		<columnOverride column="update_date" property="updateDate" />
+		<columnOverride column="reg_date" property="regDate" />
+
+
+    </table>
+    
+<!-- 	
 	<table schema="ohjic" tableName="worshipGroup" enableSelectByExample="false" 
     										 enableDeleteByExample="false" 
     										 enableCountByExample="false"
@@ -23,8 +42,6 @@
 
 
     </table>
-    
-<!-- 	
     
    	<table schema="ohjic" tableName="auth_group" enableSelectByExample="false" 
     										 enableDeleteByExample="false" 
