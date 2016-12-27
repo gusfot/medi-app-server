@@ -2,6 +2,7 @@ package org.ohjic.mem.service;
 
 import java.util.List;
 
+import org.ohjic.mem.model.Churchinfo;
 import org.ohjic.mem.vo.NextYearSettingStatusVo;
 
 public interface NextYearSettingService {
@@ -92,10 +93,6 @@ public interface NextYearSettingService {
 
 	Object createNextYearWorship(int churchCode, int standardYear, List<Integer> kPartIdxList);
 
-	Object createNextYear(int churchCode, int standardYear, List<Integer> kPartIdxList);
-
-	
-	
 	Object resetNextYearKGroup(int churchCode, int standardYear, List<Integer> kPartIdxList);
 
 	Object resetNextYearKGroupLog(int churchCode, int standardYear, List<Integer> kPartIdxList);
@@ -104,11 +101,17 @@ public interface NextYearSettingService {
 
 	Object resetNextYearAuth(int churchCode, int standardYear, List<Integer> kPartIdxList);
 
-	Object resetNextYear(int churchCode, int standardYear, List<Integer> kPartIdxList);
-
 	List<NextYearSettingStatusVo> getNextYearSettingStatus(int churchCode, int year);
 
 	Object createNextYearGroupInfo(int churchCode, int standardYear, List<Integer> kPartIdxList);
 
 	Object resetNextYearGroupInfo(int churchCode, int standardYear, List<Integer> kPartIdxList);
+
+	List<Churchinfo> getChurchInfoList();
+
+	List<Integer> getKPartListByChurchCode(int churchCode);
+
+	boolean resetNextYear(int churchCode, int standardYear, int userId, List<Integer> kPartIdxList);
+
+	boolean createNextYear(int churchCode, int standardYear, int userId, List<Integer> kPartIdxList);
 }

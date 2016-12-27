@@ -174,10 +174,10 @@
   </insert>
   
   <select id="selectNextYearSettingStatusByChurchCode" parameterType="org.ohjic.mem.vo.YearVo" resultType="org.ohjic.mem.vo.NextYearSettingStatusVo">
-    select a.k_part_idx kPartIdx, k_part_name kPartName, if(b.status = 'Y' or c.k_part_idx is not null, 'Y', 'N') status 
+    select a.k_part_idx kPartIdx, k_part_name kPartName, if(b.status = 'Y' or c.k_part_idx is not null, 'Y', 'N') status, ifnull(c.group_count,0) groupCount
     from ${church}.k_part a
 	left outer join ohjic.next_year_setting_status b on b.church_code=#{churchCode} and b.year=#{year} and b.k_part_idx=a.k_part_idx
-	left outer join (select year, k_part_idx from ${church}.kGroup group by year, k_part_idx) c on a.k_part_idx=c.k_part_idx and c.year=#{nextYear}
+	left outer join (select year, k_part_idx, count(*) group_count from ${church}.kGroup group by year, k_part_idx) c on a.k_part_idx=c.k_part_idx and c.year=#{nextYear}
 	where a.active=1
   </select>
 </mapper>

@@ -5,6 +5,7 @@ public class NextYearSettingStatusVo {
 	private Integer kPartIdx;
 	private String kPartName;
 	private String status;
+	private int groupCount;
 	
 	public Integer getkPartIdx() {
 		return kPartIdx;
@@ -23,6 +24,12 @@ public class NextYearSettingStatusVo {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public int getGroupCount() {
+		return groupCount;
+	}
+	public void setGroupCount(int groupCount) {
+		this.groupCount = groupCount;
 	}
 	
 }

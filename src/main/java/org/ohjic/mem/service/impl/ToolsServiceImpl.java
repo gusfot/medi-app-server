@@ -189,8 +189,7 @@ public class ToolsServiceImpl implements ToolsService {
 
 	@Override
 	public List<Churchinfo> getChurchInfoList() {
-		// TODO Auto-generated method stub
-		return churchinfoMapper.selectList();
+		return churchinfoMapper.selectList(1);
 	}
 
 	@Override

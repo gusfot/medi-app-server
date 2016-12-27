@@ -303,10 +303,9 @@
   </update>
   
   <select id="selectList" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from churchInfo
+    select a.* from churchInfo  a 
+	inner join product b on a.churchCode=b.churchCode and b.`type`='kyo' and b.endDate >= unix_timestamp(now())
+    where deleteFlag=#{deleteFlag}
+    order by a.churchCode asc
   </select>
 </mapper>

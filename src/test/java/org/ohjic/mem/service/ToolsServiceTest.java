@@ -553,10 +553,11 @@ public class ToolsServiceTest {
 		
 //		Integer churchCode = 10181;
 //		Integer churchCode = 1690;
-		Integer churchCode = 3986; // 목동반석교회
+//		Integer churchCode = 3986; // 목동반석교회
+		Integer churchCode = 6216; // 하늘빛우리교회
 		
 		GOODS goods = GOODS.att_check;
-		String domain="mpetra2";
+		String domain="hbwch2";
 		boolean result = toolsService.addGoods(churchCode, domain, goods);
 		
 		

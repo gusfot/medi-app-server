@@ -9,32 +9,52 @@
     <javaClientGenerator targetPackage="org.ohjic.mem.dao" targetProject="init-project" type="XMLMAPPER" />
 
 	
+	<table schema="ohjic" tableName="k_part" enableSelectByExample="false" 
+    										 enableDeleteByExample="false" 
+    										 enableCountByExample="false"
+    										 enableUpdateByExample="false" 
+    										 selectByExampleQueryId="false">
+    										 
+		<columnOverride column="k_part_idx" property="kPartIdx" />
+		<columnOverride column="k_part_name" property="kPartName" />
+		<columnOverride column="depth1_title" property="depth1Title" />
+		<columnOverride column="depth2_title" property="depth2Title" />
+		<columnOverride column="depth3_title" property="depth3Title" />
+		<columnOverride column="depth4_title" property="depth4Title" />
+		<columnOverride column="depth5_title" property="depth5Title" />
+		<columnOverride column="fixed" property="fixed" />
+		<columnOverride column="active" property="active" />
+		<columnOverride column="useful_column" property="usefulColumn" />
+		<columnOverride column="is_display" property="isDisplay" />
+
+
+    </table>
 	<table schema="ohjic" tableName="group_info" enableSelectByExample="false" 
     										 enableDeleteByExample="false" 
     										 enableCountByExample="false"
     										 enableUpdateByExample="false" 
     										 selectByExampleQueryId="false">
     										 
-		<columnOverride column="info_idx" property="info_idx" />
+		<columnOverride column="info_idx" property="infoIdx" />
 		<columnOverride column="year" property="year" />
-		<columnOverride column="group_no" property="group_no" />
-		<columnOverride column="group_type" property="group_type" />
+		<columnOverride column="group_no" property="groupNo" />
+		<columnOverride column="group_type" property="groupType" />
 		<columnOverride column="age_band" property="age_band" />
-		<columnOverride column="meeting_day" property="meeting_day" />
-		<columnOverride column="meeting_time" property="meeting_time" />
-		<columnOverride column="meeting_time_text" property="meeting_time_text" />
-		<columnOverride column="meeting_place" property="meeting_place" />
-		<columnOverride column="meeting_place_text" property="meeting_place_text" />
-		<columnOverride column="meeting_area" property="meeting_area" />
-		<columnOverride column="free_item1" property="free_item1" />
-		<columnOverride column="free_item2" property="free_item2" />
-		<columnOverride column="free_item3" property="free_item3" />
-		<columnOverride column="free_item4" property="free_item4" />
-		<columnOverride column="free_item5" property="free_item5" />
-		<columnOverride column="free_item6" property="free_item6" />
-		<columnOverride column="free_item7" property="free_item7" />
-		<columnOverride column="free_item8" property="free_item8" />
-		<columnOverride column="free_item9" property="free_item9" />
+		<columnOverride column="meeting_day" property="meetingDay" />
+		<columnOverride column="meeting_time" property="meetingTime" />
+		<columnOverride column="meeting_time_text" property="meetingTimeText" />
+		<columnOverride column="meeting_place" property="meetingPlace" />
+		<columnOverride column="meeting_place_text" property="meetingPlaceText" />
+		<columnOverride column="meeting_area" property="meetingArea" />
+		<columnOverride column="free_item1" property="freeItem1" />
+		<columnOverride column="free_item2" property="freeItem2" />
+		<columnOverride column="free_item3" property="freeItem3" />
+		<columnOverride column="free_item4" property="freeItem4" />
+		<columnOverride column="free_item5" property="freeItem5" />
+		<columnOverride column="free_item6" property="freeItem6" />
+		<columnOverride column="free_item7" property="freeItem7" />
+		<columnOverride column="free_item8" property="freeItem8" />
+		<columnOverride column="free_item9" property="freeItem9" />
 
 
     </table>

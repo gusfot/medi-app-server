@@ -29,13 +29,13 @@ public class NextYearSettingController {
 	private NextYearSettingService nextYearSettingService;
 	
 	@RequestMapping(value = "/createNextYear", method=RequestMethod.GET, produces = "application/json")
-	public @ResponseBody RestResponse createNextYear(@RequestParam int churchCode,@RequestParam int year, @RequestParam("kPartIdxList[]") List<Integer> kPartIdxList){
+	public @ResponseBody RestResponse createNextYear(@RequestParam int churchCode,@RequestParam int year, @RequestParam int managerIdx, @RequestParam("kPartIdxList[]") List<Integer> kPartIdxList){
 
 		RestResponse res = new RestResponse();
 
 		try{
 			
-			Object result = nextYearSettingService.createNextYear(churchCode, year, kPartIdxList);
+			Object result = nextYearSettingService.createNextYear(churchCode, year, managerIdx, kPartIdxList);
 			res.setSuccess(true);
 			res.setResCode(ResponseCode.SUCCESS);
 			res.setData(result);
@@ -52,13 +52,13 @@ public class NextYearSettingController {
 	}	
 	
 	@RequestMapping(value = "/resetNextYear", method=RequestMethod.GET, produces = "application/json")
-	public @ResponseBody RestResponse resetNextYear(@RequestParam int churchCode,@RequestParam int year, @RequestParam("kPartIdxList[]") List<Integer> kPartIdxList){
+	public @ResponseBody RestResponse resetNextYear(@RequestParam int churchCode,@RequestParam int year, @RequestParam int managerIdx, @RequestParam("kPartIdxList[]") List<Integer> kPartIdxList){
 
 		RestResponse res = new RestResponse();
 
 		try{
 			
-			Object result = nextYearSettingService.resetNextYear(churchCode, year, kPartIdxList);
+			boolean result = nextYearSettingService.resetNextYear(churchCode, year, managerIdx, kPartIdxList);
 			res.setSuccess(true);
 			res.setResCode(ResponseCode.SUCCESS);
 			res.setData(result);
