@@ -588,7 +588,7 @@
 	<if test="depth>=5">
 		, a.depth5=b.depth5
 	</if>
-  where a.year=#{nextYear} 
+  where a.year=#{nextYear} and a.k_part_idx=#{kPartIdx}
   </update>
   
   <delete id="deleteNextYearKgroupLog" parameterType="org.ohjic.mem.vo.YearVo">

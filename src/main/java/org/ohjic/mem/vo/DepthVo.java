@@ -5,6 +5,7 @@ import org.ohjic.mem.model.Kyo;
 public class DepthVo extends Kyo {
 
 	private Integer year;
+	private Integer kPartIdx;
 	private Integer nextYear;
 	private Integer depth;
 	private Integer depth1;
@@ -61,6 +62,12 @@ public class DepthVo extends Kyo {
 	}
 	public void setNextYear(Integer nextYear) {
 		this.nextYear = nextYear;
+	}
+	public Integer getkPartIdx() {
+		return kPartIdx;
+	}
+	public void setkPartIdx(Integer kPartIdx) {
+		this.kPartIdx = kPartIdx;
 	}
 	
 	

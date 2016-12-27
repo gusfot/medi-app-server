@@ -107,4 +107,8 @@ public interface NextYearSettingService {
 	Object resetNextYear(int churchCode, int standardYear, List<Integer> kPartIdxList);
 
 	List<NextYearSettingStatusVo> getNextYearSettingStatus(int churchCode, int year);
+
+	Object createNextYearGroupInfo(int churchCode, int standardYear, List<Integer> kPartIdxList);
+
+	Object resetNextYearGroupInfo(int churchCode, int standardYear, List<Integer> kPartIdxList);
 }

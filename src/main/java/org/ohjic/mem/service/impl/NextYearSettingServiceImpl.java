@@ -5,6 +5,7 @@ import java.util.List;
 import org.ohjic.mem.dao.AuthGroupMapper;
 import org.ohjic.mem.dao.AuthInChargeMapper;
 import org.ohjic.mem.dao.AuthSetMapper;
+import org.ohjic.mem.dao.GroupInfoMapper;
 import org.ohjic.mem.dao.KgroupMapper;
 import org.ohjic.mem.dao.KgrouplogMapper;
 import org.ohjic.mem.dao.NextYearSettingStatusMapper;
@@ -40,6 +41,9 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 	private WorshipgroupMapper worshipgroupMapper;
 	
 	@Autowired
+	private GroupInfoMapper groupInfoMapper;
+	
+	@Autowired
 	private NextYearSettingStatusMapper nextYearSettingStatusMapper;
 	
 	
@@ -48,13 +52,28 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 	public Object createNextYear(int churchCode, int standardYear,List<Integer> kPartIdxList) {
 		
 		this.createNextYearKGroup(churchCode, standardYear, kPartIdxList );
+		this.createNextYearGroupInfo(churchCode, standardYear, kPartIdxList );
 		this.createNextYearKGroupLog(churchCode, standardYear, kPartIdxList );
 		this.createNextYearAuth(churchCode, standardYear, kPartIdxList);
 		this.createNextYearWorship(churchCode, standardYear, kPartIdxList);
 		
-		String status = "Y";
-		updateNextYearSettingStatus(churchCode, standardYear, status);
-		return kPartIdxList;
+		updateNextYearSettingStatus(churchCode, standardYear, "Y");
+		return null;
+		
+	}
+
+	@Override
+	public Object createNextYearGroupInfo(int churchCode, int standardYear, List<Integer> kPartIdxList) {
+		
+		for (int kPartIdx : kPartIdxList) {
+			YearVo yearVo = new YearVo();
+			yearVo.setChurchCode(churchCode);
+			yearVo.setYear(standardYear);
+			yearVo.setkPartIdx(kPartIdx);
+			int result = groupInfoMapper.insertGroupInfoForNextYear(yearVo);
+		}
+		
+		return null;
 		
 	}
 
@@ -74,18 +93,34 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 	@Override
 	public Object resetNextYear(int churchCode, int standardYear,List<Integer> kPartIdxList) {
 		
-		this.resetNextYearKGroup(churchCode, standardYear, kPartIdxList );
-		this.resetNextYearKGroupLog(churchCode, standardYear, kPartIdxList );
 		this.resetNextYearAuth(churchCode, standardYear, kPartIdxList);
 		this.resetNextYearWorship(churchCode, standardYear, kPartIdxList);
+		this.resetNextYearKGroupLog(churchCode, standardYear, kPartIdxList );
+		this.resetNextYearGroupInfo(churchCode, standardYear, kPartIdxList );
+		this.resetNextYearKGroup(churchCode, standardYear, kPartIdxList );
 		
-		String status = "N";
-		updateNextYearSettingStatus(churchCode, standardYear, status);
+		updateNextYearSettingStatus(churchCode, standardYear, "N");
 		
 		return kPartIdxList;
 		
 	}
 	
+	@Override
+	public Object resetNextYearGroupInfo(int churchCode, int standardYear, List<Integer> kPartIdxList) {
+		
+		YearVo yearVo = new YearVo();
+		yearVo.setChurchCode(churchCode);
+		yearVo.setYear(standardYear);
+		
+		for (int kPartIdx : kPartIdxList) {
+			yearVo.setkPartIdx(kPartIdx);
+			int result = groupInfoMapper.deleteNextYearGroupInfo(yearVo);
+		}
+		
+		return null;
+		
+	}
+
 	@Transactional
 	@Override
 	public Object createNextYearKGroup(int churchCode, int standardYear) {
@@ -130,17 +165,20 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 			yearVo.setYear(standardYear);
 			yearVo.setkPartIdx(kPartIdx);
 			int result = kGroupMapper.insertNextYearKgroupByYear(yearVo);
+			
+			// depth1~depth5
+			for (int i = 1; i < 6; i++) {
+				DepthVo depthVo = new DepthVo();
+				depthVo.setChurchCode(churchCode);
+				depthVo.setYear(standardYear);
+				depthVo.setDepth(i );
+				depthVo.setkPartIdx(kPartIdx);
+				int updateResult = kGroupMapper.updateNextYearKgroupDepthByYear(depthVo);
+				System.out.println("depth가 수정된 그룹수: kGroupMapper.updateNextYearKgroupDepthByYear update count: " + updateResult);
+			}	
 		}
 		
-		// depth1~depth5
-		for (int i = 1; i < 6; i++) {
-			DepthVo depthVo = new DepthVo();
-			depthVo.setChurchCode(churchCode);
-			depthVo.setYear(standardYear);
-			depthVo.setDepth(i );
-			int updateResult = kGroupMapper.updateNextYearKgroupDepthByYear(depthVo);
-			System.out.println("depth가 수정된 그룹수: kGroupMapper.updateNextYearKgroupDepthByYear update count: " + updateResult);
-		}			
+				
 		
 		return null;
 	}
@@ -200,17 +238,20 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 			yearVo.setYear(standardYear);
 			yearVo.setkPartIdx(kPartIdx);
 			int result = kGroupLogMapper.insertNextYearKgrouplogByYear(yearVo);
+			
+			// depth1~depth5
+			for (int i = 1; i < 6; i++) {
+				DepthVo depthVo = new DepthVo();
+				depthVo.setChurchCode(churchCode);
+				depthVo.setYear(standardYear);
+				depthVo.setDepth(i );
+				depthVo.setkPartIdx(kPartIdx);
+				int updateResult = kGroupLogMapper.updateNextYearKgrouplogDepthByYear(depthVo);
+				
+			}
 		}
 		
-		// depth1~depth5
-		for (int i = 1; i < 6; i++) {
-			DepthVo depthVo = new DepthVo();
-			depthVo.setChurchCode(churchCode);
-			depthVo.setYear(standardYear);
-			depthVo.setDepth(i );
-			int updateResult = kGroupLogMapper.updateNextYearKgrouplogDepthByYear(depthVo);
-			
-		}
+		
 		
 		return null;
 	}
