@@ -7,7 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLSyntaxErrorException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +24,7 @@ import com.google.gson.Gson;
 
 @RunWith(SpringJUnit4ClassRunner.class) 
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
-								 "file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_dev.xml"})
+								 "file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_live.xml"})
 public class NextYearSettingServiceTest {
 
 	@Autowired
@@ -31,15 +33,52 @@ public class NextYearSettingServiceTest {
 	@Test
 	public void testCreateNextYear() {
 
-		int churchCode = 6;
+		int churchCode = 3883;
 		int standardYear = 2016;
 		int managerIdx =0;
 		
 		List<Integer> kPartIdxList = new ArrayList<>();
 		kPartIdxList.add(1);
-		kPartIdxList.add(5);
+		kPartIdxList.add(2);
+		kPartIdxList.add(3);
+//		kPartIdxList.add(4);
 		
 		nextYearSettingService.createNextYear(churchCode, standardYear, managerIdx, kPartIdxList);
+		
+	}
+	
+	@Test
+	public void testgetNextYearStatus() {
+
+		int year = 2016;
+		
+		List<Churchinfo> churchInfoList = nextYearSettingService.getChurchInfoList();
+		List<Object> objList = new ArrayList<>();
+		
+		for(Churchinfo churchInfo: churchInfoList) {
+			int churchCode = churchInfo.getChurchCode();
+			try{
+				
+				
+				List<NextYearSettingStatusVo> voList = nextYearSettingService.getNextYearSettingStatus(churchCode, year);
+				
+				for(NextYearSettingStatusVo vo:voList) {
+					if(vo.getOldAuthSetCount() >0 && vo.getAuthSetCount()==0) {
+						Map<String, Object> church = new HashMap<>();
+						church.put("churchCode", churchCode);
+						church.put("kPartIdx", vo.getkPartIdx());
+						objList.add(church);
+					}
+				}
+				
+			}catch(Exception e) {
+				
+			}
+			
+		}
+		
+		String sucessfileName = "C:\\Users\\ohjic\\Documents\\ohjic_authSetList.txt";
+		toJsonFile(objList, sucessfileName );
 		
 	}
 	
@@ -78,6 +117,25 @@ public class NextYearSettingServiceTest {
 		
 	}
 	
+	@Test 
+	public void testCreateAuth() {
+		int churchCode = 6245;// 351, 474, 2393, 476,5290,5932, 6245
+		int standardYear=2016;
+		List<Integer> kPartIdxList = new ArrayList<>();
+		kPartIdxList.add(1);
+		nextYearSettingService.createNextYearAuth(churchCode, standardYear, kPartIdxList);
+	}
+	
+	@Test 
+	public void testResetAuth() {
+		int churchCode = 5932; // 5932
+		int standardYear=2016;
+		List<Integer> kPartIdxList = new ArrayList<>();
+		kPartIdxList.add(1);
+		kPartIdxList.add(2);
+		kPartIdxList.add(4);
+		nextYearSettingService.resetNextYearAuth(churchCode, standardYear, kPartIdxList);
+	}
 	
 	@Test
 	public void testCreateNextYearAllChurch() {

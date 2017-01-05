@@ -15,7 +15,7 @@
   	insert into ${church}.auth_default(auth_category_idx, auth_type_idx, value) values (#{authCategoryIdx},#{authTypeIdx},#{value})
   </insert>
   
-  <select id="selectManagerList" parameterType="map">
+  <select id="selectManagerList" parameterType="map" resultType="map">
   select * from ${church}.manager
   </select>
   
@@ -51,7 +51,7 @@
     from ${church}.managerLog a
   inner join ${church}.auth_manager c on c.manager_idx=a.managerNo
   inner join ${church}.kGroup d on d.`no`=a.group_no and d.year=#{year}
-  where a.year=#{year}
+  where a.year=#{year} and a.state=1
   </select>
   
   <select id="selectAuthSet" parameterType="map" resultType="map">

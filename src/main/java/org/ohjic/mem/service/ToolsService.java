@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.ohjic.mem.common.GOODS;
+import org.ohjic.mem.model.Cgroup;
 import org.ohjic.mem.model.Churchinfo;
+import org.ohjic.mem.model.Kyo;
 
 public interface ToolsService {
 
@@ -125,6 +127,16 @@ public interface ToolsService {
 	boolean registSocheon1(Integer churchCode);
 
 	List<Map<String, Object>> getMemberNameHanAndEnCount(Integer churchCode);
+
+	int modifyEndDateForGroupLog(Integer churchCode, Integer year);
+
+	List<Map<String, Object>> getEndDateForGroupLog(Integer churchCode, Integer year);
+
+	List<Cgroup> getCgroupByChurch(Integer churchCode);
+
+	int modifyPartnerNameOfFinmemberByDeath(Kyo kyo);
+
+	int removeChurchUserByRemovedManager(Kyo kyo);
 	
 }
 

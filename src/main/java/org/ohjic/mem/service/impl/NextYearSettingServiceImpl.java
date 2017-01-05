@@ -135,7 +135,7 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 			this.resetNextYearGroupInfo(churchCode, standardYear, kPartIdxList );
 			this.resetNextYearKGroup(churchCode, standardYear, kPartIdxList );
 			
-			updateNextYearSettingStatus(churchCode, standardYear, managerIdx, kPartIdxList, "Y");
+			updateNextYearSettingStatus(churchCode, standardYear, managerIdx, kPartIdxList, "N");
 			
 			result= true;
 		}catch(Exception e) {

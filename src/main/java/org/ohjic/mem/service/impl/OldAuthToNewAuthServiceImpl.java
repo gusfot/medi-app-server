@@ -17,10 +17,9 @@ public class OldAuthToNewAuthServiceImpl implements OldAuthToNewAuthService {
 	OldAuthToNewAuthMapper oldAuthToNewAuthMapper;
 	
 	@Override
-	public boolean convert() {
+	public boolean convert(Integer churchCode) {
 		
-		Integer churchCode = 479;
-/*
+
 		Map<String, Object> params = new HashMap<>();
 		params.put("church", KYO+churchCode);
 		
@@ -30,7 +29,7 @@ public class OldAuthToNewAuthServiceImpl implements OldAuthToNewAuthService {
 		for (int i = 0; i < managerList.size(); i++) {
 			oldAuthToNewAuthMapper.insertPrivateAuthCategory(params );	
 		}
-		*/
+		
 		
 		// 2. 생성된 '개인권한'카테고리에 auth_type 권한 부여
 		Map<String, Object> params1 = new HashMap<>();
@@ -39,7 +38,7 @@ public class OldAuthToNewAuthServiceImpl implements OldAuthToNewAuthService {
 		
 		List<Map<String, Object>> authCategoryList = oldAuthToNewAuthMapper.selectAuthCategoryList(params1);
 		List<Map<String, Object>> authTypeList = oldAuthToNewAuthMapper.selectAuthTypeList(params1);
-		/*
+		
 		int insertAuthDefaultResult = 0;
 		for (Map<String, Object> authCategory : authCategoryList) {
 			
@@ -58,18 +57,21 @@ public class OldAuthToNewAuthServiceImpl implements OldAuthToNewAuthService {
 		}
 		
 		System.out.println("auth_default성공결과: " + (authCategoryList.size()*authTypeList.size()==insertAuthDefaultResult) + ", 실행결과:"+insertAuthDefaultResult);
-		*/
-		/*
-		Map<String, Object> params1 = new HashMap<>();
-		params1.put("church", KYO+churchCode);
-		params1.put("authCategoryKind", 2);
-		List<Map<String, Object>> authCategoryList = oldAuthToNewAuthMapper.selectAuthCategoryList(params1);
 		
+		
+		
+//		/*
+//		Map<String, Object> params1 = new HashMap<>();
+//		params1.put("church", KYO+churchCode);
+//		params1.put("authCategoryKind", 2);
+//		List<Map<String, Object>> authCategoryList = oldAuthToNewAuthMapper.selectAuthCategoryList(params1);
+//		*/
 		// auth_manager에 auth_category를 할당한다.
 		Map<String, Object> params3 = new HashMap<>();
 		params3.put("church", KYO+churchCode);
 		params3.put("authCategoryIdx", 0);
 		List<Map<String, Object>> authManagerList = oldAuthToNewAuthMapper.selectAuthManagerList(params3);
+		
 		if(authCategoryList.size() == authManagerList.size()) {
 			int authManagerListSize = authManagerList.size();
 			int updateResultCount= 0;
@@ -90,7 +92,6 @@ public class OldAuthToNewAuthServiceImpl implements OldAuthToNewAuthService {
 			System.out.println("auth_manager에서 auth_category 할당 실패! " + "auth_manager수: "+authManagerList.size() + ", auth_category 수: "+authCategoryList.size());
 		}
 		
-		*/
 		
 		registAuthSetAndAuthGroup(churchCode);
 		return false;

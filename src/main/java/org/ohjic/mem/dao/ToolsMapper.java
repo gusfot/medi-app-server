@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
+import org.ohjic.mem.model.Kyo;
 
 public interface ToolsMapper {
 
@@ -91,6 +92,11 @@ public interface ToolsMapper {
 	
 	int insertPrivateAuth(Map<String, String> params);
 
+	int upateEndDateForKGroupLog(Map<String, String> params);
+
+	List<Map<String, Object>> selecctEndDateForGroupLog(Map<String, Object> params);
+
+	int deleteChurchUserByDeletedManager(Kyo kyo);
 
 
 }

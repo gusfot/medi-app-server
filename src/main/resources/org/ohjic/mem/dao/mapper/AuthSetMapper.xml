@@ -171,14 +171,11 @@
 	select a.auth_category_idx,a.auth_set_kind,k2.year,k2.k_part_idx,k2.no,a.active
 	from ${church}.kGroup k
 	inner join ${church}.kGroup k2
-	on k2.year = #{nextYear} and k.k_part_idx=k2.k_part_idx and k2.year = 2017 and k.depth1_name = k2.depth1_name and k.depth2_name = k2.depth2_name
-	    and k.depth3_name = k2.depth3_name and k.depth4_name = k2.depth4_name and k.depth5_name = k2.depth5_name
+	on k2.year = #{nextYear} and k.k_part_idx=k2.k_part_idx and k.depth=k2.depth and k2.year = #{nextYear} and k.depth1_name = k2.depth1_name and ifnull(k.depth2_name,'') = ifnull(k2.depth2_name,'')
+	    and ifnull(k.depth3_name,'') = ifnull(k2.depth3_name,'') and ifnull(k.depth4_name,'') = ifnull(k2.depth4_name,'') and ifnull(k.depth5_name,'') = ifnull(k2.depth5_name,'')
 	inner join ${church}.auth_set a
 	on k.year = a.year and k.no = a.group_no
-	where k.year=#{year}
-	<if test="kPartIdx !=null and kPartIdx != 0 ">
-		and k.k_part_idx = #{kPartIdx}
-	</if>
+	where k.year=#{year} and k.k_part_idx = #{kPartIdx}
   </insert>
   
   <insert id="insertAuthSetForDefault" parameterType="org.ohjic.mem.vo.YearVo">

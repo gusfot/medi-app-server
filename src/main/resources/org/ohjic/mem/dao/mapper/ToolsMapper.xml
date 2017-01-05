@@ -359,4 +359,19 @@ INNER JOIN portal_user AS c ON a.adminId = c.user_id
   select 'en' name, count(member_name_en) cnt, #{church} churchCode from ${church}.member where member_name_en is not null and member_name_en!=''
   </select>
   
+  <select id="selecctEndDateForGroupLog" parameterType="map" resultType="map">
+  select * from ${church}.kGroupLog where year=#{year} and end_date=1483110000
+  </select>
+  
+  <update id="upateEndDateForKGroupLog" parameterType="map">
+  	update ${church}.kGroupLog 
+	set end_date=1483196399
+	where year=2016 and end_date=1483110000
+  </update>
+  
+  <delete id="deleteChurchUserByDeletedManager" parameterType="org.ohjic.mem.model.Kyo">
+  	delete cu from ohjic.church_user cu
+	left outer  join ${church}.manager mng on cu.user_id=mng.id
+	where cu.type='kyo' and cu.church_code =#{churchCode} and mng.managerNo is null
+  </delete>
 </mapper>

@@ -303,8 +303,8 @@
   </update>
   
   <select id="selectList" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select a.* from churchInfo  a 
-	inner join product b on a.churchCode=b.churchCode and b.`type`='kyo' and b.endDate >= unix_timestamp(now())
+    select a.* from ohjic.churchInfo  a 
+	inner join ohjic.product b on a.churchCode=b.churchCode and b.`type`='kyo' and b.endDate >= unix_timestamp(now())
     where deleteFlag=#{deleteFlag}
     order by a.churchCode asc
   </select>

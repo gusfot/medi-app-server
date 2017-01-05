@@ -9,9 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.ohjic.mem.common.GOODS;
+import org.ohjic.mem.dao.CgroupMapper;
 import org.ohjic.mem.dao.ChurchinfoMapper;
+import org.ohjic.mem.dao.FinmemberMapper;
 import org.ohjic.mem.dao.ToolsMapper;
+import org.ohjic.mem.model.Cgroup;
 import org.ohjic.mem.model.Churchinfo;
+import org.ohjic.mem.model.Kyo;
 import org.ohjic.mem.service.ToolsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +36,9 @@ public class ToolsServiceImpl implements ToolsService {
 	
 	@Autowired
 	ChurchinfoMapper churchinfoMapper;
+	
+	@Autowired
+	CgroupMapper cgroupMapper;
 	
 	@Transactional
 	@Override
@@ -397,6 +404,42 @@ public class ToolsServiceImpl implements ToolsService {
 		Map<String, String> params = new HashMap<>();
 		params.put("church", KYO+churchCode);
 		return toolsMapper.insertSocheonDepth1(params)==1;
+	}
+
+	@Override
+	public int modifyEndDateForGroupLog(Integer churchCode, Integer year) {
+		Map<String, String> params = new HashMap<>();
+		params.put("church", KYO+churchCode);
+		return toolsMapper.upateEndDateForKGroupLog(params);
+	}
+
+	@Override
+	public List<Map<String, Object>> getEndDateForGroupLog(Integer churchCode, Integer year) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("church", KYO+churchCode);
+		params.put("year", year);
+		return toolsMapper.selecctEndDateForGroupLog(params);
+	}
+
+	@Override
+	public List<Cgroup> getCgroupByChurch(Integer churchCode) {
+		Cgroup cGroup = new Cgroup();
+		cGroup.setChurchCode(churchCode);
+		return cgroupMapper.selectCgroupList(cGroup);
+	}
+
+	@Autowired
+	private FinmemberMapper finMemberMapper;
+	@Override
+	public int modifyPartnerNameOfFinmemberByDeath(Kyo kyo) {
+		return finMemberMapper.updatePartnerNameByDeath(kyo);
+	}
+
+	
+	@Transactional
+	@Override
+	public int removeChurchUserByRemovedManager(Kyo kyo) {
+		return toolsMapper.deleteChurchUserByDeletedManager(kyo);
 	}
 
 }

@@ -6,6 +6,9 @@ public class NextYearSettingStatusVo {
 	private String kPartName;
 	private String status;
 	private int groupCount;
+	private int oldGroupCount;
+	private int oldAuthSetCount;
+	private int authSetCount;
 	
 	public Integer getkPartIdx() {
 		return kPartIdx;
@@ -30,6 +33,24 @@ public class NextYearSettingStatusVo {
 	}
 	public void setGroupCount(int groupCount) {
 		this.groupCount = groupCount;
+	}
+	public int getAuthSetCount() {
+		return authSetCount;
+	}
+	public void setAuthSetCount(int authSetCount) {
+		this.authSetCount = authSetCount;
+	}
+	public int getOldAuthSetCount() {
+		return oldAuthSetCount;
+	}
+	public void setOldAuthSetCount(int oldAuthSetCount) {
+		this.oldAuthSetCount = oldAuthSetCount;
+	}
+	public int getOldGroupCount() {
+		return oldGroupCount;
+	}
+	public void setOldGroupCount(int oldGroupCount) {
+		this.oldGroupCount = oldGroupCount;
 	}
 	
 }

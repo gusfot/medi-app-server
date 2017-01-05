@@ -8,24 +8,49 @@
     <sqlMapGenerator targetPackage="org.ohjic.mem.dao.mapper" targetProject="init-project" />
     <javaClientGenerator targetPackage="org.ohjic.mem.dao" targetProject="init-project" type="XMLMAPPER" />
 
-	
-	<table schema="ohjic" tableName="k_part" enableSelectByExample="false" 
+    <table schema="member" tableName="manager" enableSelectByExample="false" 
     										 enableDeleteByExample="false" 
     										 enableCountByExample="false"
     										 enableUpdateByExample="false" 
     										 selectByExampleQueryId="false">
     										 
-		<columnOverride column="k_part_idx" property="kPartIdx" />
-		<columnOverride column="k_part_name" property="kPartName" />
-		<columnOverride column="depth1_title" property="depth1Title" />
-		<columnOverride column="depth2_title" property="depth2Title" />
-		<columnOverride column="depth3_title" property="depth3Title" />
-		<columnOverride column="depth4_title" property="depth4Title" />
-		<columnOverride column="depth5_title" property="depth5Title" />
-		<columnOverride column="fixed" property="fixed" />
-		<columnOverride column="active" property="active" />
-		<columnOverride column="useful_column" property="usefulColumn" />
-		<columnOverride column="is_display" property="isDisplay" />
+		<columnOverride column="managerNo" property="managerNo" />
+		<columnOverride column="name" property="name" />
+		<columnOverride column="id" property="id" />
+		<columnOverride column="tid" property="tid" />
+		<columnOverride column="grade" property="grade" />
+		<columnOverride column="regi_date" property="regi_date" />
+		<columnOverride column="comment" property="comment" />
+		<columnOverride column="isSms" property="isSms" />
+		<columnOverride column="edu_auth" property="edu_auth" />
+		<columnOverride column="expelAuth" property="expelAuth" />
+		<columnOverride column="visit_category_auth" property="visit_category_auth" />
+		<columnOverride column="tmpId" property="tmpId" />
+		<columnOverride column="password" property="password" />
+		<columnOverride column="tid" property="tid" />
+		<columnOverride column="log_fail_cnt" property="log_fail_cnt" />
+		<columnOverride column="readGuide" property="readGuide" />
+		<columnOverride column="config" property="config" />
+
+    </table>	
+
+    
+<!-- 
+
+	<table schema="ohjic" tableName="cGroup" enableSelectByExample="false" 
+    										 enableDeleteByExample="false" 
+    										 enableCountByExample="false"
+    										 enableUpdateByExample="false" 
+    										 selectByExampleQueryId="false">
+    										 
+		<columnOverride column="no" property="no" />
+		<columnOverride column="ord" property="ord" />
+		<columnOverride column="depth1" property="depth1" />
+		<columnOverride column="depth2" property="depth2" />
+		<columnOverride column="depth1Name" property="depth1Name" />
+		<columnOverride column="depth2Name" property="depth2Name" />
+		<columnOverride column="depth" property="groupName" />
+		<columnOverride column="display_status" property="displayStatus" />
 
 
     </table>
@@ -58,8 +83,6 @@
 
 
     </table>
-    
-<!-- 
 
 	<table schema="ohjic" tableName="next_year_setting_status" enableSelectByExample="false" 
     										 enableDeleteByExample="false" 

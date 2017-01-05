@@ -548,7 +548,7 @@
 	 sortNo, attend_type, #{nextYear} year, a.k_part_idx, group_no, group_name, depth1_name, depth2_name, depth3_name, depth4_name, depth5_name, depth1, depth2, depth3, depth4, depth5, tid, position, position_name, position_ord, name, chief
 	 from ${church}.kGroupLog a
 	inner join ${church}.k_part b on a.k_part_idx=b.k_part_idx and b.active=1
-	where a.year=#{year} and unix_timestamp(now()) between start_date and end_date
+	where a.year=#{year} and UNIX_TIMESTAMP(STR_TO_DATE('2016-12-31','%Y-%m-%d')) between start_date and end_date
 	<if test="kPartIdx != null">
 	and a.k_part_idx = #{kPartIdx}
 	</if> 

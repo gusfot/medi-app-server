@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,8 +18,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ohjic.mem.common.GOODS;
 import org.ohjic.mem.dao.ChurchUseNumberMapper;
+import org.ohjic.mem.model.Cgroup;
 import org.ohjic.mem.model.ChurchUseNumber;
 import org.ohjic.mem.model.Churchinfo;
+import org.ohjic.mem.model.Kyo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -67,7 +70,11 @@ public class ToolsServiceTest {
 //		Integer churchCode = 2054 ; // 온양신광교회청년부(2054
 //		Integer churchCode = 4603 ; // 춘천온누리교회중등부(4603), 
 //		Integer churchCode = 5886 ; // 연무제일교회5886
-		Integer churchCode = 928 ; // 928 재건중앙교회 (무료사용)
+//		Integer churchCode = 928 ; // 928 재건중앙교회 (무료사용)
+//		Integer churchCode = 701 ; // 신성교회701
+//		Integer churchCode = 1169 ; // 강릉백석교회(1169)
+//		Integer churchCode = 6377 ; // 6377 김화감리교회
+		Integer churchCode = 6258 ; // 평안교회-6258
 		boolean isFree = true;		// 무료 사용여부
 
 		toolsService.removeChuch(churchCode, isFree);
@@ -82,7 +89,10 @@ public class ToolsServiceTest {
 //		Integer churchCode = 2393;
 //		Integer churchCode = 6233;
 //		Integer churchCode = 5291;	// 장유대성교회
-		Integer churchCode = 3883;	// 분당우리교회
+//		Integer churchCode = 3883;	// 분당우리교회
+//		Integer churchCode = 6328;	// 영복교회
+//		Integer churchCode = 6352;	// 송내사랑의교회
+		Integer churchCode = 6026;	// 주안감리교회
 		toolsService.readjustFamily(churchCode);
 		
 	}
@@ -168,11 +178,15 @@ public class ToolsServiceTest {
 	 */
 	@Test
 	public void testAuthSmsForChurch() {
-		
-		String churchNam = "오륜교회";
-		String churchPhoneNumber ="024854004 ";
+		/*
+		 * 관리자: 이준영(id:shalom7312 ), 교회번호로 문자인증 요청, 052-245-0091 / 이름:우정교회
+		 */
+//		String churchNam = "오륜교회";
+//		String churchPhoneNumber ="024854004 ";
+		String churchNam = "우정교회";
+		String churchPhoneNumber ="052-245-0091".replace("-", "");
 		List<String> userIdList = new ArrayList<>();
-		userIdList.add("dbswnssla");
+		userIdList.add("shalom7312");
 		
 		boolean result = toolsService.authSmsForChurch(churchNam, churchPhoneNumber, userIdList);
 		
@@ -182,6 +196,7 @@ public class ToolsServiceTest {
 	@Test
 	public void testGenerateKyoEncryptedPassword() {
 		
+//		String plain = "1111"; // a0ca9ad87e220dd9ee97c32f94142afc
 //		String plain = "1004";
 //		String plain = "7511"; // c472207ab6bdc021ae67cbe471fcf1ad
 //		String plain = "0930"; // fa641e55aad0372b6f9d150d67b3b8fc 기존:26f09498bc5fd1505d5784e0e78a462d
@@ -192,7 +207,7 @@ public class ToolsServiceTest {
 //		String plain = "0863"; // 6131cca989256bf7992c14ff0bd22de6
 //		String plain = "9170"; // 853bb16a7e800261fc1a1afa45ed31d5
 //		String plain = "2701"; // 7ff1f83e78bd3da1d7468c37a9b6bc02
-		String plain = "1111"; // a0ca9ad87e220dd9ee97c32f94142afc
+		String plain = "cu2642!!"; // 7ff1f83e78bd3da1d7468c37a9b6bc02
 		String result = toolsService.generateKyoEncryptedPassword(plain);
 		System.out.println("generated password: " + result);
 //		assertTrue("18a89831df46bf18809d958047555aaf".equals(result));
@@ -554,10 +569,17 @@ public class ToolsServiceTest {
 //		Integer churchCode = 10181;
 //		Integer churchCode = 1690;
 //		Integer churchCode = 3986; // 목동반석교회
-		Integer churchCode = 6216; // 하늘빛우리교회
+//		Integer churchCode = 6216; // 하늘빛우리교회
+//		Integer churchCode = 2196; // 순복음진주초대교회-2196
+//		Integer churchCode = 6318; //  산성교회 6318
+//		Integer churchCode = 4308; //  높은뜻푸른교회-4308
+//		Integer churchCode = 5059; //  일심교회-5059
+//		Integer churchCode = 4995; //  반포교회 4995, banpo2
+//		Integer churchCode = 6432; //  용호남교회 6432, 
+		Integer churchCode = 6328; //  영복교회 6328, yb2
 		
 		GOODS goods = GOODS.att_check;
-		String domain="hbwch2";
+		String domain="yb2";
 		boolean result = toolsService.addGoods(churchCode, domain, goods);
 		
 		
@@ -658,6 +680,81 @@ public class ToolsServiceTest {
 		toJsonFile(resultList, fileName2 );
 	}
 	
+	@Autowired
+	private NextYearSettingService nextYearSettingService;
+	@Test
+	public void testGetEndDateForGroupLog() {
+		
+		List<Map<String, Object>> exsistedList = new ArrayList<>();
+		List<Object> resultList = new ArrayList<>();
+		
+		List<Churchinfo> churchInfoList = nextYearSettingService.getChurchInfoList();
+		
+		for(Churchinfo churchInfo: churchInfoList) {
+			Integer churchCode = churchInfo.getChurchCode();
+			
+			try {
+				Integer year =2016;
+				 List<Map<String, Object>> result = toolsService.getEndDateForGroupLog(churchCode, year);
+				
+				if(result !=null) {
+					resultList.add(churchCode);
+				}
+				
+			}catch(Exception e) {
+				
+			}
+		}
+		
+		for(Churchinfo churchInfo: churchInfoList) {
+			Integer churchCode = churchInfo.getChurchCode();
+			
+			try {
+				Integer year =2016;
+				int result = toolsService.modifyEndDateForGroupLog(churchCode, year);
+				
+				if(result>0) {
+					resultList.add(churchCode);
+				}
+				
+			}catch(Exception e) {
+				
+			}
+		}
+		
+		
+		String fileName2 = "C:\\Users\\ohjic\\Documents\\ohjic_kgrou_enddate.txt";
+		toJsonFile(resultList, fileName2 );
+	}
+	@Test
+	public void testModifyEndDateForGroupLog() {
+		
+		List<Map<String, Object>> exsistedList = new ArrayList<>();
+		List<Object> resultList = new ArrayList<>();
+		
+		List<Churchinfo> churchInfoList = nextYearSettingService.getChurchInfoList();
+		
+		for(Churchinfo churchInfo: churchInfoList) {
+			Integer churchCode = churchInfo.getChurchCode();
+			
+			try {
+				Integer year =2016;
+				int result = toolsService.modifyEndDateForGroupLog(churchCode, year);
+				
+				if(result>0) {
+					resultList.add(churchCode);
+				}
+				
+			}catch(Exception e) {
+				
+			}
+		}
+		
+		
+		String fileName2 = "C:\\Users\\ohjic\\Documents\\ohjic_kgrou_enddate.txt";
+		toJsonFile(resultList, fileName2 );
+	}
+	
 	@Test
 	public void test한글이름_영문이름() {
 		
@@ -687,5 +784,99 @@ public class ToolsServiceTest {
 
 		String fileName = "C:\\Users\\ohjic\\Documents\\ohjic_han_en_member_list.txt";
 		toJsonFile(resultList, fileName);
+	}
+	
+	@Test
+	public void testGetCgroupByChurch() {
+		Integer churchCode=6;
+		List<Cgroup> cGroupList = toolsService.getCgroupByChurch(churchCode);
+		
+		assertTrue(cGroupList.size()==30);
+	}
+	
+	@Test
+	public void testGetCgroupByAllChurch() {
+		List<Churchinfo> churchInfoList = nextYearSettingService.getChurchInfoList();
+		
+		List<Cgroup> cGroupListAll = new ArrayList<>();
+		Set<String> cGroupNameSet = new HashSet<>();
+		for (Churchinfo churchinfo : churchInfoList) {
+			Integer churchCode=churchinfo.getChurchCode();
+			try {
+				List<Cgroup> cGroupList = toolsService.getCgroupByChurch(churchCode);
+				cGroupListAll.addAll(cGroupList);
+				
+				for (Cgroup cgroup : cGroupList) {
+					cGroupNameSet.add(cgroup.getGroupname());
+				}
+			}catch(Exception e) {
+				
+			}
+		}
+		
+		String fileName = "C:\\Users\\ohjic\\Documents\\ohjic_cGroup_list.txt";
+		toJsonFile(cGroupNameSet, fileName);
+		
+		assertTrue(cGroupNameSet.size() >0);
+	}
+	
+	
+	@Test
+	public void testModifyPartnerNameOfFinmemberByDeath() {
+		
+		List<Churchinfo> churchInfoList = nextYearSettingService.getChurchInfoList();
+		List<Object> resultList = new ArrayList<>();
+		
+		for (Churchinfo churchinfo : churchInfoList) {
+			
+			Kyo kyo = new Kyo();
+			Integer churchCode =churchinfo.getChurchCode() ;
+			kyo.setChurchCode(churchCode);
+			
+			try {
+				int result = toolsService.modifyPartnerNameOfFinmemberByDeath(kyo );
+				if(result> 0) {
+					resultList.add(churchCode);
+				}
+			}catch(Exception e){
+				
+			}
+			
+		}
+		
+		String fileName = "C:\\Users\\ohjic\\Documents\\ohjic_finMember_partner_list.txt";
+		toJsonFile(resultList, fileName);
+		
+	}
+	
+	/**
+	 * 교회 관리자에서 삭제된 관리자를 church_user에서도 일괄삭제시킨다.
+	 */
+	@Test
+	public void testRemoveChurchUserByDeletedManager() {
+		
+		List<Churchinfo> churchInfoList = nextYearSettingService.getChurchInfoList();
+		List<Object> resultList = new ArrayList<>();
+		
+		for (Churchinfo churchinfo : churchInfoList) {
+			
+			Kyo kyo = new Kyo();
+			Integer churchCode =churchinfo.getChurchCode() ;
+			kyo.setChurchCode(churchCode);
+			
+			try {
+				int result = toolsService.removeChurchUserByRemovedManager(kyo);
+				if(result> 0) {
+					resultList.add(churchCode);
+				}
+			}catch(Exception e){
+				
+			}
+			
+		}
+		
+		String fileName = "C:\\Users\\ohjic\\Documents\\ohjic_deleted_church_userlist.txt";
+		toJsonFile(resultList, fileName);
+		
 	}
 }
