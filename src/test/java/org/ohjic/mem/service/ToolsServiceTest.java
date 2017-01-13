@@ -74,7 +74,12 @@ public class ToolsServiceTest {
 //		Integer churchCode = 701 ; // 신성교회701
 //		Integer churchCode = 1169 ; // 강릉백석교회(1169)
 //		Integer churchCode = 6377 ; // 6377 김화감리교회
-		Integer churchCode = 6258 ; // 평안교회-6258
+//		Integer churchCode = 6258 ; // 평안교회-6258
+//		Integer churchCode = 1202 ; // 새누리 1202 (무료 교적 사용중)
+//		Integer churchCode = 1203 ; // 새누리청년 1203 (무료 교적 사용중)
+//		Integer churchCode = 5432 ; // 안양중앙교회-5432
+//		Integer churchCode = 1999 ; // 영길교회(1999)
+		Integer churchCode = 2000 ; // 영길중고등부(2000)
 		boolean isFree = true;		// 무료 사용여부
 
 		toolsService.removeChuch(churchCode, isFree);
@@ -92,7 +97,17 @@ public class ToolsServiceTest {
 //		Integer churchCode = 3883;	// 분당우리교회
 //		Integer churchCode = 6328;	// 영복교회
 //		Integer churchCode = 6352;	// 송내사랑의교회
-		Integer churchCode = 6026;	// 주안감리교회
+//		Integer churchCode = 6026;	// 주안감리교회
+//		Integer churchCode = 6344;	// 서북교회
+//		Integer churchCode = 6346;	// 주님앞에 제일교회
+//		Integer churchCode = 3809;	// 신도교회
+//		Integer churchCode = 1293;	// 서석교회-1293
+//		Integer churchCode = 3986;	// 목동반석교회-3986
+//		Integer churchCode = 6326;	// 정원교회
+//		Integer churchCode = 6428;	// 한사랑교회
+//		Integer churchCode = 6402;	// 군산세광교회
+		Integer churchCode = 5616;	// 여의도순복음분당교회-5616
+
 		toolsService.readjustFamily(churchCode);
 		
 	}
@@ -180,13 +195,12 @@ public class ToolsServiceTest {
 	public void testAuthSmsForChurch() {
 		/*
 		 * 관리자: 이준영(id:shalom7312 ), 교회번호로 문자인증 요청, 052-245-0091 / 이름:우정교회
+		 * 관리자: 이준영(oryun4825 ), 교회번호로 문자인증 요청, 024854004 / 이름:오륜교회
 		 */
-//		String churchNam = "오륜교회";
-//		String churchPhoneNumber ="024854004 ";
-		String churchNam = "우정교회";
-		String churchPhoneNumber ="052-245-0091".replace("-", "");
+		String churchNam = "오륜교회";
+		String churchPhoneNumber ="024854004".replace("-", "");
 		List<String> userIdList = new ArrayList<>();
-		userIdList.add("shalom7312");
+		userIdList.add("oryun4825");
 		
 		boolean result = toolsService.authSmsForChurch(churchNam, churchPhoneNumber, userIdList);
 		
@@ -207,7 +221,8 @@ public class ToolsServiceTest {
 //		String plain = "0863"; // 6131cca989256bf7992c14ff0bd22de6
 //		String plain = "9170"; // 853bb16a7e800261fc1a1afa45ed31d5
 //		String plain = "2701"; // 7ff1f83e78bd3da1d7468c37a9b6bc02
-		String plain = "cu2642!!"; // 7ff1f83e78bd3da1d7468c37a9b6bc02
+//		String plain = "cu2642!!"; // 7ff1f83e78bd3da1d7468c37a9b6bc02
+		String plain = "5855"; // e12c1a24d4a6e91609a3f89a753c9361
 		String result = toolsService.generateKyoEncryptedPassword(plain);
 		System.out.println("generated password: " + result);
 //		assertTrue("18a89831df46bf18809d958047555aaf".equals(result));
@@ -576,10 +591,13 @@ public class ToolsServiceTest {
 //		Integer churchCode = 5059; //  일심교회-5059
 //		Integer churchCode = 4995; //  반포교회 4995, banpo2
 //		Integer churchCode = 6432; //  용호남교회 6432, 
-		Integer churchCode = 6328; //  영복교회 6328, yb2
+//		Integer churchCode = 6328; //  영복교회 6328, yb2
+//		Integer churchCode = 6430; //  해운대제일교회 6430, hjeil2
+//		Integer churchCode = 2005; //  대길교회-2005, daegil3
+		Integer churchCode = 6329; //  서문교회 6329
 		
 		GOODS goods = GOODS.att_check;
-		String domain="yb2";
+		String domain="seomoonch2";
 		boolean result = toolsService.addGoods(churchCode, domain, goods);
 		
 		

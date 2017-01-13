@@ -5,7 +5,7 @@
    <!-- 상품정보 삭제 -->
    <delete id="deleteGoodsByChurchCode" parameterType="int">
 	delete from goods 
-	where churchCode = #{churchCode}
+	where type='kyo' and churchCode = #{churchCode}
    </delete>
    
    <!-- 교회정보 삭제 -->
@@ -18,7 +18,7 @@
    <!-- 교회사용자 삭제 -->
    <delete id="deleteChurchUserByChurchCode" parameterType="int">
 	delete from church_user 
-	where church_code = #{churchCode}
+	where type='kyo' and church_code = #{churchCode}
    </delete>
    
    <!-- service 삭제 -->
