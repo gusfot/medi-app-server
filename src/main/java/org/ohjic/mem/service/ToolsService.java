@@ -137,6 +137,8 @@ public interface ToolsService {
 	int modifyPartnerNameOfFinmemberByDeath(Kyo kyo);
 
 	int removeChurchUserByRemovedManager(Kyo kyo);
+
+	int modifyFimMemberNameByMemberName(Kyo kyo);
 	
 }
 

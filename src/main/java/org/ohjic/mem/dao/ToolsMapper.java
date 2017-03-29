@@ -80,7 +80,7 @@ public interface ToolsMapper {
 
 	int updateCommonCodeDepth(Map<String, String> params);
 
-	boolean insertGoods(Map<String, Object> params);
+	int insertGoods(Map<String, Object> params);
 
 	Map<String, Object> selectCgroupByGroupName(Map<String, String> params);
 
@@ -97,6 +97,10 @@ public interface ToolsMapper {
 	List<Map<String, Object>> selecctEndDateForGroupLog(Map<String, Object> params);
 
 	int deleteChurchUserByDeletedManager(Kyo kyo);
+
+	int updateFimMemberNameByMemberName(Kyo kyo);
+
+	Map<String, Object> selectGoods(Map<String, Object> params);
 
 
 }

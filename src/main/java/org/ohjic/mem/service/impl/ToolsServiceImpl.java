@@ -44,7 +44,6 @@ public class ToolsServiceImpl implements ToolsService {
 	@Override
 	public void removeChuch(Integer churchCode, boolean isFree) {
 		
-			
 		toolsMapper.deleteGoodsByChurchCode(churchCode);
 		toolsMapper.deleteChurchUserByChurchCode(churchCode);
 		if(isFree) {
@@ -370,11 +369,24 @@ public class ToolsServiceImpl implements ToolsService {
 
 	@Override
 	public boolean addGoods(Integer churchCode,String domain, GOODS goods) {
+		
+		boolean result = false;
+		
 		Map<String, Object> params = new HashMap<>();
 		params.put("churchCode", churchCode);
 		params.put("domain", domain);
 		params.put("type", goods);
-		return toolsMapper.insertGoods(params);
+		
+		Map<String, Object> obj =toolsMapper.selectGoods(params);
+		
+		if(obj != null) {
+			System.out.println("이미 있는 도메인 입니다.");
+			result = false;
+		}else {
+			result = toolsMapper.insertGoods(params) == 1 ;
+		}
+		
+		return result;
 	}
 
 	@Override
@@ -440,6 +452,11 @@ public class ToolsServiceImpl implements ToolsService {
 	@Override
 	public int removeChurchUserByRemovedManager(Kyo kyo) {
 		return toolsMapper.deleteChurchUserByDeletedManager(kyo);
+	}
+
+	@Override
+	public int modifyFimMemberNameByMemberName(Kyo kyo) {
+		return toolsMapper.updateFimMemberNameByMemberName(kyo);
 	}
 
 }
