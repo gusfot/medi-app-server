@@ -708,10 +708,11 @@ public class ToolsServiceTest {
 	public void testAddGoodsAttCheck() {
 
 
-		Integer churchCode = 6734; // 대전제자들교회 6734, jejas_oc
+//		Integer churchCode = 6734; // 대전제자들교회 6734, jejas_oc
+		Integer churchCode = 6425; // 동암교회-6425, dongamchurch_oc
 
 		GOODS goods = GOODS.att_check;
-		String domain = "jejas_oc";
+		String domain = "dongamchurch_oc";
 		boolean result = toolsService.addGoods(churchCode, domain, goods);
 
 		assertTrue(result);
