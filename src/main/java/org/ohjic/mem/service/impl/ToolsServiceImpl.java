@@ -377,7 +377,11 @@ public class ToolsServiceImpl implements ToolsService {
 		params.put("domain", domain);
 		params.put("type", goods);
 		
-		Map<String, Object> obj =toolsMapper.selectGoods(params);
+		// 스마트콜은 도메인 중복검사를 하지 않는다.
+		Map<String, Object> obj = null;
+		if(goods != GOODS.smart_call) { 
+			obj =toolsMapper.selectGoods(params);
+		}
 		
 		if(obj != null) {
 			System.out.println("이미 있는 도메인 입니다.");

@@ -76,7 +76,8 @@ public class ToolsServiceTest {
 //		Integer churchCode = 1238; // 천안대성교회-1238
 //		Integer churchCode = 3881; // 혜현교회-3881
 //		Integer churchCode = 4707; // 송파사랑의교회-4707
-		Integer churchCode = 6819; // 신갈중앙교회-6819
+//		Integer churchCode = 6819; // 신갈중앙교회-6819
+		Integer churchCode = 6842; // 수원동산교회 6842
 		
 
 		boolean isFree = true; // 무료 사용여부
@@ -136,7 +137,8 @@ public class ToolsServiceTest {
 //		Integer churchCode = 6037; // 오병이어교회-6037	
 //		Integer churchCode = 3287; // 남현교회-3287
 //		Integer churchCode = 6734; // 대전제자들교회-6734
-		Integer churchCode = 2727; // 효성영광교회-2727
+//		Integer churchCode = 2727; // 효성영광교회-2727
+		Integer churchCode = 6425; // 동암교회-6425
 
 		toolsService.readjustFamily(churchCode);
 
@@ -259,7 +261,8 @@ public class ToolsServiceTest {
 	public void testGenerateKyoEncryptedPassword() {
 
 //		String plain = "1111"; // e12c1a24d4a6e91609a3f89a753c9361
-		String plain = "caspi0912"; // e12c1a24d4a6e91609a3f89a753c9361
+		String plain = "1234"; // 2379ae4a8c79ec840b5298706094d134
+		
 		String result = toolsService.generateKyoEncryptedPassword(plain);
 		System.out.println("generated password: " + result);
 	}
@@ -702,17 +705,23 @@ public class ToolsServiceTest {
 //		Integer churchCode = 6754; // 대흥교회-6754, daeheung_oc
 //		Integer churchCode = 2836; // 수지방주교회 2836 sjbj_oc
 //		Integer churchCode = 5375; // 에덴교회-5375, gasomun_oc
+//		Integer churchCode = 5375; // 에덴교회-5375, gasomun_oc
 	 * 
 	 */
 	@Test
 	public void testAddGoodsAttCheck() {
 
-
 //		Integer churchCode = 6734; // 대전제자들교회 6734, jejas_oc
-		Integer churchCode = 6425; // 동암교회-6425, dongamchurch_oc
+//		Integer churchCode = 6425; // 동암교회-6425, dongamchurch_oc
+//		Integer churchCode = 6503; // 유성교회-6503, yskmc_oc
+//		Integer churchCode = 6506; // 부산제일감리교회 6506
+//		Integer churchCode = 6319; // 서울중앙교회 6319, seouljungang_oc
+//		Integer churchCode = 6838; // 대전예은교회 6838, yeeunch_oc
+//		Integer churchCode = 6843; // 수원동산교회 6843, dsansarang_oc
+		Integer churchCode = 6786; // 성암교회 6786, sa1967_oc
 
 		GOODS goods = GOODS.att_check;
-		String domain = "dongamchurch_oc";
+		String domain = "sa1967_oc";
 		boolean result = toolsService.addGoods(churchCode, domain, goods);
 
 		assertTrue(result);
@@ -733,8 +742,11 @@ public class ToolsServiceTest {
 //		Integer churchCode = 6672; // 영광교회-6672
 //		Integer churchCode = 601; // 해돋는교회-601
 //		Integer churchCode = 6778; // 예일교회 6778
-		Integer churchCode = 6817; // 엘림교회 6817
-
+//		Integer churchCode = 6817; // 엘림교회 6817
+//		Integer churchCode = 6811; // 금천선교교회-6811
+//		Integer churchCode = 6838; // 대전예은교회-6838
+//		Integer churchCode = 6778; // 예일교회-6778
+		Integer churchCode = 6851; // 도암교회 6851
 
 
 		GOODS goods = GOODS.smart_call;
