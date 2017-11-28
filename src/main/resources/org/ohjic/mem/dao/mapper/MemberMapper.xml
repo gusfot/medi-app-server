@@ -1403,4 +1403,15 @@
   <select id="selectMemberByMemberNameAndMemberNameDistinct" parameterType="map" resultType="org.ohjic.mem.model.Member">
   select * from ${church}.member where member_name=#{memberName} and member_name_distinct=#{memberNameDistinct}
   </select>
+  
+  <select id="selectLatestMemberByTids" parameterType="org.ohjic.mem.vo.TidsVo" resultMap="BaseResultMap">
+  select * from ${church}.member 
+    <where>
+        tid in
+        <foreach collection="tidArray" item="item" index="index" separator="," open="(" close=")">
+              ${tidArray[index]}
+        </foreach>
+    </where>
+   order by last_view desc limit 1
+  </select>
 </mapper>

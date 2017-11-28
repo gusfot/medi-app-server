@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 import org.ohjic.mem.model.Churchinfo;
 import org.ohjic.mem.vo.NextYearSettingStatusVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -24,7 +25,7 @@ import com.google.gson.Gson;
 
 @RunWith(SpringJUnit4ClassRunner.class) 
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
-								 "file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_live.xml"})
+								 "file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_dev.xml"})
 public class NextYearSettingServiceTest {
 
 	@Autowired
@@ -33,17 +34,44 @@ public class NextYearSettingServiceTest {
 	@Test
 	public void testCreateNextYear() {
 
-		int churchCode = 3883;
-		int standardYear = 2016;
+		int churchCode = 6037;
+		int standardYear = 2017;
 		int managerIdx =0;
+		String standardDate = "2017-11-01";
+		String startDate = "2017-12-01";
+		String endDate = "2018-11-30";
 		
 		List<Integer> kPartIdxList = new ArrayList<>();
 		kPartIdxList.add(1);
 		kPartIdxList.add(2);
 		kPartIdxList.add(3);
-//		kPartIdxList.add(4);
+		kPartIdxList.add(4);
 		
-		nextYearSettingService.createNextYear(churchCode, standardYear, managerIdx, kPartIdxList);
+		try {
+			nextYearSettingService.createNextYear(churchCode, standardYear, standardDate, startDate, endDate, managerIdx, kPartIdxList);
+		} catch (BadSqlGrammarException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Test
+	public void testResetNextYear() {
+
+		int churchCode = 6037;
+		int standardYear = 2017;
+		int managerIdx = 0;
+		List<Integer> kPartIdxList = new ArrayList<>();
+		kPartIdxList.add(1);
+		kPartIdxList.add(2);
+		kPartIdxList.add(3);
+		kPartIdxList.add(4);
+		
+		nextYearSettingService.resetNextYear(churchCode, standardYear, managerIdx, kPartIdxList );
 		
 	}
 	
@@ -88,26 +116,22 @@ public class NextYearSettingServiceTest {
 		int churchCode = 1;
 		int standardYear = 2016;
 		int managerIdx = 0;
+		String standardDate = "2017-11-01";
+		String startDate = "2017-12-01";
+		String endDate = "2018-11-30";
 		
 		List<Integer> kPartIdxList = new ArrayList<>();
 		kPartIdxList.add(1);
 		kPartIdxList.add(5);
 		
-		nextYearSettingService.createNextYear(churchCode, standardYear, managerIdx,  kPartIdxList);
+		try {
+			nextYearSettingService.createNextYear(churchCode, standardYear, standardDate , startDate, endDate, managerIdx,  kPartIdxList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	@Test
-	public void testResetNextYear() {
-
-		int churchCode = 6;
-		int standardYear = 2016;
-		int managerIdx = 0;
-		List<Integer> kPartIdxList = new ArrayList<>();
-		kPartIdxList.add(5);
-		
-		nextYearSettingService.resetNextYear(churchCode, standardYear, managerIdx, kPartIdxList );
-		
-	}
 
 	@Test
 	public void testGetChurchInfoList() {
@@ -119,21 +143,32 @@ public class NextYearSettingServiceTest {
 	
 	@Test 
 	public void testCreateAuth() {
-		int churchCode = 6245;// 351, 474, 2393, 476,5290,5932, 6245
-		int standardYear=2016;
+		
+		int churchCode = 6037;// 351, 474, 2393, 476,5290,5932, 6245
+		int standardYear=2017;
+		String standardDate = "20171101";
 		List<Integer> kPartIdxList = new ArrayList<>();
 		kPartIdxList.add(1);
-		nextYearSettingService.createNextYearAuth(churchCode, standardYear, kPartIdxList);
+		kPartIdxList.add(2);
+		kPartIdxList.add(3);
+		kPartIdxList.add(4);
+		try {
+			nextYearSettingService.createNextYearAuth(churchCode, standardYear, standardDate, kPartIdxList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Test 
 	public void testResetAuth() {
-		int churchCode = 5932; // 5932
-		int standardYear=2016;
+		int churchCode = 6037; // 5932
+		int standardYear=2017;
 		List<Integer> kPartIdxList = new ArrayList<>();
 		kPartIdxList.add(1);
-		kPartIdxList.add(2);
-		kPartIdxList.add(4);
+//		kPartIdxList.add(2);
+//		kPartIdxList.add(3);
+//		kPartIdxList.add(4);
 		nextYearSettingService.resetNextYearAuth(churchCode, standardYear, kPartIdxList);
 	}
 	
@@ -149,6 +184,10 @@ public class NextYearSettingServiceTest {
 		
 		int standardYear = 2016;
 		int managerIdx = 0;
+		String standardDate = "2017-11-01";
+		String startDate = "2017-12-01";
+		String endDate = "2018-11-30";
+		
 		List<Churchinfo> churchInfoList = nextYearSettingService.getChurchInfoList();
 		
 		for (Churchinfo churchinfo : churchInfoList) {
@@ -164,7 +203,7 @@ public class NextYearSettingServiceTest {
 					List<Integer> kPartIdxList = getKpartIdxList(standardYear, churchCode);
 					
 					if(kPartIdxList.size()>0) {
-						result = nextYearSettingService.createNextYear(churchCode, standardYear, managerIdx, kPartIdxList );
+						result = nextYearSettingService.createNextYear(churchCode, standardYear, standardDate, startDate, endDate, managerIdx, kPartIdxList );
 					}
 					
 					if(result) {

@@ -10,6 +10,12 @@ public class YearVo extends Kyo {
 	
 	private Integer kPartIdx;
 
+	private String standardDate;
+
+	private String startDate;
+	
+	private String endDate;
+	
 	public Integer getYear() {
 		return year;
 	}
@@ -33,5 +39,29 @@ public class YearVo extends Kyo {
 
 	public void setkPartIdx(Integer kPartIdx) {
 		this.kPartIdx = kPartIdx;
+	}
+
+	public String getStandardDate() {
+		return standardDate;
+	}
+
+	public void setStandardDate(String standardDate) {
+		this.standardDate = standardDate;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 }

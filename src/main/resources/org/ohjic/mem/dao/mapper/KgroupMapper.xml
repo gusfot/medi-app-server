@@ -27,6 +27,7 @@
     <result column="end_date" jdbcType="INTEGER" property="endDate" />
     <result column="reportType" jdbcType="CHAR" property="reportType" />
     <result column="reg_date" jdbcType="TIMESTAMP" property="regDate" />
+    <result column="p_no" jdbcType="INTEGER" property="pNo" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.ohjic.mem.model.Kgroup">
     <!--
@@ -44,7 +45,7 @@
     -->
     no, year, k_part_idx, depth1, depth2, depth3, depth4, depth5, ord, depth1_name, depth2_name, 
     depth3_name, depth4_name, depth5_name, depth, group_name, start_date, end_date, reportType, 
-    reg_date
+    reg_date, p_no
   </sql>
   <sql id="Blob_Column_List">
     <!--
@@ -90,7 +91,7 @@
       depth1_name, depth2_name, depth3_name, 
       depth4_name, depth5_name, depth, 
       group_name, start_date, end_date, 
-      reportType, reg_date, reportItem
+      reportType, reg_date, reportItem, p_no
       )
     values (#{no,jdbcType=INTEGER}, #{year,jdbcType=INTEGER}, #{kPartIdx,jdbcType=INTEGER}, 
       #{depth1,jdbcType=INTEGER}, #{depth2,jdbcType=INTEGER}, #{depth3,jdbcType=INTEGER}, 
@@ -98,7 +99,7 @@
       #{depth1Name,jdbcType=VARCHAR}, #{depth2Name,jdbcType=VARCHAR}, #{depth3Name,jdbcType=VARCHAR}, 
       #{depth4Name,jdbcType=VARCHAR}, #{depth5Name,jdbcType=VARCHAR}, #{depth,jdbcType=BIT}, 
       #{groupName,jdbcType=VARCHAR}, #{startDate,jdbcType=INTEGER}, #{endDate,jdbcType=INTEGER}, 
-      #{reportType,jdbcType=CHAR}, #{regDate,jdbcType=TIMESTAMP}, #{reportItem,jdbcType=LONGVARCHAR}
+      #{reportType,jdbcType=CHAR}, #{regDate,jdbcType=TIMESTAMP}, #{reportItem,jdbcType=LONGVARCHAR}, #{pNo,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="org.ohjic.mem.model.Kgroup">
@@ -172,6 +173,9 @@
       <if test="reportItem != null">
         reportItem,
       </if>
+      <if test="pNo != null">
+        pNo,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="no != null">
@@ -236,6 +240,9 @@
       </if>
       <if test="reportItem != null">
         #{reportItem,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pNo != null">
+        #{pNo,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -304,6 +311,9 @@
       <if test="reportItem != null">
         reportItem = #{reportItem,jdbcType=LONGVARCHAR},
       </if>
+      <if test="pNo != null">
+        pNo = #{pNo,jdbcType=INTEGER},
+      </if>      
     </set>
     where no = #{no,jdbcType=INTEGER}
       and year = #{year,jdbcType=INTEGER}
@@ -334,6 +344,7 @@
       reportType = #{reportType,jdbcType=CHAR},
       reg_date = #{regDate,jdbcType=TIMESTAMP},
       reportItem = #{reportItem,jdbcType=LONGVARCHAR}
+      p_no = #{pNo,jdbcType=INTEGER}
     where no = #{no,jdbcType=INTEGER}
       and year = #{year,jdbcType=INTEGER}
   </update>
@@ -361,7 +372,8 @@
       start_date = #{startDate,jdbcType=INTEGER},
       end_date = #{endDate,jdbcType=INTEGER},
       reportType = #{reportType,jdbcType=CHAR},
-      reg_date = #{regDate,jdbcType=TIMESTAMP}
+      reg_date = #{regDate,jdbcType=TIMESTAMP},
+      p_no = #{pNo,jdbcType=INTEGER}
     where no = #{no,jdbcType=INTEGER}
       and year = #{year,jdbcType=INTEGER}
   </update>
@@ -374,19 +386,19 @@
   </select>
   
   <insert id="insertNextYearKgroupByYear" parameterType="org.ohjic.mem.vo.YearVo" >
-  insert ${church}.kGroup(year, k_part_idx, depth1, depth2, depth3, depth4, depth5, ord, depth1_name, depth2_name, depth3_name, depth4_name, depth5_name, depth, group_name, start_date, end_date, reportType, reportItem)
+  insert ${church}.kGroup(year, k_part_idx, depth1, depth2, depth3, depth4, depth5, ord, depth1_name, depth2_name, depth3_name, depth4_name, depth5_name, depth, group_name, start_date, end_date, reportType, reportItem, p_no)
 	select 
 	 #{nextYear} year, a.k_part_idx, depth1, depth2, depth3, depth4, depth5, ord, depth1_name, depth2_name, depth3_name, depth4_name, depth5_name, depth, group_name, 
-	 UNIX_TIMESTAMP(STR_TO_DATE(concat(#{nextYear},'-01-01'),'%Y-%m-%d')) start_date, 
-	 UNIX_TIMESTAMP(STR_TO_DATE(concat((#{nextYear}+1),'-01-01'),'%Y-%m-%d'))-1 end_date, 
-	 reportType, reportItem
+	 UNIX_TIMESTAMP(concat(#{startDate}, ' 00:00:00')) start_date, 
+	 UNIX_TIMESTAMP(concat(#{endDate}, ' 23:59:59')) end_date, 
+	 reportType, reportItem, p_no
 	 from ${church}.kGroup a 
 	inner join ${church}.k_part b on a.k_part_idx = b.k_part_idx and b.active=1
-	where a.year=#{year} 
+	where a.no <![CDATA[>]]> 0 and a.year=#{year} 
 	<if test="kPartIdx != null and kPartIdx != 0 ">
 	and a.k_part_idx = #{kPartIdx}
 	</if>
-	<!-- and unix_timestamp(now()) between start_date and end_date -->
+	and unix_timestamp(str_to_date(#{standardDate},'%Y-%m-%d')) between start_date and end_date
   </insert>
   
   <update id="updateNextYearKgroupDepthByYear" parameterType="org.ohjic.mem.vo.YearVo">
@@ -420,10 +432,10 @@
 	<if test="depth == 5">
 	set a.depth5=a.no, a.depth1=b.no, a.depth2=c.no, a.depth3=d.no, a.depth4=e.no
 	</if>
-	where a.depth=#{depth} and a.year=#{nextYear}
+	where a.no <![CDATA[>]]> 0 and a.depth=#{depth} and a.year=#{nextYear}
   </update>
   
   <insert id="deleteNextYearKgroup" parameterType="org.ohjic.mem.vo.YearVo">
-  	delete from ${church}.kGroup where year=#{nextYear} and k_part_idx=#{kPartIdx} 
+  	delete from ${church}.kGroup where no <![CDATA[>]]> 0 and year=#{nextYear} and k_part_idx=#{kPartIdx} 
   </insert>
 </mapper>

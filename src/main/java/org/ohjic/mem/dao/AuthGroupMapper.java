@@ -45,4 +45,8 @@ public interface AuthGroupMapper {
 	int insertAuthGroupForNextYear(YearVo yearVo);
 
 	int deleteNextYearAuthGroup(YearVo yearVo);
+	
+	int deleteNextYearAuthGroupDefault(YearVo yearVo);
+
+	int insertAuthGroupDefaultForNextYear(YearVo yearVo);
 }

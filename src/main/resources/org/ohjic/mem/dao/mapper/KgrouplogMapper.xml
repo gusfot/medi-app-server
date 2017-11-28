@@ -543,12 +543,13 @@
   <insert id="insertNextYearKgrouplogByYear" parameterType="org.ohjic.mem.vo.YearVo">
   insert into ${church}.kGroupLog(start_date, end_date, sortNo, attend_type, year, k_part_idx, group_no, group_name, depth1_name, depth2_name, depth3_name, depth4_name, depth5_name, depth1, depth2, depth3, depth4, depth5, tid, position, position_name, position_ord, name, chief)
 	select 
-	 UNIX_TIMESTAMP(STR_TO_DATE(concat(#{nextYear},'-01-01'),'%Y-%m-%d')) start_date, 
-	 UNIX_TIMESTAMP(STR_TO_DATE(concat((#{nextYear}+1),'-01-01'),'%Y-%m-%d'))-1 end_date, 
-	 sortNo, attend_type, #{nextYear} year, a.k_part_idx, group_no, group_name, depth1_name, depth2_name, depth3_name, depth4_name, depth5_name, depth1, depth2, depth3, depth4, depth5, tid, position, position_name, position_ord, name, chief
+	 UNIX_TIMESTAMP(concat(#{startDate}, ' 00:00:00')) start_date, 
+	 UNIX_TIMESTAMP(concat(#{endDate}, ' 23:59:59')) end_date, 
+	 sortNo, attend_type, #{nextYear} year, a.k_part_idx, group_no, group_name, depth1_name, depth2_name, depth3_name, depth4_name, depth5_name, depth1, depth2, depth3, depth4, depth5, a.tid, position, position_name, position_ord, name, chief
 	 from ${church}.kGroupLog a
 	inner join ${church}.k_part b on a.k_part_idx=b.k_part_idx and b.active=1
-	where a.year=#{year} and UNIX_TIMESTAMP(STR_TO_DATE('2016-12-31','%Y-%m-%d')) between start_date and end_date
+	inner join ${church}.member c on c.tid=a.tid and c.cDepth1 <![CDATA[>=]]> 0
+	where a.year=#{year} and UNIX_TIMESTAMP(STR_TO_DATE(#{standardDate},'%Y-%m-%d')) between start_date and end_date
 	<if test="kPartIdx != null">
 	and a.k_part_idx = #{kPartIdx}
 	</if> 
@@ -556,7 +557,7 @@
   
   <update id="updateNextYearKgrouplogDepthByYear" parameterType="org.ohjic.mem.vo.DepthVo">
   update ${church}.kGroupLog a
-	inner join ${church}.kGroup b on a.k_part_idx=b.k_part_idx and b.year=#{nextYear} and b.depth=#{depth}
+	inner join ${church}.kGroup b on a.k_part_idx=b.k_part_idx and b.no > 0 and b.year=#{nextYear} and b.depth=#{depth}
 	<if test="depth>=1">
 		and a.depth1_name=b.depth1_name
 	</if> 
@@ -588,11 +589,11 @@
 	<if test="depth>=5">
 		, a.depth5=b.depth5
 	</if>
-  where a.year=#{nextYear} and a.k_part_idx=#{kPartIdx}
+  where a.no> 0 and a.year=#{nextYear} and a.k_part_idx=#{kPartIdx}
   </update>
   
   <delete id="deleteNextYearKgroupLog" parameterType="org.ohjic.mem.vo.YearVo">
-  	delete from ${church}.kGroupLog where year=#{nextYear} and k_part_idx = #{kPartIdx}
+  	delete from ${church}.kGroupLog where no <![CDATA[>]]> 0 and year=#{nextYear} and k_part_idx = #{kPartIdx}
   </delete>
   
 </mapper>

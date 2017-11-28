@@ -8,8 +8,8 @@
       This element was generated on Wed Dec 21 18:33:33 KST 2016.
     -->
     <id column="auth_set_idx" jdbcType="INTEGER" property="authSetIdx" />
-    <id column="sort_no" jdbcType="INTEGER" property="sort_no" />
-    <id column="auth_type_idx" jdbcType="INTEGER" property="auth_type_idx" />
+    <id column="sort_no" jdbcType="INTEGER" property="sortNo" />
+    <id column="auth_type_idx" jdbcType="INTEGER" property="authTypeIdx" />
     <result column="value" jdbcType="INTEGER" property="value" />
     <result column="reg_date" jdbcType="TIMESTAMP" property="regDate" />
   </resultMap>
@@ -31,8 +31,8 @@
     <include refid="Base_Column_List" />
     from ${church}.auth_group
     where auth_set_idx = #{authSetIdx,jdbcType=INTEGER}
-      and sort_no = #{sort_no,jdbcType=INTEGER}
-      and auth_type_idx = #{auth_type_idx,jdbcType=INTEGER}
+      and sort_no = #{sortNo,jdbcType=INTEGER}
+      and auth_type_idx = #{authTypeIdx,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="org.ohjic.mem.model.AuthGroupKey">
     <!--
@@ -42,8 +42,8 @@
     -->
     delete from ${church}.auth_group
     where auth_set_idx = #{authSetIdx,jdbcType=INTEGER}
-      and sort_no = #{sort_no,jdbcType=INTEGER}
-      and auth_type_idx = #{auth_type_idx,jdbcType=INTEGER}
+      and sort_no = #{sortNo,jdbcType=INTEGER}
+      and auth_type_idx = #{authTypeIdx,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="org.ohjic.mem.model.AuthGroup">
     <!--
@@ -53,7 +53,7 @@
     -->
     insert into ${church}.auth_group (auth_set_idx, sort_no, auth_type_idx, 
       value, reg_date)
-    values (#{authSetIdx,jdbcType=INTEGER}, #{sort_no,jdbcType=INTEGER}, #{auth_type_idx,jdbcType=INTEGER}, 
+    values (#{authSetIdx,jdbcType=INTEGER}, #{sortNo,jdbcType=INTEGER}, #{authTypeIdx,jdbcType=INTEGER}, 
       #{value,jdbcType=INTEGER}, #{regDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.ohjic.mem.model.AuthGroup">
@@ -67,10 +67,10 @@
       <if test="authSetIdx != null">
         auth_set_idx,
       </if>
-      <if test="sort_no != null">
+      <if test="sortNo != null">
         sort_no,
       </if>
-      <if test="auth_type_idx != null">
+      <if test="authTypeIdx != null">
         auth_type_idx,
       </if>
       <if test="value != null">
@@ -84,11 +84,11 @@
       <if test="authSetIdx != null">
         #{authSetIdx,jdbcType=INTEGER},
       </if>
-      <if test="sort_no != null">
-        #{sort_no,jdbcType=INTEGER},
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
       </if>
-      <if test="auth_type_idx != null">
-        #{auth_type_idx,jdbcType=INTEGER},
+      <if test="authTypeIdx != null">
+        #{authTypeIdx,jdbcType=INTEGER},
       </if>
       <if test="value != null">
         #{value,jdbcType=INTEGER},
@@ -114,8 +114,8 @@
       </if>
     </set>
     where auth_set_idx = #{authSetIdx,jdbcType=INTEGER}
-      and sort_no = #{sort_no,jdbcType=INTEGER}
-      and auth_type_idx = #{auth_type_idx,jdbcType=INTEGER}
+      and sort_no = #{sortNo,jdbcType=INTEGER}
+      and auth_type_idx = #{authTypeIdx,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.ohjic.mem.model.AuthGroup">
     <!--
@@ -127,8 +127,8 @@
     set value = #{value,jdbcType=INTEGER},
       reg_date = #{regDate,jdbcType=TIMESTAMP}
     where auth_set_idx = #{authSetIdx,jdbcType=INTEGER}
-      and sort_no = #{sort_no,jdbcType=INTEGER}
-      and auth_type_idx = #{auth_type_idx,jdbcType=INTEGER}
+      and sort_no = #{sortNo,jdbcType=INTEGER}
+      and auth_type_idx = #{authTypeIdx,jdbcType=INTEGER}
   </update>
   
   <insert id="insertAuthGroupForNextYear" parameterType="org.ohjic.mem.vo.YearVo">
@@ -143,8 +143,23 @@
 	group by a2.auth_set_idx,g.sort_no,g.auth_type_idx
   </insert>
   
+  <insert id="insertAuthGroupDefaultForNextYear" parameterType="org.ohjic.mem.vo.YearVo">
+  insert into ${church}.auth_group (auth_set_idx, sort_no, auth_type_idx, value)
+	select c.auth_set_idx, b.sort_no, b.auth_type_idx, b.value from ${church}.auth_set a
+	inner join ${church}.auth_group b on a.auth_set_idx=b.auth_set_idx
+	inner join ${church}.auth_set c on a.auth_category_idx=c.auth_category_idx and a.auth_set_kind=c.auth_set_kind and c.group_no is null and c.year=#{nextYear}
+	where a.year=#{year} and a.group_no is null
+  </insert>
+  
   <delete id="deleteNextYearAuthGroup" parameterType="org.ohjic.mem.vo.YearVo">
-  delete from ${church}.auth_group 
-  where auth_set_idx in (select auth_set_idx from ${church}.auth_set where year=#{nextYear} and k_part=#{kPartIdx})
+  delete a from ${church}.auth_group a
+	inner join ${church}.auth_set b on a.auth_set_idx=b.auth_set_idx
+	where b.year=#{nextYear} and b.k_part=#{kPartIdx}
+  </delete>
+  
+  <delete id="deleteNextYearAuthGroupDefault" parameterType="org.ohjic.mem.vo.YearVo">
+  delete a from ${church}.auth_group a
+	inner join ${church}.auth_set b on a.auth_set_idx=b.auth_set_idx
+	where b.year=#{nextYear} and b.k_part=0 and b.group_no is null
   </delete>
 </mapper>

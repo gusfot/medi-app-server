@@ -1,7 +1,9 @@
 package org.ohjic.mem.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.ohjic.mem.common.Constants;
 import org.ohjic.mem.dao.AuthGroupMapper;
 import org.ohjic.mem.dao.AuthInChargeMapper;
 import org.ohjic.mem.dao.AuthSetMapper;
@@ -12,6 +14,9 @@ import org.ohjic.mem.dao.KgroupMapper;
 import org.ohjic.mem.dao.KgrouplogMapper;
 import org.ohjic.mem.dao.NextYearSettingStatusMapper;
 import org.ohjic.mem.dao.WorshipgroupMapper;
+import org.ohjic.mem.model.AuthGroup;
+import org.ohjic.mem.model.AuthInCharge;
+import org.ohjic.mem.model.AuthSet;
 import org.ohjic.mem.model.Churchinfo;
 import org.ohjic.mem.model.NextYearSettingStatus;
 import org.ohjic.mem.service.NextYearSettingService;
@@ -23,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -61,36 +67,66 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 	private KPartMapper kPartMapper;
 	
 	
-	@Transactional
+//	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	@Override
-	public boolean createNextYear(int churchCode, int standardYear, int managerIdx, List<Integer> kPartIdxList) {
+	public boolean createNextYear(int churchCode, int standardYear, String standardDate, String startDate, String endDate, int managerIdx, List<Integer> kPartIdxList) throws BadSqlGrammarException, Exception {
 		
-		boolean result =false;
+		boolean result = false;
+		String jobResult = Constants.JOB_STARTED;
+		
+		logger.info("church_code:{} next year setting started......", churchCode);
 		
 		try {
-			this.createNextYearKGroup(churchCode, standardYear, kPartIdxList );
-			this.createNextYearGroupInfo(churchCode, standardYear, kPartIdxList );
-			this.createNextYearKGroupLog(churchCode, standardYear, kPartIdxList );
-			this.createNextYearAuth(churchCode, standardYear, kPartIdxList);
-			this.createNextYearWorship(churchCode, standardYear, kPartIdxList);
 			
-			updateNextYearSettingStatus(churchCode, standardYear, managerIdx, kPartIdxList, "Y");
+			this.updateNextYearSettingStatus(churchCode, standardYear, managerIdx, kPartIdxList, jobResult);
+			
+			createNextYear(churchCode, standardYear, standardDate, startDate, endDate, kPartIdxList);
 			
 			result = true;
-		}catch(BadSqlGrammarException bge) {
-			logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-			logger.debug("this kyo"+churchCode+" database does not exist.... : " + bge.getMessage());
-			logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		}catch(Exception e) {
-			logger.debug("[createNextYear]unkown error:" + e.getMessage());
+			jobResult = Constants.JOB_FINISHED;
 			
+		} catch (Exception e) {
+			
+			jobResult = Constants.JOB_FAILED;
+			e.printStackTrace();
+			logger.error(e.getMessage());
+			
+		} finally{
+			
+			this.updateNextYearSettingStatus(churchCode, standardYear, managerIdx, kPartIdxList, jobResult);	
 		}
+		
+		logger.info("church_code: {} next year setting started......", churchCode);
+				
 		return result;
 		
 	}
 
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	private void createNextYear(int churchCode, int standardYear, String standardDate, String startDate, String endDate,
+			List<Integer> kPartIdxList) throws Exception {
+		
+		for (Integer kPartIdx : kPartIdxList) {
+			
+			logger.info("churchCode({})'s kPartIdx({}) is started ", churchCode, kPartIdx);
+			
+			List<Integer> kParts = new ArrayList<>();
+			kParts.add(kPartIdx);
+			
+			this.createNextYearKGroup(churchCode, standardYear, standardDate, startDate, endDate, kParts );
+			this.createNextYearGroupInfo(churchCode, standardYear, kParts );
+			this.createNextYearKGroupLog(churchCode, standardYear, standardDate, startDate, endDate, kParts );
+			this.createNextYearAuth(churchCode, standardYear, standardDate, kParts);
+			this.createNextYearWorship(churchCode, standardYear, kParts);
+			
+			logger.info("churchCode({})'s kPartIdx({}) is finished ", churchCode, kPartIdx);
+			
+		}
+		
+	}
+
 	@Override
-	public Object createNextYearGroupInfo(int churchCode, int standardYear, List<Integer> kPartIdxList) {
+	public Object createNextYearGroupInfo(int churchCode, int standardYear, List<Integer> kPartIdxList) throws Exception{
 		
 		for (int kPartIdx : kPartIdxList) {
 			YearVo yearVo = new YearVo();
@@ -105,14 +141,15 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 	}
 
 
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	private void updateNextYearSettingStatus(int churchCode, int standardYear, int managerIdx, List<Integer> kPartIdxList, String status) {
 		
 		for (Integer kPartIdx : kPartIdxList) {
 			
 			NextYearSettingStatus record = new NextYearSettingStatus();
 			record.setChurchCode(churchCode);
-			record.setkPartIdx(1);
-			record.setManagerIdx(1);
+			record.setkPartIdx(kPartIdx);
+			record.setManagerIdx(managerIdx);
 			record.setYear(standardYear);
 			record.setStatus(status);
 			
@@ -166,14 +203,19 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 
 	@Transactional
 	@Override
-	public Object createNextYearKGroup(int churchCode, int standardYear) {
+	public Object createNextYearKGroup(int churchCode, int standardYear, String standardDate, String startDate, String endDate) {
 		
 		YearVo yearVo = new YearVo();
 		yearVo.setChurchCode(churchCode);
 		yearVo.setYear(standardYear);
+		yearVo.setStandardDate(standardDate);
+		yearVo.setStartDate(standardDate);
+		yearVo.setEndDate(standardDate);
+		
 		int result = kGroupMapper.insertNextYearKgroupByYear(yearVo);
 		
 		for (int i = 1; i < 6; i++) {
+			
 			DepthVo depthVo = new DepthVo();
 			depthVo.setChurchCode(churchCode);
 			depthVo.setYear(standardYear);
@@ -187,19 +229,23 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 	}
 
 	@Override
-	public Object createNextYearKGroup(int churchCode, int standardYear, int kPartIdx) {
+	public Object createNextYearKGroup(int churchCode, int standardYear, String standardDate, String startDate, String endDate, int kPartIdx) {
 		
 		YearVo yearVo = new YearVo();
 		yearVo.setChurchCode(churchCode);
 		yearVo.setYear(standardYear);
 		yearVo.setkPartIdx(kPartIdx);
+		yearVo.setStandardDate(standardDate);
+		yearVo.setStartDate(startDate);
+		yearVo.setEndDate(endDate);
+		
 		int result = kGroupMapper.insertNextYearKgroupByYear(yearVo);
 		
 		return null;
 	}
 
 	@Override
-	public Object createNextYearKGroup(int churchCode, int standardYear, List<Integer> kPartIdxList) {
+	public Object createNextYearKGroup(int churchCode, int standardYear, String standardDate, String startDate , String endDate, List<Integer> kPartIdxList)  throws Exception{
 		
 		for (int kPartIdx : kPartIdxList) {
 			
@@ -207,6 +253,10 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 			yearVo.setChurchCode(churchCode);
 			yearVo.setYear(standardYear);
 			yearVo.setkPartIdx(kPartIdx);
+			yearVo.setStandardDate(standardDate);
+			yearVo.setStartDate(startDate);
+			yearVo.setEndDate(endDate);
+			
 			int result = kGroupMapper.insertNextYearKgroupByYear(yearVo);
 			
 			// depth1~depth5
@@ -227,11 +277,14 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 	}
 
 	@Override
-	public Object createNextYearKGroupLog(int churchCode, int standardYear) {
+	public Object createNextYearKGroupLog(int churchCode, int standardYear, String standardDate, String startDate, String endDate) {
 		
 		YearVo yearVo = new YearVo();
 		yearVo.setChurchCode(churchCode);
 		yearVo.setYear(standardYear);
+		yearVo.setStandardDate(standardDate);
+		yearVo.setStartDate(startDate);
+		yearVo.setEndDate(endDate);
 		
 		int result = kGroupLogMapper.insertNextYearKgrouplogByYear(yearVo);
 		
@@ -251,12 +304,16 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 	}
 
 	@Override
-	public Object createNextYearKGroupLog(int churchCode, int standardYear, int kPartIdx) {
+	public Object createNextYearKGroupLog(int churchCode, int standardYear, String standardDate, String startDate, String endDate, int kPartIdx) {
 
 		YearVo yearVo = new YearVo();
 		yearVo.setChurchCode(churchCode);
 		yearVo.setYear(standardYear);
 		yearVo.setkPartIdx(kPartIdx);
+		yearVo.setStandardDate(standardDate);
+		yearVo.setStartDate(startDate);
+		yearVo.setEndDate(endDate);
+		
 		int result = kGroupLogMapper.insertNextYearKgrouplogByYear(yearVo);
 		
 		// depth1~depth5
@@ -273,13 +330,17 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 	}
 
 	@Override
-	public Object createNextYearKGroupLog(int churchCode, int standardYear, List<Integer> kPartIdxList) {
+	public Object createNextYearKGroupLog(int churchCode, int standardYear, String standardDate, String startDate, String endDate, List<Integer> kPartIdxList) throws Exception{
 		
 		for (int kPartIdx : kPartIdxList) {
 			YearVo yearVo = new YearVo();
 			yearVo.setChurchCode(churchCode);
 			yearVo.setYear(standardYear);
 			yearVo.setkPartIdx(kPartIdx);
+			yearVo.setStandardDate(standardDate);
+			yearVo.setStartDate(startDate);
+			yearVo.setEndDate(endDate);
+			
 			int result = kGroupLogMapper.insertNextYearKgrouplogByYear(yearVo);
 			
 			// depth1~depth5
@@ -319,6 +380,8 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 		
 		return null;
 	}
+	
+	
 
 	@Override
 	public Object createNextYearWorship(int churchCode, int standardYear) {
@@ -361,26 +424,62 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 	}
 
 	@Override
-	public Object createNextYearAuth(int churchCode, int standardYear, List<Integer> kPartIdxList) {
+	public Object createNextYearAuth(int churchCode, int standardYear, String standardDate, List<Integer> kPartIdxList) throws Exception {
+		
+		YearVo yearVo = new YearVo();
+		yearVo.setChurchCode(churchCode);
+		yearVo.setYear(standardYear);
+		yearVo.setStandardDate(standardDate);
+
 		
 		for (int kPartIdx : kPartIdxList) {
 			
-			YearVo yearVo = new YearVo();
-			yearVo.setChurchCode(churchCode);
-			yearVo.setYear(standardYear);
 			yearVo.setkPartIdx(kPartIdx);
 			
 			int authSetGroupResult = authSetMapper.insertAuthSetForGroup(yearVo);
-			int authSetDefaultResult = authSetMapper.insertAuthSetForDefault(yearVo);
+			
 			int authInChargeResult = authInChargeMapper.insertAuthInChargeForNextYear(yearVo);
-			int authGroupresult = authGroupMapper.insertAuthGroupForNextYear(yearVo);
+			int authGroupResult = authGroupMapper.insertAuthGroupForNextYear(yearVo);
+			
+			List<AuthSet> results = authSetMapper.selectAuthSetListForAuthInCharge(yearVo);
+			
+			for (AuthSet authSet : results) {
+				
+				authSet.setChurchCode(churchCode);
+				authSet.setAuthSetIdx(null);
+				authSet.setYear(yearVo.getNextYear());
+				authSetMapper.insertSelective(authSet);
+				
+				Integer newAuthSetIdx = authSet.getAuthSetIdx();
+				List<AuthInCharge> authInChargeList = authSet.getAuthInChargeList();
+				
+				for (AuthInCharge authInCharge : authInChargeList) {
+					authInCharge.setAuthInChargeIdx(null);
+					authInCharge.setAuthSetIdx(newAuthSetIdx);
+					authInCharge.setChurchCode(churchCode);
+					authInChargeMapper.insertSelective(authInCharge);
+				}
+
+				
+				List<AuthGroup> authGroupList = authSet.getAuthGroupList();
+				
+				for (AuthGroup authGroup : authGroupList) {
+					authGroup.setAuthSetIdx(newAuthSetIdx);
+					authGroup.setChurchCode(churchCode);
+					authGroupMapper.insertSelective(authGroup);
+				}
+			}
 		}
+		
+
+		
+		
 		
 		return null;
 	}
 
 	@Override
-	public Object createNextYearWorship(int churchCode, int standardYear, List<Integer> kPartIdxList) {
+	public Object createNextYearWorship(int churchCode, int standardYear, List<Integer> kPartIdxList) throws Exception{
 		
 		for (int kPartIdx : kPartIdxList) {
 			YearVo yearVo = new YearVo();
@@ -411,17 +510,26 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 	@Override
 	public Object resetNextYearAuth(int churchCode, int standardYear, List<Integer> kPartIdxList) {
 		
+		YearVo yearVo = new YearVo();
+		yearVo.setChurchCode(churchCode);
+		yearVo.setYear(standardYear);
+		
 		for (int kPartIdx : kPartIdxList) {
 			
-			YearVo yearVo = new YearVo();
-			yearVo.setChurchCode(churchCode);
-			yearVo.setYear(standardYear);
 			yearVo.setkPartIdx(kPartIdx);
 			
-			authInChargeMapper.deleteNextYearAuthInCharge(yearVo);
-			authGroupMapper.deleteNextYearAuthGroup(yearVo);
-			authSetMapper.deleteNextYearAuthSet(yearVo);
+			//authInChargeMapper.deleteNextYearAuthInCharge(yearVo);
+			//authGroupMapper.deleteNextYearAuthGroup(yearVo);
+			//authSetMapper.deleteNextYearAuthSet(yearVo);
+			
+			authSetMapper.deleteAuthSetAndAuthGroupAndAuthInCharge(yearVo);
+			authSetMapper.deleteAuthSetAndAuthGroup(yearVo);
 		}
+		
+		yearVo.setkPartIdx(0);
+		authSetMapper.deleteNextYearAuthSet(yearVo);
+		
+		
 		return null;
 	}
 
@@ -447,4 +555,6 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 		yearVo.setChurchCode(churchCode);
 		return kPartMapper.selectActiveKPartList(yearVo);
 	}
+
+
 }

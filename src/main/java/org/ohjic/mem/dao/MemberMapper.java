@@ -3,6 +3,7 @@ package org.ohjic.mem.dao;
 import org.apache.ibatis.annotations.Param;
 import org.ohjic.mem.model.Member;
 import org.ohjic.mem.model.MemberWithBLOBs;
+import org.ohjic.mem.vo.TidsVo;
 
 public interface MemberMapper {
 
@@ -49,4 +50,6 @@ public interface MemberMapper {
 	int updateByPrimaryKey(Member record);
 
 	Member selectMemberByMemberNameAndMemberNameDistinct(@Param("memberName") String memberName, @Param("memberNameDistinct") String memberNameDistinct);
+	
+	Member selectLatestMemberByTids(TidsVo vo);
 }

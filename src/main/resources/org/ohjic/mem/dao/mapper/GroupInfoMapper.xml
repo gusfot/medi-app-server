@@ -314,7 +314,7 @@
 		#{nextYear} year, x.no group_no, group_type, age_band, meeting_day, meeting_time, meeting_time_text, meeting_place, meeting_place_text, meeting_area, free_item1, free_item2, free_item3, free_item4, free_item5, free_item6, free_item7, free_item8, free_item9 
 	from ${church}.kGroup x  inner join (
 		select b.depth1_name, b.depth2_name, b.depth3_name, b.depth4_name, b.depth5_name, a.*  from ${church}.group_info a 
-		inner join ${church}.kGroup b on a.group_no=b.`no` and b.year=2016
+		inner join ${church}.kGroup b on a.group_no=b.`no` and b.year=#{year}
 		inner join ${church}.k_part c on b.k_part_idx=c.k_part_idx and c.active=1
 		where a.year=#{year}
 		) y on x.depth1_name=y.depth1_name and x.depth2_name=y.depth2_name and x.depth3_name=y.depth3_name and x.depth4_name=y.depth4_name and x.depth5_name=y.depth5_name

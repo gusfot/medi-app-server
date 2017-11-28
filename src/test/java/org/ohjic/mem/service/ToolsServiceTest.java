@@ -30,7 +30,7 @@ import com.google.gson.Gson;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
-		"file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_live.xml" })
+		"file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_local.xml" })
 public class ToolsServiceTest {
 
 	@Autowired
@@ -77,7 +77,8 @@ public class ToolsServiceTest {
 //		Integer churchCode = 3881; // 혜현교회-3881
 //		Integer churchCode = 4707; // 송파사랑의교회-4707
 //		Integer churchCode = 6819; // 신갈중앙교회-6819
-		Integer churchCode = 6842; // 수원동산교회 6842
+//		Integer churchCode = 6842; // 수원동산교회 6842
+		Integer churchCode = 7253; // 김천성화교회-7252 김천성화교회-7253
 		
 
 		boolean isFree = true; // 무료 사용여부
@@ -138,7 +139,10 @@ public class ToolsServiceTest {
 //		Integer churchCode = 3287; // 남현교회-3287
 //		Integer churchCode = 6734; // 대전제자들교회-6734
 //		Integer churchCode = 2727; // 효성영광교회-2727
-		Integer churchCode = 6425; // 동암교회-6425
+//		Integer churchCode = 6425; // 동암교회-6425
+//		Integer churchCode = 7274; // 마포중앙교회 7274
+//		Integer churchCode = 7276; // 신천교회 7274
+		Integer churchCode = 7306; // 천안중부교회 7306
 
 		toolsService.readjustFamily(churchCode);
 
@@ -165,7 +169,7 @@ public class ToolsServiceTest {
 	@Test
 	public void testReadjustEduCount() {
 
-		Integer churchCode = 5814;
+		Integer churchCode = 7276;
 		boolean result = toolsService.readjustEduCount(churchCode);
 
 		assertTrue(result);
@@ -228,7 +232,7 @@ public class ToolsServiceTest {
 		 * 이준영(oryun4825 ), 교회번호로 문자인증 요청, 024854004 / 이름:오륜교회
 		 * 울산대영교회 , 전화번호:052-288-1771,  권원식(holysky23),김명규(kimmg),김성태(elkaime),양형모(chong3824),서동혁(seawind7),이형욱(dasa1882),박은석(dmstjr2104)
 		 */
-		String churchNam = "울산대영교회";
+		/*String churchNam = "울산대영교회";
 		String churchPhoneNumber = "052-288-1771".replace("-", "");
 		List<String> userIdList = new ArrayList<>();
 		userIdList.add("holysky23");
@@ -238,6 +242,11 @@ public class ToolsServiceTest {
 		userIdList.add("seawind7");
 		userIdList.add("dasa1882");
 		userIdList.add("dmstjr2104");
+*/
+		String churchNam = "새롬교회";
+		String churchPhoneNumber = "031-394-9183".replace("-", "");
+		List<String> userIdList = new ArrayList<>();
+		userIdList.add("woo1409");
 
 		boolean result = toolsService.authSmsForChurch(churchNam, churchPhoneNumber, userIdList);
 
@@ -261,7 +270,8 @@ public class ToolsServiceTest {
 	public void testGenerateKyoEncryptedPassword() {
 
 //		String plain = "1111"; // e12c1a24d4a6e91609a3f89a753c9361
-		String plain = "1234"; // 2379ae4a8c79ec840b5298706094d134
+//		String plain = "1234"; // 2379ae4a8c79ec840b5298706094d134
+		String plain = "!@calling"; // 2379ae4a8c79ec840b5298706094d134
 		
 		String result = toolsService.generateKyoEncryptedPassword(plain);
 		System.out.println("generated password: " + result);
@@ -746,7 +756,10 @@ public class ToolsServiceTest {
 //		Integer churchCode = 6811; // 금천선교교회-6811
 //		Integer churchCode = 6838; // 대전예은교회-6838
 //		Integer churchCode = 6778; // 예일교회-6778
-		Integer churchCode = 6851; // 도암교회 6851
+//		Integer churchCode = 6851; // 도암교회 6851
+//		Integer churchCode = 7310; // 에덴교회-7310
+//		Integer churchCode = 7276; // 신천교회-7276
+		Integer churchCode = 7304; // 낮은마음교회-7304
 
 
 		GOODS goods = GOODS.smart_call;

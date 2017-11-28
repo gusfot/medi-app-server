@@ -36,7 +36,7 @@ public class MainController {
 		RestResponse res = new RestResponse();
 		res.setSuccess(true);
 		res.setResCode(ResponseCode.SUCCESS);
-		res.setData("welcome member_api of ohjic!");
+		res.setData("welcome member_api of ohjic!1");
 
 		return res;
 	}

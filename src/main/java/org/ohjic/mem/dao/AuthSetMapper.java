@@ -1,5 +1,7 @@
 package org.ohjic.mem.dao;
 
+import java.util.List;
+
 import org.ohjic.mem.model.AuthSet;
 import org.ohjic.mem.vo.YearVo;
 
@@ -46,4 +48,10 @@ public interface AuthSetMapper {
 	int insertAuthSetForDefault(YearVo yearVo);
 
 	int deleteNextYearAuthSet(YearVo yearVo);
+	
+	List<AuthSet> selectAuthSetListForAuthInCharge(YearVo yearVo);
+	
+	int deleteAuthSetAndAuthGroup(YearVo yearVo);
+	
+	int deleteAuthSetAndAuthGroupAndAuthInCharge(YearVo yearVo);
 }

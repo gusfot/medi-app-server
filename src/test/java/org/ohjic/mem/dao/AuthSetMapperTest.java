@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.ohjic.mem.model.AuthSet;
 import org.ohjic.mem.model.Kgroup;
 import org.ohjic.mem.model.KgroupKey;
 import org.ohjic.mem.vo.DepthVo;
@@ -39,7 +40,7 @@ public class AuthSetMapperTest {
 	@Test
 	public void testInsertAuthSetForDefault() {
 		Integer churchCode = 6;
-		Integer year =2016;
+		Integer year =2017;
 		
 		YearVo yearVo = new YearVo();
 		yearVo.setChurchCode(churchCode);
@@ -47,6 +48,29 @@ public class AuthSetMapperTest {
 		int result = authSetMapper.insertAuthSetForDefault(yearVo );
 		
 		assertTrue(result>0);
+
+	}
+	
+	@Test
+	public void testSelectAuthSetListForAuthInCharge() {
+		
+		Integer churchCode = 6037;
+		Integer year =2017;
+		Integer kPartIdx = 1;
+		
+		YearVo yearVo = new YearVo();
+		yearVo.setChurchCode(churchCode);
+		yearVo.setYear(year);
+		yearVo.setkPartIdx(kPartIdx);
+		List<AuthSet> results = authSetMapper.selectAuthSetListForAuthInCharge(yearVo);
+		 
+		 System.out.println("AuthSet Size: " + results.size());
+		 for (AuthSet authSet : results) {
+			 System.out.println(authSet.getAuthSetIdx());
+			 System.out.println(authSet.getAuthGroupList().size());
+		}
+		
+		assertTrue(results!=null);
 
 	}
 	

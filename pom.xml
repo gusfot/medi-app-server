@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.ohjic.mem</groupId>
-	<name>flasystem</name>
+	<name>member-api</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -19,7 +19,36 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.test.skip>true</maven.test.skip>
 		<ohjic.repo.public.url>http://repo.qfun.kr/repository/maven-public</ohjic.repo.public.url>
+		<deploy.target.dir>c:/member-api/${env}</deploy.target.dir>
 	</properties>
+	
+	<profiles>
+		<profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env>local</env>
+            </properties>
+        </profile>
+        <!-- development -->
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+        </profile>
+        <!-- product -->
+        <profile>
+            <id>product</id>
+            <properties>
+                <env>product</env>
+            </properties>
+        </profile>
+
+    </profiles>
+    
 	<dependencies>
 
 		<!-- Spring -->
@@ -118,11 +147,18 @@
 		</dependency>
 				
 		<!-- Servlet -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
+			<version>3.1.0</version>
 			<scope>provided</scope>
+		</dependency>
+		 -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>3.1.0</version>
+		    <scope>provided</scope>
 		</dependency>
 		
 		<!-- jsp-api -->
@@ -298,6 +334,13 @@
 		    <artifactId>jrobin</artifactId>
 		    <version>1.5.9</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-resources-plugin</artifactId>
+		    <version>2.4.3</version>
+		</dependency>
+		
 	</dependencies>
 	<!-- 
 	<repositories>
@@ -314,6 +357,23 @@
 	</repositories> 
 	-->
     <build>
+   		<resources>
+			<resource>
+				<!-- src/main/resources 폴더의 xml, properties, setting파일들을 빌드에 포함 -->
+				<directory>src/main/resources</directory>
+				<!-- 
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+					<include>**/*.setting</include>
+				</includes>
+				 -->
+			</resource>
+			 <resource>
+                <directory>src/main/resources-${env}</directory>
+            </resource>
+		</resources>
+		
         <plugins>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>
@@ -341,6 +401,73 @@
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<outputDirectory>${deploy.target.dir}</outputDirectory>
+					<archive>
+						<index>true</index>
+						<manifest>
+							<mainClass>com.ohjic.batch.App</mainClass>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+              </plugin>
+             <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-dependency-plugin</artifactId>
+	            <version>2.3</version>
+	            <executions>
+	                <execution>
+	                    <id>copy-dependencies</id>
+	                    <phase>package</phase>
+	                    <goals>
+	                        <goal>copy-dependencies</goal>
+	                    </goals>
+	                </execution>
+	            </executions>
+	            <configuration>
+	                <outputDirectory>${deploy.target.dir}/lib</outputDirectory>
+	                <overWriteIfNewer>true</overWriteIfNewer>
+	            </configuration>
+	        </plugin>
+	        <!-- jar 패포시 
+	        <plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-shade-plugin</artifactId>
+		        <version>2.4.3</version>
+		        <executions>
+		          <execution>
+		            <phase>package</phase>
+		            <goals>
+		              <goal>shade</goal>
+		            </goals>
+		            <configuration>
+		              <transformers>
+		                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+		                  <resource>META-INF/spring.handlers</resource>
+		                </transformer>
+		                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+		                  <resource>META-INF/spring.schemas</resource>
+		                </transformer>
+		              </transformers>
+		            </configuration>
+		          </execution>
+		        </executions>
+		      </plugin>
+		       -->
         </plugins>
     </build>
     <artifactId>member.api</artifactId>
