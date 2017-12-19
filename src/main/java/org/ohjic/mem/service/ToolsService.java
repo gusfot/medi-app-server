@@ -139,6 +139,8 @@ public interface ToolsService {
 	int removeChurchUserByRemovedManager(Kyo kyo);
 
 	int modifyFimMemberNameByMemberName(Kyo kyo);
+
+	Object getLatestChrstening(Kyo kyo);
 	
 }
 

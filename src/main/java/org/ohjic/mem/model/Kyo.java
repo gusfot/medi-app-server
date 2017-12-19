@@ -6,6 +6,12 @@ public class Kyo {
 	
 	private String church;
 
+	public Kyo() { }
+	
+	public Kyo(Integer churchCode) {
+		this.churchCode = churchCode;
+	}
+
 	public Integer getChurchCode() {
 		return churchCode;
 	}

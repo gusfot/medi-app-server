@@ -1414,4 +1414,8 @@
     </where>
    order by last_view desc limit 1
   </select>
+  
+  <select id="selectMemberList" parameterType="org.ohjic.mem.model.Kyo" resultMap="BaseResultMap">
+  select * from ${church}.member
+  </select>
 </mapper>

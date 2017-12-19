@@ -8,6 +8,44 @@
     <sqlMapGenerator targetPackage="org.ohjic.mem.dao.mapper" targetProject="member-api" />
     <javaClientGenerator targetPackage="org.ohjic.mem.dao" targetProject="member-api" type="XMLMAPPER" />
 
+
+    <table schema="ohjic" tableName="historyPgrade" enableSelectByExample="false" 
+    										 enableDeleteByExample="false" 
+    										 enableCountByExample="false"
+    										 enableUpdateByExample="false" 
+    										 selectByExampleQueryId="false">
+    	
+    	<columnOverride column="history_idx" property="historyIdx" />									 
+		<columnOverride column="p_grade_name" property="pGradeName" />
+		<columnOverride column="p_grade" property="pGrade" />
+		<columnOverride column="p_grade_date" property="pGradeDate" />
+		<columnOverride column="p_grade_minister" property="pGradeMinister" />
+		<columnOverride column="p_grade_church" property="pGradeChurch" />
+		<columnOverride column="managerNo" property="managerNo" />
+		<columnOverride column="reg_date" property="regDate" />
+		<columnOverride column="tid" property="tid" />
+
+    </table>
+    
+    <table schema="ohjic" tableName="historyChristening" enableSelectByExample="false" 
+    										 enableDeleteByExample="false" 
+    										 enableCountByExample="false"
+    										 enableUpdateByExample="false" 
+    										 selectByExampleQueryId="false">
+    	
+    	<columnOverride column="history_idx" property="historyIdx" />									 
+		<columnOverride column="christening_name" property="pGradeName" />
+		<columnOverride column="christening" property="christening" />
+		<columnOverride column="christening_date" property="christeningDate" />
+		<columnOverride column="christening_minister" property="christeningMinister" />
+		<columnOverride column="christening_church" property="christeningChurch" />
+		<columnOverride column="managerNo" property="managerNo" />
+		<columnOverride column="reg_date" property="regDate" />
+		<columnOverride column="tid" property="tid" />
+
+    </table>
+    
+<!-- 
     <table schema="ohjic" tableName="auth_in_charge" enableSelectByExample="false" 
     										 enableDeleteByExample="false" 
     										 enableCountByExample="false"
@@ -23,7 +61,6 @@
     </table>
 
     
-<!-- 
     
     <table schema="member" tableName="manager" enableSelectByExample="false" 
     										 enableDeleteByExample="false" 

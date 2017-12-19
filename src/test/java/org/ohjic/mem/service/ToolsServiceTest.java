@@ -30,7 +30,7 @@ import com.google.gson.Gson;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
-		"file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_local.xml" })
+		"file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_live.xml" })
 public class ToolsServiceTest {
 
 	@Autowired
@@ -71,15 +71,24 @@ public class ToolsServiceTest {
 
 		// Integer churchCode = 1523 ; // 기적의 감리교회(1523)
 		// Integer churchCode = 908 ; // 석천제일교회-908
-//		Integer churchCode = 6202; // 헤븐리터치-6202
-//		Integer churchCode = 5407; // 그십자가교회-5407
-//		Integer churchCode = 1238; // 천안대성교회-1238
-//		Integer churchCode = 3881; // 혜현교회-3881
-//		Integer churchCode = 4707; // 송파사랑의교회-4707
-//		Integer churchCode = 6819; // 신갈중앙교회-6819
-//		Integer churchCode = 6842; // 수원동산교회 6842
-		Integer churchCode = 7253; // 김천성화교회-7252 김천성화교회-7253
+		// Integer churchCode = 6202; // 헤븐리터치-6202
+		// Integer churchCode = 5407; // 그십자가교회-5407
+		// Integer churchCode = 1238; // 천안대성교회-1238
+		// Integer churchCode = 3881; // 혜현교회-3881
+		// Integer churchCode = 4707; // 송파사랑의교회-4707
+		// Integer churchCode = 6819; // 신갈중앙교회-6819
+		// Integer churchCode = 6842; // 수원동산교회 6842
+		// Integer churchCode = 7253; // 김천성화교회-7252 김천성화교회-7253
+		// Integer churchCode = 7318 ; // 김천성화교회-7252 김천성화교회-7253, 7318
+//		Integer churchCode = 1329; // 동주교회-1329
+//		Integer churchCode = 3049; // 사랑과평화교회-3049
 		
+//		Integer churchCode = 4018; // 좋은이웃교회-4018
+//		Integer churchCode = 2861; // 기륭한국교회-2861
+		Integer churchCode = 3519; // 북삼제일교회-3519
+
+
+
 
 		boolean isFree = true; // 무료 사용여부
 
@@ -88,61 +97,48 @@ public class ToolsServiceTest {
 	}
 
 	/**
-	 * 가족 관계 재설정
-	 * 		// Integer churchCode = 2393;
-		// Integer churchCode = 6233;
-		// Integer churchCode = 5291; // 장유대성교회
-//		 Integer churchCode = 3883; // 분당우리교회
-		// Integer churchCode = 6328; // 영복교회
-		// Integer churchCode = 6352; // 송내사랑의교회
-		// Integer churchCode = 6026; // 주안감리교회
-		// Integer churchCode = 6344; // 서북교회
-		// Integer churchCode = 6346; // 주님앞에 제일교회
-		// Integer churchCode = 3809; // 신도교회
-		// Integer churchCode = 1293; // 서석교회-1293
-		// Integer churchCode = 3986; // 목동반석교회-3986
-		// Integer churchCode = 6326; // 정원교회
-		// Integer churchCode = 6428; // 한사랑교회
-		// Integer churchCode = 6402; // 군산세광교회
-		// Integer churchCode = 5616; // 여의도순복음분당교회-5616
-		// Integer churchCode = 3814; // 하나사랑의교회-3814
-		// Integer churchCode = 6325; // 금성교회-6325
-		// Integer churchCode = 6515; // 서부제일교회6515
-		// Integer churchCode = 6515; // 서부제일교회6515
-		// Integer churchCode = 5291; // 장유대성교회-5291
-		// Integer churchCode = 3883; // 분당우리교회-3883
-		// Integer churchCode = 6329; // 서문교회-6329
-		// Integer churchCode = 6344; // 서북교회-6344
-		// Integer churchCode = 6506; // 부산제일교회-6506
-		// Integer churchCode = 6506; // 부산제일교회-6506
-		// Integer churchCode = 476; // 꿈꾸는교회-476
-		// Integer churchCode = 5818; // 평택침례교회-5818
-		// Integer churchCode = 3164; // 원천침례교회-3164
-		// Integer churchCode = 5626; // 수인중앙교회-5626
-		// Integer churchCode = 6451; // 신광남부교회-6451
-//		  Integer churchCode = 6535; // 부민교회-6535
-//		  Integer churchCode = 2393; // 새로남교회-2393
-//		  Integer churchCode = 3740; // 호산나교회-3740
-//			Integer churchCode = 5626; // 수인중앙교회-5626
-//			Integer churchCode = 3975; // 서울침례교회-3975
-//			Integer churchCode = 6736; // 신갈중앙교회-6736
-//			Integer churchCode = 6630; // 신갈중앙교회-6630
-			Integer churchCode = 6503; // 유성교회-6503
+	 * 가족 관계 재설정 // Integer churchCode = 2393; // Integer churchCode = 6233; //
+	 * Integer churchCode = 5291; // 장유대성교회 // Integer churchCode = 3883; //
+	 * 분당우리교회 // Integer churchCode = 6328; // 영복교회 // Integer churchCode =
+	 * 6352; // 송내사랑의교회 // Integer churchCode = 6026; // 주안감리교회 // Integer
+	 * churchCode = 6344; // 서북교회 // Integer churchCode = 6346; // 주님앞에 제일교회 //
+	 * Integer churchCode = 3809; // 신도교회 // Integer churchCode = 1293; //
+	 * 서석교회-1293 // Integer churchCode = 3986; // 목동반석교회-3986 // Integer
+	 * churchCode = 6326; // 정원교회 // Integer churchCode = 6428; // 한사랑교회 //
+	 * Integer churchCode = 6402; // 군산세광교회 // Integer churchCode = 5616; //
+	 * 여의도순복음분당교회-5616 // Integer churchCode = 3814; // 하나사랑의교회-3814 // Integer
+	 * churchCode = 6325; // 금성교회-6325 // Integer churchCode = 6515; //
+	 * 서부제일교회6515 // Integer churchCode = 6515; // 서부제일교회6515 // Integer
+	 * churchCode = 5291; // 장유대성교회-5291 // Integer churchCode = 3883; //
+	 * 분당우리교회-3883 // Integer churchCode = 6329; // 서문교회-6329 // Integer
+	 * churchCode = 6344; // 서북교회-6344 // Integer churchCode = 6506; //
+	 * 부산제일교회-6506 // Integer churchCode = 6506; // 부산제일교회-6506 // Integer
+	 * churchCode = 476; // 꿈꾸는교회-476 // Integer churchCode = 5818; //
+	 * 평택침례교회-5818 // Integer churchCode = 3164; // 원천침례교회-3164 // Integer
+	 * churchCode = 5626; // 수인중앙교회-5626 // Integer churchCode = 6451; //
+	 * 신광남부교회-6451 // Integer churchCode = 6535; // 부민교회-6535 // Integer
+	 * churchCode = 2393; // 새로남교회-2393 // Integer churchCode = 3740; //
+	 * 호산나교회-3740 // Integer churchCode = 5626; // 수인중앙교회-5626 // Integer
+	 * churchCode = 3975; // 서울침례교회-3975 // Integer churchCode = 6736; //
+	 * 신갈중앙교회-6736 // Integer churchCode = 6630; // 신갈중앙교회-6630 Integer
+	 * churchCode = 6503; // 유성교회-6503
 	 */
 	@Test
 	public void testReadustFamily() {
-		
-//		Integer churchCode = 6217; // 성지교회-6217
-//		Integer churchCode = 6326; // 정원교회-6326
-//		Integer churchCode = 6503; // 유성교회-6503	
-//		Integer churchCode = 6037; // 오병이어교회-6037	
-//		Integer churchCode = 3287; // 남현교회-3287
-//		Integer churchCode = 6734; // 대전제자들교회-6734
-//		Integer churchCode = 2727; // 효성영광교회-2727
-//		Integer churchCode = 6425; // 동암교회-6425
-//		Integer churchCode = 7274; // 마포중앙교회 7274
-//		Integer churchCode = 7276; // 신천교회 7274
-		Integer churchCode = 7306; // 천안중부교회 7306
+
+		// Integer churchCode = 6217; // 성지교회-6217
+		// Integer churchCode = 6326; // 정원교회-6326
+		// Integer churchCode = 6503; // 유성교회-6503
+		// Integer churchCode = 6037; // 오병이어교회-6037
+		// Integer churchCode = 3287; // 남현교회-3287
+		// Integer churchCode = 6734; // 대전제자들교회-6734
+		// Integer churchCode = 2727; // 효성영광교회-2727
+		// Integer churchCode = 6425; // 동암교회-6425
+		// Integer churchCode = 7274; // 마포중앙교회 7274
+		// Integer churchCode = 7276; // 신천교회 7274
+		// Integer churchCode = 7306; // 천안중부교회 7306
+//		Integer churchCode = 7307; // 천안중부교회 7307
+		Integer churchCode = 7343; // 드림교회 7343
 
 		toolsService.readjustFamily(churchCode);
 
@@ -169,7 +165,8 @@ public class ToolsServiceTest {
 	@Test
 	public void testReadjustEduCount() {
 
-		Integer churchCode = 7276;
+		// Integer churchCode = 7276;
+		Integer churchCode = 7307; // 천안중부교회 7307
 		boolean result = toolsService.readjustEduCount(churchCode);
 
 		assertTrue(result);
@@ -229,24 +226,87 @@ public class ToolsServiceTest {
 	public void testAuthSmsForChurch() {
 		/*
 		 * 관리자: 이준영(id:shalom7312 ), 교회번호로 문자인증 요청, 052-245-0091 / 이름:우정교회 관리자:
-		 * 이준영(oryun4825 ), 교회번호로 문자인증 요청, 024854004 / 이름:오륜교회
-		 * 울산대영교회 , 전화번호:052-288-1771,  권원식(holysky23),김명규(kimmg),김성태(elkaime),양형모(chong3824),서동혁(seawind7),이형욱(dasa1882),박은석(dmstjr2104)
+		 * 이준영(oryun4825 ), 교회번호로 문자인증 요청, 024854004 / 이름:오륜교회 울산대영교회 ,
+		 * 전화번호:052-288-1771,
+		 * 권원식(holysky23),김명규(kimmg),김성태(elkaime),양형모(chong3824),서동혁(seawind7),
+		 * 이형욱(dasa1882),박은석(dmstjr2104)
 		 */
-		/*String churchNam = "울산대영교회";
-		String churchPhoneNumber = "052-288-1771".replace("-", "");
-		List<String> userIdList = new ArrayList<>();
-		userIdList.add("holysky23");
-		userIdList.add("kimmg");
-		userIdList.add("elkaime");
-		userIdList.add("chong3824");
-		userIdList.add("seawind7");
-		userIdList.add("dasa1882");
-		userIdList.add("dmstjr2104");
-*/
-		String churchNam = "새롬교회";
+		/*
+		 * String churchNam = "울산대영교회"; String churchPhoneNumber =
+		 * "052-288-1771".replace("-", ""); List<String> userIdList = new
+		 * ArrayList<>(); userIdList.add("holysky23"); userIdList.add("kimmg");
+		 * userIdList.add("elkaime"); userIdList.add("chong3824");
+		 * userIdList.add("seawind7"); userIdList.add("dasa1882");
+		 * userIdList.add("dmstjr2104");
+		 */
+		/*String churchNam = "새롬교회";
 		String churchPhoneNumber = "031-394-9183".replace("-", "");
 		List<String> userIdList = new ArrayList<>();
-		userIdList.add("woo1409");
+		userIdList.add("woo1409");*/
+		
+		String churchNam = "오륜교회";
+		String churchPhoneNumber = "02-485-4004".replace("-", "");
+		List<String> userIdList = new ArrayList<>();
+		userIdList.add("jiwoon79");
+				userIdList.add("saltspirit");
+				userIdList.add("jusungha153");
+				userIdList.add("cummiedu");
+				userIdList.add("timothy223");
+				userIdList.add("woosrah");
+				userIdList.add("jjuros");
+				userIdList.add("hyunssalom");
+				userIdList.add("ehdwls20");
+				userIdList.add("oryun4825");
+				userIdList.add("ek9945");
+				userIdList.add("winkywinky");
+				userIdList.add("torks81");
+				userIdList.add("oryunth");
+				userIdList.add("passionyoo");
+				userIdList.add("sin9yak");
+				userIdList.add("oryun4877");
+				userIdList.add("pudoli1004");
+				userIdList.add("bjswotmd");
+				userIdList.add("godam42");
+				userIdList.add("teology");
+				userIdList.add("lovewhds");
+				userIdList.add("hoggie89");
+				userIdList.add("lxfedi");
+				userIdList.add("russia");
+				userIdList.add("girogoal");
+				userIdList.add("nx0408");
+				userIdList.add("kimeunho");
+				userIdList.add("minyrre");
+				userIdList.add("elisha531");
+				userIdList.add("recha2002");
+				userIdList.add("tomjoung");
+				userIdList.add("goal0487");
+				userIdList.add("adonairoy");
+				userIdList.add("sanbest");
+				userIdList.add("cyon1630");
+				userIdList.add("jongseda");
+				userIdList.add("paul-not");
+				userIdList.add("angelos1612");
+				userIdList.add("susan9377");
+				userIdList.add("limdy2435");
+				userIdList.add("siluanosm");
+				userIdList.add("dbfgma");
+				userIdList.add("vietnam");
+				userIdList.add("hephzibah0211");
+				userIdList.add("ggumjengi");
+				userIdList.add("martyr16");
+				userIdList.add("maru214");
+				userIdList.add("cjstkdghtn");
+				userIdList.add("m79child");
+				userIdList.add("coramdeojj");
+				userIdList.add("nikbad03");
+				userIdList.add("cyc3573");
+				userIdList.add("bbaggomi25");
+				userIdList.add("maheum");
+				userIdList.add("totalpraise");
+				userIdList.add("charismaij");
+				userIdList.add("tjchoi12");
+				userIdList.add("110527");
+
 
 		boolean result = toolsService.authSmsForChurch(churchNam, churchPhoneNumber, userIdList);
 
@@ -269,10 +329,12 @@ public class ToolsServiceTest {
 	@Test
 	public void testGenerateKyoEncryptedPassword() {
 
-//		String plain = "1111"; // e12c1a24d4a6e91609a3f89a753c9361
-//		String plain = "1234"; // 2379ae4a8c79ec840b5298706094d134
-		String plain = "!@calling"; // 2379ae4a8c79ec840b5298706094d134
-		
+		 //String plain = "1111"; // e12c1a24d4a6e91609a3f89a753c9361
+		// String plain = "1234"; // 2379ae4a8c79ec840b5298706094d134
+		//String plain = "!@calling"; // 2379ae4a8c79ec840b5298706094d134
+		 //String plain = "jesus213"; // e12c1a24d4a6e91609a3f89a753c9361
+		 String plain = "150917!!"; // e12c1a24d4a6e91609a3f89a753c9361
+
 		String result = toolsService.generateKyoEncryptedPassword(plain);
 		System.out.println("generated password: " + result);
 	}
@@ -695,39 +757,34 @@ public class ToolsServiceTest {
 	 * Integer churchCode = 6335; // 수원명성교회-6335, swms2 // Integer churchCode =
 	 * 6335; // 주님앞에제일교회-6346, jeil2033 // Integer churchCode = 6235; //
 	 * 안양중앙교회-6235, ajch2 // Integer churchCode = 6235; // 금성교회-6325, keumsung2
-	 * // Integer churchCode = 6389; // 현암교회-6389, hyunam2
-	 * 		// Integer churchCode = 6202; // 헤븐리터치-6202, htm06911
-//		Integer churchCode = 5561; // 연동교회-5561, ydplay2
-//		Integer churchCode = 3922; // 남군산교회-3922, ngs2
-//		Integer churchCode = 6537; // 이루는교회-6537, irnch2
-//		Integer churchCode = 6251; // 동은교회-6251, dongeunpeople1
-//		Integer churchCode = 4437; // 주내힘교회-4437, junahim_oc
-//		Integer churchCode = 6431; // 성심교회 6431, sungsim_oc  
-//		Integer churchCode = 6060; // 시민교회-6060, simin  
-//		Integer churchCode = 2350; // 성현교회-2350, seonghyunmc_oc
-//		Integer churchCode = 6518; // 군산사랑의교회-6518, gunsansarang_oc
-//		Integer churchCode = 6289; // 미담교회-6289, midam_oc
-//		Integer churchCode = 6402; // 군산세광교회-6402, kssk_oc
-//		Integer churchCode = 6661; // 검단중앙교회-6661
-//		Integer churchCode = 6173; // 함께하는교회-6173
-//		Integer churchCode = 6587; // 신현교회-6587
-//		Integer churchCode = 6793; // 부평남부교회 6793, npch_oc
-//		Integer churchCode = 6754; // 대흥교회-6754, daeheung_oc
-//		Integer churchCode = 2836; // 수지방주교회 2836 sjbj_oc
-//		Integer churchCode = 5375; // 에덴교회-5375, gasomun_oc
-//		Integer churchCode = 5375; // 에덴교회-5375, gasomun_oc
+	 * // Integer churchCode = 6389; // 현암교회-6389, hyunam2 // Integer churchCode
+	 * = 6202; // 헤븐리터치-6202, htm06911 // Integer churchCode = 5561; //
+	 * 연동교회-5561, ydplay2 // Integer churchCode = 3922; // 남군산교회-3922, ngs2 //
+	 * Integer churchCode = 6537; // 이루는교회-6537, irnch2 // Integer churchCode =
+	 * 6251; // 동은교회-6251, dongeunpeople1 // Integer churchCode = 4437; //
+	 * 주내힘교회-4437, junahim_oc // Integer churchCode = 6431; // 성심교회 6431,
+	 * sungsim_oc // Integer churchCode = 6060; // 시민교회-6060, simin // Integer
+	 * churchCode = 2350; // 성현교회-2350, seonghyunmc_oc // Integer churchCode =
+	 * 6518; // 군산사랑의교회-6518, gunsansarang_oc // Integer churchCode = 6289; //
+	 * 미담교회-6289, midam_oc // Integer churchCode = 6402; // 군산세광교회-6402, kssk_oc
+	 * // Integer churchCode = 6661; // 검단중앙교회-6661 // Integer churchCode =
+	 * 6173; // 함께하는교회-6173 // Integer churchCode = 6587; // 신현교회-6587 //
+	 * Integer churchCode = 6793; // 부평남부교회 6793, npch_oc // Integer churchCode
+	 * = 6754; // 대흥교회-6754, daeheung_oc // Integer churchCode = 2836; // 수지방주교회
+	 * 2836 sjbj_oc // Integer churchCode = 5375; // 에덴교회-5375, gasomun_oc //
+	 * Integer churchCode = 5375; // 에덴교회-5375, gasomun_oc
 	 * 
 	 */
 	@Test
 	public void testAddGoodsAttCheck() {
 
-//		Integer churchCode = 6734; // 대전제자들교회 6734, jejas_oc
-//		Integer churchCode = 6425; // 동암교회-6425, dongamchurch_oc
-//		Integer churchCode = 6503; // 유성교회-6503, yskmc_oc
-//		Integer churchCode = 6506; // 부산제일감리교회 6506
-//		Integer churchCode = 6319; // 서울중앙교회 6319, seouljungang_oc
-//		Integer churchCode = 6838; // 대전예은교회 6838, yeeunch_oc
-//		Integer churchCode = 6843; // 수원동산교회 6843, dsansarang_oc
+		// Integer churchCode = 6734; // 대전제자들교회 6734, jejas_oc
+		// Integer churchCode = 6425; // 동암교회-6425, dongamchurch_oc
+		// Integer churchCode = 6503; // 유성교회-6503, yskmc_oc
+		// Integer churchCode = 6506; // 부산제일감리교회 6506
+		// Integer churchCode = 6319; // 서울중앙교회 6319, seouljungang_oc
+		// Integer churchCode = 6838; // 대전예은교회 6838, yeeunch_oc
+		// Integer churchCode = 6843; // 수원동산교회 6843, dsansarang_oc
 		Integer churchCode = 6786; // 성암교회 6786, sa1967_oc
 
 		GOODS goods = GOODS.att_check;
@@ -741,25 +798,38 @@ public class ToolsServiceTest {
 	@Test
 	public void testAddGoodsSmartCall() {
 
-//		Integer churchCode = 3986; // 목동반석교회
-//		Integer churchCode = 4995; // 반포교회-4995
-//		Integer churchCode = 479; // 명성교회교회학교-479
-//		Integer churchCode = 6431; // 성심교회 6431
-//		Integer churchCode = 2350; // 성현교회-2350
-//		Integer churchCode = 6430; // 해운대제일교회-6430
-//		Integer churchCode = 6289; // 미담교회-6289
-//		Integer churchCode = 6754; // 대흥교회-6754
-//		Integer churchCode = 6672; // 영광교회-6672
-//		Integer churchCode = 601; // 해돋는교회-601
-//		Integer churchCode = 6778; // 예일교회 6778
-//		Integer churchCode = 6817; // 엘림교회 6817
-//		Integer churchCode = 6811; // 금천선교교회-6811
-//		Integer churchCode = 6838; // 대전예은교회-6838
-//		Integer churchCode = 6778; // 예일교회-6778
-//		Integer churchCode = 6851; // 도암교회 6851
-//		Integer churchCode = 7310; // 에덴교회-7310
-//		Integer churchCode = 7276; // 신천교회-7276
-		Integer churchCode = 7304; // 낮은마음교회-7304
+		// Integer churchCode = 3986; // 목동반석교회
+		// Integer churchCode = 4995; // 반포교회-4995
+		// Integer churchCode = 479; // 명성교회교회학교-479
+		// Integer churchCode = 6431; // 성심교회 6431
+		// Integer churchCode = 2350; // 성현교회-2350
+		// Integer churchCode = 6430; // 해운대제일교회-6430
+		// Integer churchCode = 6289; // 미담교회-6289
+		// Integer churchCode = 6754; // 대흥교회-6754
+		// Integer churchCode = 6672; // 영광교회-6672
+		// Integer churchCode = 601; // 해돋는교회-601
+		// Integer churchCode = 6778; // 예일교회 6778
+		// Integer churchCode = 6817; // 엘림교회 6817
+		// Integer churchCode = 6811; // 금천선교교회-6811
+		// Integer churchCode = 6838; // 대전예은교회-6838
+		// Integer churchCode = 6778; // 예일교회-6778
+		// Integer churchCode = 6851; // 도암교회 6851
+		// Integer churchCode = 7310; // 에덴교회-7310
+		// Integer churchCode = 7276; // 신천교회-7276
+		// Integer churchCode = 7304; // 낮은마음교회-7304
+		// Integer churchCode = 7313; // 생명나무교회 7313
+
+		// Integer churchCode = 7607; //천안중부교회 7607
+		// Integer churchCode = 7329; //CAM대학선교회 7329
+		// Integer churchCode = 7345; //하늘누림교회 7345
+//		Integer churchCode = 7368; // 스피릿교회-7368
+//		Integer churchCode = 7338; // 성산교회-7338
+//		Integer churchCode = 4325; // 대광교회-4325
+//		Integer churchCode = 7343; // 드림교회-7343
+//		Integer churchCode = 7424; // 북삼제일교회-7424
+		Integer churchCode = 4411; // 수원순복음교회-4411
+
+
 
 
 		GOODS goods = GOODS.smart_call;
@@ -1103,5 +1173,14 @@ public class ToolsServiceTest {
 		String fileName = "C:\\Users\\ohjic\\Documents\\ohjic_modified_userlist.txt";
 		toJsonFile(resultList, fileName);
 
+	}
+	
+	
+	@Test
+	public void testLatestChristening() {
+		
+		Integer churchCode = 3227;
+		Kyo kyo = new Kyo(churchCode);
+		toolsService.getLatestChrstening(kyo) ;
 	}
 }

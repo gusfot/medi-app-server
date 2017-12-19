@@ -12,17 +12,26 @@ import org.ohjic.mem.common.GOODS;
 import org.ohjic.mem.dao.CgroupMapper;
 import org.ohjic.mem.dao.ChurchinfoMapper;
 import org.ohjic.mem.dao.FinmemberMapper;
+import org.ohjic.mem.dao.HistorychristeningMapper;
+import org.ohjic.mem.dao.HistorypgradeMapper;
+import org.ohjic.mem.dao.MemberMapper;
 import org.ohjic.mem.dao.ToolsMapper;
 import org.ohjic.mem.model.Cgroup;
 import org.ohjic.mem.model.Churchinfo;
+import org.ohjic.mem.model.Historychristening;
 import org.ohjic.mem.model.Kyo;
+import org.ohjic.mem.model.Member;
+import org.ohjic.mem.model.MemberWithBLOBs;
 import org.ohjic.mem.service.ToolsService;
+import org.ohjic.mem.vo.TidVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.google.gson.Gson;
 
 @Service
 public class ToolsServiceImpl implements ToolsService {
@@ -461,6 +470,69 @@ public class ToolsServiceImpl implements ToolsService {
 	@Override
 	public int modifyFimMemberNameByMemberName(Kyo kyo) {
 		return toolsMapper.updateFimMemberNameByMemberName(kyo);
+	}
+
+	@Autowired
+	private MemberMapper memberMapper;
+	
+	@Autowired
+	private HistorypgradeMapper historypgradeMapper;
+	
+	@Autowired
+	private HistorychristeningMapper historychristeningMapper;
+	
+	@Override
+	public Object getLatestChrstening(Kyo kyo) {
+		
+		List<Member> members = memberMapper.selectMemberList(kyo);
+		
+		List<Integer> updatedTids = new ArrayList<>();
+		
+		for (Member member : members) {
+			
+			Integer tid = member.getTid();
+			TidVo tidVo = new TidVo();
+			tidVo.setChurchCode(kyo.getChurchCode());
+			tidVo.setTid(tid);
+			
+			List<Historychristening> historychristeningList = historychristeningMapper.selectHistorychristeningListByTid(tidVo);
+			
+			if(historychristeningList!=null && historychristeningList.size() > 0) {
+				
+				Historychristening lastestHistory = historychristeningList.get(0);
+				
+				if( (lastestHistory.getChristeningDate()!=null && member.getChristeningDate() !=null &&  lastestHistory.getChristeningDate().getTime() >  member.getChristeningDate().getTime() && lastestHistory.getChristeningDate().after(member.getChristeningDate()))  ||  (lastestHistory.getChristeningDate() != null && member.getChristeningDate() ==null) ) {
+					
+					System.out.println("member:" + member.getChristeningDate());
+					System.out.println("history:" + lastestHistory.getChristeningDate());	
+					
+					MemberWithBLOBs newMember = new MemberWithBLOBs();
+					newMember.setChurchCode(kyo.getChurchCode());
+					newMember.setChristeningDate(lastestHistory.getChristeningDate());
+					newMember.setChristeningName(lastestHistory.getChristeningName());
+					newMember.setChristening(lastestHistory.getChristening());
+					newMember.setChristeningMinister(lastestHistory.getChristeningMinister());
+					newMember.setChristeningChurch(lastestHistory.getChristeningChurch());
+					newMember.setTid(tid);
+					
+					memberMapper.updateByPrimaryKeySelective( newMember);
+					
+					updatedTids.add(tid);
+					
+				}else {
+					
+					
+				}
+				
+				
+			}
+		}
+		
+		String resultJson = new Gson().toJson(updatedTids);
+		System.out.println(resultJson);
+//		
+//		return toolsMapper.selectLatestHistoryChristening();
+		return null;
 	}
 
 }
