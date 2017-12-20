@@ -30,7 +30,7 @@ import com.google.gson.Gson;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
-		"file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_live.xml" })
+		"file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_local.xml" })
 public class ToolsServiceTest {
 
 	@Autowired
@@ -138,7 +138,9 @@ public class ToolsServiceTest {
 		// Integer churchCode = 7276; // 신천교회 7274
 		// Integer churchCode = 7306; // 천안중부교회 7306
 //		Integer churchCode = 7307; // 천안중부교회 7307
-		Integer churchCode = 7343; // 드림교회 7343
+//		Integer churchCode = 7343; // 드림교회 7343
+//		Integer churchCode = 7388; // 항동교회 7388
+		Integer churchCode = 7353; // 영신교회 7353
 
 		toolsService.readjustFamily(churchCode);
 
@@ -166,7 +168,8 @@ public class ToolsServiceTest {
 	public void testReadjustEduCount() {
 
 		// Integer churchCode = 7276;
-		Integer churchCode = 7307; // 천안중부교회 7307
+//		Integer churchCode = 7307; // 천안중부교회 7307
+		Integer churchCode = 7353; // 영신교회 7353
 		boolean result = toolsService.readjustEduCount(churchCode);
 
 		assertTrue(result);
@@ -333,7 +336,8 @@ public class ToolsServiceTest {
 		// String plain = "1234"; // 2379ae4a8c79ec840b5298706094d134
 		//String plain = "!@calling"; // 2379ae4a8c79ec840b5298706094d134
 		 //String plain = "jesus213"; // e12c1a24d4a6e91609a3f89a753c9361
-		 String plain = "150917!!"; // e12c1a24d4a6e91609a3f89a753c9361
+//		 String plain = "150917!!"; // e12c1a24d4a6e91609a3f89a753c9361
+		 String plain = "elcnjusa!@"; // 39b75cbd901465ec76166d89e84bbcc1
 
 		String result = toolsService.generateKyoEncryptedPassword(plain);
 		System.out.println("generated password: " + result);
