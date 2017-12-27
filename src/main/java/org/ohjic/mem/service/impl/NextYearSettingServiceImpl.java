@@ -80,7 +80,7 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 			
 			this.updateNextYearSettingStatus(churchCode, standardYear, managerIdx, kPartIdxList, jobResult);
 			
-			createNextYear(churchCode, standardYear, standardDate, startDate, endDate, kPartIdxList);
+			this.createNextYear(churchCode, standardYear, standardDate, startDate, endDate, kPartIdxList);
 			
 			result = true;
 			jobResult = Constants.JOB_FINISHED;
@@ -535,7 +535,7 @@ public class NextYearSettingServiceImpl implements NextYearSettingService{
 
 
 	@Override
-	public List<NextYearSettingStatusVo> getNextYearSettingStatus(int churchCode, int year) {
+	public List<NextYearSettingStatusVo> getNextYearSettingStatus(int churchCode, int year) throws java.sql.SQLSyntaxErrorException {
 		YearVo yearVo = new YearVo();
 		yearVo.setChurchCode(churchCode);
 		yearVo.setYear(year);

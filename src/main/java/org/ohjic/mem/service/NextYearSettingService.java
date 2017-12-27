@@ -1,5 +1,6 @@
 package org.ohjic.mem.service;
 
+import java.sql.SQLSyntaxErrorException;
 import java.util.List;
 
 import org.ohjic.mem.model.Churchinfo;
@@ -118,7 +119,7 @@ public interface NextYearSettingService {
 
 	Object resetNextYearAuth(int churchCode, int standardYear, List<Integer> kPartIdxList);
 
-	List<NextYearSettingStatusVo> getNextYearSettingStatus(int churchCode, int year);
+	List<NextYearSettingStatusVo> getNextYearSettingStatus(int churchCode, int year) throws SQLSyntaxErrorException;
 
 	Object createNextYearGroupInfo(int churchCode, int standardYear, List<Integer> kPartIdxList) throws Exception;
 

@@ -14,7 +14,10 @@ import java.util.Map;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ohjic.mem.model.Churchinfo;
+import org.ohjic.mem.service.impl.NextYearSettingServiceImpl;
 import org.ohjic.mem.vo.NextYearSettingStatusVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,27 +28,34 @@ import com.google.gson.Gson;
 
 @RunWith(SpringJUnit4ClassRunner.class) 
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
-								 "file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_dev.xml"})
+								 "file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_local.xml"})
 public class NextYearSettingServiceTest {
 
+	private static final Logger logger = LoggerFactory.getLogger(NextYearSettingServiceTest.class);
+	
 	@Autowired
 	private NextYearSettingService nextYearSettingService;
 	
 	@Test
 	public void testCreateNextYear() {
 
-		int churchCode = 6037;
+		int churchCode = 6011;
 		int standardYear = 2017;
 		int managerIdx =0;
-		String standardDate = "2017-11-01";
-		String startDate = "2017-12-01";
-		String endDate = "2018-11-30";
+		String standardDate = "2017-12-26";
+		String startDate = "2018-01-01";
+		String endDate = "2018-12-31";
 		
 		List<Integer> kPartIdxList = new ArrayList<>();
+//		kPartIdxList.add(1);
+//		kPartIdxList.add(2);
+//		kPartIdxList.add(3);
+//		kPartIdxList.add(4);
+		
 		kPartIdxList.add(1);
-		kPartIdxList.add(2);
-		kPartIdxList.add(3);
-		kPartIdxList.add(4);
+		kPartIdxList.add(7);
+		kPartIdxList.add(11);
+		kPartIdxList.add(12);
 		
 		try {
 			nextYearSettingService.createNextYear(churchCode, standardYear, standardDate, startDate, endDate, managerIdx, kPartIdxList);
@@ -62,14 +72,14 @@ public class NextYearSettingServiceTest {
 	@Test
 	public void testResetNextYear() {
 
-		int churchCode = 6037;
+		int churchCode = 6011;
 		int standardYear = 2017;
 		int managerIdx = 0;
 		List<Integer> kPartIdxList = new ArrayList<>();
 		kPartIdxList.add(1);
-		kPartIdxList.add(2);
-		kPartIdxList.add(3);
-		kPartIdxList.add(4);
+		kPartIdxList.add(7);
+		kPartIdxList.add(11);
+		kPartIdxList.add(12);
 		
 		nextYearSettingService.resetNextYear(churchCode, standardYear, managerIdx, kPartIdxList );
 		
@@ -78,7 +88,7 @@ public class NextYearSettingServiceTest {
 	@Test
 	public void testgetNextYearStatus() {
 
-		int year = 2016;
+		int year = 2017;
 		
 		List<Churchinfo> churchInfoList = nextYearSettingService.getChurchInfoList();
 		List<Object> objList = new ArrayList<>();
@@ -99,8 +109,10 @@ public class NextYearSettingServiceTest {
 					}
 				}
 				
-			}catch(Exception e) {
-				
+			}catch(SQLSyntaxErrorException e) {
+				logger.error("##########################################################" );
+				logger.error("churchCode not exsited.......{}..............", churchCode);
+				logger.error("##########################################################" );
 			}
 			
 		}
@@ -175,18 +187,18 @@ public class NextYearSettingServiceTest {
 	@Test
 	public void testCreateNextYearAllChurch() {
 
-		System.out.println("====================================================================================================================================");
-		System.out.println("CreateNextYearSettings started....");
-		System.out.println("====================================================================================================================================");
+		logger.debug("====================================================================================================================================");
+		logger.debug("CreateNextYearSettings started....");
+		logger.debug("====================================================================================================================================");
 		
 		List<Integer> sucessResultList = new ArrayList<>();
 		List<Integer> failResultList = new ArrayList<>();
 		
-		int standardYear = 2016;
+		int standardYear = 2017;
 		int managerIdx = 0;
-		String standardDate = "2017-11-01";
-		String startDate = "2017-12-01";
-		String endDate = "2018-11-30";
+		String standardDate = "2017-12-26";
+		String startDate = "2018-01-01";
+		String endDate = "2018-12-31";
 		
 		List<Churchinfo> churchInfoList = nextYearSettingService.getChurchInfoList();
 		
@@ -194,13 +206,20 @@ public class NextYearSettingServiceTest {
 			
 			int churchCode = churchinfo.getChurchCode();
 			
-			if(churchCode!=6011) {	// 호산나교회예외처리
+			logger.info("------------------------------------------------------------------------------------------------------------------------------------");
+			logger.info("Church Code is [" + churchCode + "]");
+			logger.info("------------------------------------------------------------------------------------------------------------------------------------");
+			
+			if(excludChurch(churchCode)) {	
+				
 				try {
 					
 					boolean result = false;
 					
 					// 활성화된 k_part_idx 만 추출한다.
 					List<Integer> kPartIdxList = getKpartIdxList(standardYear, churchCode);
+					logger.debug("==> kPartIdxList size : " + kPartIdxList.size());
+					logger.debug("==> kPartIdxList      : " + kPartIdxList.toArray());
 					
 					if(kPartIdxList.size()>0) {
 						result = nextYearSettingService.createNextYear(churchCode, standardYear, standardDate, startDate, endDate, managerIdx, kPartIdxList );
@@ -212,9 +231,71 @@ public class NextYearSettingServiceTest {
 						failResultList.add(churchCode);
 						
 					}
+					
 				}catch (Exception e) {
 					failResultList.add(churchCode);
-					System.out.println(e.getMessage());
+					logger.error(e.getMessage());
+				}finally {
+					
+				}
+			}
+		}
+		
+		String sucessfileName = "C:\\Users\\ohjic\\Documents\\ohjic_2018_sucess.txt";
+		String failfileName = "C:\\Users\\ohjic\\Documents\\ohjic_2018_fail.txt";
+		toJsonFile(sucessResultList, sucessfileName );
+		toJsonFile(failResultList, failfileName );
+		
+		logger.info("====================================================================================================================================");
+		logger.info("CreateNextYearSettings finished....");
+		logger.info("====================================================================================================================================");
+		
+	}
+	
+	@Test
+	public void testResetNextYearAllChurch() {
+		
+		logger.info("====================================================================================================================================");
+		logger.info("ResetNextYearSettings started....");
+		logger.info("====================================================================================================================================");
+		
+		List<Integer> sucessResultList = new ArrayList<>();
+		List<Integer> failResultList = new ArrayList<>();
+		
+		int standardYear = 2017;
+		int managerIdx = 0;
+		
+		List<Churchinfo> churchInfoList = nextYearSettingService.getChurchInfoList();
+		
+		for (Churchinfo churchinfo : churchInfoList) {
+			
+			int churchCode = churchinfo.getChurchCode();
+			
+			if(excludChurch(churchCode)) {	
+				
+				try {
+					
+					boolean result = false;
+					
+					// 활성화된 k_part_idx 만 추출한다.
+					List<Integer> kPartIdxList = getKpartIdxList(standardYear, churchCode);
+					
+					logger.debug("kPartIdxList.size(): " + kPartIdxList.size());
+					
+					if(kPartIdxList.size()>0) {
+						result = nextYearSettingService.resetNextYear(churchCode, standardYear, managerIdx, kPartIdxList );
+					}
+					
+					if(result) {
+						sucessResultList.add(churchCode);
+					}else {
+						failResultList.add(churchCode);
+						
+					}
+					
+				}catch (Exception e) {
+					failResultList.add(churchCode);
+					logger.error(e.getMessage());
 				}
 			}
 		}
@@ -224,10 +305,15 @@ public class NextYearSettingServiceTest {
 		toJsonFile(sucessResultList, sucessfileName );
 		toJsonFile(failResultList, failfileName );
 		
-		System.out.println("====================================================================================================================================");
-		System.out.println("CreateNextYearSettings finished....");
-		System.out.println("====================================================================================================================================");
+		logger.info("====================================================================================================================================");
+		logger.info("ResetNextYearSettings finished....");
+		logger.info("====================================================================================================================================");
 		
+	}
+
+	private boolean excludChurch(int churchCode) {
+		boolean result = churchCode==479 || churchCode==4749 ? false: true;
+		return result;
 	}
 
 	/**
@@ -235,15 +321,16 @@ public class NextYearSettingServiceTest {
 	 * @param standardYear
 	 * @param churchCode
 	 * @return
+	 * @throws SQLSyntaxErrorException 
 	 */
-	private List<Integer> getKpartIdxList(int standardYear, int churchCode) {
+	private List<Integer> getKpartIdxList(int standardYear, int churchCode) throws SQLSyntaxErrorException {
 		
 		List<Integer> kPartIdxList = new ArrayList<>();
 		
 		List<NextYearSettingStatusVo> kPartList = nextYearSettingService.getNextYearSettingStatus(churchCode, standardYear);
 		
 		for (NextYearSettingStatusVo kPart : kPartList) {
-			if("N".equals(kPart.getStatus()) && kPart.getGroupCount() > 0 ) {
+			if("N".equals(kPart.getStatus()) && kPart.getOldGroupCount() > 0 ) {
 				kPartIdxList.add(kPart.getkPartIdx());
 			}
 		}

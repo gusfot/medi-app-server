@@ -30,7 +30,7 @@ import com.google.gson.Gson;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
-		"file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_local.xml" })
+		"file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_live.xml" })
 public class ToolsServiceTest {
 
 	@Autowired
@@ -85,8 +85,9 @@ public class ToolsServiceTest {
 		
 //		Integer churchCode = 4018; // 좋은이웃교회-4018
 //		Integer churchCode = 2861; // 기륭한국교회-2861
-		Integer churchCode = 3519; // 북삼제일교회-3519
-
+//		Integer churchCode = 3519; // 북삼제일교회-3519
+//		Integer churchCode = 5230; // 김천명성교회-5230
+		Integer churchCode = 1426; // 삼은대길교회-1426
 
 
 
@@ -337,7 +338,8 @@ public class ToolsServiceTest {
 		//String plain = "!@calling"; // 2379ae4a8c79ec840b5298706094d134
 		 //String plain = "jesus213"; // e12c1a24d4a6e91609a3f89a753c9361
 //		 String plain = "150917!!"; // e12c1a24d4a6e91609a3f89a753c9361
-		 String plain = "elcnjusa!@"; // 39b75cbd901465ec76166d89e84bbcc1
+//		 String plain = "elcnjusa!@"; // 39b75cbd901465ec76166d89e84bbcc1
+		 String plain = "87090600"; // 39b75cbd901465ec76166d89e84bbcc1
 
 		String result = toolsService.generateKyoEncryptedPassword(plain);
 		System.out.println("generated password: " + result);

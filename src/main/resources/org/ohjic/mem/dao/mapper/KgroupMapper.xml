@@ -432,7 +432,7 @@
 	<if test="depth == 5">
 	set a.depth5=a.no, a.depth1=b.no, a.depth2=c.no, a.depth3=d.no, a.depth4=e.no
 	</if>
-	where a.no <![CDATA[>]]> 0 and a.depth=#{depth} and a.year=#{nextYear}
+	where a.no <![CDATA[>]]> 0 and a.depth=#{depth} and a.year=#{nextYear} and a.k_part_idx = #{kPartIdx}
   </update>
   
   <insert id="deleteNextYearKgroup" parameterType="org.ohjic.mem.vo.YearVo">

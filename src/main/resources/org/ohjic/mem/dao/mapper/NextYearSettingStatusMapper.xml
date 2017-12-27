@@ -168,7 +168,7 @@
   </update>
   
   <insert id="insertNextYearSettingStatus" parameterType="org.ohjic.mem.model.NextYearSettingStatus">
-  insert into ohjic.next_year_setting_status (church_code, year, k_part_idx, status, manager_idx) 
+  insert ignore into ohjic.next_year_setting_status (church_code, year, k_part_idx, status, manager_idx) 
   values (#{churchCode}, #{year}, #{kPartIdx}, #{status}, #{managerIdx})
   on duplicate key update status=#{status}
   </insert>
@@ -177,7 +177,6 @@
     select 
     	a.k_part_idx kPartIdx
     	, k_part_name kPartName
-    	<!-- , if(b.status = 'Y' or c.k_part_idx is not null, 'Y', 'N') status -->
     	, case 
 			when b.status = 'P' then 'P'
 			when b.status = 'Y' OR c.k_part_idx IS NOT NULL then 'Y'
