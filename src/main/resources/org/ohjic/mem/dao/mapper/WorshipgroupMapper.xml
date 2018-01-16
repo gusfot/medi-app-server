@@ -68,7 +68,7 @@
   </insert>
   
   <insert id="insertWorshipGroupForNextYear" parameterType="org.ohjic.mem.vo.YearVo">
-  insert into ${church}.worshipGroup(year, groupNo, worshipCode, groupName)
+  insert ignore into ${church}.worshipGroup(year, groupNo, worshipCode, groupName)
 	select x.year, x.no groupNo, worshipCode, x.group_name groupName  from ${church}.kGroup x
 	inner join 
 	(select wg.year, wg.groupNo, worshipCode, group_name, k.k_part_idx, k.depth1_name, k.depth2_name, k.depth3_name, k.depth4_name, k.depth5_name, depth from ${church}.worshipGroup wg

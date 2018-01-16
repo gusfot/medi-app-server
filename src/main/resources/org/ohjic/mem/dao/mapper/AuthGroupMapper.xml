@@ -132,7 +132,7 @@
   </update>
   
   <insert id="insertAuthGroupForNextYear" parameterType="org.ohjic.mem.vo.YearVo">
-  insert into ${church}.auth_group (auth_set_idx,sort_no,auth_type_idx,value)
+  insert ignore into ${church}.auth_group (auth_set_idx,sort_no,auth_type_idx,value)
 	select a2.auth_set_idx,g.sort_no,g.auth_type_idx,g.value from ${church}.auth_set a
 	inner join ${church}.auth_set a2 on a2.year=#{nextYear} and a.auth_category_idx = a2.auth_category_idx and a.auth_set_kind = a2.auth_set_kind
 	inner join ${church}.auth_group g on a.auth_set_idx = g.auth_set_idx

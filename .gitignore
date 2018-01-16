@@ -5,6 +5,7 @@ flower.iml
 .classpath
 .project
 .springBeans
+.member.api.iml
 <<<<<<< HEAD
 /.gitignore
 =======

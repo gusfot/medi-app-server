@@ -28,9 +28,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.google.gson.Gson;
 
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
-		"file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_live.xml" })
+		"file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_local.xml" })
 public class ToolsServiceTest {
 
 	@Autowired
@@ -87,7 +88,8 @@ public class ToolsServiceTest {
 //		Integer churchCode = 2861; // 기륭한국교회-2861
 //		Integer churchCode = 3519; // 북삼제일교회-3519
 //		Integer churchCode = 5230; // 김천명성교회-5230
-		Integer churchCode = 1426; // 삼은대길교회-1426
+//		Integer churchCode = 1426; // 삼은대길교회-1426
+		Integer churchCode = 7485; // ychurch-7485
 
 
 
@@ -141,7 +143,10 @@ public class ToolsServiceTest {
 //		Integer churchCode = 7307; // 천안중부교회 7307
 //		Integer churchCode = 7343; // 드림교회 7343
 //		Integer churchCode = 7388; // 항동교회 7388
-		Integer churchCode = 7353; // 영신교회 7353
+//		Integer churchCode = 7353; // 영신교회 7353
+//		Integer churchCode = 7418; // 만나교회 7418
+//		Integer churchCode = 7500; // 갈마교회 7500
+		Integer churchCode = 7587; // 강남동교회 7587
 
 		toolsService.readjustFamily(churchCode);
 
@@ -170,7 +175,10 @@ public class ToolsServiceTest {
 
 		// Integer churchCode = 7276;
 //		Integer churchCode = 7307; // 천안중부교회 7307
-		Integer churchCode = 7353; // 영신교회 7353
+//		Integer churchCode = 7353; // 영신교회 7353
+//		Integer churchCode = 7418; // 만나교회 7418
+//		Integer churchCode = 7500; // 갈마교회 7500
+		Integer churchCode = 7587; // 강남동교회 7587
 		boolean result = toolsService.readjustEduCount(churchCode);
 
 		assertTrue(result);
@@ -248,68 +256,12 @@ public class ToolsServiceTest {
 		List<String> userIdList = new ArrayList<>();
 		userIdList.add("woo1409");*/
 		
-		String churchNam = "오륜교회";
-		String churchPhoneNumber = "02-485-4004".replace("-", "");
+		String churchNam = "광교지구촌교회";
+		String churchPhoneNumber = "031-212-2291";
+		
+		churchPhoneNumber = churchPhoneNumber.replace("-", "");
 		List<String> userIdList = new ArrayList<>();
-		userIdList.add("jiwoon79");
-				userIdList.add("saltspirit");
-				userIdList.add("jusungha153");
-				userIdList.add("cummiedu");
-				userIdList.add("timothy223");
-				userIdList.add("woosrah");
-				userIdList.add("jjuros");
-				userIdList.add("hyunssalom");
-				userIdList.add("ehdwls20");
-				userIdList.add("oryun4825");
-				userIdList.add("ek9945");
-				userIdList.add("winkywinky");
-				userIdList.add("torks81");
-				userIdList.add("oryunth");
-				userIdList.add("passionyoo");
-				userIdList.add("sin9yak");
-				userIdList.add("oryun4877");
-				userIdList.add("pudoli1004");
-				userIdList.add("bjswotmd");
-				userIdList.add("godam42");
-				userIdList.add("teology");
-				userIdList.add("lovewhds");
-				userIdList.add("hoggie89");
-				userIdList.add("lxfedi");
-				userIdList.add("russia");
-				userIdList.add("girogoal");
-				userIdList.add("nx0408");
-				userIdList.add("kimeunho");
-				userIdList.add("minyrre");
-				userIdList.add("elisha531");
-				userIdList.add("recha2002");
-				userIdList.add("tomjoung");
-				userIdList.add("goal0487");
-				userIdList.add("adonairoy");
-				userIdList.add("sanbest");
-				userIdList.add("cyon1630");
-				userIdList.add("jongseda");
-				userIdList.add("paul-not");
-				userIdList.add("angelos1612");
-				userIdList.add("susan9377");
-				userIdList.add("limdy2435");
-				userIdList.add("siluanosm");
-				userIdList.add("dbfgma");
-				userIdList.add("vietnam");
-				userIdList.add("hephzibah0211");
-				userIdList.add("ggumjengi");
-				userIdList.add("martyr16");
-				userIdList.add("maru214");
-				userIdList.add("cjstkdghtn");
-				userIdList.add("m79child");
-				userIdList.add("coramdeojj");
-				userIdList.add("nikbad03");
-				userIdList.add("cyc3573");
-				userIdList.add("bbaggomi25");
-				userIdList.add("maheum");
-				userIdList.add("totalpraise");
-				userIdList.add("charismaij");
-				userIdList.add("tjchoi12");
-				userIdList.add("110527");
+		userIdList.add("sunggimin10");
 
 
 		boolean result = toolsService.authSmsForChurch(churchNam, churchPhoneNumber, userIdList);
@@ -339,7 +291,13 @@ public class ToolsServiceTest {
 		 //String plain = "jesus213"; // e12c1a24d4a6e91609a3f89a753c9361
 //		 String plain = "150917!!"; // e12c1a24d4a6e91609a3f89a753c9361
 //		 String plain = "elcnjusa!@"; // 39b75cbd901465ec76166d89e84bbcc1
-		 String plain = "87090600"; // 39b75cbd901465ec76166d89e84bbcc1
+//		 String plain = "87090600"; // 39b75cbd901465ec76166d89e84bbcc1
+//		 String plain = "0104"; // 7193c7488f2fb141ab905e6ff9592a2c
+//		 String plain = "0507"; // b8943b100352121f522d4b2bc548b405
+//		 String plain = "0810"; // a2c8aa36f279b0f210ded8ab02d0f3ff
+//		 String plain = "1416"; // 0d24feb597877f3daeb2846bf9c43686
+//		 String plain = "1719"; // 4864c9c333b17daf588a78c1a9015862
+		 String plain = "6216"; // 4b3eb9f163c1d9d1b6c98562e653127b
 
 		String result = toolsService.generateKyoEncryptedPassword(plain);
 		System.out.println("generated password: " + result);

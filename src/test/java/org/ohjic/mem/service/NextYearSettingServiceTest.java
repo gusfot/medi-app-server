@@ -1,6 +1,6 @@
 package org.ohjic.mem.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -14,7 +14,6 @@ import java.util.Map;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ohjic.mem.model.Churchinfo;
-import org.ohjic.mem.service.impl.NextYearSettingServiceImpl;
 import org.ohjic.mem.vo.NextYearSettingStatusVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,10 +38,10 @@ public class NextYearSettingServiceTest {
 	@Test
 	public void testCreateNextYear() {
 
-		int churchCode = 6011;
+		int churchCode = 2393;
 		int standardYear = 2017;
 		int managerIdx =0;
-		String standardDate = "2017-12-26";
+		String standardDate = "2017-12-31";
 		String startDate = "2018-01-01";
 		String endDate = "2018-12-31";
 		
@@ -51,11 +50,11 @@ public class NextYearSettingServiceTest {
 //		kPartIdxList.add(2);
 //		kPartIdxList.add(3);
 //		kPartIdxList.add(4);
-		
-		kPartIdxList.add(1);
-		kPartIdxList.add(7);
-		kPartIdxList.add(11);
-		kPartIdxList.add(12);
+		kPartIdxList.add(5);
+//		kPartIdxList.add(6);
+//		kPartIdxList.add(7);
+//		kPartIdxList.add(8);
+//		kPartIdxList.add(9);
 		
 		try {
 			nextYearSettingService.createNextYear(churchCode, standardYear, standardDate, startDate, endDate, managerIdx, kPartIdxList);
@@ -72,14 +71,20 @@ public class NextYearSettingServiceTest {
 	@Test
 	public void testResetNextYear() {
 
-		int churchCode = 6011;
+		int churchCode = 2393;
 		int standardYear = 2017;
 		int managerIdx = 0;
+		
 		List<Integer> kPartIdxList = new ArrayList<>();
-		kPartIdxList.add(1);
-		kPartIdxList.add(7);
-		kPartIdxList.add(11);
-		kPartIdxList.add(12);
+//		kPartIdxList.add(1);
+//		kPartIdxList.add(2);
+//		kPartIdxList.add(3);
+//		kPartIdxList.add(4);
+		kPartIdxList.add(5);
+//		kPartIdxList.add(6);
+//		kPartIdxList.add(7);
+//		kPartIdxList.add(8);
+//		kPartIdxList.add(9);
 		
 		nextYearSettingService.resetNextYear(churchCode, standardYear, managerIdx, kPartIdxList );
 		
@@ -156,14 +161,14 @@ public class NextYearSettingServiceTest {
 	@Test 
 	public void testCreateAuth() {
 		
-		int churchCode = 6037;// 351, 474, 2393, 476,5290,5932, 6245
+		int churchCode = 2393;// 351, 474, 2393, 476,5290,5932, 6245
 		int standardYear=2017;
 		String standardDate = "20171101";
 		List<Integer> kPartIdxList = new ArrayList<>();
 		kPartIdxList.add(1);
 		kPartIdxList.add(2);
 		kPartIdxList.add(3);
-		kPartIdxList.add(4);
+		kPartIdxList.add(5);
 		try {
 			nextYearSettingService.createNextYearAuth(churchCode, standardYear, standardDate, kPartIdxList);
 		} catch (Exception e) {
