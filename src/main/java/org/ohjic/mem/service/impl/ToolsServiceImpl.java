@@ -24,6 +24,7 @@ import org.ohjic.mem.model.Member;
 import org.ohjic.mem.model.MemberWithBLOBs;
 import org.ohjic.mem.service.ToolsService;
 import org.ohjic.mem.vo.TidVo;
+import org.ohjic.mem.vo.TidsVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -223,6 +224,7 @@ public class ToolsServiceImpl implements ToolsService {
 		return toolsMapper.selectEncryptedPassword(plain);
 	}
 
+	@Transactional(readOnly=true)
 	@Override
 	public List<Map<String, Object>> getKyoTableList(int churchCode) {
 		return toolsMapper.selectChurchCodeList(churchCode);
@@ -533,6 +535,57 @@ public class ToolsServiceImpl implements ToolsService {
 //		
 //		return toolsMapper.selectLatestHistoryChristening();
 		return null;
+	}
+
+	@Override
+	public boolean modifyMemberImageByFile(Integer churchCode, String dir) {
+
+		boolean result = false;
+		
+		try{
+			
+			File directory = new File(dir);
+			File[] files = directory.listFiles();
+			String filePrefix = "/people/init/";
+			
+			for (File file : files) {
+				
+				String memberImage = file.getName();
+				
+//				System.out.println(memberImage);
+				String[] imageNames = memberImage.split("\\.");
+				String tid = imageNames[0];
+
+				
+				
+				TidsVo vo = new TidsVo();
+				vo.setChurchCode(churchCode);
+				Integer[] tidArray = {Integer.valueOf(tid)};
+				vo.setTidArray(tidArray );
+				Member member = memberMapper.selectLatestMemberByTids(vo );		
+				
+				
+				if(member !=null && !"".equals(member.getMemberImage())) {
+					
+					MemberWithBLOBs record = new MemberWithBLOBs();
+					record.setChurchCode(churchCode);
+					record.setMemberImage(filePrefix+memberImage );
+					record.setTid(Integer.valueOf(tid));
+					
+					memberMapper.updateByPrimaryKeySelective(record);
+				}
+				
+			}
+			
+			result = true;
+			
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+		return result;
 	}
 
 }

@@ -141,6 +141,8 @@ public interface ToolsService {
 	int modifyFimMemberNameByMemberName(Kyo kyo);
 
 	Object getLatestChrstening(Kyo kyo);
+
+	boolean modifyMemberImageByFile(Integer churchCode, String dir);
 	
 }
 

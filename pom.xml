@@ -443,6 +443,11 @@
 	                <overWriteIfNewer>true</overWriteIfNewer>
 	            </configuration>
 	        </plugin>
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.5</version>
+			</plugin>
 	        <!-- jar 패포시 
 	        <plugin>
 		        <groupId>org.apache.maven.plugins</groupId>

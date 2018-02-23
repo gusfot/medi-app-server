@@ -89,8 +89,20 @@ public class ToolsServiceTest {
 //		Integer churchCode = 3519; // 북삼제일교회-3519
 //		Integer churchCode = 5230; // 김천명성교회-5230
 //		Integer churchCode = 1426; // 삼은대길교회-1426
-		Integer churchCode = 7485; // ychurch-7485
-
+//		Integer churchCode = 7485; // ychurch-7485
+//		Integer churchCode = 422; // 명성교회-422
+//		Integer churchCode = 7668; // 세인교회-7667
+//		Integer churchCode = 5088; // 성산포교회-5088
+//		Integer churchCode = 908; // 석천제일교회-908
+//		Integer churchCode = 3380; // 진도초대교회-3380
+//		Integer churchCode = 6322; // 6322 내일 02년생
+//		Integer churchCode = 6323; // 6323 내일03년생
+//		Integer churchCode = 6324; // 6324 내일04냔생
+//		Integer churchCode = 6350; // 6350 내일중등교사
+//		Integer churchCode = 6720; // 6720 내일중등새가족
+//		Integer churchCode = 2682; // 2682 예제공동체교회
+//		Integer churchCode = 7900; // 성문교회-7900
+		Integer churchCode = 6566; // 6566 광주서광교회
 
 
 		boolean isFree = true; // 무료 사용여부
@@ -146,7 +158,14 @@ public class ToolsServiceTest {
 //		Integer churchCode = 7353; // 영신교회 7353
 //		Integer churchCode = 7418; // 만나교회 7418
 //		Integer churchCode = 7500; // 갈마교회 7500
-		Integer churchCode = 7587; // 강남동교회 7587
+//		Integer churchCode = 7587; // 강남동교회 7587
+//		Integer churchCode = 7590; // 대전새중앙교회 7590
+//		Integer churchCode = 7517; // 황금동교회 7517
+//		Integer churchCode = 7657; // 신세계교회 7657
+//		Integer churchCode = 7618; // 신남교회 7618
+//      Integer churchCode = 7694; // 송도가나안교회 7694
+//        Integer churchCode = 7737; // 영남제일교회 7737
+		Integer churchCode = 7756; // 동산교회 7756
 
 		toolsService.readjustFamily(churchCode);
 
@@ -178,7 +197,10 @@ public class ToolsServiceTest {
 //		Integer churchCode = 7353; // 영신교회 7353
 //		Integer churchCode = 7418; // 만나교회 7418
 //		Integer churchCode = 7500; // 갈마교회 7500
-		Integer churchCode = 7587; // 강남동교회 7587
+//		Integer churchCode = 7587; // 강남동교회 7587
+//		Integer churchCode = 7517; // 황금동교회 7517
+
+		Integer churchCode = 7657; // 신세계교회 7657
 		boolean result = toolsService.readjustEduCount(churchCode);
 
 		assertTrue(result);
@@ -297,7 +319,9 @@ public class ToolsServiceTest {
 //		 String plain = "0810"; // a2c8aa36f279b0f210ded8ab02d0f3ff
 //		 String plain = "1416"; // 0d24feb597877f3daeb2846bf9c43686
 //		 String plain = "1719"; // 4864c9c333b17daf588a78c1a9015862
-		 String plain = "6216"; // 4b3eb9f163c1d9d1b6c98562e653127b
+//		 String plain = "6216"; // e3be86a850dca8b7fed9b54158cf3572
+//		 String plain = "!IBC20010415"; // 9e8c090a8c7a2a484477c5abcfd8fa67
+		 String plain = "!#$Yh1577"; // 9e8c090a8c7a2a484477c5abcfd8fa67
 
 		String result = toolsService.generateKyoEncryptedPassword(plain);
 		System.out.println("generated password: " + result);
@@ -369,14 +393,14 @@ public class ToolsServiceTest {
 			}
 		}
 
-		Set<Integer> keySet = churchList.keySet();
+		/*Set<Integer> keySet = churchList.keySet();
 		for (Integer integer : keySet) {
 			int tableCount = churchList.get(integer);
 			if (tableCount > 0 && tableCount < 107) {
 				System.out.println("churchCode : " + integer + ", count: " + churchList.get(integer));
 			}
 		}
-
+*/
 	}
 
 	@Test
@@ -1146,5 +1170,16 @@ public class ToolsServiceTest {
 		Integer churchCode = 3227;
 		Kyo kyo = new Kyo(churchCode);
 		toolsService.getLatestChrstening(kyo) ;
+	}
+	
+	@Test
+	public void modifyMemberImageByFile() {
+		
+		Integer churchCode = 7657;
+		
+		String dir = "C:\\filepath";
+		boolean result = toolsService.modifyMemberImageByFile(churchCode, dir);
+		
+		assertTrue(result);
 	}
 }

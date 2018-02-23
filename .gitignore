@@ -6,8 +6,3 @@ flower.iml
 .project
 .springBeans
 .member.api.iml
-<<<<<<< HEAD
-/.gitignore
-=======
-bin/
->>>>>>> refs/remotes/origin/master
