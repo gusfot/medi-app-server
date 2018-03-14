@@ -143,6 +143,14 @@ public interface ToolsService {
 	Object getLatestChrstening(Kyo kyo);
 
 	boolean modifyMemberImageByFile(Integer churchCode, String dir);
+
+	/**
+	 * 파일명이 성도명일 경우(ex, 홍길동.jpg)
+	 * @param churchCode
+	 * @param dir
+	 * @return
+	 */
+	boolean modifyMemberImageByFileName(Integer churchCode, String dir);
 	
 }
 

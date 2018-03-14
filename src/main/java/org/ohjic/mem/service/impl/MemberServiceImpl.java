@@ -16,13 +16,14 @@ public class MemberServiceImpl implements MemberService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
 
+	private static final String KYO_PREFIX = "kyo";
 	@Autowired
 	private MemberMapper memberMapper;
 	
 	@Override
-	public Member getMember(String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+	public MemberWithBLOBs getMember(Integer churchCode, Integer tid) {
+		String church = KYO_PREFIX+churchCode;
+		return memberMapper.selectByPrimaryKey(church, tid);
 	}
 
 	@Override
@@ -50,8 +51,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member getMemberByMemberNameAndMemberNameDistinct(String memberName, String memberNameDistinct) {
-		return memberMapper.selectMemberByMemberNameAndMemberNameDistinct(memberName, memberNameDistinct);
+	public Member getMemberByMemberNameAndMemberNameDistinct(String churchCode, String memberName, String memberNameDistinct) {
+		return memberMapper.selectMemberByMemberNameAndMemberNameDistinct(churchCode, memberName, memberNameDistinct);
 	}
 
 	@Override

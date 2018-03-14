@@ -213,7 +213,7 @@ public class ToolsServiceImpl implements ToolsService {
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("churchName", churchName);
-		params.put("churchPhoneNumber", churchPhoneNumber);
+		params.put("churchPhoneNumber", churchPhoneNumber.replace("-", ""));
 		params.put("userIdList", userIdList);
 		
 		return toolsMapper.insertAuthSmsForChurch(params);
@@ -587,6 +587,81 @@ public class ToolsServiceImpl implements ToolsService {
 		
 		return result;
 	}
+	
+	
+	@Override
+	public boolean modifyMemberImageByFileName(Integer churchCode, String dir) {
+
+		boolean result = false;
+		
+		try{
+			
+			File directory = new File(dir);
+			File[] files = directory.listFiles();
+			String filePrefix = "people/init/";
+			
+			for (File file : files) {
+				
+				String memberImage = file.getName();
+				
+//				System.out.println(memberImage);
+				String[] imageNames = memberImage.split("\\.");
+				String memberName = imageNames[0];
+				String memberNameDistinct = "";
+
+				
+				MemberWithBLOBs memberVo =new MemberWithBLOBs();
+				memberVo.setChurchCode(churchCode);
+				memberVo.setMemberName(memberName);
+				Member member = memberMapper.selectMemberByMemberNameAndMemberNameDistinct("kyo"+churchCode, memberName, memberNameDistinct );
+				
+				
+				if(member !=null && memberName!=null ) {
+				
+//					String newDir = dir + File.separator+ "new";
+					File newDir = new File(dir+File.separator + "new");
+					
+					if(!newDir.exists()) {
+						newDir.mkdir();
+					}
+					
+					
+					String oldStr = memberName;
+					String newStr = String.valueOf(member.getTid());
+					File newFile = new File(newDir , file.getName().replaceAll(oldStr , newStr));
+					try {
+						Files.copy(file.toPath(), newFile.toPath());
+					} catch (IOException e) {
+						e.printStackTrace();
+						System.out.println("This file is failed!!!: " + file.getName());
+//						errorList.add(file.getName());
+					}
+					
+					
+					System.out.println("OOOOOOOOOOOOOOOOOOOOO");
+					MemberWithBLOBs record = new MemberWithBLOBs();
+					record.setChurchCode(churchCode);
+					record.setMemberImage(filePrefix+member.getTid()+ "."+imageNames[1]);
+					record.setTid(member.getTid());
+					
+					memberMapper.updateByPrimaryKeySelective(record);
+				}else {
+					System.out.println("XXXXXXXXXXXXXXXXXXX");
+				}
+				
+			}
+			
+			result = true;
+			
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+		return result;
+	}
+
 
 }
 

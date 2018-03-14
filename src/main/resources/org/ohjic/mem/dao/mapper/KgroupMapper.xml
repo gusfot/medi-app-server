@@ -388,7 +388,7 @@
   <insert id="insertNextYearKgroupByYear" parameterType="org.ohjic.mem.vo.YearVo" >
   insert ${church}.kGroup(year, k_part_idx, depth1, depth2, depth3, depth4, depth5, ord, depth1_name, depth2_name, depth3_name, depth4_name, depth5_name, depth, group_name, start_date, end_date, reportType, reportItem, p_no)
 	select 
-	 #{nextYear} year, a.k_part_idx, depth1, depth2, depth3, depth4, depth5, ord, depth1_name, depth2_name, depth3_name, depth4_name, depth5_name, depth, group_name, 
+	 #{nextYear} year, a.k_part_idx, depth1, depth2, depth3, depth4, depth5, a.ord, depth1_name, depth2_name, depth3_name, depth4_name, depth5_name, depth, group_name, 
 	 UNIX_TIMESTAMP(concat(#{startDate}, ' 00:00:00')) start_date, 
 	 UNIX_TIMESTAMP(concat(#{endDate}, ' 23:59:59')) end_date, 
 	 reportType, reportItem, p_no

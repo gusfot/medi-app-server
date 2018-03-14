@@ -11,7 +11,7 @@ public interface MemberService {
 	 * @param memberId
 	 * @return
 	 */
-	Member getMember(String memberId);
+	Member getMember(Integer churchCode, Integer tid);
 	
 	/**
 	 * member 연관된 정보를 가지고 온다.
@@ -41,9 +41,21 @@ public interface MemberService {
 	 */
 	Member checkMember(Member member) throws CommonException;
 
-	Member getMemberByMemberNameAndMemberNameDistinct(String memberName, String memberNameDistinct);
+	/**
+	 * 성도이름과 이름구분자로 성도 조회한다.
+	 * @param churchCode
+	 * @param memberName
+	 * @param memberNameDistinct
+	 * @return
+	 */
+	Member getMemberByMemberNameAndMemberNameDistinct(String churchCode, String memberName, String memberNameDistinct);
 
-	boolean modifyMember(MemberWithBLOBs imgMember);
+	/**
+	 * 성도 정보를 수정한다.
+	 * @param member
+	 * @return
+	 */
+	boolean modifyMember(MemberWithBLOBs member);
 	
 }
 

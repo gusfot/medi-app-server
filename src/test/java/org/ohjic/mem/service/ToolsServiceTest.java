@@ -31,7 +31,7 @@ import com.google.gson.Gson;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
-		"file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_local.xml" })
+		"file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_live.xml" })
 public class ToolsServiceTest {
 
 	@Autowired
@@ -102,7 +102,14 @@ public class ToolsServiceTest {
 //		Integer churchCode = 6720; // 6720 내일중등새가족
 //		Integer churchCode = 2682; // 2682 예제공동체교회
 //		Integer churchCode = 7900; // 성문교회-7900
-		Integer churchCode = 6566; // 6566 광주서광교회
+//		Integer churchCode = 6566; // 6566 광주서광교회
+//		Integer churchCode = 2276; // 홍천제일-2276 
+//		Integer churchCode = 2277; // 홍천제일-2277
+//		Integer churchCode = 6753; // 주례교회청년부교회 6753
+//		Integer churchCode = 7229; // 푸른우리교회청년부-7229
+//		Integer churchCode = 4876; // 새빛이슬청년부-4876
+		Integer churchCode = 770; // 대사교회-770
+
 
 
 		boolean isFree = true; // 무료 사용여부
@@ -166,6 +173,7 @@ public class ToolsServiceTest {
 //      Integer churchCode = 7694; // 송도가나안교회 7694
 //        Integer churchCode = 7737; // 영남제일교회 7737
 		Integer churchCode = 7756; // 동산교회 7756
+		
 
 		toolsService.readjustFamily(churchCode);
 
@@ -278,12 +286,21 @@ public class ToolsServiceTest {
 		List<String> userIdList = new ArrayList<>();
 		userIdList.add("woo1409");*/
 		
-		String churchNam = "광교지구촌교회";
+/*		String churchNam = "광교지구촌교회";
 		String churchPhoneNumber = "031-212-2291";
 		
 		churchPhoneNumber = churchPhoneNumber.replace("-", "");
 		List<String> userIdList = new ArrayList<>();
 		userIdList.add("sunggimin10");
+*/
+		
+		String churchNam = "무주장로교회";
+		String churchPhoneNumber = "063-324-9191";
+		
+		List<String> userIdList = new ArrayList<>();
+		userIdList.add("gods1023");
+		userIdList.add("woochiun ");
+		userIdList.add("ilhf317");
 
 
 		boolean result = toolsService.authSmsForChurch(churchNam, churchPhoneNumber, userIdList);
@@ -321,7 +338,9 @@ public class ToolsServiceTest {
 //		 String plain = "1719"; // 4864c9c333b17daf588a78c1a9015862
 //		 String plain = "6216"; // e3be86a850dca8b7fed9b54158cf3572
 //		 String plain = "!IBC20010415"; // 9e8c090a8c7a2a484477c5abcfd8fa67
-		 String plain = "!#$Yh1577"; // 9e8c090a8c7a2a484477c5abcfd8fa67
+//		 String plain = "!#$Yh1577"; // 9e8c090a8c7a2a484477c5abcfd8fa67
+//		 String plain = "paul4413<>"; // ea24a019df12707a3e1832cafc3662c2
+		 String plain = "hsy8773**"; // e1bc246cdf7df00edfd86fc49a437504
 
 		String result = toolsService.generateKyoEncryptedPassword(plain);
 		System.out.println("generated password: " + result);
@@ -1179,6 +1198,18 @@ public class ToolsServiceTest {
 		
 		String dir = "C:\\filepath";
 		boolean result = toolsService.modifyMemberImageByFile(churchCode, dir);
+		
+		assertTrue(result);
+	}
+	
+	
+	@Test
+	public void modifyMemberImageByFileName() {
+		
+		Integer churchCode = 7813;
+		
+		String dir = "C:\\Users\\ohjic\\Desktop\\둔포감리교회 (교적, 교회사랑넷, 18.02.13-18.02.23)\\people\\init";
+		boolean result = toolsService.modifyMemberImageByFileName(churchCode, dir);
 		
 		assertTrue(result);
 	}

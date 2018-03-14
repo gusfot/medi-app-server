@@ -168,7 +168,7 @@
   </update>
   
   <insert id="insertNextYearSettingStatus" parameterType="org.ohjic.mem.model.NextYearSettingStatus">
-  insert ignore into ohjic.next_year_setting_status (church_code, year, k_part_idx, status, manager_idx) 
+  insert ignore into members.next_year_setting_status (church_code, year, k_part_idx, status, manager_idx) 
   values (#{churchCode}, #{year}, #{kPartIdx}, #{status}, #{managerIdx})
   on duplicate key update status=#{status}
   </insert>
@@ -187,7 +187,7 @@
     	, ifnull(d.auth_set_count,0) authSetCount
     	, ifnull(e.auth_set_count,0) oldAuthSetCount
     from ${church}.k_part a
-	left outer join ohjic.next_year_setting_status b on b.church_code=#{churchCode} and b.year=#{year} and b.k_part_idx=a.k_part_idx
+	left outer join members.next_year_setting_status b on b.church_code=#{churchCode} and b.year=#{year} and b.k_part_idx=a.k_part_idx
 	left outer join (select year, k_part_idx, count(*) group_count from ${church}.kGroup group by year, k_part_idx) c on a.k_part_idx=c.k_part_idx and c.year=#{nextYear}
 	left outer join (select year, k_part_idx, count(*) group_count from ${church}.kGroup group by year, k_part_idx) f on a.k_part_idx=f.k_part_idx and f.year=#{year}
 	left outer join (select year, k_part k_part_idx, count(*) auth_set_count from ${church}.auth_set group by year, k_part) d on a.k_part_idx=d.k_part_idx and d.year=#{nextYear}
