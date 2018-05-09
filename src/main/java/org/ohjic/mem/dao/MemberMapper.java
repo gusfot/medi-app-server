@@ -57,4 +57,11 @@ public interface MemberMapper {
 	Member selectLatestMemberByTids(TidsVo vo);
 
 	List<Member> selectMemberList(Kyo kyo);
+
+	/**
+	 * 성도조회
+	 * @param member
+	 * @return
+	 */
+	List<Member>selectMember(Member member);
 }

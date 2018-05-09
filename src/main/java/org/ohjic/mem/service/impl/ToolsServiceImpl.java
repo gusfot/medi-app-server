@@ -610,11 +610,12 @@ public class ToolsServiceImpl implements ToolsService {
 				String memberNameDistinct = "";
 
 				
-				MemberWithBLOBs memberVo =new MemberWithBLOBs();
+				Member memberVo =new Member();
 				memberVo.setChurchCode(churchCode);
 				memberVo.setMemberName(memberName);
 				Member member = memberMapper.selectMemberByMemberNameAndMemberNameDistinct("kyo"+churchCode, memberName, memberNameDistinct );
-				
+//				List<Member> memberList = memberMapper.selectMember(memberVo);
+//				Member member = memberList.get(0);
 				
 				if(member !=null && memberName!=null ) {
 				

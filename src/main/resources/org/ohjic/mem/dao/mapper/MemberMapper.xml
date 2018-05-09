@@ -54,7 +54,6 @@
     <result column="member_address1" jdbcType="VARCHAR" property="memberAddress1" />
     <result column="member_address2" jdbcType="VARCHAR" property="memberAddress2" />
     <result column="member_address_street" jdbcType="VARCHAR" property="memberAddressStreet" />
-    <result column="member_address_street2" jdbcType="VARCHAR" property="memberAddressStreet2" />
     <result column="member_zipcode_street" jdbcType="VARCHAR" property="member_zipcodeStreet" />
     <result column="job" jdbcType="VARCHAR" property="job" />
     <result column="job_type_name" jdbcType="VARCHAR" property="jobTypeName" />
@@ -130,7 +129,7 @@
     guide2, guide_phone, guide_relation, regi_date, reception_date, wedding, wedding_anniversary, 
     christening, christening_name, christening_date, christening_church, christening_minister, 
     christening_ord, last_church, last_grade, last_act, member_zipcode, member_address1, 
-    member_address2, member_address_street, member_address_street2, member_zipcode_street, 
+    member_address2, member_address_street, member_zipcode_street, 
     job, job_type_name, job_type, career_name, career, company_name, company_position, 
     company_phone, school_type, school_name, school_year, school_grade, school_major, 
     school_class, car_number, car_type, parking_permit, member_image, inputDate, register_id, 
@@ -190,7 +189,7 @@
       christening_date, christening_church, christening_minister, 
       christening_ord, last_church, last_grade, 
       last_act, member_zipcode, member_address1, 
-      member_address2, member_address_street, member_address_street2, 
+      member_address2, member_address_street,
       member_zipcode_street, job, job_type_name, 
       job_type, career_name, career, 
       company_name, company_position, company_phone, 
@@ -392,9 +391,6 @@
       </if>
       <if test="memberAddressStreet != null">
         member_address_street,
-      </if>
-      <if test="memberAddressStreet2 != null">
-        member_address_street2,
       </if>
       <if test="member_zipcodeStreet != null">
         member_zipcode_street,
@@ -1014,9 +1010,6 @@
       <if test="memberAddressStreet != null">
         member_address_street = #{memberAddressStreet,jdbcType=VARCHAR},
       </if>
-      <if test="memberAddressStreet2 != null">
-        member_address_street2 = #{memberAddressStreet2,jdbcType=VARCHAR},
-      </if>
       <if test="member_zipcodeStreet != null">
         member_zipcode_street = #{member_zipcodeStreet,jdbcType=VARCHAR},
       </if>
@@ -1235,7 +1228,6 @@
       member_address1 = #{memberAddress1,jdbcType=VARCHAR},
       member_address2 = #{memberAddress2,jdbcType=VARCHAR},
       member_address_street = #{memberAddressStreet,jdbcType=VARCHAR},
-      member_address_street2 = #{memberAddressStreet2,jdbcType=VARCHAR},
       member_zipcode_street = #{member_zipcodeStreet,jdbcType=VARCHAR},
       job = #{job,jdbcType=VARCHAR},
       job_type_name = #{jobTypeName,jdbcType=VARCHAR},
@@ -1345,7 +1337,6 @@
       member_address1 = #{memberAddress1,jdbcType=VARCHAR},
       member_address2 = #{memberAddress2,jdbcType=VARCHAR},
       member_address_street = #{memberAddressStreet,jdbcType=VARCHAR},
-      member_address_street2 = #{memberAddressStreet2,jdbcType=VARCHAR},
       member_zipcode_street = #{member_zipcodeStreet,jdbcType=VARCHAR},
       job = #{job,jdbcType=VARCHAR},
       job_type_name = #{jobTypeName,jdbcType=VARCHAR},
@@ -1417,5 +1408,316 @@
   
   <select id="selectMemberList" parameterType="org.ohjic.mem.model.Kyo" resultMap="BaseResultMap">
   select * from ${church}.member
+  </select>
+  
+  <select id="selectMember" parameterType="org.ohjic.mem.model.Member" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ${church}.member
+    <where> 
+    	1=1
+	  <if test="fid != null">
+        and fid = #{fid,jdbcType=INTEGER}
+      </if>
+      <if test="grade != null">
+        and grade = #{grade,jdbcType=BIT}
+      </if>
+      <if test="famLeader != null">
+        and fam_leader = #{famLeader,jdbcType=VARCHAR}
+      </if>
+      <if test="relation != null">
+        and relation = #{relation,jdbcType=VARCHAR}
+      </if>
+      <if test="memberName != null">
+        and member_name = #{memberName,jdbcType=VARCHAR}
+      </if>
+      <if test="memberNameDistinct != null">
+        and member_name_distinct = #{memberNameDistinct,jdbcType=VARCHAR}
+      </if>
+      <if test="memberNameEn != null">
+        and member_name_en = #{memberNameEn,jdbcType=VARCHAR}
+      </if>
+      <if test="memberNameHan != null">
+        and member_name_han = #{memberNameHan,jdbcType=VARCHAR}
+      </if>
+      <if test="rrnId1 != null">
+        and rrn_id1 = #{rrnId1,jdbcType=CHAR}
+      </if>
+      <if test="rrnId2 != null">
+        and rrn_id2 = #{rrnId2,jdbcType=VARCHAR}
+      </if>
+      <if test="birthYear != null">
+        and birth_year = #{birthYear,jdbcType=SMALLINT}
+      </if>
+      <if test="birthDate != null">
+        and birth_date = #{birthDate,jdbcType=SMALLINT}
+      </if>
+      <if test="birthSolar != null">
+        and birth_solar = #{birthSolar,jdbcType=INTEGER}
+      </if>
+      <if test="memberSex != null">
+        and member_sex = #{memberSex,jdbcType=CHAR}
+      </if>
+      <if test="blood_type != null">
+        and blood_type = #{blood_type,jdbcType=VARCHAR}
+      </if>
+      <if test="memberHomepage != null">
+        and member_homepage = #{memberHomepage,jdbcType=VARCHAR}
+      </if>
+      <if test="memberPhone != null">
+        and member_phone = #{memberPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="memberCellphone != null">
+        and member_cellphone = #{memberCellphone,jdbcType=VARCHAR}
+      </if>
+      <if test="memberEmail != null">
+        and member_email = #{memberEmail,jdbcType=VARCHAR}
+      </if>
+      <if test="pGrade != null">
+        and p_grade = #{pGrade,jdbcType=INTEGER}
+      </if>
+      <if test="pGradeName != null">
+        and p_grade_name = #{pGradeName,jdbcType=VARCHAR}
+      </if>
+      <if test="pGradeDate != null">
+        and p_grade_date = #{pGradeDate,jdbcType=DATE}
+      </if>
+      <if test="pGradeMinister != null">
+        and p_grade_minister = #{pGradeMinister,jdbcType=VARCHAR}
+      </if>
+      <if test="pGradeChurch != null">
+        and p_grade_church = #{pGradeChurch,jdbcType=VARCHAR}
+      </if>
+      <if test="pGradeOrd != null">
+        and p_grade_ord = #{pGradeOrd,jdbcType=INTEGER}
+      </if>
+      <if test="guide != null">
+        and guide = #{guide,jdbcType=VARCHAR}
+      </if>
+      <if test="guide2 != null">
+        and guide2 = #{guide2,jdbcType=VARCHAR}
+      </if>
+      <if test="guidePhone != null">
+        and guide_phone = #{guidePhone,jdbcType=VARCHAR}
+      </if>
+      <if test="guideRelation != null">
+        and guide_relation = #{guideRelation,jdbcType=VARCHAR}
+      </if>
+      <if test="regiDate != null">
+        and regi_date = #{regiDate,jdbcType=INTEGER}
+      </if>
+      <if test="receptionDate != null">
+        and reception_date = #{receptionDate,jdbcType=INTEGER}
+      </if>
+      <if test="wedding != null">
+        and wedding = #{wedding,jdbcType=VARCHAR}
+      </if>
+      <if test="weddingAnniversary != null">
+        and wedding_anniversary = #{weddingAnniversary,jdbcType=VARCHAR}
+      </if>
+      <if test="christening != null">
+        and christening = #{christening,jdbcType=INTEGER}
+      </if>
+      <if test="christeningName != null">
+        and christening_name = #{christeningName,jdbcType=VARCHAR}
+      </if>
+      <if test="christeningDate != null">
+        and christening_date = #{christeningDate,jdbcType=DATE}
+      </if>
+      <if test="christeningChurch != null">
+        and christening_church = #{christeningChurch,jdbcType=VARCHAR}
+      </if>
+      <if test="christeningMinister != null">
+        and christening_minister = #{christeningMinister,jdbcType=VARCHAR}
+      </if>
+      <if test="christeningOrd != null">
+        and christening_ord = #{christeningOrd,jdbcType=INTEGER}
+      </if>
+      <if test="lastChurch != null">
+        and last_church = #{lastChurch,jdbcType=VARCHAR}
+      </if>
+      <if test="lastGrade != null">
+        and last_grade = #{lastGrade,jdbcType=VARCHAR}
+      </if>
+      <if test="lastAct != null">
+        and last_act = #{lastAct,jdbcType=VARCHAR}
+      </if>
+      <if test="memberZipcode != null">
+        and member_zipcode = #{memberZipcode,jdbcType=VARCHAR}
+      </if>
+      <if test="memberAddress1 != null">
+        and member_address1 = #{memberAddress1,jdbcType=VARCHAR}
+      </if>
+      <if test="memberAddress2 != null">
+        and member_address2 = #{memberAddress2,jdbcType=VARCHAR}
+      </if>
+      <if test="memberAddressStreet != null">
+        and member_address_street = #{memberAddressStreet,jdbcType=VARCHAR}
+      </if>
+      <if test="member_zipcodeStreet != null">
+        and member_zipcode_street = #{member_zipcodeStreet,jdbcType=VARCHAR}
+      </if>
+      <if test="job != null">
+        and job = #{job,jdbcType=VARCHAR}
+      </if>
+      <if test="jobTypeName != null">
+        and job_type_name = #{jobTypeName,jdbcType=VARCHAR}
+      </if>
+      <if test="jobType != null">
+        and job_type = #{jobType,jdbcType=INTEGER}
+      </if>
+      <if test="careerName != null">
+        and career_name = #{careerName,jdbcType=VARCHAR}
+      </if>
+      <if test="career != null">
+        and career = #{career,jdbcType=INTEGER}
+      </if>
+      <if test="companyName != null">
+        and company_name = #{companyName,jdbcType=VARCHAR}
+      </if>
+      <if test="companyPosition != null">
+        and company_position = #{companyPosition,jdbcType=VARCHAR}
+      </if>
+      <if test="companyPhone != null">
+        and company_phone = #{companyPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="schoolType != null">
+        and school_type = #{schoolType,jdbcType=VARCHAR}
+      </if>
+      <if test="schoolName != null">
+        and school_name = #{schoolName,jdbcType=VARCHAR}
+      </if>
+      <if test="schoolYear != null">
+        and school_year = #{schoolYear,jdbcType=INTEGER}
+      </if>
+      <if test="schoolGrade != null">
+        and school_grade = #{schoolGrade,jdbcType=INTEGER}
+      </if>
+      <if test="schoolMajor != null">
+        and school_major = #{schoolMajor,jdbcType=VARCHAR}
+      </if>
+      <if test="schoolClass != null">
+        and school_class = #{schoolClass,jdbcType=VARCHAR}
+      </if>
+      <if test="carNumber != null">
+        and car_number = #{carNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="carType != null">
+        and car_type = #{carType,jdbcType=VARCHAR}
+      </if>
+      <if test="parkingPermit != null">
+        and parking_permit = #{parkingPermit,jdbcType=DATE}
+      </if>
+      <if test="memberImage != null">
+        and member_image = #{memberImage,jdbcType=VARCHAR}
+      </if>
+      <if test="inputDate != null">
+        and inputDate = #{inputDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="registerId != null">
+        and register_id = #{registerId,jdbcType=VARCHAR}
+      </if>
+      <if test="registerName != null">
+        and register_name = #{registerName,jdbcType=VARCHAR}
+      </if>
+      <if test="lastView != null">
+        and last_view = #{lastView,jdbcType=INTEGER}
+      </if>
+      <if test="modifierId != null">
+        and modifier_id = #{modifierId,jdbcType=VARCHAR}
+      </if>
+      <if test="modifierName != null">
+        and modifier_name = #{modifierName,jdbcType=VARCHAR}
+      </if>
+      <if test="etc1 != null">
+        and etc1 = #{etc1,jdbcType=VARCHAR}
+      </if>
+      <if test="etc2 != null">
+        and etc2 = #{etc2,jdbcType=VARCHAR}
+      </if>
+      <if test="etc3 != null">
+        and etc3 = #{etc3,jdbcType=VARCHAR}
+      </if>
+      <if test="etc4 != null">
+        and etc4 = #{etc4,jdbcType=VARCHAR}
+      </if>
+      <if test="etc5 != null">
+        and etc5 = #{etc5,jdbcType=VARCHAR}
+      </if>
+      <if test="etc6 != null">
+        and etc6 = #{etc6,jdbcType=VARCHAR}
+      </if>
+      <if test="etc7 != null">
+        and etc7 = #{etc7,jdbcType=VARCHAR}
+      </if>
+      <if test="etc8 != null">
+        and etc8 = #{etc8,jdbcType=VARCHAR}
+      </if>
+      <if test="etc9 != null">
+        and etc9 = #{etc9,jdbcType=VARCHAR}
+      </if>
+      <if test="removed != null">
+        and removed = #{removed,jdbcType=BIT}
+      </if>
+      <if test="cDepth1 != null">
+        and cDepth1 = #{cDepth1,jdbcType=INTEGER}
+      </if>
+      <if test="cDepth2 != null">
+        and cDepth2 = #{cDepth2,jdbcType=INTEGER}
+      </if>
+      <if test="cDepth1Name != null">
+        and cDepth1Name = #{cDepth1Name,jdbcType=VARCHAR}
+      </if>
+      <if test="cDepth2Name != null">
+        and cDepth2Name = #{cDepth2Name,jdbcType=VARCHAR}
+      </if>
+      <if test="cGroupUpdateDate != null">
+        and cGroupUpdateDate = #{cGroupUpdateDate,jdbcType=DATE}
+      </if>
+      <if test="partnerName != null">
+        and partner_name = #{partnerName,jdbcType=VARCHAR}
+      </if>
+      <if test="partnerTid != null">
+        and partner_tid = #{partnerTid,jdbcType=INTEGER}
+      </if>
+      <if test="parentName1 != null">
+        and parent_name1 = #{parentName1,jdbcType=VARCHAR}
+      </if>
+      <if test="parentPhone1 != null">
+        and parent_phone1 = #{parentPhone1,jdbcType=VARCHAR}
+      </if>
+      <if test="parentName2 != null">
+        and parent_name2 = #{parentName2,jdbcType=VARCHAR}
+      </if>
+      <if test="parentPhone2 != null">
+        and parent_phone2 = #{parentPhone2,jdbcType=VARCHAR}
+      </if>
+      <if test="fidBefore != null">
+        and fid_before = #{fidBefore,jdbcType=INTEGER}
+      </if>
+      <if test="relationBefore != null">
+        and relation_before = #{relationBefore,jdbcType=VARCHAR}
+      </if>
+      <if test="lastVisit != null">
+        and last_visit = #{lastVisit,jdbcType=TIMESTAMP}
+      </if>
+      <if test="withFamily != null">
+        and with_family = #{withFamily,jdbcType=TINYINT}
+      </if>
+      <if test="interest != null">
+        and interest = #{interest,jdbcType=INTEGER}
+      </if>
+      <if test="carMemo != null">
+        and car_memo = #{carMemo,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="etc != null">
+        and etc = #{etc,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="etcSecure != null">
+        and etc_secure = #{etcSecure,jdbcType=LONGVARCHAR}
+      </if>
+    </where>
   </select>
 </mapper>

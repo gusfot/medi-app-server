@@ -108,8 +108,13 @@ public class ToolsServiceTest {
 //		Integer churchCode = 6753; // 주례교회청년부교회 6753
 //		Integer churchCode = 7229; // 푸른우리교회청년부-7229
 //		Integer churchCode = 4876; // 새빛이슬청년부-4876
-		Integer churchCode = 770; // 대사교회-770
-
+//		Integer churchCode = 770; // 대사교회-770
+//		Integer churchCode = 7935; // 예수열방의소망교회-7935
+//		Integer churchCode = 2556; // 행복한교회-2556
+//		Integer churchCode = 3729; // 보라매교회-3729
+//		Integer churchCode = 286; // 테스트3-286
+//		Integer churchCode = 7870; // 창원임마누엘교회-7870
+		Integer churchCode = 6108; // 6108-김찬주
 
 
 		boolean isFree = true; // 무료 사용여부
@@ -340,7 +345,9 @@ public class ToolsServiceTest {
 //		 String plain = "!IBC20010415"; // 9e8c090a8c7a2a484477c5abcfd8fa67
 //		 String plain = "!#$Yh1577"; // 9e8c090a8c7a2a484477c5abcfd8fa67
 //		 String plain = "paul4413<>"; // ea24a019df12707a3e1832cafc3662c2
-		 String plain = "hsy8773**"; // e1bc246cdf7df00edfd86fc49a437504
+//		 String plain = "hsy8773**"; // e1bc246cdf7df00edfd86fc49a437504
+//		 String plain = "skqhf12@"; // 
+		 String plain = "45885"; // 
 
 		String result = toolsService.generateKyoEncryptedPassword(plain);
 		System.out.println("generated password: " + result);
@@ -1194,9 +1201,11 @@ public class ToolsServiceTest {
 	@Test
 	public void modifyMemberImageByFile() {
 		
-		Integer churchCode = 7657;
+//		Integer churchCode = 7657;
+		Integer churchCode = 7905;
 		
-		String dir = "C:\\filepath";
+//		String dir = "C:\\filepath";
+		String dir = "C:\\Users\\ohjic\\Desktop\\id_photo";
 		boolean result = toolsService.modifyMemberImageByFile(churchCode, dir);
 		
 		assertTrue(result);
@@ -1206,9 +1215,9 @@ public class ToolsServiceTest {
 	@Test
 	public void modifyMemberImageByFileName() {
 		
-		Integer churchCode = 7813;
+		Integer churchCode = 5195;
 		
-		String dir = "C:\\Users\\ohjic\\Desktop\\둔포감리교회 (교적, 교회사랑넷, 18.02.13-18.02.23)\\people\\init";
+		String dir = "C:\\Users\\ohjic\\Desktop\\교적용 사진";
 		boolean result = toolsService.modifyMemberImageByFileName(churchCode, dir);
 		
 		assertTrue(result);
