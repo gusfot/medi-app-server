@@ -298,7 +298,7 @@ public class ToolsServiceTest {
 		List<String> userIdList = new ArrayList<>();
 		userIdList.add("sunggimin10");
 */
-		
+		/*
 		String churchNam = "무주장로교회";
 		String churchPhoneNumber = "063-324-9191";
 		
@@ -306,6 +306,12 @@ public class ToolsServiceTest {
 		userIdList.add("gods1023");
 		userIdList.add("woochiun ");
 		userIdList.add("ilhf317");
+		*/
+		String churchNam = "예수사랑교회";
+		String churchPhoneNumber = "063-278-7004";
+		
+		List<String> userIdList = new ArrayList<>();
+		userIdList.add("lsy4421");
 
 
 		boolean result = toolsService.authSmsForChurch(churchNam, churchPhoneNumber, userIdList);
@@ -347,7 +353,7 @@ public class ToolsServiceTest {
 //		 String plain = "paul4413<>"; // ea24a019df12707a3e1832cafc3662c2
 //		 String plain = "hsy8773**"; // e1bc246cdf7df00edfd86fc49a437504
 //		 String plain = "skqhf12@"; // 
-		 String plain = "45885"; // 
+		 String plain = "1111"; // 
 
 		String result = toolsService.generateKyoEncryptedPassword(plain);
 		System.out.println("generated password: " + result);
