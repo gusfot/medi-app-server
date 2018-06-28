@@ -151,6 +151,8 @@ public interface ToolsService {
 	 * @return
 	 */
 	boolean modifyMemberImageByFileName(Integer churchCode, String dir);
+
+	Integer syncMemberCantacts(Kyo kyo);
 	
 }
 

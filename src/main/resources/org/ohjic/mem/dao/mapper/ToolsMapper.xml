@@ -386,4 +386,11 @@ INNER JOIN portal_user AS c ON a.adminId = c.user_id
 	set b.name=a.member_name 
 	where a.member_name!=b.name
   </update>
+  
+  <update id="updateSmsMembers" parameterType="org.ohjic.mem.model.Kyo">
+  	update ohjic.sms_member a
+	inner join ${church}.member b on a.name = b.member_name and a.phone in (b.member_cellphone, replace(b.member_cellphone,'-',''))
+	set a.tid=b.tid
+	where a.church_code = #{churchCode} and church_code > 0
+  </update>
 </mapper>

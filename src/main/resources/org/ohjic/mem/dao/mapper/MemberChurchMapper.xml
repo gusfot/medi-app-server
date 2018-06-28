@@ -1,0 +1,1655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ohjic.mem.dao.MemberChurchMapper">
+
+	<select id="selectMaxTid" parameterType="map" resultType="int">
+		select ifnull(max(tid), 0) max_no from ${church}.member 
+	</select>
+	
+	<select id="selectMaxMemberDeletedHistSeq" parameterType="map" resultType="int">
+		select ifnull(max(hist_seq), 0) max_no from ${church}.member_deleted
+	</select>
+	
+	<select id="selectMaxMemberYearlyMemoIdx" parameterType="map" resultType="int">
+		select ifnull(max(yearly_memo_idx),0) max_no from ${church}.member_yearly_memo
+	</select>
+	
+	<select id="selectMaxKgroupNo" parameterType="map" resultType="int">
+		select ifnull(max(no), 0) max_no from ${church}.kGroup 
+	</select>
+	
+	<select id="selectMaxKgroupLogNo" parameterType="map" resultType="int">
+		select ifnull(max(no), 0) max_no from ${church}.kGroupLog 
+	</select>
+	
+	<select id="selectMaxKpartIdx" parameterType="map" resultType="int">
+		select ifnull(max(k_part_idx), 0) max_no from ${church}.k_part 
+	</select>
+	
+	<select id="selectMaxManagerNo" parameterType="map" resultType="int">
+		select ifnull(max(managerNo), 0) max_no from ${church}.manager 
+	</select>
+	
+	<select id="selectMaxManagerDeletedSeq" parameterType="map" resultType="int">
+		select ifnull(max(seq), 0) max_no from ${church}.manager_deleted
+	</select>
+	
+	<select id="selectMaxManagerEmailIdx" parameterType="map" resultType="int">
+		select ifnull(max(manager_email_idx),0) max_no from ${church}.manager_email
+	</select>
+	
+	<select id="selectMaxManagerSelectViewNo" parameterType="map" resultType="int">
+		select ifnull(max(view_no), 0) max_no from ${church}.manager_select_view
+	</select>
+	
+	<select id="selectMaxMemberModifyRequestIdx" parameterType="map" resultType="int">
+		select ifnull(max(idx), 0) max_no from ${church}.member_modify_request
+	</select>
+	
+	<select id="selectMaxAttendanceKey" parameterType="map" resultType="int">
+		select ifnull(max(`key`), 0) max_no from ${church}.attendance
+	</select>
+	
+	<select id="selectMaxWorshipCode" parameterType="map" resultType="int">
+		select ifnull(max(worship_code), 0) max_no from ${church}.worship
+	</select>
+	
+	<select id="selectMaxWorshipCodeOrd" parameterType="map" resultType="int">
+		select ifnull(max(ord), 0) max_no from ${church}.worship
+	</select>
+	
+	<select id="selectMaxAttendanceReportNo" parameterType="map" resultType="int">
+		select ifnull(max(reportNo), 0) max_no from ${church}.attendanceReport
+	</select>
+	
+	<select id="selectMaxAdminPrintLogIdx" parameterType="map" resultType="int">
+		select ifnull(max(log_idx), 0) max_no from ${church}.admin_print_log
+	</select>
+	
+	<select id="selectMaxAdminSearchFavoriteIdx" parameterType="map" resultType="int">
+		select ifnull(max(log_idx), 0) max_no from ${church}.admin_search_favorite
+	</select>
+	
+	<select id="selectMaxAdminSearchLogIdx" parameterType="map" resultType="int">
+		select ifnull(max(log_idx), 0) max_no from ${church}.admin_search_log
+	</select>
+	
+	<select id="selectMaxAdminUpdateLogIdx" parameterType="map" resultType="int">
+		select ifnull(max(log_idx), 0) max_no from ${church}.admin_udpate_log
+	</select>
+	
+	<select id="selectMaxAdminUpdateLogDataIdx" parameterType="map" resultType="int">
+		select ifnull(max(log_data_idx), 0) max_no from ${church}.admin_udpate_log_data
+	</select>
+	
+	<select id="selectMaxBoardNo" parameterType="map" resultType="int">
+		select ifnull(max(no), 0) max_no from ${church}.board
+	</select>
+	
+	<select id="selectMaxBoardCategoryNo" parameterType="map" resultType="int">
+		select ifnull(max(no), 0) max_no from ${church}.boardCategory
+	</select>
+	
+	<select id="selectMaxBoardCategoryOrd" parameterType="map" resultType="int">
+		select ifnull(max(ord), 0) max_no from ${church}.boardCategory
+	</select>
+	
+	<select id="selectMaxBoardCommentNo" parameterType="map" resultType="int">
+		select ifnull(max(no), 0) max_no from ${church}.boardComment
+	</select>
+	
+	<select id="selectMaxBoardAttachFileNo" parameterType="map" resultType="int">
+		select ifnull(max(file_no), 0) max_no from ${church}.boardAttachFile
+	</select>
+	
+	<select id="selectMaxCgroupNo" parameterType="map" resultType="int">
+		select ifnull(max(no), 0) max_no from ${church}.cGroup where no <![CDATA[>=]]> 0
+	</select>
+	
+	<select id="selectMaxCgroupOrd" parameterType="map" resultType="int">
+		select ifnull(max(ord), 0) max_no from ${church}.cGroup where no <![CDATA[>=]]> 0
+	</select>
+	
+	<select id="selectMinCgroupNo" parameterType="map" resultType="int">
+		select ifnull(min(no), 0) min_no from ${church}.cGroup where no <![CDATA[<]]> 0
+	</select>
+	
+	<select id="selectMinCgroupOrd" parameterType="map" resultType="int">
+		select ifnull(max(ord), 0) min_no from ${church}.cGroup where no <![CDATA[<]]> 0
+	</select>
+	
+	<select id="selectMaxManagerMenuNo" parameterType="map" resultType="int">
+		select ifnull(max(no), 0) max_no from ${church}.manager_menu
+	</select>
+	
+	<select id="selectMaxCertificationIssueHistoryNo" parameterType="map" resultType="int">
+		select ifnull(max(issue_no), 0) max_no from ${church}.certification_issue_history
+	</select>
+	
+	<select id="selectMaxHistoryAddressIdx" parameterType="map" resultType="int">
+		select ifnull(max(history_idx), 0) max_no from ${church}.historyAddress
+	</select>
+	
+	<select id="selectMaxHistoryCarIdx" parameterType="map" resultType="int">
+		select ifnull(max(history_idx), 0) max_no from ${church}.historyCar
+	</select>
+	
+	<select id="selectMaxHistoryCgroupIdx" parameterType="map" resultType="int">
+		select ifnull(max(history_idx), 0) max_no from ${church}.historyCgroup
+	</select>
+	
+	<select id="selectMaxHistoryChristeningIdx" parameterType="map" resultType="int">
+		select ifnull(max(history_idx), 0) max_no from ${church}.historyChristening
+	</select>
+	
+	<select id="selectMaxHistoryJobTypeIdx" parameterType="map" resultType="int">
+		select ifnull(max(history_idx), 0) max_no from ${church}.historyJobType
+	</select>
+	
+	<select id="selectMaxHistoryPgradeIdx" parameterType="map" resultType="int">
+		select ifnull(max(history_idx), 0) max_no from ${church}.historyPgrade
+	</select>
+	
+	<select id="selectMaxHistoryPgradesIdx" parameterType="map" resultType="int">
+		select ifnull(max(history_idx), 0) max_no from ${church}.historyPgrade
+	</select>
+	
+	<select id="selectMaxHistorySchoolTypeIdx" parameterType="map" resultType="int">
+		select ifnull(max(history_idx), 0) max_no from ${church}.historySchoolType
+	</select>
+	
+	<select id="selectMaxOhEduCategoryIdx" parameterType="map" resultType="int">
+		select ifnull(max(edu_category_idx), 0) max_no from ${church}.oh_edu_category
+	</select>
+	
+	<select id="selectMaxOhEduIdx" parameterType="map" resultType="int">
+		select ifnull(max(edu_idx), 0) max_no from ${church}.oh_edu
+	</select>
+	
+	<select id="selectMaxOhEduPartIdx" parameterType="map" resultType="int">
+		select ifnull(max(edu_part_idx), 0) max_no from ${church}.oh_edu_part
+	</select>
+	
+	<select id="selectMaxOhEduMemberIdx" parameterType="map" resultType="int">
+		select ifnull(max(edu_member_idx), 0) max_no from ${church}.oh_edu_member
+	</select>
+	
+	<select id="selectMaxOhEduManagerIdx" parameterType="map" resultType="int">
+		select ifnull(max(edu_manager_idx), 0) max_no from ${church}.oh_edu_manager
+	</select>
+	
+	<select id="selectMaxOhEduEvalIdx" parameterType="map" resultType="int">
+		select ifnull(max(edu_eval_idx), 0) max_no from ${church}.oh_edu_eval
+	</select>
+	
+	<select id="selectMaxOhEduEvalTxtIdx" parameterType="map" resultType="int">
+		select ifnull(max(edu_eval_idx), 0) max_no from ${church}.oh_edu_eval_txt
+	</select>
+	
+	<select id="selectMaxOhEduMan2manIdx" parameterType="map" resultType="int">
+		select ifnull(max(idx), 0) max_no from ${church}.oh_edu_man2man
+	</select>
+	
+	<select id="selectMaxOhEduMemoIdx" parameterType="map" resultType="int">
+		select ifnull(max(edu_memo_idx), 0) max_no from ${church}.oh_edu_memo
+	</select>
+	
+	<select id="selectMaxAuthEduIdx" parameterType="map" resultType="int">
+		select ifnull(max(auth_edu_idx), 0) max_no from ${church}.auth_category_edu
+	</select>
+	
+	<select id="selectMaxAuthCaegoryIdx" parameterType="map" resultType="int">
+		select ifnull(max(auth_category_idx), 0) max_no from ${church}.auth_category
+	</select>
+	
+	<select id="selectMaxAuthInChargeIdx" parameterType="map" resultType="int">
+		select ifnull(max(auth_in_charge_idx), 0) max_no from ${church}.auth_in_charge
+	</select>
+	
+	<select id="selectMaxAuthSetIdx" parameterType="map" resultType="int">
+		select ifnull(max(auth_set_idx), 0) max_no from ${church}.auth_set
+	</select>
+
+	<select id="selectMaxSpecialGroupNo" parameterType="map" resultType="int">
+		select ifnull(max(group_idx), 0) max_no from ${church}.special_group
+	</select>
+
+	<select id="selectMaxSpecialGroupLogNo" parameterType="map" resultType="int">
+		select ifnull(max(idx), 0) max_no from ${church}.special_group_log
+	</select>
+
+	<select id="selectMaxSpecialGroupAuthIdx" parameterType="map" resultType="int">
+		select ifnull(max(special_group_idx), 0) max_no from ${church}.special_group_auth
+	</select>
+	
+	
+	<select id="selectMaxNameCodeNo" parameterType="map" resultType="int">
+		select ifnull(max(no), 0) max_no from ${church}.nameCode 
+		<where>
+			<if test="type != null">
+				type=#{type}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectMaxNameCodeOrd" parameterType="map" resultType="int">
+		select ifnull(max(ord), 0) max_no from ${church}.nameCode 
+		<where>
+		type=#{type}
+		</where>
+	</select>
+	
+	<insert id="mergeMember" parameterType="map">
+		insert into ${destination}.member 
+		select 
+			tid + #{memberWeight}
+			,fid + #{memberWeight}
+			,grade
+			,fam_leader
+			,relation
+			,member_name
+			,member_name_distinct
+			,member_name_en
+			,member_name_han
+			,rrn_id1
+			,rrn_id2
+			,birth_year
+			,birth_date
+			,birth_solar
+			,member_sex
+			,blood_type
+			,member_homepage
+			,member_phone
+			,member_cellphone
+			,member_email
+			,if(p_grade>0, p_grade + #{pgradeWeight}, p_grade) p_grade
+			,p_grade_name
+			,p_grade_date
+			,p_grade_minister
+			,p_grade_church
+			,if(p_grade_ord>0, p_grade_ord + #{pgradeOrdWeight}, p_grade_ord) p_grade_ord
+			,guide
+			,guide2
+			,guide_phone
+			,guide_relation
+			,regi_date
+			,reception_date
+			,wedding
+			,wedding_anniversary
+			,if(christening > 0, christening + #{christeningWeight}, christening) christening
+			,christening_name
+			,christening_date
+			,christening_church
+			,christening_minister
+			,if(christening_ord > 0, christening_ord + #{christeningOrdWeight}, christening_ord) christening_ord
+			,last_church
+			,last_grade
+			,last_act
+			,member_zipcode
+			,member_address1
+			,member_address2
+			,member_address_street
+			,member_zipcode_street
+			,job
+			,job_type_name
+			,job_type
+			,career_name
+			,career
+			,company_name
+			,company_position
+			,company_phone
+			,school_type
+			,school_name
+			,school_year
+			,school_grade
+			,school_major
+			,school_class
+			,car_number
+			,car_type
+			,parking_permit
+			,car_memo
+			,etc
+			,etc_secure
+			,member_image
+			,inputDate
+			,register_id
+			,register_name
+			,last_view
+			,modifier_id
+			,modifier_name
+			,etc1
+			,etc2
+			,etc3
+			,etc4
+			,etc5
+			,etc6
+			,etc7
+			,etc8
+			,etc9
+			,removed
+			,cDepth1
+			,cDepth2
+			,cDepth1Name
+			,cDepth2Name
+			,cGroupUpdateDate
+			,if(last_kgrouplog!=0, last_kgrouplog + #{kGroupLogWeight}, last_kgrouplog)
+			,partner_name
+			,if(partner_tid is not null, partner_tid+ #{memberWeight}, partner_tid)
+			,parent_name1
+			,parent_phone1
+			,parent_name2
+			,parent_phone2
+			,if(fid_before is null,  fid_before, fid_before+ #{memberWeight}) fid_before
+			,relation_before
+			,last_visit
+			,with_family
+			,interest
+
+		from ${target}.member 
+	</insert>
+	
+	<insert id="mergeMemberDeleted" parameterType="map">
+		insert into ${destination}.member_deleted
+		select 
+			hist_seq + #{memberDeletedWeight}
+			,tid + #{memberWeight}
+			,fid + #{memberWeight}
+			,grade
+			,fam_leader
+			,relation
+			,member_name
+			,member_name_distinct
+			,member_name_en
+			,member_name_han
+			,rrn_id1
+			,rrn_id2
+			,birth_year
+			,birth_date
+			,birth_solar
+			,member_sex
+			,blood_type
+			,member_homepage
+			,member_phone
+			,member_cellphone
+			,member_email
+			,if(p_grade>0, p_grade + #{pgradeWeight}, p_grade) p_grade
+			,p_grade_name
+			,p_grade_date
+			,p_grade_minister
+			,p_grade_church
+			,if(p_grade_ord>0, p_grade_ord + #{pgradeOrdWeight}, p_grade_ord) p_grade_ord
+			,guide
+			,guide2
+			,guide_phone
+			,guide_relation
+			,regi_date
+			,reception_date
+			,wedding
+			,wedding_anniversary
+			,if(christening > 0, christening + #{christeningWeight}, christening) christening
+			,christening_name
+			,christening_date
+			,christening_church
+			,christening_minister
+			,if(christening_ord > 0, christening_ord + #{christeningOrdWeight}, christening_ord) christening_ord
+			,last_church
+			,last_grade
+			,last_act
+			,member_zipcode
+			,member_address1
+			,member_address2
+			,member_address_street
+			,member_zipcode_street
+			,job
+			,job_type_name
+			,job_type
+			,career_name
+			,career
+			,company_name
+			,company_position
+			,company_phone
+			,school_type
+			,school_name
+			,school_year
+			,school_grade
+			,school_major
+			,school_class
+			,car_number
+			,car_type
+			,parking_permit
+			,car_memo
+			,etc
+			,etc_secure
+			,member_image
+			,inputDate
+			,register_id
+			,register_name
+			,last_view
+			,modifier_id
+			,modifier_name
+			,etc1
+			,etc2
+			,etc3
+			,etc4
+			,etc5
+			,etc6
+			,etc7
+			,etc8
+			,etc9
+			,removed
+			,case
+				when cDepth1 = 0 then 0 
+				when cDepth1 <![CDATA[>]]> 0 then cDepth1 + #{cGroup1Weight}
+				when cDepth1 <![CDATA[<]]> 0 then cDepth1 + #{cGroup2Weight}
+			end as cDepth1
+			,case
+				when cDepth2 = 0 then 0 
+				when cDepth2 <![CDATA[>]]> 0 then cDepth2 + #{cGroup1Weight} 
+				when cDepth2 <![CDATA[<]]> 0 then cDepth2 + #{cGroup2Weight}
+			end as cDepth2
+			,cDepth1Name
+			,cDepth2Name
+			,cGroupUpdateDate
+			,partner_name
+			,if(partner_tid is not null, partner_tid+ #{memberWeight}, partner_tid) partner_tid
+			,parent_name1
+			,parent_phone1
+			,parent_name2
+			,parent_phone2
+			,if(fid_before is null, null , fid_before+#{memberWeight}) fid_before
+			,relation_before
+			,last_visit
+			,with_family
+			,interest
+			,deleted_date
+			,deleted_manager_idx + #{managerWeight}
+			,if(last_kgrouplog!=0, last_kgrouplog + #{kGroupLogWeight}, last_kgrouplog) last_kgrouplog
+
+		from ${target}.member_deleted
+	</insert>
+
+	<insert id="mergeMemberGuide" parameterType="map">
+	insert into ${destination}.member_guide
+	select 
+
+		member_tid + #{memberWeight}
+		,if(guide_tid > 0, guide_tid + #{memberWeight}, guide_tid) guide_tid
+		,guide_name
+		,update_date
+		,reg_date
+				
+	from ${target}.member_guide
+	</insert>
+		
+	<insert id="mergeKpart" parameterType="map">
+	insert into ${destination}.k_part
+	select 
+
+		k_part_idx + #{kPartWeight}
+		,k_part_name
+		,depth1_title
+		,depth2_title
+		,depth3_title
+		,depth4_title
+		,depth5_title
+		,fixed
+		,active
+		,useful_column
+		,is_display
+		,reg_date
+		,mod_date
+		,ord
+
+				
+	from ${target}.k_part
+	</insert>
+		
+	<insert id="mergeKgroup" parameterType="map">
+	insert into ${destination}.kGroup
+	select 
+		no + #{kGroupWeight}
+		,year
+		,k_part_idx + #{kPartWeight}
+		,depth1 + #{kGroupWeight}
+		,if(depth2!=0, depth2+ #{kGroupWeight}, depth2)
+		,if(depth3!=0, depth3+ #{kGroupWeight}, depth3)
+		,if(depth4!=0, depth4+ #{kGroupWeight}, depth4)
+		,if(depth5!=0, depth5+ #{kGroupWeight}, depth5)
+		,ord
+		,depth1_name
+		,depth2_name
+		,depth3_name
+		,depth4_name
+		,depth5_name
+		,depth
+		,group_name
+		,start_date
+		,end_date
+		,reportType
+		,reportItem
+		,reg_date
+		,if(p_no!=0, p_no+ #{kGroupWeight}, 0)
+				
+	from ${target}.kGroup
+	</insert>
+	
+	<insert id="mergeKgroupLog" parameterType="map">
+	insert into ${destination}.kGroupLog
+	select 
+		no + #{kGroupLogWeight}
+		,start_date
+		,end_date
+		,sortNo
+		,attend_type
+		,year
+		,k_part_idx + #{kPartWeight}
+		,if(group_no!=0, group_no + #{kGroupWeight}, 0)
+		,group_name
+		,depth1_name
+		,depth2_name
+		,depth3_name
+		,depth4_name
+		,depth5_name
+		,if(depth1!=0, depth1+ #{kGroupWeight}, depth1)
+		,if(depth2!=0, depth2+ #{kGroupWeight}, depth2)
+		,if(depth3!=0, depth3+ #{kGroupWeight}, depth3)
+		,if(depth4!=0, depth4+ #{kGroupWeight}, depth4)
+		,if(depth5!=0, depth5+ #{kGroupWeight}, depth5)
+		,tid + #{memberWeight}
+		,position
+		,position_name
+		,position_ord
+		,name
+		,chief
+		,reg_date
+
+	from ${target}.kGroupLog
+	</insert>
+	
+	<insert id="mergeManager" parameterType="map">
+	insert into ${destination}.manager
+	select 
+		managerNo + #{managerWeight}
+		,name
+		,id
+		,grade
+		,regi_date
+		,comment
+		,isSms
+		,edu_auth
+		,expelAuth
+		,visit_category_auth
+		,tmpId
+		,password
+		,if(tid!=0, tid + #{memberWeight}, 0)
+		,log_fail_cnt
+		,readGuide
+		,config
+
+	from ${target}.manager
+	</insert>
+	
+	<insert id="mergeManagerLog" parameterType="map">
+	insert into ${destination}.managerLog
+	select 
+		year
+		,group_no + #{kGroupWeight}
+		,sortNo
+		,managerNo + #{managerWeight}
+		,user_id
+		,state
+		,readAuth
+		,modifyAuth
+		,delAuth
+		,addAuth
+		,attAuth
+		,secureEtcAuth
+		,individualAuth
+		,familyAuth
+		,attEtcAuth
+		,prayAuth
+		,groupWriteAuth
+	from ${target}.managerLog
+	</insert>
+
+	<insert id="mergeManagerView" parameterType="map">
+	insert into ${destination}.managerView
+	select 
+		managerNo + #{managerWeight}
+		,year
+		,groupNo + #{kGroupWeight}
+		,depth
+	from ${target}.managerView
+	</insert>
+
+	<insert id="mergeManagerAtt" parameterType="map">
+	insert into ${destination}.manager_att
+	select
+		tid + #{memberWeight}
+		,passwd
+		,first_login_date
+		,last_modify_date
+	from ${target}.manager_att
+	</insert>
+	
+	<insert id="mergeManagerDeleted" parameterType="map">
+	insert into ${destination}.manager_deleted
+	select
+		seq + #{managerDeletedWeight}
+		,managerNo + #{managerWeight}
+		,name
+		,id
+		,grade
+		,regi_date
+		,comment
+		,isSms
+		,edu_auth
+		,expelAuth
+		,visit_category_auth
+		,tmpId
+		,password
+		,if(tid=0, 0, tid + #{memberWeight})
+		,log_fail_cnt
+		,readGuide
+		,config
+		,deleted_date
+		,deleted_manager_idx
+
+	from ${target}.manager_deleted
+	</insert>
+	
+	<insert id="mergeManagerGuide" parameterType="map">
+	insert into ${destination}.member_guide
+	select
+		member_tid + #{memberWeight}
+		,guide_tid + #{memberWeight}
+		,guide_name
+		,update_date
+		,reg_date
+	from ${target}.member_guide
+	</insert>
+
+	<insert id="mergeManagerEmail" parameterType="map">
+	insert into ${destination}.manager_email
+	select
+		manager_email_idx + #{managerEmailWeight}
+		,email_address
+		,email_password
+		,eamil_server
+		,reg_date
+		,update_date
+		,manager_idx + #{managerWeight}
+	from ${target}.manager_email
+	</insert>
+
+	<insert id="mergeManagerMenu" parameterType="map">
+	insert into ${destination}.manager_menu
+	select
+		manager_idx + #{managerWeight}
+		,manu_list
+		,reg_date
+	from ${target}.manager_menu
+	</insert>
+
+	<insert id="mergeManagerSelectView" parameterType="map">
+	insert into ${destination}.manager_select_view
+	select
+		view_no + #{managerSelectViewWeight}
+		,manager_no + #{managerWeight}
+		,view_type
+		,view_name
+		,view_layout
+		,view_column
+		,selected
+		,select_date
+		,is_share
+		,view_order
+	from ${target}.manager_select_view
+	</insert>
+
+	<insert id="mergeMemberYearlyMemo" parameterType="map">
+	insert into ${destination}.member_yearly_memo
+	select
+		yearly_memo_idx + #{memebrYearlyMemoWeight}
+		,year
+		,tid + #{memberWeight}
+		,writer_tid + #{memberWeight}
+		,category
+		,memo
+		,status
+		,attendance_grade
+		,regi_date
+	from ${target}.member_yearly_memo
+	</insert>
+
+	<insert id="mergeMemberModifyRequest" parameterType="map">
+	insert into ${destination}.member_modify_request
+	select
+		idx + #{memberModifyRequestWeight}
+		,tid + #{memberWeight}
+		,status
+		,column
+		,old_data
+		,new_data
+		,manager_idx + #{managerWeight}
+		,manager_name
+		,request_date
+		,ip
+		,confirm_manager_idx + #{managerWeight}
+		,confirm_date
+		,del_yn
+
+	from ${target}.member_modify_request
+	</insert>
+
+	<insert id="mergeMemberRrn" parameterType="map">
+	insert into ${destination}.member_rrn
+	select
+		tid + #{memberWeight}
+		,rrn_id1
+		,rrn_id2
+	from ${target}.member_rrn
+	</insert>
+
+	<insert id="mergeWorship" parameterType="map">
+	insert into ${destination}.worship
+	select
+		worship_code + #{worshipWeight}
+		,short_worship_name
+		,worship_name
+		,worship_date
+		,worship_type
+		,ord + #{worshipOrdWeight}
+
+	from ${target}.worship
+	</insert>
+	
+	<insert id="mergeWorshipGroup" parameterType="map">
+	insert into ${destination}.worshipGroup
+	select
+		year
+		,groupNo + #{kGroupWeight}
+		,worshipCode + #{worshipWeight}
+		,groupName
+		,reg_date
+
+	from ${target}.worshipGroup
+	</insert>
+
+	<insert id="mergeAttendance" parameterType="map">
+	insert into ${destination}.attendance
+	select
+		`key` + #{attendanceWeight}
+		,worship_code + #{worshipWeight}
+		,date
+		,tid + #{memberWeight}
+		,attendance_cnt
+		,group_no + #{kGroupWeight}
+		,reg_date
+	from ${target}.attendance
+	</insert>
+	
+	<insert id="mergeAttendanceCnt" parameterType="map">
+	insert into ${destination}.attendanceCnt
+	select
+		sortNo
+		,worshipCode + #{worshipWeight}
+		,date
+		,groupNo + #{kGroupWeight}
+		,year
+		,customCnt
+		,realCnt
+		,reg_date
+
+	from ${target}.attendanceCnt
+	</insert>
+	
+	<insert id="mergeAttendanceReport" parameterType="map">
+	insert into ${destination}.attendanceReport
+	select
+		reportNo + #{attendanceReportWeight}
+		,year
+		,groupNo + #{kGroupWeight}
+		,title
+		,content
+		,mainNo + #{attendanceReportWeight}
+		,isMain
+		,writerID
+		,writerName
+		,writeDate
+		,reportDate
+
+	from ${target}.attendanceReport
+	</insert>
+	
+	<insert id="mergeAttendanceStats" parameterType="map">
+	insert into ${destination}.attendanceStats
+	select
+		year
+		,groupNo + #{kGroupWeight}
+		,date
+		,sortNo
+		,customStats
+		,realStats
+		,etc
+		,reg_date
+
+	from ${target}.attendanceStats
+	</insert>
+	
+	<insert id="mergeAttEtc" parameterType="map">
+	insert into ${destination}.att_etc
+	select
+		tid + #{memberWeight}
+		,date
+		,etc
+		,group_no + #{kGroupWeight}
+
+	from ${target}.att_etc
+	</insert>
+	
+	<insert id="mergeAttendanceWeeklyInfo" parameterType="map">
+	insert into ${destination}.attendanceWeeklyInfo
+	select
+		year
+		,groupNo + #{kGroupWeight}
+		,date
+		,time
+		,mc
+		,prayer
+		,bible
+		,preacher
+		,special
+		,preachTitle
+		,etcActivity
+		,place
+		,weekSummary
+		,guestCnt
+		,upgradeCnt
+		,guestEtc
+		,upgradeEtc
+		,newMemberEtc
+		,prayTitle
+		,meeting_date
+		,next_meeting_date
+		,next_place
+
+	from ${target}.attendanceWeeklyInfo
+	</insert>
+	
+	<insert id="mergeAdminPrintLog" parameterType="map">
+	insert into ${destination}.admin_print_log
+	select
+		log_idx + #{adminPrintLogWeight}
+		,manager_idx + #{managerWeight}
+		,print_place
+		,view_type
+		,print_date
+
+	from ${target}.admin_print_log
+	</insert>
+	
+	<insert id="mergeAdminSearchFavorite" parameterType="map">
+	insert into ${destination}.admin_search_favorite
+	select
+		log_idx + #{adminSearchFavoriteWeight}
+		,manager_idx + #{managerWeight}
+		,name
+		,update_date
+		,regi_date
+
+	from ${target}.admin_search_favorite
+	</insert>
+	
+	<insert id="mergeAdminSearchLog" parameterType="map">
+	insert into ${destination}.admin_search_log
+	select
+		log_idx + #{adminSearchLogWeight}
+		,manager_idx + #{managerWeight}
+		,regi_date
+		,keyword_kr
+		,keyword_en
+		,search_data
+
+	from ${target}.admin_search_log
+	</insert>
+	
+	<insert id="mergeAdminUpdateLog" parameterType="map">
+	insert into ${destination}.admin_udpate_log
+	select
+		log_idx + #{adminUpdateLogWeight}
+		,actor
+		,log_date
+		,menu
+		,pk1
+		,pk2
+		,act
+		,ip_address
+
+	from ${target}.admin_udpate_log
+	</insert>
+	
+	<!-- column이 성도아이디인 경우 고려 ex)tid, fid, partner_tid, before_fid  또는  교인구분(cDepth1, cDepth2) 또는 직분(p_grade) 또는 신급(christening)-->
+	<insert id="mergeAdminUpdateLogData" parameterType="map">
+	insert into ${destination}.admin_udpate_log_data
+	select
+		log_data_idx + #{adminUpdateLogDataWeight}
+		,log_idx + #{adminUpdateLogWeight}
+		,column
+		,old_data
+		,new_data
+
+	from ${target}.admin_udpate_log_data
+	</insert>
+	
+	<insert id="mergeBoard" parameterType="map">
+	insert into ${destination}.board
+	select
+		no + #{boardWeight}
+		,category
+		,root_no + #{boardWeight}
+		,depth
+		,thread
+		,has_file
+		,user_id
+		,subject
+		,content
+		,user_name
+		,hit
+		,comment_count
+		,date
+
+	from ${target}.board where no>1
+	</insert>
+	
+	<insert id="mergeBoardCategory" parameterType="map">
+	insert into ${destination}.boardCategory
+	select
+		no + #{boardCategoryWeight}
+		,`name`
+		,`write`
+		,`read`
+		,ord + #{boardCategoryOrdWeight}
+		,allView
+		,home
+
+	from ${target}.boardCategory where no <![CDATA[>]]> 1
+	</insert>
+	
+	<insert id="mergeBoardComment" parameterType="map">
+	insert into ${destination}.boardComment
+	select
+		no + #{baordCommentWeight}
+		,category + #{boardCategoryWeight}
+		,user_name
+		,user_id
+		,content
+		,date
+		,parent_no + #{baordCommentWeight}
+
+	from ${target}.boardComment
+	</insert>
+	
+	<insert id="mergeBoardPerGroup" parameterType="map">
+	insert into ${destination}.boardPerGroup
+	select
+		category + #{boardCategoryWeight}
+		,group_no +#{kGroupWeight}
+		,year
+
+	from ${target}.boardPerGroup
+	</insert>
+	
+	<insert id="mergeBoardAttachFile" parameterType="map">
+	insert into ${destination}.boardAttachFile
+	select
+		file_no + #{boardAttachFileWeight}
+		,category + #{boardCategoryWeight}
+		,document_no + #{boardWeight}
+		,file_path
+
+	from ${target}.boardAttachFile
+	</insert>
+	
+	<insert id="mergeCgroup1" parameterType="map">
+	insert into ${destination}.cGroup
+	select
+		no + #{cGroup1Weight}
+		,ord + #{cGroup1OrdWeight}
+		,depth1 + #{cGroup1Weight}
+		,if(depth2=0, 0 , depth2+#{cGroup1Weight}) 
+		,depth1Name
+		,depth2Name
+		,depth
+		,groupName
+		,display_status
+		,reg_date
+
+	from ${target}.cGroup 
+	where (depth1Name, depth2Name) not in (
+	    select depth1Name, ifnull(depth2Name,'') depth2Name from ${destination}.cGroup where no <![CDATA[>=]]> 0
+		 group by depth1Name, ifnull(depth2Name,''))  
+	 and no <![CDATA[>=]]> 0
+	</insert>
+	
+	<insert id="mergeCgroup2" parameterType="map">
+	insert into ${destination}.cGroup
+	select
+		no + #{cGroup2Weight}
+		,ord + #{cGroup2OrdWeight}
+		,depth1 + #{cGroup2Weight}
+		,if(depth2=0, 0 , depth2+#{cGroup2Weight}) 
+		,depth1Name
+		,depth2Name
+		,depth
+		,groupName
+		,display_status
+		,reg_date
+
+	from ${target}.cGroup 
+	where (depth1Name, depth2Name) not in (
+	    select depth1Name, ifnull(depth2Name,'') depth2Name from ${destination}.cGroup where no <![CDATA[<]]> 0
+		 group by depth1Name, ifnull(depth2Name,''))  
+	 and no <![CDATA[<]]> 0
+	</insert>
+	
+	<insert id="mergeHistoryCar" parameterType="map">
+	insert into ${destination}.historyCar
+	select
+		history_idx + #{historyAddressWeight}
+		,car_type
+		,car_number
+		,parking_permit
+		,car_memo
+		,regi_date
+		,if(managerNo>0, managerNo + #{managerWeight}, managerNo) 
+		,tid + #{memberWeight}
+
+	from ${target}.historyCar 
+	</insert>
+
+	<insert id="mergeHistoryCgroup" parameterType="map">
+	insert into ${destination}.historyCgroup
+	select
+		history_idx + #{historyCgroupWeight}
+		,cDepth1Name
+		,cDepth2Name
+		,case
+			when cDepth1 = 0 then 0 
+			when cDepth1 <![CDATA[>]]> 0 then cDepth1 + #{cGroup1Weight}
+			when cDepth1 <![CDATA[<]]> 0 then cDepth1 + #{cGroup2Weight}
+		end as cDepth1
+		,case
+			when cDepth2 = 0 then 0 
+			when cDepth2 <![CDATA[>]]> 0 then cDepth2 + #{cGroup1Weight} 
+			when cDepth2 <![CDATA[<]]> 0 then cDepth2 + #{cGroup2Weight}
+		end as cDepth2
+		,cGroupUpdateDate
+		,regi_date
+		,if(managerNo>0, managerNo + #{managerWeight}, managerNo) 
+		,tid + #{memberWeight}
+
+	from ${target}.historyCgroup 
+	</insert>
+
+	<insert id="mergeHistoryChristening" parameterType="map">
+	insert into ${destination}.historyChristening
+	select
+		history_idx + #{historyAddressWeight}
+		,christening_name
+		,christening + #{christeningWeight}
+		,christening_date
+		,christening_church
+		,christening_minister
+		,regi_date
+		,if(managerNo>0, managerNo + #{managerWeight}, managerNo) 
+		,tid + #{memberWeight}
+
+	from ${target}.historyChristening 
+	</insert>
+
+	<insert id="mergeHistoryJobType" parameterType="map">
+	insert into ${destination}.historyJobType
+	select
+		history_idx + #{historyJobTypeWeight}
+		,job_type_name
+		,job_type
+		,career_name
+		,career
+		,company_name
+		,company_position
+		,company_phone
+		,regi_date
+		,if(managerNo>0, managerNo + #{managerWeight}, managerNo) 
+		,tid + #{memberWeight}
+
+	from ${target}.historyJobType
+	</insert>
+
+	<insert id="mergeHistoryPgrade" parameterType="map">
+	insert into ${destination}.historyPgrade
+	select
+		history_idx + #{historyPgradeWeight}
+		,p_grade_name
+		,p_grade + #{pgradeWeight}
+		,p_grade_date
+		,p_grade_minister
+		,p_grade_church
+		,regi_date
+		,if(managerNo>0, managerNo + #{managerWeight}, managerNo) 
+		,tid + #{memberWeight}
+
+	from ${target}.historyPgrade 
+	</insert>
+
+	<insert id="mergeHistorySchoolType" parameterType="map">
+	insert into ${destination}.historySchoolType
+	select
+		history_idx + #{historySchoolTypeWeight}
+		,school_type
+		,school_name
+		,school_year
+		,school_grade
+		,school_major
+		,school_class
+		,school_year
+		,if(managerNo>0, managerNo + #{managerWeight}, managerNo) 
+		,tid + #{memberWeight}
+
+	from ${target}.historySchoolType
+	</insert>
+
+	<insert id="mergeHistoryAddress" parameterType="map">
+	insert into ${destination}.historyAddress
+	select
+		history_idx + #{historyAddressWeight}
+		,member_zipcode
+		,member_address1
+		,member_address2
+		,regi_date
+		,if(managerNo>0, managerNo + #{managerWeight}, managerNo) 
+		,tid + #{memberWeight}
+		,address_type
+
+	from ${target}.historyAddress 
+	</insert>
+	
+	<insert id="mergeNameCodePgrade" parameterType="map">
+	insert into ${destination}.nameCode
+	select 
+		no + #{nameCodeWeight}
+		,type
+		,ord + #{pgradeOrdWeight}
+		,name
+		,short_name
+		,fixed
+		,level
+	from ${target}.nameCode 
+	 where (type, name) not in (select type, name from ${destination}.nameCode where type='pGrade')
+	and type='pGrade'
+	</insert>
+	
+	<insert id="mergeNameCodeChristening" parameterType="map">
+	insert into ${destination}.nameCode
+	select 
+		no + #{nameCodeWeight}
+		,type
+		,ord + #{christeningOrdWeight}
+		,name
+		,short_name
+		,fixed
+		,level
+	from ${target}.nameCode 
+	 where (type, name) not in (select type, name from ${destination}.nameCode where type='churchLevel')
+	and type='churchLevel'
+	</insert>
+	
+	<insert id="mergeNameCodePartPosition" parameterType="map">
+	insert into ${destination}.nameCode
+	select 
+		no + #{nameCodeWeight}
+		,type
+		,ord + #{partPositionOrdWeight}
+		,name
+		,short_name
+		,fixed
+		,level
+	from ${target}.nameCode 
+	 where (type, name) not in (select type, name from ${destination}.nameCode where type='partPosition')
+	and type='partPosition'
+	</insert>
+	
+	<insert id="mergeNameCodeFamily" parameterType="map">
+	insert into ${destination}.nameCode
+	select 
+		no + #{nameCodeWeight}
+		,type
+		,ord + #{familyOrdWeight}
+		,name
+		,short_name
+		,fixed
+		,level
+	from ${target}.nameCode 
+	 where (type, name) not in (select type, name from ${destination}.nameCode where type='family')
+	and type='family'
+	</insert>
+	
+	<insert id="mergeNameCodeSchoolType" parameterType="map">
+	insert into ${destination}.nameCode
+	select 
+		no + #{nameCodeWeight}
+		,type
+		,ord + #{schoolTypeOrdWeight}
+		,name
+		,short_name
+		,fixed
+		,level
+	from ${target}.nameCode 
+	 where (type, name) not in (select type, name from ${destination}.nameCode where type='schoolType')
+	and type='schoolType'
+	</insert>
+	
+	<insert id="mergeNameCodeWedding" parameterType="map">
+	insert into ${destination}.nameCode
+	select 
+		no + #{nameCodeWeight}
+		,type
+		,ord + #{weddingOrdWeight}
+		,name
+		,short_name
+		,fixed
+		,level
+	from ${target}.nameCode 
+	 where (type, name) not in (select type, name from ${destination}.nameCode where type='wedding')
+	and type='wedding'
+	</insert>
+	
+	<insert id="mergeNameCodeEduStatus" parameterType="map">
+	insert into ${destination}.nameCode
+	select 
+		no + #{nameCodeWeight}
+		,type
+		,ord + #{eduStatusOrdWeight}
+		,name
+		,short_name
+		,fixed
+		,level
+	from ${target}.nameCode 
+	 where (type, name) not in (select type, name from ${destination}.nameCode where type='eduStatus')
+	and type='eduStatus'
+	</insert>
+	
+	<insert id="mergeOhEduCategory" parameterType="map">
+	insert into ${destination}.oh_edu_category
+	select 
+		edu_category_idx + #{ohEduCategoryWeight}
+		,edu_type
+		,edu_category_name
+		,depth
+		,if(depth1 > 0, depth1 + #{ohEduCategoryWeight}, depth1)
+		,if(depth2 > 0, depth2 + #{ohEduCategoryWeight}, depth2)
+		,if(depth3 > 0, depth3 + #{ohEduCategoryWeight}, depth3)
+		,if(depth4 > 0, depth4 + #{ohEduCategoryWeight}, depth4)
+		,if(depth5 > 0, depth5 + #{ohEduCategoryWeight}, depth5)
+		
+	from ${target}.oh_edu_category 
+	</insert>
+
+	<insert id="mergeOhEdu" parameterType="map">
+	insert into ${destination}.oh_edu
+	select 
+		edu_idx + #{ohEduWeight}
+		,edu_category_idx + #{ohEduCategoryWeight}
+		,edu_name
+		,pass_course_edu
+		,pass_course
+		,lastest_part
+		,edu_goal
+		,edu_content
+		,member_data_column_select
+		,eval_standard
+		,edu_config
+		,regi_date
+		,register_idx + #{managerWeight}
+		,last_update_date
+		,last_updater_idx + #{managerWeight}
+		,essential_status
+		,eval_config
+		,use_man2man
+		,man2man_teacher
+		,auth_type
+		,edu_type
+
+	from ${target}.oh_edu 
+	</insert>
+	
+	<insert id="mergeOhEduPart" parameterType="map">
+	insert into ${destination}.oh_edu_part
+	select 
+		edu_part_idx + #{ohEduPartWeight}
+		,edu_idx + #{ohEduWeight}
+		,part_name
+		,phase_name
+		,regi_start_date
+		,regi_end_date
+		,edu_start_date
+		,edu_end_date
+		,edu_place
+		,edu_step
+		,edu_step_name
+		,now_member
+		,max_member
+		,edu_day
+		,edu_time
+		,eval_element
+		,part_goal
+		,part_content
+		,main_teacher
+		,sub_teacher
+		,edu_config
+		,regi_date
+		,register_idx + #{managerWeight}
+		,last_update_date
+		,last_updater_idx + #{managerWeight}
+		,orderNo
+		,eval_config
+		,use_man2man
+		,man2man_teacher
+
+	from ${target}.oh_edu_part 
+	</insert>
+	
+	<insert id="mergeOhEduMember" parameterType="map">
+	insert into ${destination}.oh_edu_member
+	select 
+		edu_member_idx + #{ohEduMemberWeight}
+		,edu_idx + #{ohEduWeight}
+		,edu_part_idx + #{ohEduPartWeight}
+		,tid + #{memberWeight}
+		,member_name
+		,edu_status
+		,comment
+		,last_att_step
+		,last_att_date
+		,last_manager_idx + #{managerWeight}
+		,last_manager_name
+		,edu_start_date
+		,edu_end_date
+		,support_manager_idx + #{managerWeight}
+		,regi_date
+		,register_idx + #{managerWeight}
+		,last_update_date
+		,last_updater_idx + #{managerWeight}
+
+	from ${target}.oh_edu_member 
+	</insert>
+	
+	<insert id="mergeOhEduManager" parameterType="map">
+	insert into ${destination}.oh_edu_manager
+	select 
+		edu_manager_idx + #{ohEduManagerWeight}
+		,edu_idx + #{ohEduWeight}
+		,manager_idx + #{managerWeight}
+		,manager_name
+		,att_auth
+		,manage_auth
+		,is_active
+		,manager_tid + #{memberWeight}
+
+	from ${target}.oh_edu_manager 
+	</insert>
+	
+	<insert id="mergeOhEduEval" parameterType="map">
+	insert into ${destination}.oh_edu_eval
+	select 
+		edu_eval_idx + #{ohEduEvalWeight}
+		,edu_part_idx + #{ohEduPartWeight}
+		,edu_member_idx + #{ohEduMemberWeight}
+		,edu_step
+		,att_data
+		,att_date
+		,manager_idx + #{ohEduManagerWeight}
+		,manager_name
+		,regi_date
+		,register_idx + #{ohEduManagerWeight}
+		,modify_date
+
+	from ${target}.oh_edu_eval 
+	</insert>
+
+	<insert id="mergeOhEduTxtEval" parameterType="map">
+	insert into ${destination}.oh_edu_eval_txt
+	select 
+		edu_eval_idx + #{ohEduEvalWeight}
+		,edu_idx + #{ohEduWeight}
+		,edu_part_idx + #{ohEduPartWeight}
+		,tid + #{memberWeight}
+		,edu_member_idx + #{ohEduMemberWeight}
+		,prev1
+		,prev2
+		,prev3
+		,prev4
+		,prev5
+		,prev6
+		,prev7
+		,prev8
+		,prev9
+		,prev10
+		,after1_val
+		,after2_val
+		,after3_val
+		,after4_val
+		,after5_val
+		,after6_val
+		,after7_val
+		,after8_val
+		,after9_val
+		,after10_val
+		,after1_txt
+		,after2_txt
+		,after3_txt
+		,after4_txt
+		,after5_txt
+		,after6_txt
+		,after7_txt
+		,after8_txt
+		,after9_txt
+		,after10_txt
+		,manager_idx + #{managerWeight}
+		,eval_date
+
+	from ${target}.oh_edu_eval_txt 
+	</insert>
+
+	<insert id="mergeOhEduMan2man" parameterType="map">
+	insert into ${destination}.oh_edu_man2man
+	select 
+		idx + #{ohEduMan2manWeight}
+		,edu_idx + #{ohEduWeight}
+		,edu_part_idx + #{ohEduPartWeight}
+		,man2man_code
+		,edu_member_idx + #{ohEduMemberWeight}
+		,teacher_tid + #{memberWeight}
+
+
+	from ${target}.oh_edu_man2man 
+	</insert>
+	
+	<insert id="mergeOhEduMemo" parameterType="map">
+	insert into ${destination}.oh_edu_memo
+	select 
+		edu_memo_idx + #{ohEduMemoWeight}
+		,edu_idx + #{ohEduWeight}
+		,edu_part_idx + #{ohEduPartWeight}
+		,tid + #{memberWeight}
+		,subject
+		,content
+		,manager_idx + #{managerWeight}
+		,manager_name
+		,regi_date
+		,last_update_date
+
+	from ${target}.oh_edu_memo 
+	</insert>
+	
+	<insert id="mergeAuthCategoryEdu" parameterType="map">
+	insert into ${destination}.auth_category_edu
+	select 
+		auth_edu_idx + #{authEduWeight}
+		,edu_category_idx + #{ohEduCategoryWeight}
+		,auth_category_idx + #{authCategoryWeight}
+		,last_update_manager
+		,last_update_date
+
+	from ${target}.auth_category_edu 
+	</insert>
+	
+	<insert id="mergeAuthCategory" parameterType="map">
+	insert into ${destination}.auth_category
+	select 
+		,edu_category_idx + #{ohEduCategoryWeight}
+		,name
+		,auth_category_kind
+		,priority
+		,reg_date
+		,ord
+
+	from ${target}.auth_category 
+	</insert>
+	
+	<insert id="mergeAuthDefault" parameterType="map">
+	insert into ${destination}.auth_default
+	select 
+		,edu_category_idx + #{ohEduCategoryWeight}
+		,auth_type_idx
+		,value
+		,reg_date
+
+	from ${target}.auth_default 
+	</insert>
+	
+	<insert id="mergeAuthGroup" parameterType="map">
+	insert into ${destination}.auth_group
+	select 
+		,auth_set_idx + #{authSetWeight}
+		,sort_no
+		,auth_type_idx
+		,value
+		,reg_date
+
+	from ${target}.auth_group 
+	</insert>
+	
+	<insert id="mergeAuthInCharge" parameterType="map">
+	insert into ${destination}.auth_in_charge
+	select 
+		auth_in_charge_idx + #{authInChargeWeight}
+		,auth_set_idx + #{authSetWeight}
+		,manager_idx + #{managerWeight}
+		,group_no + #{kGroupWeight}
+		,reg_date
+
+	from ${target}.auth_in_charge 
+	</insert>
+	
+	<insert id="mergeAuthManager" parameterType="map">
+	insert into ${destination}.auth_manager
+	select 
+		manager_idx + #{managerWeight}
+		,auth_category_idx + #{authCategoryWeight}
+		,update_manager
+		,update_date
+		,reg_date
+
+	from ${target}.auth_manager 
+	</insert>
+	
+	<insert id="mergeAuthSet" parameterType="map">
+	insert into ${destination}.auth_set
+	select 
+		auth_set_idx + #{authSetWeight}
+		,auth_category_idx + #{authCategoryWeight}
+		,auth_set_kind
+		,year
+		,k_part + #{kPartWeight}
+		,group_no + #{kGroupWeight}
+		,active
+		,reg_date
+
+	from ${target}.auth_set 
+	</insert>
+	
+	<insert id="mergeSpecialGroup" parameterType="map">
+	insert into ${destination}.special_group
+	select 
+		group_idx + #{specialGroupWeight}
+		,group_name
+		,if(depth1 > 0,  depth1 + #{specialGroupWeight}, depth1)
+		,if(depth2 > 0,  depth2 + #{specialGroupWeight}, depth2)
+		,if(depth3 > 0,  depth3 + #{specialGroupWeight}, depth3)
+		,depth1_name
+		,depth2_name
+		,depth3_name
+		,depth
+		,ord
+		,if(manager_idx > 0 , manager_idx + #{managerWeight}, manager_idx)
+		,official
+		,shared
+		,fixed
+
+	from ${target}.special_group 
+	</insert>
+	
+	<insert id="mergeSpecialGroupLog" parameterType="map">
+	insert into ${destination}.special_group_log
+	select 
+		idx + #{specialGroupLogWeight}
+		,special_group_idx + #{specialGroupWeight}
+		,special_group_name
+		,if(depth1 > 0,  depth1 + #{specialGroupWeight}, depth1)
+		,if(depth2 > 0,  depth2 + #{specialGroupWeight}, depth2)
+		,if(depth3 > 0,  depth3 + #{specialGroupWeight}, depth3)
+		,tid + #{memberWeight}
+		,member_name
+		,start_date
+		,end_date
+		,contents
+		,item1
+		,item2
+		,item3
+		,item4
+		,item5
+		,item6
+		,item7
+		,item8
+		,item9
+
+	from ${target}.special_group_log 
+	</insert>
+	
+	<insert id="mergeSpecialGroupFree" parameterType="map">
+	insert into ${destination}.special_group_free
+	select 
+		group_idx + #{specialGroupWeight}
+		,description
+		,alias
+		,`use`
+		,ord
+		,mod_date
+		,reg_date
+
+	from ${target}.special_group_free 
+	</insert>
+	
+	<insert id="mergeSpecialGroupAuth" parameterType="map">
+	insert into ${destination}.special_group_auth
+	select 
+		special_group_idx + #{specialGroupWeight}
+		,auth_category_idx
+		,level
+
+	from ${target}.special_group_auth 
+	</insert>
+	
+
+</mapper>

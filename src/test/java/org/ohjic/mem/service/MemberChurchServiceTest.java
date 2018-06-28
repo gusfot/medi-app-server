@@ -12,9 +12,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class) 
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
 								 "file:src/main/webapp/WEB-INF/spring/appServlet/dao-context_local.xml"})
-public class MemberServiceTest {
+public class MemberChurchServiceTest {
 
-	private static final Logger logger = LoggerFactory.getLogger(MemberServiceTest.class);
+	private static final Logger logger = LoggerFactory.getLogger(MemberChurchServiceTest.class);
 	
 	@Autowired
 	private MemberChurchService memberChurchService;
@@ -22,8 +22,8 @@ public class MemberServiceTest {
 	@Test
 	public void testMerge() {
 
-		int targetChurchCode = 6;
-		int destinationChurchCode = 6;
+		int targetChurchCode = 6060;
+		int destinationChurchCode = 7995;
 		
 		try {
 			

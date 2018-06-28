@@ -102,5 +102,7 @@ public interface ToolsMapper {
 
 	Map<String, Object> selectGoods(Map<String, Object> params);
 
+	Integer updateSmsMembers(Kyo kyo);
+
 
 }

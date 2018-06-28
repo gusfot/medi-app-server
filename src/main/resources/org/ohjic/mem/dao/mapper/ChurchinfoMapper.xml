@@ -308,4 +308,13 @@
     where deleteFlag=#{deleteFlag}
     order by a.churchCode asc
   </select>
+  
+  <select id="selectChurchListExistDatabase" parameterType="string" resultMap="ResultMapWithBLOBs">
+  	SELECT 
+  		b.*
+	FROM information_schema.SCHEMATA a
+	INNER JOIN ohjic.churchInfo b ON a.SCHEMA_NAME= CONCAT(#{type}, b.churchCode) AND b.deleteFlag=0
+	WHERE a.SCHEMA_NAME LIKE concat(#{type}, '%')
+	order by b.churchCode asc
+  </select>
 </mapper>

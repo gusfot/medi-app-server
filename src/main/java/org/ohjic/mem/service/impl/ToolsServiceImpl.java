@@ -663,6 +663,11 @@ public class ToolsServiceImpl implements ToolsService {
 		return result;
 	}
 
+	@Override
+	public Integer syncMemberCantacts(Kyo kyo) {
+		return toolsMapper.updateSmsMembers(kyo);
+	}
+
 
 }
 

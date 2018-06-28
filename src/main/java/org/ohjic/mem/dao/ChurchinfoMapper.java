@@ -62,4 +62,6 @@ public interface ChurchinfoMapper {
     int updateByPrimaryKey(Churchinfo record);
 
 	List<Churchinfo> selectList(Integer deleteFlag);
+
+	List<Churchinfo> selectChurchListExistDatabase(String type);
 }

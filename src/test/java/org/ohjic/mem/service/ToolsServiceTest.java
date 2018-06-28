@@ -114,7 +114,9 @@ public class ToolsServiceTest {
 //		Integer churchCode = 3729; // 보라매교회-3729
 //		Integer churchCode = 286; // 테스트3-286
 //		Integer churchCode = 7870; // 창원임마누엘교회-7870
-		Integer churchCode = 6108; // 6108-김찬주
+//		Integer churchCode = 6108; // 6108-김찬주
+//		Integer churchCode = 7455; // 소생-7455
+		Integer churchCode = 7456; // 소생-7456
 
 
 		boolean isFree = true; // 무료 사용여부
@@ -191,9 +193,9 @@ public class ToolsServiceTest {
 	// @Test(expected=Exception.class)
 	public void testChangeChurchAdminId() {
 
-		Integer churchCode = 5814;
-		String oldId = "wooridlechurch22";
-		String newId = "wooridlechurch";
+		Integer churchCode = 7642;
+		String oldId = "ohnlee49";
+		String newId = "johnlee49";
 
 		toolsService.changeChurchAdminId(churchCode, oldId, newId);
 
@@ -307,11 +309,17 @@ public class ToolsServiceTest {
 		userIdList.add("woochiun ");
 		userIdList.add("ilhf317");
 		*/
-		String churchNam = "예수사랑교회";
+/*		String churchNam = "예수사랑교회";
 		String churchPhoneNumber = "063-278-7004";
 		
 		List<String> userIdList = new ArrayList<>();
-		userIdList.add("lsy4421");
+		userIdList.add("lsy4421");*/
+		
+		String churchNam = "울산대영교회";
+		String churchPhoneNumber = "052-288-1771";
+		
+		List<String> userIdList = new ArrayList<>();
+		userIdList.add("cjuhome");
 
 
 		boolean result = toolsService.authSmsForChurch(churchNam, churchPhoneNumber, userIdList);
@@ -353,7 +361,10 @@ public class ToolsServiceTest {
 //		 String plain = "paul4413<>"; // ea24a019df12707a3e1832cafc3662c2
 //		 String plain = "hsy8773**"; // e1bc246cdf7df00edfd86fc49a437504
 //		 String plain = "skqhf12@"; // 
-		 String plain = "1111"; // 
+//		 String plain = "1111"; // 
+//		 String plain = "life5626*"; // 
+//		 String plain = "nsmilal2018*"; // 
+		 String plain = "757577"; // 
 
 		String result = toolsService.generateKyoEncryptedPassword(plain);
 		System.out.println("generated password: " + result);
@@ -1225,6 +1236,37 @@ public class ToolsServiceTest {
 		
 		String dir = "C:\\Users\\ohjic\\Desktop\\교적용 사진";
 		boolean result = toolsService.modifyMemberImageByFileName(churchCode, dir);
+		
+		assertTrue(result);
+	}
+	
+	@Autowired
+	ChurchInfoService churchInfoService;
+	
+	@Test
+	public void testSyncMemberCantacts() {
+		
+		boolean result = true;
+		
+		List<Churchinfo> churchList = churchInfoService.getChurchList();
+		
+		for (Churchinfo churchinfo : churchList) {
+			
+			try {
+				
+				Integer churchCode = churchinfo.getChurchCode();
+				Kyo kyo = new Kyo();
+				kyo.setChurchCode(churchCode);
+				toolsService.syncMemberCantacts(kyo);		
+				
+				
+			}catch (Exception e) {
+				// TODO: handle exception
+				result = false;
+			}
+			
+		}
+
 		
 		assertTrue(result);
 	}
