@@ -4,9 +4,9 @@
 <classPathEntry location="C:\Users\ohjic\.m2\repository\org\mariadb\jdbc\mariadb-java-client\1.4.6\mariadb-java-client-1.4.6.jar" />
   <context id="context1" >
     <jdbcConnection driverClass="org.mariadb.jdbc.Driver" connectionURL="jdbc:mariadb://storage.ohjic.com:3306/kyo6" userId="root" password="rhkfh1" />
-    <javaModelGenerator targetPackage="org.ohjic.mem.model" targetProject="init-project" />
-    <sqlMapGenerator targetPackage="org.ohjic.mem.dao.mapper" targetProject="init-project" />
-    <javaClientGenerator targetPackage="org.ohjic.mem.dao" targetProject="init-project" type="XMLMAPPER" />
+    <javaModelGenerator targetPackage="com.medi.hs.model" targetProject="init-project" />
+    <sqlMapGenerator targetPackage="com.medi.hs.dao.mapper" targetProject="init-project" />
+    <javaClientGenerator targetPackage="com.medi.hs.dao" targetProject="init-project" type="XMLMAPPER" />
 
     <table schema="member" tableName="manager" enableSelectByExample="false" 
     										 enableDeleteByExample="false" 

@@ -26,7 +26,7 @@
  
 	
 	<typeAliases>
-	  <package name="org.ohjic.mem.model"/>
+	  <package name="com.medi.hs.model"/>
 	</typeAliases> 
 	
  
