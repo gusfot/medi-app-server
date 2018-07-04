@@ -40,4 +40,6 @@ public interface MemberMapper {
 	 * @mbg.generated  Wed Jul 04 18:38:47 KST 2018
 	 */
 	int updateByPrimaryKey(Member record);
+
+	Member selectByUserId(String userId);
 }
