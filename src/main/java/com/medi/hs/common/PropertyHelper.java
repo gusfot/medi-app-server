@@ -17,7 +17,7 @@ public abstract class PropertyHelper {
          * system.properties
          * </pre>
          */
-        public static final String ConfigFileName = "flower.properties";
+        public static final String ConfigFileName = "app.properties";
     }
 
     // -------------------------------------------------------------- Variables

@@ -10,10 +10,10 @@
     </appender>
 	 
 	 <appender name="TIME_BASED_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-	    <file>${LOG_DIR}/member-api.log</file>
+	    <file>${LOG_DIR}/medi.log</file>
 	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">        
 	        <!-- daily rollover -->
-	        <fileNamePattern>${LOG_DIR}/member-api.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+	        <fileNamePattern>${LOG_DIR}/medi.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
 	        <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -26,10 +26,10 @@
 	</appender>   
 	
 	<appender name="TIME_BASED_ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-	    <file>${LOG_DIR}/member-api_error.log</file>
+	    <file>${LOG_DIR}/medi_error.log</file>
 	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">        
 	        <!-- daily rollover -->
-	        <fileNamePattern>${LOG_DIR}/member-api_error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+	        <fileNamePattern>${LOG_DIR}/medi_error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
 	        <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>

@@ -6,7 +6,6 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources-dev"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources-product"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources-product_us"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources-local"/>
         <property name="context-root" value="member.api"/>
         <property name="java-output-path" value="/member-api/target/classes"/>

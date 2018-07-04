@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.medi.hs</groupId>
-	<name>member-api</name>
+	<name>medi-app-server</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<lib-version>-SNAPSHOT</lib-version>
-		<java-version>1.7</java-version>
+		<java-version>1.8</java-version>
 		<org.springframework-version>3.2.17.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.8.9</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
@@ -19,7 +19,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.test.skip>true</maven.test.skip>
 		<ohjic.repo.public.url>http://repo.qfun.kr/repository/maven-public</ohjic.repo.public.url>
-		<deploy.target.dir>c:/member-api/${env}</deploy.target.dir>
+		<deploy.target.dir>c:/medi-app-server/${env}</deploy.target.dir>
 	</properties>
 	
 	<profiles>
@@ -439,5 +439,5 @@
 		       -->
         </plugins>
     </build>
-    <artifactId>member.api</artifactId>
+    <artifactId>medi-app</artifactId>
 </project>
