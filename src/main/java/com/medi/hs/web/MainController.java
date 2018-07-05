@@ -37,6 +37,13 @@ public class MainController {
 		return "main";
 	}
 	
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String login() {
+		
+		return "login";
+	}
+	
+	
 	/**
 	 * 로그인 처리 
 	 * @param session
