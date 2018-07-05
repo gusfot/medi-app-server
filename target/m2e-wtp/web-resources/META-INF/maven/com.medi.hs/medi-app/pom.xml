@@ -284,6 +284,12 @@
 		</dependency>
 		
 		<dependency>
+		    <groupId>com.medi</groupId>
+		    <artifactId>ICERTSecu_JDK18</artifactId>
+		    <version>1.8</version>
+		</dependency>
+		
+		<dependency>
 		    <groupId>com.thoughtworks.xstream</groupId>
 		    <artifactId>xstream</artifactId>
 		    <version>1.4.2</version>
