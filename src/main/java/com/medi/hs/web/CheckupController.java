@@ -21,7 +21,7 @@ import com.medi.hs.service.CheckupService;
  * @author gusfot
  *
  */
-@Controller("/checkup")
+@Controller("checkup")
 public class CheckupController {
 
 	private static final Logger logger = LoggerFactory.getLogger(CheckupController.class);

@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.medi.hs.dao.MemberMapper;
 import com.medi.hs.model.Member;
 import com.medi.hs.service.MemberService;
 
@@ -15,34 +16,35 @@ public class MemberServiceImpl implements MemberService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
 
+	@Autowired
+	private MemberMapper memberMapper;
+	
 	@Override
 	public boolean regist(Member member) {
-		// TODO Auto-generated method stub
-		return false;
+		return memberMapper.insertSelective(member) == 1;
 	}
 
 	@Override
 	public boolean remove(String userId) {
-		// TODO Auto-generated method stub
-		return false;
+		Member member = new Member();
+		member.setId(userId);
+		member.setIsDeleted("Y");
+		return memberMapper.updateByPrimaryKeySelective(member) == 1;
 	}
 
 	@Override
 	public boolean modify(Member member) {
-		// TODO Auto-generated method stub
-		return false;
+		return memberMapper.updateByPrimaryKeySelective(member) == 1;
 	}
 
 	@Override
 	public Member getMember(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberMapper.selectByUserId(userId);
 	}
 
 	@Override
 	public List<Member> getMembers(Object object) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberMapper.selectMembers(object);
 	}
 	
 	

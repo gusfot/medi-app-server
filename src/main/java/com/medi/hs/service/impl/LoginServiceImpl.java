@@ -24,7 +24,7 @@ public class LoginServiceImpl implements LoginService {
 		
 		try{
 			
-			Member member = memberMapper.selectByUserId(userId);
+			Member member = memberMapper.selectById(userId);
 			
 			if(member != null && password.equals(member.getPasswd())) {
 				result = true;

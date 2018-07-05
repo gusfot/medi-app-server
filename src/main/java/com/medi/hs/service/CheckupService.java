@@ -1,5 +1,7 @@
 package com.medi.hs.service;
 
+import com.medi.hs.model.HsLabb42;
+
 /**
  * 검사 서비스
  * @author hyunlaekim
@@ -12,5 +14,5 @@ public interface CheckupService {
 	 * @param object
 	 * @return
 	 */
-	Object result(Object object);
+	HsLabb42 getResult(Object object);
 }

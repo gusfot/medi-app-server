@@ -21,14 +21,14 @@ import com.medi.hs.service.MemberService;
  * @author gusfot
  *
  */
-@Controller("/member")
+@Controller("member")
 public class MemberController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@Autowired
 	private MemberService memberService;
-	
+	/*
 	@RequestMapping(value = "/{userId}", method=RequestMethod.GET, produces = "application/json")
 	public @ResponseBody RestResponse getMamberByTid(@RequestParam int churchCode, @RequestParam int tid){
 		
@@ -38,6 +38,6 @@ public class MemberController {
 		return res;
 		
 	}
-	
+	*/
 	
 }

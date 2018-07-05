@@ -18,10 +18,9 @@ public class CheckupServiceImpl implements CheckupService {
 	private HsLabb42Mapper hsLabb42Mapper;
 
 	@Override
-	public Object result(Object object) {
+	public HsLabb42 getResult(Object object) {
 		Short id = (Short) object;
-		HsLabb42 result = hsLabb42Mapper.selectByPrimaryKey(id);
-		return result;
+		return hsLabb42Mapper.selectByPrimaryKey(id);
 	}
 	
 }

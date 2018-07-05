@@ -1,5 +1,7 @@
 package com.medi.hs.service;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,11 @@ public class LoginServiceTest {
 	
 	@Test
 	public void testLogin() {
+		
 		String userId = "gusfot";
 		String password = "1111";
 		boolean result = loginService.login(userId, password );
+		
+		assertTrue(result);
 	}
 }

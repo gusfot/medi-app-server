@@ -77,7 +77,7 @@ public class MainController {
 		
 		return "redirect:/login";
 	}
-	
+/*	
 	@RequestMapping(value = "/welcome", method=RequestMethod.GET, produces = "application/json")
 	public @ResponseBody RestResponse nextYear(){
 
@@ -99,5 +99,5 @@ public class MainController {
 
 		return res;
 	}	
-	
+	*/
 }

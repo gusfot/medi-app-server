@@ -13,6 +13,29 @@
         <sqlMapGenerator targetPackage="com.medi.hs.dao.mapper" targetProject="medi-app-server"/>
         <javaClientGenerator targetPackage="com.medi.hs.dao" targetProject="medi-app-server" type="XMLMAPPER"/>
 
+
+               <table schema="medi" tableName="member" enableSelectByExample="false"
+                                                 enableDeleteByExample="false"
+                                                 enableCountByExample="false"
+                                                 enableUpdateByExample="false"
+                                                 selectByExampleQueryId="false">
+
+            <columnOverride column="member_seq" property="memberSeq" />
+            <columnOverride column="id" property="id" />
+            <columnOverride column="passwd" property="passwd" />
+            <columnOverride column="name" property="name" />
+            <columnOverride column="cell_phone" property="cellPhone" />
+            <columnOverride column="email" property="email" />
+            <columnOverride column="birthday" property="birthday" />
+            <columnOverride column="birthday_solar" property="birthdaySolar" />
+            <columnOverride column="is_authenticated" property="isAuthenticated" />
+            <columnOverride column="is_deleted" property="isDeleted" />
+            <columnOverride column="mod_date" property="modDate" />
+            <columnOverride column="reg_date" property="regDate" />
+			
+
+        </table>
+<!-- 
 		<table schema="medi" tableName="HS_LABB42" enableSelectByExample="false"
                                                  enableDeleteByExample="false"
                                                  enableCountByExample="false"
@@ -40,28 +63,6 @@
 			<columnOverride column="COD_INSERT" property="codInsert" />
 
         </table>
-               <table schema="medi" tableName="member" enableSelectByExample="false"
-                                                 enableDeleteByExample="false"
-                                                 enableCountByExample="false"
-                                                 enableUpdateByExample="false"
-                                                 selectByExampleQueryId="false">
-
-            <columnOverride column="member_seq" property="no" />
-            <columnOverride column="id" property="type" />
-            <columnOverride column="passwd" property="passwd" />
-            <columnOverride column="name" property="name" />
-            <columnOverride column="email" property="email" />
-            <columnOverride column="birthday" property="birthday" />
-            <columnOverride column="birthday_solar" property="birthdaySolar" />
-            <columnOverride column="is_authenticated" property="isAuthenticated" />
-            <columnOverride column="is_deleted" property="isDeleted" />
-            <columnOverride column="mod_date" property="modDate" />
-            <columnOverride column="reg_date" property="regDate" />
-			
-
-        </table>
-<!-- 
-
       -->   
     </context>
 

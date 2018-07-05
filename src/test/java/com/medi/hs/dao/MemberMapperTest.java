@@ -1,6 +1,6 @@
 package com.medi.hs.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 
@@ -21,12 +21,41 @@ public class MemberMapperTest {
 	private MemberMapper memberMapper;
 	
 	@Test
-	public void testSelect() {
+	public void testInsertSelective() {
+		
+		Member record = new Member();
+		record.setBirthday("1982-04-08");
+		record.setBirthdaySolar("1");
+		record.setId("gusfot");
+		record.setPasswd("1111");
+		record.setEmail("gusfot@gmail.com");
+		record.setName("김현래");
+		record.setCellPhone("010-6696-5116");
+		record.setMemberSeq(new BigDecimal("1"));
+		int result = memberMapper.insertSelective(record);
+		
+		assertTrue(result == 1);
+
+	}
+	
+	@Test
+	public void testSelectByPrimaryKey() {
+		
 		BigDecimal no = new BigDecimal("1");
 		Member result = memberMapper.selectByPrimaryKey(no);
 		
-		assertTrue(result == null);
-
+		assertTrue(result != null);
+		
+	}
+	
+	@Test
+	public void testSelectById() {
+		
+		String userId = "gusfot";
+		Member result = memberMapper.selectById(userId);
+		
+		assertTrue(result != null);
+		
 	}
 	
 	
