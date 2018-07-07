@@ -9,16 +9,17 @@
 	<properties>
 		<lib-version>-SNAPSHOT</lib-version>
 		<java-version>1.8</java-version>
-		<org.springframework-version>3.2.17.RELEASE</org.springframework-version>
-		<org.aspectj-version>1.8.9</org.aspectj-version>
+		<org.springframework-version>3.2.18.RELEASE</org.springframework-version>
+		<org.aspectj-version>1.9.1</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<mariadb.java.client-version>1.4.6</mariadb.java.client-version>
 		<apache.tiles-version>3.0.5</apache.tiles-version>
+		<ch.qos.logback-version>1.1.7</ch.qos.logback-version>
+		<org.codehaus.jackson-version>1.9.13</org.codehaus.jackson-version>
 		<ohjic.libs-version>1.0.0${lib-version}</ohjic.libs-version>
 		<ohjic.fax-version>1.0.0${lib-version}</ohjic.fax-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.test.skip>true</maven.test.skip>
-		<ohjic.repo.public.url>http://repo.qfun.kr/repository/maven-public</ohjic.repo.public.url>
 		<deploy.target.dir>c:/medi-app-server/${env}</deploy.target.dir>
 	</properties>
 	
@@ -91,14 +92,14 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.6.10</version>
+			<version>${org.aspectj-version}</version>
 		</dependency>
 
 		<!-- aop : cglib -->
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
-			<version>2.2</version>
+			<version>3.2.7</version>
 		</dependency>
 		
 		
@@ -113,12 +114,12 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-core</artifactId>
-			<version>1.1.7</version>
+			<version>${ch.qos.logback-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.1.7</version>
+			<version>${ch.qos.logback-version}</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>slf4j-api</artifactId>
@@ -204,13 +205,13 @@
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
-			<version>1.9.13</version>
+			<version>${org.codehaus.jackson-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.13</version>
+			<version>${org.codehaus.jackson-version}</version>
 		</dependency>
 
 		<dependency>
@@ -250,7 +251,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.7</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>     
 		<dependency>
@@ -390,7 +391,7 @@
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.5</version>
+                <version>3.1.0</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                 </configuration>
@@ -398,7 +399,7 @@
              <plugin>
 	            <groupId>org.apache.maven.plugins</groupId>
 	            <artifactId>maven-dependency-plugin</artifactId>
-	            <version>2.3</version>
+	            <version>3.1.1</version>
 	            <executions>
 	                <execution>
 	                    <id>copy-dependencies</id>
@@ -416,7 +417,7 @@
 			<plugin>
 				<groupId>org.mybatis.generator</groupId>
 				<artifactId>mybatis-generator-maven-plugin</artifactId>
-				<version>1.3.5</version>
+				<version>1.3.6</version>
 			</plugin>
 	        <!-- jar 패포시 
 	        <plugin>

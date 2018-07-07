@@ -7,12 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.medi.hs.rest.common.RestResponse;
+import com.medi.hs.model.Member;
 import com.medi.hs.service.MemberService;
 
 /**
@@ -40,4 +39,46 @@ public class MemberController {
 	}
 	*/
 	
+	/**
+	 * 회원 등록 페이지 
+	 * @return
+	 */
+	@RequestMapping(value="/regist", method=RequestMethod.GET)
+	public String regist() {
+		
+		return "regist";
+	}
+	
+	/**
+	 * 회원 등록 처리 
+	 * @param member
+	 * @return
+	 */
+	@RequestMapping(value="/regist", method=RequestMethod.POST)
+	public String regist(@ModelAttribute Member member) {
+		
+		memberService.regist(member);
+		
+		return "regist";
+	}
+	
+	@RequestMapping(value = "/auth1")
+	public String auth1(){
+		return "auth/kmcis_web_sample_step01";
+	}
+	
+	@RequestMapping(value = "/auth2")
+	public String auth2(){
+		return "auth/kmcis_web_sample_step02";
+	}
+	
+	@RequestMapping(value = "/auth3")
+	public String auth3(){
+		return "auth/kmcis_web_sample_step03";
+	}
+	
+	@RequestMapping(value = "/auth4")
+	public String auth4(){
+		return "auth/kmcis_web_sample_step04";
+	}
 }

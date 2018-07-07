@@ -1,5 +1,7 @@
 package com.medi.hs.service;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,15 @@ public class CheckupServiceTest {
 	@Autowired
 	CheckupService checkupService;
 	
+	/**
+	 * 검사결과 조회 
+	 */
 	@Test
 	public void checkupService() {
 		
 		Object object = null;
 		HsLabb42 result = checkupService.getResult(object );
+		
+		assertTrue(result!=null);
 	}
 }

@@ -32,11 +32,20 @@ public class MainController {
 	@Autowired
 	private LoginService loginService;
 	
-	@RequestMapping("/")
+	/**
+	 * 인덱스 페이지 
+	 * @return
+	 */
+	
+	@RequestMapping(value={"/","index"}, method=RequestMethod.GET)
 	public String main() {
-		return "main";
+		return "index";
 	}
 	
+	/**
+	 * 로그인 페이
+	 * @return
+	 */
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login() {
 		
@@ -73,7 +82,7 @@ public class MainController {
 	}
 	
 	/**
-	 * 로그아
+	 * 로그아웃 
 	 * @param session
 	 * @return
 	 */
@@ -82,7 +91,7 @@ public class MainController {
 		
 		session.invalidate();
 		
-		return "redirect:/login";
+		return "redirect:/";
 	}
 /*	
 	@RequestMapping(value = "/welcome", method=RequestMethod.GET, produces = "application/json")

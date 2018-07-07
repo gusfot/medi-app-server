@@ -27,25 +27,4 @@ public class AuthController {
 	private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 	
 	
-	@RequestMapping(value = "/auth1")
-	public String auth1(){
-		return "auth/kmcis_web_sample_step01";
-	}
-	
-	@RequestMapping(value = "/auth2")
-	public String auth2(){
-		return "auth/kmcis_web_sample_step02";
-	}
-	
-	@RequestMapping(value = "/auth3")
-	public String auth3(){
-		return "auth/kmcis_web_sample_step03";
-	}
-	
-	@RequestMapping(value = "/auth4")
-	public String auth4(){
-		return "auth/kmcis_web_sample_step04";
-	}
-	
-	
 }
