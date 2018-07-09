@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public boolean regist(Member member) {
-		return memberMapper.insertSelective(member) == 1;
+		return memberMapper.insertMember(member) == 1;
 	}
 
 	@Override

@@ -5,9 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>index</title>
+		<title>${session.user}</title>
 		<script type="text/javascript">
-			location.href = 'login';
+			//location.href = 'login';
 		</script>
 	</head>
 	<body>

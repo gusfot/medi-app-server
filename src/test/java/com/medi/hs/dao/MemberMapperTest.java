@@ -26,12 +26,11 @@ public class MemberMapperTest {
 		Member record = new Member();
 		record.setBirthday("1982-04-08");
 		record.setBirthdaySolar("1");
-		record.setId("gusfot");
+		record.setId("gusfot1");
 		record.setPasswd("1111");
 		record.setEmail("gusfot@gmail.com");
 		record.setName("김현래");
 		record.setCellPhone("010-6696-5116");
-		record.setMemberSeq(new BigDecimal("1"));
 		int result = memberMapper.insertSelective(record);
 		
 		assertTrue(result == 1);

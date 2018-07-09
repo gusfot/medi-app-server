@@ -47,4 +47,6 @@ public interface MemberMapper {
 	List<Member> selectMembers(Object object);
 
 	Member selectById(String userId);
+	
+	int insertMember(Member member);
 }

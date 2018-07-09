@@ -9,13 +9,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.medi.hs.model.Member;
 import com.medi.hs.rest.common.RestResponse;
 import com.medi.hs.service.LoginService;
+import com.medi.hs.service.MemberService;
 import com.medi.hs.vo.ResponseCode;
 
 /**
@@ -31,6 +33,9 @@ public class MainController {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	/**
 	 * 인덱스 페이지 
@@ -73,12 +78,16 @@ public class MainController {
 			session.setAttribute("sessionMember", "");
 			res.setSuccess(true);
 			res.setResCode(ResponseCode.SUCCESS);
+			
+			logger.info("login success");
 		}else {
 			res.setSuccess(true);
 			res.setResCode(ResponseCode.FAIL);
+			
+			logger.info("login fail");
 		}
 		
-		return "redirect:/login";
+		return "redirect:/index";
 	}
 	
 	/**
@@ -91,7 +100,34 @@ public class MainController {
 		
 		session.invalidate();
 		
-		return "redirect:/";
+		return "redirect:/index";
+	}
+	
+	/**
+	 * 회원가입 
+	 * @return
+	 */
+	@RequestMapping(value="/signUp", method=RequestMethod.GET)
+	public String signUp() {
+		
+		return "signUp";
+	}
+	
+	/**
+	 * 회원가입 
+	 * @return
+	 */
+	@RequestMapping(value="/signUp", method=RequestMethod.POST)
+	public String signUp(@ModelAttribute Member member) {
+		
+		try{
+			
+			memberService.regist(member);
+		}catch(Exception e ) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/index";
 	}
 /*	
 	@RequestMapping(value = "/welcome", method=RequestMethod.GET, produces = "application/json")

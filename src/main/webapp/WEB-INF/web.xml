@@ -33,7 +33,12 @@
       <param-value>true</param-value>
     </init-param>
   </filter>
-  
+  <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
   <filter>
     <filter-name>javamelody</filter-name>
     <filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
@@ -63,10 +68,12 @@
   <welcome-file-list>
     <welcome-file>/WEB-INF/index.jsp</welcome-file>
   </welcome-file-list>
+  <!-- 
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
       <include-prelude>/WEB-INF/common.jsp</include-prelude>
     </jsp-property-group>
   </jsp-config>
+   -->
 </web-app>

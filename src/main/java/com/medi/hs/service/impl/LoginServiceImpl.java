@@ -1,9 +1,13 @@
 package com.medi.hs.service.impl;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.medi.hs.dao.MemberMapper;
 import com.medi.hs.model.Member;
@@ -27,6 +31,12 @@ public class LoginServiceImpl implements LoginService {
 			Member member = memberMapper.selectById(userId);
 			
 			if(member != null && password.equals(member.getPasswd())) {
+				
+				ServletRequestAttributes servletRequestAttribute = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		        HttpSession session = servletRequestAttribute.getRequest().getSession(true);
+
+		        session.setAttribute("user", member);
+			
 				result = true;
 			}else {
 				result = false;
