@@ -24,14 +24,14 @@
 		<div class="row justify-content-md-center">
 			<form action="/login" method="post">
 			  <div class="form-group row">
-			    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-			    <div class="col-sm-10">
+			    <label for="userId" class="col-sm-4 col-form-label">아이디</label>
+			    <div class="col-sm-8">
 			      <input type="text" class="form-control" id="userId" name="userId" placeholder="아이디">
 			    </div>
 			  </div>
 			  <div class="form-group row">
-			    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-			    <div class="col-sm-10">
+			    <label for="passwd" class="col-sm-4 col-form-label">비밀번호</label>
+			    <div class="col-sm-8">
 			      <input type="password" class="form-control" id="passwd" name="passwd" placeholder="비밀번호">
 			    </div>
 			  </div>
