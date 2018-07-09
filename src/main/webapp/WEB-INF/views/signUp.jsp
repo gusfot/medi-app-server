@@ -14,7 +14,11 @@
 
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    
+    <script>
+	    if("${sessionScope.user.name}"!="") {
+	    	location.href = '/index';
+	    } 
+    </script>
 <title>회원가입</title>
 </head>
 <body>

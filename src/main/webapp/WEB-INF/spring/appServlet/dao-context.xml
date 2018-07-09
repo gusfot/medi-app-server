@@ -16,7 +16,7 @@
  	<util:properties id="db" location="classpath:/properties/database.properties" />
 	
  	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
-		<!-- 
+		
 		<property name="driverClassName" value="#{db['database.driver']}"/>
 		<property name="url" value="#{db['database.url']}"/>
 		<property name="username" value="#{db['database.user']}"/>
@@ -24,14 +24,7 @@
 	    <property name="validationQuery" value="SELECT 1 from dual" />
 	    <property name="testWhileIdle" value="true"/>
         <property name="timeBetweenEvictionRunsMillis" value="60"/>
-         -->
-    	  <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-	  <property name="url" value="jdbc:oracle:thin:@localhost:49161:xe" />
-	  <property name="username" value="medi" />
-	  <property name="password" value="jwchjwch" />
-	  <property name="validationQuery" value="SELECT 1 from dual" />
-	  <property name="testWhileIdle" value="true"/>
-      <property name="timeBetweenEvictionRunsMillis" value="60"/>
+        
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"  >

@@ -48,7 +48,7 @@ public class MainController {
 	}
 	
 	/**
-	 * 로그인 페이
+	 * 로그인 페이지
 	 * @return
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.GET)

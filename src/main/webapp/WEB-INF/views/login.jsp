@@ -35,33 +35,9 @@
 			      <input type="password" class="form-control" id="passwd" name="passwd" placeholder="비밀번호">
 			    </div>
 			  </div>
-			  <fieldset class="form-group">
-			    <div class="row">
-			      <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-			      <div class="col-sm-10">
-			        <div class="form-check">
-			          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-			          <label class="form-check-label" for="gridRadios1">
-			            First radio
-			          </label>
-			        </div>
-			      </div>
-			    </div>
-			  </fieldset>
-			  <div class="form-group row">
-			    <div class="col-sm-2">Checkbox</div>
-			    <div class="col-sm-10">
-			      <div class="form-check">
-			        <input class="form-check-input" type="checkbox" id="gridCheck1">
-			        <label class="form-check-label" for="gridCheck1">
-			          Example checkbox
-			        </label>
-			      </div>
-			    </div>
-			  </div>
 			  <div class="form-group row">
 			    <div class="col-sm-10">
-			      <button type="submit" class="btn btn-primary">Sign in</button>
+			      <button type="submit" class="btn btn-primary">로그인</button>
 			    </div>
 			  </div>
 			</form>
