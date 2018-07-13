@@ -20,7 +20,7 @@
 		<ohjic.fax-version>1.0.0${lib-version}</ohjic.fax-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.test.skip>true</maven.test.skip>
-		<deploy.target.dir>c:/medi-app-server/${env}</deploy.target.dir>
+		<deploy.target.dir>medi-app-server/${env}</deploy.target.dir>
 	</properties>
 	
 	<profiles>
