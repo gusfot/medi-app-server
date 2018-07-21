@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.medi.hs.common.Sha256;
 import com.medi.hs.dao.MemberMapper;
 import com.medi.hs.model.Member;
 import com.medi.hs.service.MemberService;
@@ -21,6 +22,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public boolean regist(Member member) {
+		member.setPasswd(Sha256.encrypt(member.getPasswd()));
 		return memberMapper.insertMember(member) == 1;
 	}
 
