@@ -1,3 +1,4 @@
+<%@ page  contentType = "text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
 	//************************************************************************
 	//																		//
@@ -14,7 +15,8 @@
 	if(request.getProtocol().equals("HTTP/1.1"))
 			response.setHeader("Cache-Control", "no-cache"); // HTTP1.1 캐쉬 방지
 %>
-<%@ page  contentType = "text/html; charset=UTF-8"%>
+
+
 <%@ page import ="java.util.*,java.text.SimpleDateFormat"%>
 <%
         //날짜 생성
@@ -38,7 +40,7 @@
 <html>
     <head>
         <title>본인인증서비스  테스트</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="robots" content="noindex">
         <style>
             <!--
@@ -71,7 +73,7 @@
             <br><br><br>
             <span class="style1">본인인증서비스 테스트</span><br>
 
-            <form name="reqForm" method="post" action="http://localhost:8180/auth2">
+            <form name="reqForm" method="post" action="/auth2">
                 <table cellpadding=1 cellspacing=1>
                     <tr>
                         <td align=center>회원사ID</td>
@@ -148,7 +150,7 @@
                     </tr>
                     <tr>
                         <td align=center>결과수신URL</td>
-                        <td align=left><input type="text" name="tr_url" size="41" value="http://localhost:8180/auth3"></td>
+                        <td align=left><input type="text" name="tr_url" size="41" value="http://m.medikind.com/auth3"></td>
                     </tr>
                     <tr>
                         <td align=center>IFrame사용여부</td>

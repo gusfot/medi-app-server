@@ -208,7 +208,7 @@
 <html>
 <head>
 <title>본인인증서비스 Sample 화면</title>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="robots" content="noindex">
 <style>
 <!--

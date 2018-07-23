@@ -14,7 +14,7 @@
 	if(request.getProtocol().equals("HTTP/1.1"))
 			response.setHeader("Cache-Control", "no-cache"); // HTTP1.1 캐쉬 방지
 %>
-<%@ page contentType = "text/html;charset=utf-8"%>
+<%@ page  contentType = "text/html; charset=UTF-8"%>
 <%@ page import = "java.util.*" %>
 <%@ page import = "java.util.regex.*" %>
 <%@ page import = "java.text.*" %>
@@ -36,7 +36,8 @@
 <head>
 <meta name="robots" content="noindex">
 <script type="text/javascript">
-	var move_page_url = "http://회원사별 경로/kmcis_web_sample_step04.jsp";
+	/* var move_page_url = "http://회원사별 경로/kmcis_web_sample_step04.jsp"; */
+	var move_page_url = "http://m.medikind.com:8080/auth4";
 	
 
 	function end() {

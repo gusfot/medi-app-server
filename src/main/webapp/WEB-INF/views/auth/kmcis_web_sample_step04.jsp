@@ -1,47 +1,47 @@
 <%
 	//************************************************************************
 	//																		//
-	//		º» »ùÇÃ¼Ò½º´Â °³¹ß ¹× Å×½ºÆ®¸¦ À§ÇÑ ¸ñÀûÀ¸·Î ¸¸µé¾îÁ³À¸¸ç,		//
+	//		ë³¸ ìƒ˜í”Œì†ŒìŠ¤ëŠ” ê°œë°œ ë° í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•œ ëª©ì ìœ¼ë¡œ ë§Œë“¤ì–´ì¡Œìœ¼ë©°,		//
 	//																		//
-	//		½ÇÁ¦ ¼­ºñ½º¿¡ ±×´ë·Î »ç¿ëÇÏ´Â °ÍÀ» ±İÇÕ´Ï´Ù.					//
+	//		ì‹¤ì œ ì„œë¹„ìŠ¤ì— ê·¸ëŒ€ë¡œ ì‚¬ìš©í•˜ëŠ” ê²ƒì„ ê¸ˆí•©ë‹ˆë‹¤.					//
 	//																		//
 	//************************************************************************
 %>
 <%
-	response.setHeader("Pragma","no-cache");			// HTTP1.0 Ä³½¬ ¹æÁö
-	response.setDateHeader("Expires",0);				// proxy ¼­¹öÀÇ Ä³½¬ ¹æÁö
-	response.setHeader("Pragma", "no-store");			// HTTP1.1 Ä³½¬ ¹æÁö
+	response.setHeader("Pragma","no-cache");			// HTTP1.0 ìºì‰¬ ë°©ì§€
+	response.setDateHeader("Expires",0);				// proxy ì„œë²„ì˜ ìºì‰¬ ë°©ì§€
+	response.setHeader("Pragma", "no-store");			// HTTP1.1 ìºì‰¬ ë°©ì§€
 	if(request.getProtocol().equals("HTTP/1.1"))
-			response.setHeader("Cache-Control", "no-cache"); // HTTP1.1 Ä³½¬ ¹æÁö
+			response.setHeader("Cache-Control", "no-cache"); // HTTP1.1 ìºì‰¬ ë°©ì§€
 %>
-<%@ page  contentType = "text/html;charset=ksc5601"%>
+<%@ page  contentType = "text/html; charset=UTF-8"%>
 <%@ page import = "java.util.*" %>
 <%@ page import = "java.util.regex.*" %>
 <%@ page import = "java.text.*" %>
-    [º»ÀÎÀÎÁõ¼­ºñ½º Å×½ºÆ® °á°ú ¼ö½Å Sample] <br> <br>
+    [ë³¸ì¸ì¸ì¦ì„œë¹„ìŠ¤ í…ŒìŠ¤íŠ¸ ê²°ê³¼ ìˆ˜ì‹  Sample] <br> <br>
 <%
-    // º¯¼ö¼±¾ğ --------------------------------------------------------------------------------------------------------
-    String rec_cert		= "";           // °á°ú¼ö½ÅDATA
+    // ë³€ìˆ˜ì„ ì–¸ --------------------------------------------------------------------------------------------------------
+    String rec_cert		= "";           // ê²°ê³¼ìˆ˜ì‹ DATA
 
-	String k_certNum = "";			    // ÆÄ¶ó¹ÌÅÍ·Î ¼ö½ÅÇÑ ¿äÃ»¹øÈ£
-	String certNum		= "";			// ¿äÃ»¹øÈ£
-    String date			= "";			// ¿äÃ»ÀÏ½Ã
-	String CI	    	= "";			// ¿¬°èÁ¤º¸(CI)
-	String DI	    	= "";			// Áßº¹°¡ÀÔÈ®ÀÎÁ¤º¸(DI)
-    String phoneNo		= "";			// ÈŞ´ëÆù¹øÈ£
-	String phoneCorp	= "";			// ÀÌµ¿Åë½Å»ç
-	String birthDay		= "";			// »ı³â¿ùÀÏ
-	String gender		= "";			// ¼ºº°
-	String nation		= "";			// ³»±¹ÀÎ
-	String name			= "";			// ¼º¸í
-	String M_name		= "";			// ¹Ì¼º³âÀÚ ¼º¸í
-	String M_birthDay	= "";			// ¹Ì¼º³âÀÚ »ı³â¿ùÀÏ
-	String M_Gender		= "";			// ¹Ì¼º³âÀÚ ¼ºº°
-	String M_nation		= "";			// ¹Ì¼º³âÀÚ ³»¿Ü±¹ÀÎ
-    String result		= "";			// °á°ú°ª
+	String k_certNum = "";			    // íŒŒë¼ë¯¸í„°ë¡œ ìˆ˜ì‹ í•œ ìš”ì²­ë²ˆí˜¸
+	String certNum		= "";			// ìš”ì²­ë²ˆí˜¸
+    String date			= "";			// ìš”ì²­ì¼ì‹œ
+	String CI	    	= "";			// ì—°ê³„ì •ë³´(CI)
+	String DI	    	= "";			// ì¤‘ë³µê°€ì…í™•ì¸ì •ë³´(DI)
+    String phoneNo		= "";			// íœ´ëŒ€í°ë²ˆí˜¸
+	String phoneCorp	= "";			// ì´ë™í†µì‹ ì‚¬
+	String birthDay		= "";			// ìƒë…„ì›”ì¼
+	String gender		= "";			// ì„±ë³„
+	String nation		= "";			// ë‚´êµ­ì¸
+	String name			= "";			// ì„±ëª…
+	String M_name		= "";			// ë¯¸ì„±ë…„ì ì„±ëª…
+	String M_birthDay	= "";			// ë¯¸ì„±ë…„ì ìƒë…„ì›”ì¼
+	String M_Gender		= "";			// ë¯¸ì„±ë…„ì ì„±ë³„
+	String M_nation		= "";			// ë¯¸ì„±ë…„ì ë‚´ì™¸êµ­ì¸
+    String result		= "";			// ê²°ê³¼ê°’
 
-    String certMet		= "";			// ÀÎÁõ¹æ¹ı
-    String ip			= "";			// ipÁÖ¼Ò
+    String certMet		= "";			// ì¸ì¦ë°©ë²•
+    String ip			= "";			// ipì£¼ì†Œ
 	String plusInfo		= "";
 
 	String encPara		= "";
@@ -52,31 +52,31 @@
 
     try{
 
-        // Parameter ¼ö½Å --------------------------------------------------------------------
+        // Parameter ìˆ˜ì‹  --------------------------------------------------------------------
         rec_cert       = request.getParameter("rec_cert").trim();
         k_certNum      = request.getParameter("certNum").trim(); 
 
 %>
-            [º¹È£È­ ÇÏ±âÀü ¼ö½Å°ª] <br>
+            [ë³µí˜¸í™” í•˜ê¸°ì „ ìˆ˜ì‹ ê°’] <br>
             <br>
             rec_cert : <%=rec_cert%> <br>
             <br>
 <%
-        //01. ¾ÏÈ£È­ ¸ğµâ (jar) Loading
+        //01. ì•”í˜¸í™” ëª¨ë“ˆ (jar) Loading
         com.icert.comm.secu.IcertSecuManager seed = new com.icert.comm.secu.IcertSecuManager();
 
-        //02. 1Â÷ º¹È£È­
-        //¼ö½ÅµÈ certNum¸¦ ÀÌ¿ëÇÏ¿© º¹È£È­
+        //02. 1ì°¨ ë³µí˜¸í™”
+        //ìˆ˜ì‹ ëœ certNumë¥¼ ì´ìš©í•˜ì—¬ ë³µí˜¸í™”
         rec_cert  = seed.getDec(rec_cert, k_certNum);
 
-        //03. 1Â÷ ÆÄ½Ì
+        //03. 1ì°¨ íŒŒì‹±
         int inf1 = rec_cert.indexOf("/",0);
         int inf2 = rec_cert.indexOf("/",inf1+1);
 
-		encPara  = rec_cert.substring(0,inf1);         //¾ÏÈ£È­µÈ ÅëÇÕ ÆÄ¶ó¹ÌÅÍ
-        encMsg1  = rec_cert.substring(inf1+1,inf2);    //¾ÏÈ£È­µÈ ÅëÇÕ ÆÄ¶ó¹ÌÅÍÀÇ Hash°ª
+		encPara  = rec_cert.substring(0,inf1);         //ì•”í˜¸í™”ëœ í†µí•© íŒŒë¼ë¯¸í„°
+        encMsg1  = rec_cert.substring(inf1+1,inf2);    //ì•”í˜¸í™”ëœ í†µí•© íŒŒë¼ë¯¸í„°ì˜ Hashê°’
 
-		//04. À§º¯Á¶ °ËÁõ
+		//04. ìœ„ë³€ì¡° ê²€ì¦
 		encMsg2  = seed.getMsg(encPara);
 
         if(encMsg2.equals(encMsg1)){
@@ -86,16 +86,16 @@
 		if(msgChk.equals("N")){
 %>
 		    <script language=javascript>
-            alert("ºñÁ¤»óÀûÀÎ Á¢±ÙÀÔ´Ï´Ù.!!<%=msgChk%>");
+            alert("ë¹„ì •ìƒì ì¸ ì ‘ê·¼ì…ë‹ˆë‹¤.!!<%=msgChk%>");
 		    </script>
 <%
 			return;
 		}
 
-        //05. 2Â÷ º¹È£È­
+        //05. 2ì°¨ ë³µí˜¸í™”
 		rec_cert  = seed.getDec(encPara, k_certNum);
 
-        //06. 2Â÷ ÆÄ½Ì
+        //06. 2ì°¨ íŒŒì‹±
         int info1  = rec_cert.indexOf("/",0);
         int info2  = rec_cert.indexOf("/",info1+1);
         int info3  = rec_cert.indexOf("/",info2+1);
@@ -134,12 +134,12 @@
 		plusInfo	= rec_cert.substring(info16+1,info17);
 		DI      	= rec_cert.substring(info17+1,info18);
 
-        //07. CI, DI º¹È£È­
+        //07. CI, DI ë³µí˜¸í™”
         CI  = seed.getDec(CI, k_certNum);
         DI  = seed.getDec(DI, k_certNum);
 %>	
 <%!
-		// ÆÄ¶ó¹ÌÅÍ À¯È¿¼º °ËÁõ --------------------------------------------
+		// íŒŒë¼ë¯¸í„° ìœ íš¨ì„± ê²€ì¦ --------------------------------------------
 		boolean b = true;
 		String regex = "";
 
@@ -152,69 +152,69 @@
 %>
 <%
 		if( certNum.length() == 0 || certNum.length() > 40){
-			out.println("¿äÃ»¹øÈ£ ºñÁ¤»ó");
+			out.println("ìš”ì²­ë²ˆí˜¸ ë¹„ì •ìƒ");
 			return;
 		}
 
 		regex = "[0-9]*";
 		if( date.length() != 14 || !paramChk(regex, date) ){
-			out.println("¿äÃ»ÀÏ½Ã ºñÁ¤»ó");
+			out.println("ìš”ì²­ì¼ì‹œ ë¹„ì •ìƒ");
 			return;
 		}
 
 		regex = "[A-Z]*";
 		if( certMet.length() != 1 || !paramChk(regex, certMet) ){
-			out.println("º»ÀÎÀÎÁõ¹æ¹ı ºñÁ¤»ó" + certMet);
+			out.println("ë³¸ì¸ì¸ì¦ë°©ë²• ë¹„ì •ìƒ" + certMet);
 			return;
 		}
 
 
 		regex = "[0-9]*";
 		if( (phoneNo.length() != 10 && phoneNo.length() != 11) || !paramChk(regex, phoneNo) ){
-			out.println("ÈŞ´ëÆù¹øÈ£ ºñÁ¤»ó");
+			out.println("íœ´ëŒ€í°ë²ˆí˜¸ ë¹„ì •ìƒ");
 			return;
 		}
 		
 		regex = "[A-Z]*";
 		if( phoneCorp.length() != 3 || !paramChk(regex, phoneCorp) ){
-			out.println("ÀÌµ¿Åë½Å»ç ºñÁ¤»ó");
+			out.println("ì´ë™í†µì‹ ì‚¬ ë¹„ì •ìƒ");
 			return;
 		}
 
 		regex = "[0-9]*";
 		if( birthDay.length() != 8 || !paramChk(regex, birthDay) ){
-			out.println("»ı³â¿ùÀÏ ºñÁ¤»ó");
+			out.println("ìƒë…„ì›”ì¼ ë¹„ì •ìƒ");
 			return;
 		}
 
 		regex = "[0-9]*";
 		if( gender.length() != 1 || !paramChk(regex, gender) ){
-			out.println("¼ºº° ºñÁ¤»ó");
+			out.println("ì„±ë³„ ë¹„ì •ìƒ");
 			return;
 		}
 
 		regex = "[0-9]*";
 		if( nation.length() != 1 || !paramChk(regex, nation) ){
-			out.println("³»/¿Ü±¹ÀÎ ºñÁ¤»ó");
+			out.println("ë‚´/ì™¸êµ­ì¸ ë¹„ì •ìƒ");
 			return;
 		}
 		
-		regex = "[\\sA-Za-z°¡-ÆR.,-]*";
+		regex = "[\\sA-Za-zê°€-ï¿½R.,-]*";
 		if( name.length() > 60 || !paramChk(regex, name) ){
-			out.println("¼º¸í ºñÁ¤»ó");
+			out.println("ì„±ëª… ë¹„ì •ìƒ");
 			return;
 		}
 		
 		regex = "[A-Z]*";
 		if( result.length() != 1 || !paramChk(regex, result) ){
-			out.println("°á°ú°ª ºñÁ¤»ó");
+			out.println("ê²°ê³¼ê°’ ë¹„ì •ìƒ");
 			return;
 		}
 		
-		regex = "[\\sA-Za-z°¡-?.,-]*";
+		regex = "[\\sA-Za-zê°€-?.,-]*";
 		if( M_name.length() != 0 ){
 			if( M_name.length() > 60 || !paramChk(regex, M_name) ){
-				out.println("¹Ì¼º³âÀÚ ¼º¸í ºñÁ¤»ó");
+				out.println("ë¯¸ì„±ë…„ì ì„±ëª… ë¹„ì •ìƒ");
 				return;
 			}
 		}
@@ -222,7 +222,7 @@
 		regex = "[0-9]*";
 		if( M_birthDay.length() != 0 ){
 			if( M_birthDay.length() != 8 || !paramChk(regex, M_birthDay) ){
-				out.println("¹Ì¼º³âÀÚ »ı³â¿ùÀÏ ºñÁ¤»ó");
+				out.println("ë¯¸ì„±ë…„ì ìƒë…„ì›”ì¼ ë¹„ì •ìƒ");
 				return;
 			}
 		}
@@ -230,7 +230,7 @@
 		regex = "[0-9]*";
 		if( M_Gender.length() != 0 ){
 			if( M_Gender.length() != 1 || !paramChk(regex, M_Gender) ){
-				out.println("¹Ì¼º³âÀÚ ¼ºº° ºñÁ¤»ó");
+				out.println("ë¯¸ì„±ë…„ì ì„±ë³„ ë¹„ì •ìƒ");
 				return;
 			}
 		}
@@ -238,15 +238,15 @@
 		regex = "[0-9]*";
 		if( M_nation.length() != 0 ){
 			if( M_nation.length() != 1 || !paramChk(regex, M_nation) ){
-				out.println("¹Ì¼º³âÀÚ ³»/¿Ü±¹ÀÎ ºñÁ¤»ó");
+				out.println("ë¯¸ì„±ë…„ì ë‚´/ì™¸êµ­ì¸ ë¹„ì •ìƒ");
 				return;
 			}
 		}
-		// End ÆÄ¶ó¹ÌÅÍ À¯È¿¼º °ËÁõ --------------------------------------------
+		// End íŒŒë¼ë¯¸í„° ìœ íš¨ì„± ê²€ì¦ --------------------------------------------
 
-		// Start - ¼ö½Å³»¿ª À¯È¿¼º °ËÁõ(»ç¼³¸ÁÀÇ »ç¼³ IP·Î ÀÎÇØ ¹Ì»ç¿ë, °ø¿ë¸ÁÀÇ °æ¿ì È®ÀÎ ÈÄ »ç¿ë) *********************/
-		// 1. date °ª °ËÁõ
-		SimpleDateFormat formatter	= new SimpleDateFormat("yyyyMMddHHmmss",Locale.KOREAN); // ÇöÀç ¼­¹ö ½Ã°¢ ±¸ÇÏ±â
+		// Start - ìˆ˜ì‹ ë‚´ì—­ ìœ íš¨ì„± ê²€ì¦(ì‚¬ì„¤ë§ì˜ ì‚¬ì„¤ IPë¡œ ì¸í•´ ë¯¸ì‚¬ìš©, ê³µìš©ë§ì˜ ê²½ìš° í™•ì¸ í›„ ì‚¬ìš©) *********************/
+		// 1. date ê°’ ê²€ì¦
+		SimpleDateFormat formatter	= new SimpleDateFormat("yyyyMMddHHmmss",Locale.KOREAN); // í˜„ì¬ ì„œë²„ ì‹œê° êµ¬í•˜ê¸°
 		String strCurrentTime	= formatter.format(new Date());
 		
 		Date toDate				= formatter.parse(strCurrentTime);
@@ -254,12 +254,12 @@
 		long timediff			= toDate.getTime()-fromDate.getTime();
 		
 		if ( timediff < -30*60*1000 || 30*60*100 < timediff  ){		%>
-			ºñÁ¤»óÀûÀÎ Á¢±ÙÀÔ´Ï´Ù. (¿äÃ»½Ã°£°æ°ú)
+			ë¹„ì •ìƒì ì¸ ì ‘ê·¼ì…ë‹ˆë‹¤. (ìš”ì²­ì‹œê°„ê²½ê³¼)
 <%			return;
 		}
 		
-		// 2. ip °ª °ËÁõ
-		String client_ip = request.getHeader("HTTP_X_FORWARDED_FOR"); // »ç¿ëÀÚIP ±¸ÇÏ±â
+		// 2. ip ê°’ ê²€ì¦
+		String client_ip = request.getHeader("HTTP_X_FORWARDED_FOR"); // ì‚¬ìš©ìIP êµ¬í•˜ê¸°
 		if ( client_ip != null ){
 			if( client_ip.indexOf(",") != -1 )
 				client_ip = client_ip.substring(0,client_ip.indexOf(","));
@@ -270,10 +270,10 @@
 
 		if( !client_ip.equals(ip) ){		%>
 
-			ºñÁ¤»óÀûÀÎ Á¢±ÙÀÔ´Ï´Ù. (IPºÒÀÏÄ¡)
+			ë¹„ì •ìƒì ì¸ ì ‘ê·¼ì…ë‹ˆë‹¤. (IPë¶ˆì¼ì¹˜)
 <%			return;
 		}
-		// End - ¼ö½Å³»¿ª À¯È¿¼º °ËÁõ(»ç¼³¸ÁÀÇ »ç¼³ IP·Î ÀÎÇØ ¹Ì»ç¿ë, °ø¿ë¸ÁÀÇ °æ¿ì È®ÀÎ ÈÄ »ç¿ë) ***********************/
+		// End - ìˆ˜ì‹ ë‚´ì—­ ìœ íš¨ì„± ê²€ì¦(ì‚¬ì„¤ë§ì˜ ì‚¬ì„¤ IPë¡œ ì¸í•´ ë¯¸ì‚¬ìš©, ê³µìš©ë§ì˜ ê²½ìš° í™•ì¸ í›„ ì‚¬ìš©) ***********************/
 %>
 <html>
 	<head>
@@ -281,90 +281,90 @@
 	</head>
 	<body>
 		<br><br>
-            [º¹È£È­ ÈÄ ¼ö½Å°ª] <br>
+            [ë³µí˜¸í™” í›„ ìˆ˜ì‹ ê°’] <br>
             <br>
             <table cellpadding=1 cellspacing=1>
                 <tr>
-                    <td align=left>À§,º¯Á¶¿©ºÎ1</td>
+                    <td align=left>ìœ„,ë³€ì¡°ì—¬ë¶€1</td>
                     <td align=left><%=encMsg1%></td>
                 </tr>
                 <tr>
-                    <td align=left>À§,º¯Á¶¿©ºÎ2</td>
+                    <td align=left>ìœ„,ë³€ì¡°ì—¬ë¶€2</td>
                     <td align=left><%=encMsg2%></td>
                 </tr>
 
                 <tr>
-                    <td align=left>¿äÃ»¹øÈ£</td>
+                    <td align=left>ìš”ì²­ë²ˆí˜¸</td>
                     <td align=left><%=certNum%></td>
                 </tr>
                 <tr>
-                    <td align=left>¿äÃ»ÀÏ½Ã</td>
+                    <td align=left>ìš”ì²­ì¼ì‹œ</td>
                     <td align=left><%=date%></td>
                 </tr>
                 <tr>
-                    <td align=left>¿¬°èÁ¤º¸(CI)</td>
+                    <td align=left>ì—°ê³„ì •ë³´(CI)</td>
                     <td align=left><%=CI%></td>
                 </tr>
                 <tr>
-                    <td align=left>Áßº¹°¡ÀÔÈ®ÀÎÁ¤º¸(DI)</td>
+                    <td align=left>ì¤‘ë³µê°€ì…í™•ì¸ì •ë³´(DI)</td>
                     <td align=left><%=DI%></td>
                 </tr>
                 <tr>
-                    <td align=left>ÈŞ´ëÆù¹øÈ£</td>
+                    <td align=left>íœ´ëŒ€í°ë²ˆí˜¸</td>
                     <td align=left><%=phoneNo%></td>
                 </tr>
                 <tr>
-                    <td align=left>ÀÌµ¿Åë½Å»ç</td>
+                    <td align=left>ì´ë™í†µì‹ ì‚¬</td>
                     <td align=left><%=phoneCorp%></td>
                 </tr>
                 <tr>
-                    <td align=left>»ı³â¿ùÀÏ</td>
+                    <td align=left>ìƒë…„ì›”ì¼</td>
                     <td align=left><%=birthDay%></td>
                 </tr>
                 <tr>
-                    <td align=left>³»±¹ÀÎ</td>
+                    <td align=left>ë‚´êµ­ì¸</td>
                     <td align=left><%=nation%></td>
                 </tr>
                 <tr>
-                    <td align=left>¼ºº°</td>
+                    <td align=left>ì„±ë³„</td>
                     <td align=left><%=gender%></td>
                 </tr>
                 <tr>
-                    <td align=left>¼º¸í</td>
+                    <td align=left>ì„±ëª…</td>
                     <td align=left><%=name%></td>
                 </tr>
                 <tr>
-                    <td align=left>°á°ú°ª</td>
+                    <td align=left>ê²°ê³¼ê°’</td>
                     <td align=left><%=result%></td>
                 </tr>
                 <tr>
-                    <td align=left>ÀÎÁõ¹æ¹ı</td>
+                    <td align=left>ì¸ì¦ë°©ë²•</td>
                     <td align=left><%=certMet%></td>
                     </td>
                 </tr>
                 <tr>
-                    <td align=left>ipÁÖ¼Ò</td>
+                    <td align=left>ipì£¼ì†Œ</td>
                     <td align=left><%=ip%></td>
                 </tr>
                 <tr>
-                    <td align=left>¹Ì¼º³âÀÚ ¼º¸í</td>
+                    <td align=left>ë¯¸ì„±ë…„ì ì„±ëª…</td>
                     <td align=left><%=M_name%></td>
                 </tr>
                 <tr>
-                    <td align=left>¹Ì¼º³âÀÚ »ı³â¿ùÀÏ</td>
+                    <td align=left>ë¯¸ì„±ë…„ì ìƒë…„ì›”ì¼</td>
                     <td align=left><%=M_birthDay%></td>
                 </tr>
                 <tr>
-                    <td align=left>¹Ì¼º³âÀÚ ¼ºº°</td>
+                    <td align=left>ë¯¸ì„±ë…„ì ì„±ë³„</td>
                     <td align=left><%=M_Gender%></td>
                     </td>
                 </tr>
                 <tr>
-                    <td align=left>¹Ì¼º³âÀÚ ³»¿Ü±¹ÀÎ</td>
+                    <td align=left>ë¯¸ì„±ë…„ì ë‚´ì™¸êµ­ì¸</td>
                     <td align=left><%=M_nation%></td>
                 </tr>
                 <tr>
-                    <td align=left>Ãß°¡DATAÁ¤º¸</td>
+                    <td align=left>ì¶”ê°€DATAì •ë³´</td>
                     <td align=left><%=plusInfo%></td>
                 </tr>
             </table>
@@ -373,7 +373,7 @@
             rec_cert : <%=rec_cert%> <br>
             <br>
             <br>
-            <a href="http://È¸¿ø»çº° °æ·Î/kmcis_web_sample_step01.jsp">[´Ù½Ã Å×½ºÆ®]</a>
+            <a href="http://íšŒì›ì‚¬ë³„ ê²½ë¡œ/kmcis_web_sample_step01.jsp">[ë‹¤ì‹œ í…ŒìŠ¤íŠ¸]</a>
 	</body>
 </html>
         <%
