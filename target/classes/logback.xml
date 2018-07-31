@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-               xsi:schemaLocation="http://ch.qos.logback/xml/ns/logback http://ch.qos.logback/xml/ns/logback/logback.xsd">
+			   xsi:schemaLocation="http://ch.qos.logback/xml/ns/logback http://ch.qos.logback/xml/ns/logback/logback.xsd">
 
 	<property name="LOG_DIR" value="/var/log/apps/medi" />
 
@@ -44,32 +44,33 @@
 
 	   
 	<logger name="java.sql.Connection" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
 		<appender-ref ref="TIME_BASED_FILE" />
-		<appender-ref ref="TIME_BASED_ERROR_FILE" />
 	</logger>
 	 
 	<logger name="java.sql.PreparedStatement" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
 		<appender-ref ref="TIME_BASED_FILE" />
-		<appender-ref ref="TIME_BASED_ERROR_FILE" />
 	</logger>
 	<logger name="java.sql.ResultSet" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
 		<appender-ref ref="TIME_BASED_FILE" />
-		<appender-ref ref="TIME_BASED_ERROR_FILE" />
 	</logger>
 	 
 	<logger name="com.medi.hs" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
 		<appender-ref ref="TIME_BASED_FILE" />
-		<appender-ref ref="TIME_BASED_ERROR_FILE" />
 	</logger>
 
 	<logger name="org.springframework" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT" />
         <appender-ref ref="TIME_BASED_FILE" />
-        <appender-ref ref="TIME_BASED_ERROR_FILE" />
     </logger>
     
     <root level="TRACE" additivity="false">
-        <appender-ref ref="TIME_BASED_FILE" />
-        <appender-ref ref="TIME_BASED_ERROR_FILE" />
+        <appender-ref ref="STDOUT" />
+<!--         <appender-ref ref="TIME_BASED_FILE" />
+        <appender-ref ref="TIME_BASED_ERROR_FILE" /> -->
     </root>
     
 </configuration>
