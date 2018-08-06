@@ -64,21 +64,31 @@ public class MemberController {
 	
 	@RequestMapping(value = "/auth1", method=RequestMethod.GET)
 	public String auth1(){
-		return "auth/kmcis_web_sample_step01";
+		return "auth/kmcis_webc_sample_step01";
 	}
 	
 	@RequestMapping(value = "/auth2", method=RequestMethod.POST)
 	public String auth2(){
-		return "auth/kmcis_web_sample_step02";
+		return "auth/kmcis_webc_sample_step02";
 	}
 	
 	@RequestMapping(value = "/auth3", method=RequestMethod.GET)
 	public String auth3(){
-		return "auth/kmcis_web_sample_step03";
+		return "auth/kmcis_webc_sample_step03";
 	}
 	
 	@RequestMapping(value = "/auth4", method=RequestMethod.GET)
 	public String auth4(){
-		return "auth/kmcis_web_sample_step04";
+		return "auth/kmcis_webc_sample_step04";
+	}
+	
+	@RequestMapping(value = "/auth5")
+	public String auth5(){
+		return "auth/kmcis_webc_sample_step05";
+	}
+	
+	@RequestMapping(value = "/auth6")
+	public String auth6(){
+		return "auth/kmcis_webc_sample_step06";
 	}
 }

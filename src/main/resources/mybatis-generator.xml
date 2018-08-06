@@ -14,6 +14,38 @@
         <javaClientGenerator targetPackage="com.medi.hs.dao" targetProject="medi-app-server" type="XMLMAPPER"/>
 
 
+           <table schema="medi" tableName="HANWHATOTALSC_GK" enableSelectByExample="false"
+                                                 enableDeleteByExample="false"
+                                                 enableCountByExample="false"
+                                                 enableUpdateByExample="false"
+                                                 selectByExampleQueryId="false">
+
+            <columnOverride column="ID" property="id" />
+            <columnOverride column="JUBSJUBNO" property="jubsjubno" />
+            <columnOverride column="SDate" property="sdate" />
+            <columnOverride column="No" property="no" />
+            <columnOverride column="JUBGGUMKD" property="JUBGGUMKD" />
+            <columnOverride column="BASCSUBJT" property="BASCSUBJT" />
+			
+
+        </table>
+
+        <table schema="medi" tableName="HANWHA1CHASC" enableSelectByExample="false"
+                                                 enableDeleteByExample="false"
+                                                 enableCountByExample="false"
+                                                 enableUpdateByExample="false"
+                                                 selectByExampleQueryId="false">
+
+            <columnOverride column="ID" property="id" />
+            <columnOverride column="JUBSJUBNO" property="jubsjubno" />
+            <columnOverride column="SDate" property="sdate" />
+            <columnOverride column="No" property="no" />
+            <columnOverride column="PanDate" property="panDate" />
+            <columnOverride column="TrancDate" property="trancDate" />
+			
+
+        </table>
+<!-- 
                <table schema="medi" tableName="member" enableSelectByExample="false"
                                                  enableDeleteByExample="false"
                                                  enableCountByExample="false"
@@ -35,7 +67,6 @@
 			
 
         </table>
-<!-- 
 		<table schema="medi" tableName="HS_LABB42" enableSelectByExample="false"
                                                  enableDeleteByExample="false"
                                                  enableCountByExample="false"
