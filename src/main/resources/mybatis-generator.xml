@@ -13,8 +13,323 @@
         <sqlMapGenerator targetPackage="com.medi.hs.dao.mapper" targetProject="medi-app-server"/>
         <javaClientGenerator targetPackage="com.medi.hs.dao" targetProject="medi-app-server" type="XMLMAPPER"/>
 
+        <table schema="medi" tableName="HANWHA2CHASC" enableSelectByExample="false"
+                                                 enableDeleteByExample="false"
+                                                 enableCountByExample="false"
+                                                 enableUpdateByExample="false"
+                                                 selectByExampleQueryId="false">
 
-           <table schema="medi" tableName="HANWHATOTALSC_GK" enableSelectByExample="false"
+            <columnOverride column="ID" property="id" />
+            <columnOverride column="JUBSJUBNO" property="jubsjubno" />
+            <columnOverride column="Date" property="date" />
+            <columnOverride column="so_gulkwa" property="sGulkwa" />
+            <columnOverride column="so6_1" property="so6_1" />
+            <columnOverride column="so7_1" property="so7_1" />
+            <columnOverride column="inji_pan" property="injiPan" />
+            <columnOverride column="tot_inji" property="totInji" />
+            <columnOverride column="so8_40" property="so8_40" />
+            <columnOverride column="so8_40_score" property="so8_40_score" />
+            <columnOverride column="so8_661" property="so8_661" />
+            <columnOverride column="so1_1" property="so1_1" />
+            <columnOverride column="so1_2" property="so1_2" />
+            <columnOverride column="smoke_score" property="smokeScore" />
+            <columnOverride column="so2_1" property="so2_1" />
+            <columnOverride column="so2_2" property="so2_2" />
+            <columnOverride column="drink_score" property="drinkScore" />
+            <columnOverride column="so3_1" property="so3_1" />
+            <columnOverride column="so3_2" property="so3_2" />
+            <columnOverride column="so3_3" property="so3_3" />
+            <columnOverride column="so3_4" property="so3_4" />
+            <columnOverride column="sport_score" property="sporScore" />
+            <columnOverride column="so4_1" property="so4_1" />
+            <columnOverride column="so4_2_1" property="so4_2_1" />
+            <columnOverride column="so4_2_1_1" property="so4_2_1_1" />
+            <columnOverride column="so4_2_1_2" property="so4_2_1_2" />
+            <columnOverride column="so4_2_1_3" property="so4_2_1_3" />
+            <columnOverride column="so4_2_2" property="so4_2_2" />
+            <columnOverride column="so4_2_2_1" property="so4_2_2_1" />
+            <columnOverride column="so4_2_2_2" property="so4_2_2_2" />
+            <columnOverride column="so4_2_2_3" property="so4_2_2_3" />
+            <columnOverride column="so4_2_3" property="so4_2_3" />
+            <columnOverride column="so4_2_3_1" property="so4_2_3_1" />
+            <columnOverride column="so4_2_3_2" property="so4_2_3_2" />
+            <columnOverride column="so4_2_4" property="so4_2_4" />
+            <columnOverride column="food_score" property="foodScore" />
+            <columnOverride column="so5_1" property="so5_1" />
+            <columnOverride column="so5_11" property="so5_11" />
+            <columnOverride column="so5_2" property="so5_2" />
+            <columnOverride column="so5_3" property="so5_3" />
+            <columnOverride column="so5_4" property="so5_4" />
+            <columnOverride column="so5_5" property="so5_5" />
+            <columnOverride column="so5_6" property="so5_6" />
+            <columnOverride column="so5_7" property="so5_7" />
+            <columnOverride column="so5_8" property="so5_8" />
+            <columnOverride column="so5_8_memo" property="so5_8_memo" />
+
+        </table>
+        
+        <table schema="medi" tableName="HANWHACANCERSC_NEW" enableSelectByExample="false"
+                                                 enableDeleteByExample="false"
+                                                 enableCountByExample="false"
+                                                 enableUpdateByExample="false"
+                                                 selectByExampleQueryId="false">
+
+            <columnOverride column="ID" property="id" />
+            <columnOverride column="JUBSJUBNO" property="jubsjubno" />
+            <columnOverride column="SDate" property="sdate" />
+            <columnOverride column="No" property="no" />
+            <columnOverride column="CODE" property="code" />
+            <columnOverride column="EXAM_NM" property="examNm" />
+            <columnOverride column="EXAM_DT" property="examDt" />
+            <columnOverride column="EXAM_SO" property="examSo" />
+            <columnOverride column="EXAM_JJ" property="examJj" />
+            <columnOverride column="EXAM_PAN" property="examPan" />
+            <columnOverride column="Recommend" property="recommend" />
+            <columnOverride column="PAN_DT" property="panDt" />
+            <columnOverride column="GULKWA" property="gulkwa" />
+            <columnOverride column="DOCTORNO" property="doctorno" />
+            <columnOverride column="DOCTORNAME" property="doctorname" />
+            <columnOverride column="Desc_kikwan" property="descKikwan" />
+            <columnOverride column="Desc_hlbw" property="deschlbw" />
+
+        </table>
+        
+
+        <table schema="medi" tableName="HANWHA1CHASC" enableSelectByExample="false"
+                                                 enableDeleteByExample="false"
+                                                 enableCountByExample="false"
+                                                 enableUpdateByExample="false"
+                                                 selectByExampleQueryId="false">
+
+            <columnOverride column="ID" property="id" />
+            <columnOverride column="JUBSJUBNO" property="jubsjubno" />
+            <columnOverride column="SDate" property="sdate" />
+            <columnOverride column="No" property="no" />
+            <columnOverride column="PanDate" property="pandate" />
+            <columnOverride column="TrancDate" property="trancdate" />
+            <columnOverride column="Q1ST_DJD1" property="q1stDjd1" />
+            <columnOverride column="Q1ST_DMS1" property="q1stDms1" />
+            <columnOverride column="Q1ST_DJD2" property="q1stDjd2" />
+            <columnOverride column="Q1ST_DMS2" property="q1stDms2" />
+            <columnOverride column="Q1ST_DJD3" property="q1stDjd3" />
+            <columnOverride column="Q1ST_DMS3" property="q1stDms3" />
+            <columnOverride column="Q1ST_DJD4" property="q1stDjd4" />
+            <columnOverride column="Q1ST_DMS4" property="q1stDms4" />
+            <columnOverride column="Q1ST_DJD5" property="q1stDjd5" />
+            <columnOverride column="Q1ST_DMS5" property="q1stDms5" />
+            <columnOverride column="Q1ST_DJD6" property="q1stDjd6" />
+            <columnOverride column="Q1ST_DMS6" property="q1stDms6" />
+            <columnOverride column="Q1ST_DJD7" property="q1stDjd7" />
+            <columnOverride column="Q1ST_DMS7" property="q1stDms7" />
+            <columnOverride column="DHL" property="dhl" />
+            <columnOverride column="LI_2" property="li_2" />
+            <columnOverride column="LI_3" property="li_3" />
+            <columnOverride column="LI_1" property="li_1" />
+            <columnOverride column="WEG" property="weg" />
+            <columnOverride column="LI_5" property="li_5" />
+            <columnOverride column="DIS_NAME2" property="disName2" />
+            <columnOverride column="DIS_NAME4" property="DISName4" />
+            <columnOverride column="DIS_NAME5" property="DISName5" />
+            <columnOverride column="DIS_NAME6" property="DISName6" />
+            <columnOverride column="INJI" property="inji" />
+            <columnOverride column="STATUE" property="statue" />
+            <columnOverride column="DOCTORNO" property="doctorno" />
+            <columnOverride column="DOCTORNAME" property="doctorname" />
+            <columnOverride column="PanA" property="pana" />
+            <columnOverride column="PanB" property="panb" />
+            <columnOverride column="PanR1" property="panr1" />
+            <columnOverride column="PanR2" property="panr2" />
+            <columnOverride column="PanD" property="pand" />
+            <columnOverride column="PanD_Opinion" property="pandOpinion" />
+            <columnOverride column="VIEW1" property="view1" />
+            <columnOverride column="VIEW2" property="view2" />
+            <columnOverride column="PanGbn" property="pangbn" />
+            <columnOverride column="LI_1_1" property="li_1_1" />
+            <columnOverride column="LI_2_1" property="li_2_1" />
+            <columnOverride column="LI_3_1" property="li_3_1" />
+            <columnOverride column="S099_40" property="s099_40" />
+            <columnOverride column="S091_40" property="s091_40" />
+            <columnOverride column="TypeB_Gulkwa1_40" property="typeBGulkwa1_40" />
+            <columnOverride column="TypeB_Gulkwa2_40" property="typeBGulkwa2_40" />
+            <columnOverride column="TypeB_Gulkwa3_40" property="typeBGulkwa3_40" />
+            <columnOverride column="chart1_avg" property="chart1Avg" />
+            <columnOverride column="chart2_avg" property="chart2Avg" />
+            <columnOverride column="chart3_avg" property="chart3Avg" />
+            <columnOverride column="chart4_avg" property="chart4Avg" />
+            <columnOverride column="chart5_avg" property="chart5Avg" />
+            <columnOverride column="qrl_Danger1" property="qrlDanger1" />
+            <columnOverride column="qrl_Danger2" property="qrlDanger2" />
+            <columnOverride column="qrl_Danger3" property="qrlDanger3" />
+            <columnOverride column="qrl_Danger4" property="qrlDanger4" />
+            <columnOverride column="qrl_Danger4_nm" property="qrlDanger4Nm" />
+            <columnOverride column="qrl_Danger5" property="qrlDanger5" />
+            <columnOverride column="qrl_Danger5_nm" property="qrlDanger5Nm" />
+            <columnOverride column="qrl_biman" property="qrlBiman" />
+            <columnOverride column="qrl_state1" property="qrlState1" />
+            <columnOverride column="qrl_weight" property="qrlWeight" />
+            <columnOverride column="state1" property="state1" />
+            <columnOverride column="qrl_state2" property="qrlState2" />
+            <columnOverride column="qrl_state2_sub" property="qrlState2Sub" />
+            <columnOverride column="state2" property="state2" />
+            <columnOverride column="qrl_state3" property="qrl_state3" />
+            <columnOverride column="qrl_state3_sub" property="qrl_state3_sub" />
+            <columnOverride column="state3" property="state3" />
+            <columnOverride column="qrl_state4" property="qrlState4" />
+            <columnOverride column="qrl_state4_sub" property="qrlState4Sub" />
+            <columnOverride column="state4" property="state4" />
+            <columnOverride column="qrl_state5" property="qrlState5" />
+            <columnOverride column="qrl_state5_sub" property="qrlState5Sub" />
+            <columnOverride column="state5" property="state5" />
+            <columnOverride column="qrl_state6" property="qrlState6" />
+            <columnOverride column="qrl_state6_sub" property="qrlState6Sub" />
+            <columnOverride column="state6" property="state6" />
+            <columnOverride column="qrl_state7" property="qrlState7" />
+            <columnOverride column="qrl_state7_sub" property="qrlState7Sub" />
+            <columnOverride column="state7" property="state7" />
+            <columnOverride column="max_name1" property="maxName1" />
+            <columnOverride column="max_name2" property="maxName2" />
+            <columnOverride column="max_name3" property="maxName3" />
+            <columnOverride column="max_name4" property="maxName4" />
+            <columnOverride column="qrl_max1" property="qrlMax1" />
+            <columnOverride column="qrl_max2" property="qrlMax2" />
+            <columnOverride column="qrl_max3" property="qrlMax3" />
+            <columnOverride column="qrl_max4" property="qrlMax4" />
+            <columnOverride column="max_data1_chart" property="maxData1Chart" />
+            <columnOverride column="max_data2_chart" property="maxData2Chart" />
+            <columnOverride column="max_data3_chart" property="maxData3Chart" />
+            <columnOverride column="max_data4_chart" property="maxData4Chart" />
+            <columnOverride column="max_name1_can" property="maxName1Can" />
+            <columnOverride column="max_name2_can" property="maxName2Can" />
+            <columnOverride column="max_name3_can" property="maxName3Can" />
+            <columnOverride column="max_name4_can" property="maxName4Can" />
+            <columnOverride column="qrl_max1_can" property="qrlMax1Can" />
+            <columnOverride column="qrl_max2_can" property="qrlMax2Can" />
+            <columnOverride column="qrl_max3_can" property="qrlMax3Can" />
+            <columnOverride column="qrl_max4_can" property="qrlMax4Can" />
+            <columnOverride column="max_data1_chart_can" property="maxData1ChartCan" />
+            <columnOverride column="max_data2_chart_can" property="maxData2ChartCan" />
+            <columnOverride column="max_data3_chart_can" property="maxData3ChartCan" />
+            <columnOverride column="max_data4_chart_can" property="maxData4ChartCan" />
+            <columnOverride column="qrl_ck_state1" property="qrlCkState1" />
+            <columnOverride column="qrl_ck_state2" property="qrlCkState2" />
+            <columnOverride column="qrl_ck_state3" property="qrlCkState3" />
+            <columnOverride column="qrl_ck_state4" property="qrlCkState4" />
+            <columnOverride column="qrl_ck_state6" property="qrlCkState6" />
+            <columnOverride column="qrl_ck_pan1" property="qrlCkPan1" />
+            <columnOverride column="qrl_ck_pan2" property="qrlCkPan2" />
+            <columnOverride column="qrl_ck_pan3" property="qrlCkPan3" />
+            <columnOverride column="qrl_ck_pan4" property="qrlCkPan4" />
+            <columnOverride column="qrl_ck_pan5" property="qrlCkPan5" />
+            <columnOverride column="qrl_ck_pan6" property="qrlCkPan6" />
+            <columnOverride column="qrl_ck_pan7" property="qrlCkPan7" />
+            <columnOverride column="qrl_ck_pan8" property="qrlCkPan8" />
+            <columnOverride column="qrl_ck_pan9" property="qrlCkPan9" />
+            <columnOverride column="chumun66_1" property="chumun66_1" />
+            <columnOverride column="chumun66_2" property="chumun66_2" />
+            <columnOverride column="chumun66_3" property="chumun66_3" />
+            <columnOverride column="chumun66_4" property="chumun66_4" />
+            <columnOverride column="chumun66_5" property="chumun66_5" />
+            <columnOverride column="body66_eye" property="body66Eye" />
+            <columnOverride column="body66_ear" property="body66Ear" />
+            <columnOverride column="body66_life" property="body66Life" />
+            <columnOverride column="bmd_gulkwa" property="bmdGulkwa" />
+            <columnOverride column="life_test1_66" property="lifeTest1_66" />
+            <columnOverride column="life_test2_66" property="lifeTest2_66" />
+            <columnOverride column="life_test3_close_66" property="lifeTest3Close_66" />
+            <columnOverride column="life_test3_open_66" property="lifeTest3Open_66" />
+            <columnOverride column="gfr" property="gfr" />
+            <columnOverride column="ear_l" property="earL" />
+            <columnOverride column="ear_r" property="earR" />
+            <columnOverride column="gubn_lfyh" property="gubnLfyh" />
+            <columnOverride column="c_type" property="cType" />
+            <columnOverride column="jisa" property="jisa" />
+            <columnOverride column="c_type" property="cType" />
+
+        </table>
+        <table schema="medi" tableName="HANWHATOTRESSC_DOCV" enableSelectByExample="false"
+                                                 enableDeleteByExample="false"
+                                                 enableCountByExample="false"
+                                                 enableUpdateByExample="false"
+                                                 selectByExampleQueryId="false">
+
+            <columnOverride column="ID" property="id" />
+            <columnOverride column="JUBSJUBNO" property="jubsjubno" />
+            <columnOverride column="SDate" property="sdate" />
+            <columnOverride column="No" property="no" />
+            <columnOverride column="RESVSOGKD" property="resvsogkd" />
+            <columnOverride column="RESVGUBUN" property="resvgubun" />
+            <columnOverride column="RESVDOCVR" property="resvdocvr" />
+
+        </table>
+        <table schema="medi" tableName="HANWHATOTRESSC" enableSelectByExample="false"
+                                                 enableDeleteByExample="false"
+                                                 enableCountByExample="false"
+                                                 enableUpdateByExample="false"
+                                                 selectByExampleQueryId="false">
+
+            <columnOverride column="ID" property="id" />
+            <columnOverride column="JUBSJUBNO" property="jubsjubno" />
+            <columnOverride column="SDate" property="sdate" />
+            <columnOverride column="No" property="no" />
+            <columnOverride column="Code" property="code" />
+            <columnOverride column="Kname" property="kname" />
+            <columnOverride column="Ename" property="ename" />
+            <columnOverride column="Sname" property="sname" />
+            <columnOverride column="Value" property="value" />
+            <columnOverride column="Memo" property="memo" />
+            <columnOverride column="DECISION" property="decision" />
+            <columnOverride column="STYLE" property="stype" />
+            <columnOverride column="LOW_MAN" property="logMan" />
+            <columnOverride column="HIGH_MAN" property="highMan" />
+            <columnOverride column="LOW_WOMAN" property="lowWoman" />
+            <columnOverride column="HIGH_WOMAN" property="highWoman" />
+            <columnOverride column="RefChar" property="refchar" />
+            <columnOverride column="DAT_INSERT" property="datInsert" />
+            <columnOverride column="COD_INSERT" property="codInsert" />
+
+        </table>
+        
+        <table schema="medi" tableName="HANWHATOTALSC_GK" enableSelectByExample="false"
+                                                 enableDeleteByExample="false"
+                                                 enableCountByExample="false"
+                                                 enableUpdateByExample="false"
+                                                 selectByExampleQueryId="false">
+
+            <columnOverride column="ID" property="id" />
+            <columnOverride column="JUBSJUBNO" property="jubsjubno" />
+            <columnOverride column="SDate" property="sdate" />
+            <columnOverride column="No" property="no" />
+            <columnOverride column="JUBGGUMKD" property="jubggumkd" />
+            <columnOverride column="BASCSUBJT" property="bascsubjt" />
+			
+
+        </table>
+        
+        <table schema="medi" tableName="HANWHATOTALSC" enableSelectByExample="false"
+                                                 enableDeleteByExample="false"
+                                                 enableCountByExample="false"
+                                                 enableUpdateByExample="false"
+                                                 selectByExampleQueryId="false">
+
+            <columnOverride column="ID" property="id" />
+            <columnOverride column="JUBSJUBNO" property="jubsjubno" />
+            <columnOverride column="SDate" property="sdate" />
+            <columnOverride column="No" property="no" />
+            <columnOverride column="Name" property="name" />
+            <columnOverride column="Phone" property="phone" />
+            <columnOverride column="BIRTHDAY" property="birthday" />
+            <columnOverride column="SEX" property="sex" />
+            <columnOverride column="RESVRSEND" property="resvrsend" />
+            <columnOverride column="PANORSEND" property="panosen" />
+            <columnOverride column="AMRSRSEND" property="amrsrsend" />
+			
+
+        </table>
+
+
+<!-- 
+
+       <table schema="medi" tableName="HANWHATOTALSC_GK" enableSelectByExample="false"
                                                  enableDeleteByExample="false"
                                                  enableCountByExample="false"
                                                  enableUpdateByExample="false"
@@ -29,7 +344,7 @@
 			
 
         </table>
-
+        
         <table schema="medi" tableName="HANWHA1CHASC" enableSelectByExample="false"
                                                  enableDeleteByExample="false"
                                                  enableCountByExample="false"
@@ -45,7 +360,6 @@
 			
 
         </table>
-<!-- 
                <table schema="medi" tableName="member" enableSelectByExample="false"
                                                  enableDeleteByExample="false"
                                                  enableCountByExample="false"
