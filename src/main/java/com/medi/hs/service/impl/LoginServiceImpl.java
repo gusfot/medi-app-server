@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.medi.hs.common.Sha256;
 import com.medi.hs.dao.MemberMapper;
 import com.medi.hs.model.Member;
 import com.medi.hs.service.LoginService;
@@ -30,7 +31,7 @@ public class LoginServiceImpl implements LoginService {
 			
 			Member member = memberMapper.selectById(userId);
 			
-			if(member != null && password.equals(member.getPasswd())) {
+			if(member != null && Sha256.encrypt(password).equals(member.getPasswd())) {
 				
 				ServletRequestAttributes servletRequestAttribute = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		        HttpSession session = servletRequestAttribute.getRequest().getSession(true);

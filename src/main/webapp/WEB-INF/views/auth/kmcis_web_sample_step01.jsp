@@ -150,7 +150,7 @@
                     </tr>
                     <tr>
                         <td align=center>결과수신URL</td>
-                        <td align=left><input type="text" name="tr_url" size="41" value="http://m.medikind.com/auth3"></td>
+                        <td align=left><input type="text" name="tr_url" size="41" value="http://m.medikind.com:8080/auth3"></td>
                     </tr>
                     <tr>
                         <td align=center>IFrame사용여부</td>

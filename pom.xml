@@ -409,10 +409,12 @@
 	                    </goals>
 	                </execution>
 	            </executions>
+	            <!-- 
 	            <configuration>
 	                <outputDirectory>${deploy.target.dir}/lib</outputDirectory>
 	                <overWriteIfNewer>true</overWriteIfNewer>
 	            </configuration>
+	             -->
 	        </plugin>
 			<plugin>
 				<groupId>org.mybatis.generator</groupId>
