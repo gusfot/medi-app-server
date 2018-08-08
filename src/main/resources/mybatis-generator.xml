@@ -8,12 +8,68 @@
 
     <context id="context1">
     
-        <jdbcConnection driverClass="oracle.jdbc.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:49161:xe" userId="medi" password="jwchjwch"/>
+<!--         <jdbcConnection driverClass="oracle.jdbc.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:49161:xe" userId="medi" password="jwchjwch"/> -->
+
+        <jdbcConnection driverClass="oracle.jdbc.OracleDriver" connectionURL="jdbc:oracle:thin:@220.117.210.28:1521:ORCL10" userId="mobile" password="mobile"/>
         <javaModelGenerator targetPackage="com.medi.hs.model" targetProject="medi-app-server"/>
         <sqlMapGenerator targetPackage="com.medi.hs.dao.mapper" targetProject="medi-app-server"/>
         <javaClientGenerator targetPackage="com.medi.hs.dao" targetProject="medi-app-server" type="XMLMAPPER"/>
 
-        <table schema="medi" tableName="HANWHA2CHASC" enableSelectByExample="false"
+        <table schema="mobile" tableName="MOBIL_PERSONAL" enableSelectByExample="false"
+                                                 enableDeleteByExample="false"
+                                                 enableCountByExample="false"
+                                                 enableUpdateByExample="false"
+                                                 selectByExampleQueryId="false">
+
+            <columnOverride column="MOBIL_PERS_NM" property="persNm" />
+            <columnOverride column="MOBIL_PERS_NO" property="persNo" />
+            <columnOverride column="MOBIL_SEX" property="sex" />
+            <columnOverride column="MOBIL_ID" property="id" />
+            <columnOverride column="MOBIL_EMAIL" property="email" />
+            <columnOverride column="MOBIL_PASS" property="pass" />
+            <columnOverride column="MOBIL_TEL1" property="tel1" />
+            <columnOverride column="MOBIL_TEL2" property="tel2" />
+            <columnOverride column="MOBIL_TEL3" property="tel3" />
+            <columnOverride column="SMS_OK" property="smsOk" />
+            <columnOverride column="MAILING" property="mailing" />
+
+        </table>
+        
+        <table schema="mobile" tableName="TB_USER" enableSelectByExample="false"
+                                                 enableDeleteByExample="false"
+                                                 enableCountByExample="false"
+                                                 enableUpdateByExample="false"
+                                                 selectByExampleQueryId="false">
+
+            <columnOverride column="U_ID" property="id" />
+            <columnOverride column="U_PASSWORD" property="password" />
+            <columnOverride column="U_NAME" property="name" />
+            <columnOverride column="U_BIRTHDAY" property="birthday" />
+
+        </table>
+        
+        <table schema="mobile" tableName="WEBREGISTPATIENT" enableSelectByExample="false"
+                                                 enableDeleteByExample="false"
+                                                 enableCountByExample="false"
+                                                 enableUpdateByExample="false"
+                                                 selectByExampleQueryId="false">
+
+            <columnOverride column="REGISTWEBPATIENTID" property="registWebPatientId" />
+            <columnOverride column="RECEIPTDATE" property="receiptDate" />
+            <columnOverride column="PATIENTNAME" property="patientName" />
+            <columnOverride column="PATIENTMOBILENO" property="patientMobileNo" />
+            <columnOverride column="PATIENTBIRTHDAY" property="patientBirthday" />
+            <columnOverride column="PATIENTGENDER" property="patientGender" />
+            <columnOverride column="PATIENTEMAIL" property="patientEmail" />
+            <columnOverride column="AGREMENT" property="agrement" />
+            <columnOverride column="REGISTEDBYNAME" property="registedByName" />
+            <columnOverride column="REGISTEDDATE" property="registedDate" />
+            <columnOverride column="STATUS" property="status" />
+
+        </table>
+        
+<!--         
+        <table schema="mobile" tableName="HANWHA2CHASC" enableSelectByExample="false"
                                                  enableDeleteByExample="false"
                                                  enableCountByExample="false"
                                                  enableUpdateByExample="false"
@@ -68,7 +124,7 @@
 
         </table>
         
-        <table schema="medi" tableName="HANWHACANCERSC_NEW" enableSelectByExample="false"
+        <table schema="mobile" tableName="HANWHACANCERSC_NEW" enableSelectByExample="false"
                                                  enableDeleteByExample="false"
                                                  enableCountByExample="false"
                                                  enableUpdateByExample="false"
@@ -95,7 +151,7 @@
         </table>
         
 
-        <table schema="medi" tableName="HANWHA1CHASC" enableSelectByExample="false"
+        <table schema="mobile" tableName="HANWHA1CHASC" enableSelectByExample="false"
                                                  enableDeleteByExample="false"
                                                  enableCountByExample="false"
                                                  enableUpdateByExample="false"
@@ -246,7 +302,7 @@
             <columnOverride column="c_type" property="cType" />
 
         </table>
-        <table schema="medi" tableName="HANWHATOTRESSC_DOCV" enableSelectByExample="false"
+        <table schema="mobile" tableName="HANWHATOTRESSC_DOCV" enableSelectByExample="false"
                                                  enableDeleteByExample="false"
                                                  enableCountByExample="false"
                                                  enableUpdateByExample="false"
@@ -261,7 +317,7 @@
             <columnOverride column="RESVDOCVR" property="resvdocvr" />
 
         </table>
-        <table schema="medi" tableName="HANWHATOTRESSC" enableSelectByExample="false"
+        <table schema="mobile" tableName="HANWHATOTRESSC" enableSelectByExample="false"
                                                  enableDeleteByExample="false"
                                                  enableCountByExample="false"
                                                  enableUpdateByExample="false"
@@ -289,7 +345,7 @@
 
         </table>
         
-        <table schema="medi" tableName="HANWHATOTALSC_GK" enableSelectByExample="false"
+        <table schema="mobile" tableName="HANWHATOTALSC_GK" enableSelectByExample="false"
                                                  enableDeleteByExample="false"
                                                  enableCountByExample="false"
                                                  enableUpdateByExample="false"
@@ -305,7 +361,7 @@
 
         </table>
         
-        <table schema="medi" tableName="HANWHATOTALSC" enableSelectByExample="false"
+        <table schema="mobile" tableName="HANWHATOTALSC" enableSelectByExample="false"
                                                  enableDeleteByExample="false"
                                                  enableCountByExample="false"
                                                  enableUpdateByExample="false"
@@ -325,9 +381,6 @@
 			
 
         </table>
-
-
-<!-- 
 
        <table schema="medi" tableName="HANWHATOTALSC_GK" enableSelectByExample="false"
                                                  enableDeleteByExample="false"
