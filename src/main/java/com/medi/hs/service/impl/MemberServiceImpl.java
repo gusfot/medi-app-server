@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.medi.hs.common.Sha256;
+import com.medi.hs.common.StringUtil;
+import com.medi.hs.dao.HanwhatotalscMapper;
 import com.medi.hs.dao.MemberMapper;
 import com.medi.hs.dao.MobilPersonalMapper;
+import com.medi.hs.model.Hanwhatotalsc;
 import com.medi.hs.model.Member;
 import com.medi.hs.model.MobilPersonal;
 import com.medi.hs.service.MemberService;
@@ -25,8 +28,22 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MobilPersonalMapper mobilPersonalMapper;
 	
+	@Autowired
+	private HanwhatotalscMapper hanwhatotalscMapper;
+	
 	@Override
 	public boolean regist(MobilPersonal member) {
+		
+		Hanwhatotalsc record = new Hanwhatotalsc();
+		
+		String memberName = StringUtil.replaceOfIndex(1, member.getPersNm(), "*");
+//		record.setBirthday(birthday);
+		record.setSex(member.getSex());
+		record.setName(memberName);
+		record.setPhone(member.getTel1());
+		
+		Hanwhatotalsc sc = hanwhatotalscMapper.selectHanwhatotalsc(record);
+		member.setPersNo(sc.getId().toString());
 		member.setPass(Sha256.encrypt(member.getPass()));
 		return mobilPersonalMapper.insertSelective(member) == 1;
 	}
