@@ -119,4 +119,9 @@
       </if>
     </trim>
   </insert>
+  
+  <select id="selectById" parameterType="string" resultMap="BaseResultMap">
+    select * from MOBILE.MOBIL_PERSONAL
+    where MOBIL_ID = #{id}
+  </select>
 </mapper>

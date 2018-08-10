@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.medi.hs.common.Sha256;
 import com.medi.hs.dao.MemberMapper;
+import com.medi.hs.dao.MobilPersonalMapper;
 import com.medi.hs.model.Member;
+import com.medi.hs.model.MobilPersonal;
 import com.medi.hs.service.MemberService;
 
 @Service
@@ -20,10 +22,13 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
 	
+	@Autowired
+	private MobilPersonalMapper mobilPersonalMapper;
+	
 	@Override
-	public boolean regist(Member member) {
-		member.setPasswd(Sha256.encrypt(member.getPasswd()));
-		return memberMapper.insertMember(member) == 1;
+	public boolean regist(MobilPersonal member) {
+		member.setPass(Sha256.encrypt(member.getPass()));
+		return mobilPersonalMapper.insertSelective(member) == 1;
 	}
 
 	@Override
@@ -35,18 +40,20 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean modify(Member member) {
-		return memberMapper.updateByPrimaryKeySelective(member) == 1;
+	public boolean modify(MobilPersonal member) {
+//		return memberMapper.updateByPrimaryKeySelective(member) == 1;
+		return mobilPersonalMapper.updateByPrimaryKeySelective(member) == 1;
 	}
 
 	@Override
-	public Member getMember(String userId) {
-		return memberMapper.selectByUserId(userId);
+	public MobilPersonal getMember(String userId) {
+		return mobilPersonalMapper.selectById(userId);
 	}
 
 	@Override
-	public List<Member> getMembers(Object object) {
-		return memberMapper.selectMembers(object);
+	public List<MobilPersonal> getMembers(Object object) {
+//		return mobilPersonalMapper.selectMembers(object);
+		return null;
 	}
 	
 	

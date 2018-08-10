@@ -14,9 +14,9 @@
  	
  	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 	  <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-	  <property name="url" value="jdbc:oracle:thin:@localhost:49161:xe" />
-	  <property name="username" value="medi" />
-	  <property name="password" value="jwchjwch" />
+	  <property name="url" value="jdbc:oracle:thin:@220.117.210.28:1521:ORCL10" />
+	  <property name="username" value="mobile" />
+	  <property name="password" value="mobile" />
 	  <property name="validationQuery" value="SELECT 1 from dual" />
 	  <property name="testWhileIdle" value="true"/>
       <property name="timeBetweenEvictionRunsMillis" value="60"/>

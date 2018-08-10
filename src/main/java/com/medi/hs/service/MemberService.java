@@ -3,6 +3,7 @@ package com.medi.hs.service;
 import java.util.List;
 
 import com.medi.hs.model.Member;
+import com.medi.hs.model.MobilPersonal;
 
 /**
  * 회원정보 서비스 
@@ -16,7 +17,7 @@ public interface MemberService {
 	 * @param member
 	 * @return
 	 */
-	boolean regist(Member member);
+	boolean regist(MobilPersonal member);
 	
 	/**
 	 * 회원정보을 삭제한다.
@@ -30,20 +31,21 @@ public interface MemberService {
 	 * @param member
 	 * @return
 	 */
-	boolean modify(Member member);
+	boolean modify(MobilPersonal member);
 	
 	/**
 	 * 아이디의 회원정보을 조회한다.
 	 * @param userId
 	 * @return
 	 */
-	Member getMember(String userId);
+	MobilPersonal getMember(String userId);
 	
 	/**
 	 * 회원목록을 조회한다.
 	 * @param object
 	 * @return
 	 */
-	List<Member> getMembers(Object object);
+	List<MobilPersonal> getMembers(Object object);
+
 	
 }

@@ -1,6 +1,8 @@
 package com.medi.hs.dao;
 
 import com.medi.hs.model.Member;
+import com.medi.hs.model.MobilPersonal;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -49,4 +51,6 @@ public interface MemberMapper {
 	Member selectById(String userId);
 	
 	int insertMember(Member member);
+
+	int updateByPrimaryKeySelective(MobilPersonal member);
 }

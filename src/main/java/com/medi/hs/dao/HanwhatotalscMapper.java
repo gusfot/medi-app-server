@@ -50,4 +50,6 @@ public interface HanwhatotalscMapper {
      * @mbg.generated Wed Aug 08 21:22:13 KST 2018
      */
     int updateByPrimaryKey(Hanwhatotalsc record);
+
+	Hanwhatotalsc selectHanwhatotalsc(Hanwhatotalsc record);
 }

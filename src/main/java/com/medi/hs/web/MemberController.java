@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.medi.hs.model.Member;
+import com.medi.hs.model.MobilPersonal;
 import com.medi.hs.service.MemberService;
 
 /**
@@ -55,7 +55,7 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping(value="/regist", method=RequestMethod.POST)
-	public String regist(@ModelAttribute Member member) {
+	public String regist(@ModelAttribute MobilPersonal member) {
 		
 		memberService.regist(member);
 		

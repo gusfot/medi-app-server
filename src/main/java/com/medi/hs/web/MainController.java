@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.medi.hs.model.Member;
+import com.medi.hs.model.MobilPersonal;
 import com.medi.hs.rest.common.RestResponse;
 import com.medi.hs.service.LoginService;
 import com.medi.hs.service.MemberService;
@@ -75,12 +75,15 @@ public class MainController {
 		boolean result = loginService.login(userId, passwd);
 		
 		if(result) {
-			session.setAttribute("sessionMember", "");
+			
+//			session.setAttribute("sessionMember", "");
 			res.setSuccess(true);
 			res.setResCode(ResponseCode.SUCCESS);
 			
 			logger.info("login success");
+			
 		}else {
+			
 			res.setSuccess(true);
 			res.setResCode(ResponseCode.FAIL);
 			
@@ -118,38 +121,17 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping(value="/signUp", method=RequestMethod.POST)
-	public String signUp(@ModelAttribute Member member) {
+	public String signUp(@ModelAttribute MobilPersonal member) {
 		
-		try{
+		try {
 			
 			memberService.regist(member);
-		}catch(Exception e ) {
+			
+		} catch(Exception e ) {
 			e.printStackTrace();
 		}
 		
 		return "redirect:/index";
 	}
-/*	
-	@RequestMapping(value = "/welcome", method=RequestMethod.GET, produces = "application/json")
-	public @ResponseBody RestResponse nextYear(){
 
-		RestResponse res = new RestResponse();
-		res.setSuccess(true);
-		res.setResCode(ResponseCode.SUCCESS);
-		res.setData("welcome member_api of ohjic!1");
-
-		return res;
-	}
-	
-	@RequestMapping(value = "/getNextYearSetting", method=RequestMethod.GET, produces = "application/json")
-	public @ResponseBody RestResponse getNextYearSetting(@RequestParam int churchCode){
-
-		RestResponse res = new RestResponse();
-		res.setSuccess(true);
-		res.setResCode(ResponseCode.SUCCESS);
-		res.setData("welcome member_api of ohjic!");
-
-		return res;
-	}	
-	*/
 }

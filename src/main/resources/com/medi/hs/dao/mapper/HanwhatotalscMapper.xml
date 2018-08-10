@@ -236,4 +236,11 @@
       COD_INSERT = #{codInsert,jdbcType=CHAR}
     where ID = #{id,jdbcType=NUMERIC}
   </update>
+  
+    <select id="selectHanwhatotalsc" parameterType="com.medi.hs.model.Hanwhatotalsc" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from MOBILE.HANWHATOTALSC
+    where NAME = #{name} and PHONE = #{phone} and BIRTHDAY = #{birthday} and SEX = #{sex}
+  </select>
 </mapper>

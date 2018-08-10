@@ -1,5 +1,6 @@
 package com.medi.hs.dao;
 
+import com.medi.hs.model.Member;
 import com.medi.hs.model.MobilPersonal;
 
 public interface MobilPersonalMapper {
@@ -18,4 +19,8 @@ public interface MobilPersonalMapper {
      * @mbg.generated Wed Aug 08 21:30:02 KST 2018
      */
     int insertSelective(MobilPersonal record);
+
+    MobilPersonal selectById(String id);
+
+	int updateByPrimaryKeySelective(MobilPersonal member);
 }

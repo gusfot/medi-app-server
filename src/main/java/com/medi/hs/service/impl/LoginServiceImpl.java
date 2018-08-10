@@ -10,8 +10,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.medi.hs.common.Sha256;
-import com.medi.hs.dao.MemberMapper;
-import com.medi.hs.model.Member;
+import com.medi.hs.dao.MobilPersonalMapper;
+import com.medi.hs.model.MobilPersonal;
 import com.medi.hs.service.LoginService;
 
 @Service
@@ -20,7 +20,7 @@ public class LoginServiceImpl implements LoginService {
 	private static final Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
 	
 	@Autowired
-	private MemberMapper memberMapper;
+	private MobilPersonalMapper mobilPersonalMapper;
 
 	@Override
 	public boolean login(String userId, String password) {
@@ -29,9 +29,9 @@ public class LoginServiceImpl implements LoginService {
 		
 		try{
 			
-			Member member = memberMapper.selectById(userId);
+			MobilPersonal member = mobilPersonalMapper.selectById(userId);
 			
-			if(member != null && Sha256.encrypt(password).equals(member.getPasswd())) {
+			if(member != null && Sha256.encrypt(password).equals(member.getPass())) {
 				
 				ServletRequestAttributes servletRequestAttribute = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		        HttpSession session = servletRequestAttribute.getRequest().getSession(true);
